@@ -1,0 +1,75 @@
+snippet for
+for ${1:x} in $2:
+	$0
+endsnippet
+
+snippet if
+if $1:
+	$2
+endsnippet
+
+snippet f
+def $1`!p
+t[1] = t[1].replace(' ', '_')
+`($2):
+	$0
+endsnippet
+
+snippet s.
+self.
+endsnippet
+
+snippet init
+def __init__(self, $1):
+	$2
+endsnippet
+
+snippet class
+class $1:
+	def __init__(self${2:, }):
+		$0
+endsnippet
+
+snippet try
+try:
+	$1
+except Exception as error:
+	$2
+	continue
+endsnippet
+
+snippet print
+print('$1')
+endsnippet
+
+snippet kwargs
+kwargs.get('$1'${2:, ''})
+endsnippet
+
+snippet test
+def test_$1`!p
+t[1] = t[1].replace(' ', '_')
+`(self):
+	"""
+	Given $2,
+	When $3,
+	Then $4
+	"""
+	$0
+endsnippet
+
+snippet gh
+"""
+Given $1,
+When $2,
+Then $3
+"""
+endsnippet
+
+snippet pry
+import pdb; pdb.set_trace()
+endsnippet
+
+snippet param
+@pytest.mark.parametrize("test_input, expected", [($1", $2), ("$3", $2)])
+endsnippet
