@@ -16,7 +16,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
-" Plug 'mtth/scratch.vim'
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'sodapopcan/vim-twiggy'
@@ -25,8 +24,8 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
-" Plug '~/projects/personal/scratch.vim'
 Plug '~/projects/personal/vim-scranch'
+Plug '~/projects/personal/vim-macroscope'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -147,20 +146,10 @@ let g:AutoPairsMapCh=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:nord_uniform_diff_background=1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SCRATCH
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:scratch_persistence_file = '/tmp/scratch.md'
-let g:scratch_project_persistence_dir = '/tmp/scratch'
-let g:scratch_git_branch_based = 0
-let g:scratch_insert_autohide = 0
-let g:scratch_filetype = 'markdown'
-" nnoremap ga :ScratchPreview<cr>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SCRANCH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap gs :Scranch<cr>
+nnoremap gs :Scranch!<cr>
 nnoremap ga :ScranchPreview<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

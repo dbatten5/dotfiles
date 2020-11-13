@@ -8,3 +8,9 @@ set tabstop=2
 set shiftwidth=2
 " On pressing tab, insert 4 spaces
 set expandtab
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let b:ale_linters = {'vim': ['vint']}
+let b:ale_vim_vint_show_style_issues = 0
