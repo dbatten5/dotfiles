@@ -2,7 +2,7 @@
 " COLOUR
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme nord
-if has("termguicolors")
+if has('termguicolors')
     set termguicolors
 endif
 
@@ -13,7 +13,7 @@ endif
 filetype plugin indent on
 
 " Change leader to comma
-let g:mapleader = ","
+let g:mapleader = ','
 
 " Highlight the current line
 set cursorline

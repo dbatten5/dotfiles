@@ -4,7 +4,7 @@
 autocmd!
 
 " Change leader to comma
-let g:mapleader = ","
+let g:mapleader = ','
 
 source $HOME/.config/nvim/functions.vim
 source $HOME/.config/nvim/commands.vim

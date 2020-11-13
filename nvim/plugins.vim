@@ -128,11 +128,11 @@ command! -bang -nargs=? -complete=dir Ag
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ULTI SNIPS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsSnippetDirectories=["my_snippets"]
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=['my_snippets']
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+let g:UltiSnipsEditSplit='vertical'
 nnoremap <leader>os :UltiSnipsEdit<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
