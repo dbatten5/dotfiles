@@ -150,6 +150,7 @@ let g:nord_uniform_diff_background=1
 " SCRANCH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap gs :Scranch!<cr>
+nnoremap gS :Scranch<cr>
 nnoremap ga :ScranchPreview<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
