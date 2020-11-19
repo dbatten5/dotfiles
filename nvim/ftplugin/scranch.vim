@@ -1,4 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC KEY MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <buffer> = <Plug>(scranch-toggle-todo-completion)
+nmap <silent> <buffer> X <Plug>(scranch-toggle-todo-completion)

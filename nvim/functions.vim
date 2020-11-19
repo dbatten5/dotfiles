@@ -36,7 +36,8 @@ function! CreateFile()
   endif
   let filepath = expand("%") . filename
   exec '!touch' filepath '&' | redraw!
-  normal Rgg
+  silent execute 'Dirvish %'
+  silent execute 'normal! gg'
   silent exec '/'.filename
   nohlsearch
 endf
@@ -47,7 +48,7 @@ function! DeleteItemUnderCursor()
   let target = '/'.target
   let cmd = (isdirectory(target)) ?  printf('rm -r "%s"',target) : printf('rm "%s"', target)
   silent exec '!'.cmd '&' | redraw!
-  execute 'Dirvish %'
+  silent execute 'Dirvish %'
 endfunction
 
 function! RenameItemUnderCursor()
@@ -59,5 +60,5 @@ function! RenameItemUnderCursor()
   endif
   let cmd = printf('mv "%s" "%s"', target, expand('%') . newname)
   silent exec '!'.cmd '&' | redraw!
-  execute 'Dirvish %'
+  silent execute 'Dirvish %'
 endfunction
