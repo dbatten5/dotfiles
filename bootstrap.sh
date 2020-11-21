@@ -68,7 +68,7 @@ echo "================================"
 echo "Creating zshrc symlink..."
 ln -sv $(pwd)/zsh/zshrc ~/.zshrc
 echo "Adding profiles..."
-ln -sv $(pwd)/zsh/profiles.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/
+ln -sv $(pwd)/iterm/profiles.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/
 
 echo "Setting up remaining config files..."
 [[ ! -d ~/.config/nvim ]] && mkdir -p ~/.config/nvim
