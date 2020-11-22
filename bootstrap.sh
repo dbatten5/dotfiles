@@ -66,13 +66,14 @@ ruby -e "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/instal
 echo "Setting up iTerm"
 echo "================================"
 echo "Creating zshrc symlink..."
-ln -sv $(pwd)/zsh/zshrc ~/.zshrc
+ln -sv $(pwd)/zsh/zshrc $HOME/.zshrc
 echo "Adding profiles..."
-ln -sv $(pwd)/iterm/profiles.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/
+ln -sv $(pwd)/iterm/profiles.json $HOME/Library/Application\ Support/iTerm2/DynamicProfiles/
 
 echo "Setting up remaining config files..."
-[[ ! -d ~/.config/nvim ]] && mkdir -p ~/.config/nvim
-ln -sv $(pwd)/nvim ~/.config/nvim
+[[ ! -d $HOME/.config/nvim ]] && mkdir -p $HOME/.config/nvim
+ln -sv $(pwd)/nvim $HOME/.config/nvim
+ln -sv $(pwd)/vim/.vintrc.yml $HOME/.vintrc.yml
 
 # PYTHON PACKAGES
 echo "Installing Python packages..."

@@ -1,0 +1,31 @@
+---
+cmdargs:
+  # Checking more strictly
+  severity: warning
+
+  # Enable coloring
+  color: true
+
+  # Enable Neovim syntax
+  env:
+    neovim: true
+
+policies:
+  ProhibitAbbreviationOption:
+    enabled: true
+  ProhibitAutocmdWithNoGroup:
+    enabled: true
+  ProhibitCommandRelyOnUser:
+    enabled: true
+  ProhibitCommandWithUnintendedSideEffect:
+    enabled: true
+  ProhibitEqualTildeOperator:
+    enabled: true
+  ProhibitNoAbortFunction:
+    enabled: true
+  ProhibitUnnecessaryDoubleQuote:
+    enabled: true
+  ProhibitUnusedVariable:
+    enabled: true
+  ProhibitUsingUndeclaredVariable:
+    enabled: true
