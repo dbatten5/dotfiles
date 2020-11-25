@@ -120,6 +120,7 @@ alias grbm='git pull --rebase=interactive origin master'
 alias gbd='git branch --merged | egrep -v "(^\*|master|dev|staging|develop)" | xargs git branch -d'
 alias gpf='ggpush --force-with-lease'
 alias ap='ansible-playbook'
+alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
 source ~/.bash_profile
 

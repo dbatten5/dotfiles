@@ -60,8 +60,11 @@ CASKS=(
 echo "Installing cask apps..."
 brew cask install ${CASKS[@]}
 
-echo "Installing oh-my-zsh..."
-ruby -e "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+OMZDIR="$HOME/.oh-my-zsh"
+if [ ! -d "$OMZDIR" ]; then
+  echo 'Installing oh-my-zsh...'
+  ruby -e "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 echo "Setting up iTerm"
 echo "================================"
@@ -102,3 +105,11 @@ echo "Set fast key repeat rate"
 defaults write NSGlobalDomain KeyRepeat -int 0
 
 # map caps lock to control
+
+# Change default shell
+if [! $0 = "-zsh"]; then
+  echo 'Changing default shell to zsh...'
+  chsh -s /bin/zsh
+else
+  echo 'Already using zsh'
+fi
