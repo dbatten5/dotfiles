@@ -1,0 +1,14 @@
+[user]
+	email = dominic.batten@eigentech.com
+	name = Dom Batten
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[rebase]
+	autosquash = true
+[init]
+	defaultBranch = main
+[merge]
+	conflictstyle = diff3

@@ -76,7 +76,8 @@ ln -sv $(pwd)/iterm/profiles.json $HOME/Library/Application\ Support/iTerm2/Dyna
 echo "Setting up remaining config files..."
 [[ ! -d $HOME/.config/nvim ]] && mkdir -p $HOME/.config/nvim
 ln -sv $(pwd)/nvim $HOME/.config/nvim
-ln -sv $(pwd)/vim/.vintrc.yml $HOME/.vintrc.yml
+ln -sv $(pwd)/vim/vintrc.yml $HOME/.vintrc.yml
+ln -sv $(pwd)/git/gitconfig $HOME/.gitconfig
 
 # PYTHON PACKAGES
 echo "Installing Python packages..."
