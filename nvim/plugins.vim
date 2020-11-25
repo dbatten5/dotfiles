@@ -29,6 +29,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'wellle/targets.vim'
 
 Plug '~/projects/personal/vim-scranch'
 Plug '~/projects/personal/vim-macroscope'
@@ -155,6 +156,7 @@ let g:nord_uniform_diff_background=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SCRANCH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:scranch_directory = '~/scranch'
 nnoremap gs :Scranch!<cr>
 nnoremap gS :Scranch<cr>
 nnoremap ga :ScranchPreview<cr>

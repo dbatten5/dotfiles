@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Inspiration
 # - https://gist.github.com/codeinthehole/26b37efa67041e1307db#file-osx_bootstrap-sh

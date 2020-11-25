@@ -73,6 +73,7 @@ ZSH_THEME="theunraveler"
 plugins=(
   conda-zsh-completion
   django
+  docker
   git
   web-search
   z
@@ -118,12 +119,9 @@ alias dj='python manage.py'
 alias grbm='git pull --rebase=interactive origin master'
 alias gbd='git branch --merged | egrep -v "(^\*|master|dev|staging|develop)" | xargs git branch -d'
 alias gpf='ggpush --force-with-lease'
+alias ap='ansible-playbook'
 
 source ~/.bash_profile
-
-function eig() {
-  z eigen && conda activate eigen
-}
 
 function fixup() {
   local current_sha="$(git rev-parse HEAD)"
@@ -131,5 +129,8 @@ function fixup() {
   git commit --fixup $current_sha
 }
 
+function dexec() {
+  docker exec -it $1 /bin/bash
+}
+
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
-# export FRONTEND_DEV=True
