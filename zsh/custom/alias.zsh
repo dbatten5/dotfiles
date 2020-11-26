@@ -1,5 +1,5 @@
 # CONFIG FILES
-alias ez='vim ~/.zshrc'
+alias ez='vim ~/.oh-my-zsh/custom'
 alias sz='source ~/.zshrc'
 alias eb='vim ~/.bash_profile'
 alias sb='source ~/.bash_profile'

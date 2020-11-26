@@ -66,6 +66,15 @@ if [ ! -d "$OMZDIR" ]; then
   ruby -e "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
+echo "Configuring ZSH"
+echo "================================"
+ZSH_CUSTOM=$OMZDIR/custom
+for config in $(pwd)/zsh/**/*.zsh; do
+  [ -e "$config" ] || continue
+  echo "Adding $(basename -- $config)"
+  ln -sv $config $ZSH_CUSTOM
+done
+
 echo "Setting up iTerm"
 echo "================================"
 echo "Creating zshrc symlink..."
@@ -78,18 +87,6 @@ echo "Setting up remaining config files..."
 ln -sv $(pwd)/nvim $HOME/.config/nvim
 ln -sv $(pwd)/vim/vintrc.yml $HOME/.vintrc.yml
 ln -sv $(pwd)/git/gitconfig $HOME/.gitconfig
-
-echo "Configuring ZSH"
-echo "================================"
-ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
-echo "Setting up custom zsh config..."
-ln -sv $(pwd)/zsh/custom $ZSH_CUSTOM
-echo "Setting up private zsh config..."
-for config in $(pwd)/zsh/private/*.zsh; do
-  [ -e "$config" ] || continue
-  echo "Adding $(basename -- $config) config"
-  ln -sv $config $ZSH_CUSTOM
-done
 
 # PYTHON PACKAGES
 echo "Installing Python packages..."
