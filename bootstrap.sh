@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Inspiration
 # - https://gist.github.com/codeinthehole/26b37efa67041e1307db#file-osx_bootstrap-sh
@@ -8,8 +8,8 @@ echo "Starting bootstrapping"
 
 # Check for Homebrew, install if we don't have it
 if test ! $(which brew); then
-    echo "Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "Installing homebrew..."
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 brew update
@@ -18,24 +18,24 @@ brew update
 brew install bash
 
 PACKAGES=(
-    automake
-    fzf
-    gettext
-    git
-    markdown
-    neovim
-    npm
-    pkg-config
-    python
-    python3
-    pypy
-    the_silver_searcher
-    tree
-    universal-ctags
-    vim
-    wget
-    zsh
-    zsh-syntax-higlighting
+  automake
+  fzf
+  gettext
+  git
+  markdown
+  neovim
+  npm
+  pkg-config
+  python
+  python3
+  pypy
+  the_silver_searcher
+  tree
+  universal-ctags
+  vim
+  wget
+  zsh
+  zsh-syntax-higlighting
 )
 
 echo "Installing packages..."
@@ -48,13 +48,13 @@ echo "Installing cask..."
 brew install caskroom/cask/brew-cask
 
 CASKS=(
-    flux
-    google-chrome
-    google-drive
-    gpgtools
-    iterm2
-    slack
-    spectacle
+  flux
+  google-chrome
+  google-drive
+  gpgtools
+  iterm2
+  slack
+  spectacle
 )
 
 echo "Installing cask apps..."
@@ -79,12 +79,24 @@ ln -sv $(pwd)/nvim $HOME/.config/nvim
 ln -sv $(pwd)/vim/vintrc.yml $HOME/.vintrc.yml
 ln -sv $(pwd)/git/gitconfig $HOME/.gitconfig
 
+echo "Configuring ZSH"
+echo "================================"
+ZSH_CUSTOM=$HOME/.oh-my-zsh/custom
+echo "Setting up custom zsh config..."
+ln -sv $(pwd)/zsh/custom $ZSH_CUSTOM
+echo "Setting up private zsh config..."
+for config in $(pwd)/zsh/private/*.zsh; do
+  [ -e "$config" ] || continue
+  echo "Adding $(basename -- $config) config"
+  ln -sv $config $ZSH_CUSTOM
+done
+
 # PYTHON PACKAGES
 echo "Installing Python packages..."
 PYTHON_PACKAGES=(
-    neovim
-    pynvim
-    virtualenv
+  neovim
+  pynvim
+  virtualenv
 )
 sudo pip install ${PYTHON_PACKAGES[@]}
 
