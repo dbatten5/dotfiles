@@ -1,6 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GENERAL AUTOCOMMANDS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" GENERAL {{{1
 augroup vimrc
   autocmd!
 " Remove cursorline highlight
@@ -16,4 +14,12 @@ augroup vimrc
       \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
       \ endif
+augroup END
+
+" COLOUR {{{1
+augroup nord_theme_overrides
+  autocmd!
+  autocmd ColorScheme nord highlight jsxTagName ctermfg=14 guifg=#5E81AC
+  autocmd ColorScheme nord highlight ExtraWhitespace guifg=#88C0D0
+  autocmd ColorScheme nord match ExtraWhiteSpace /\S\(\s\+\)$/
 augroup END

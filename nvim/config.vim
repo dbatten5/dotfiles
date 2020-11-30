@@ -1,14 +1,10 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLOUR
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLOUR {{{1
 colorscheme nord
 if has('termguicolors')
     set termguicolors
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BASIC EDITING CONFIGURATION
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC EDITING CONFIGURATION {{{1
 " Enable plugins and indents by filetype
 filetype plugin indent on
 
@@ -92,9 +88,7 @@ set diffopt=vertical
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/opt/miniconda3/bin/python'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COMPLETION
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COMPLETION {{{1
 " Things to ignore when searching
 set wildmode=list:full
 set wildignore=*.git*
@@ -103,9 +97,7 @@ set wildignore+=*/node_modules/**
 set wildignore+=*/public/**
 set wildignore+=*/venv/**
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" STATUSLINE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUSLINE {{{1
 hi User1 guifg=#FF0000 guibg=#2C323C
 " Mode
 set statusline=\ %{toupper(mode())}

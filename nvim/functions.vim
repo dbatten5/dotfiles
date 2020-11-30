@@ -1,3 +1,4 @@
+" GENERAL  {{{1
 function! ToggleQuickFix()
   if empty(filter(getwininfo(), 'v:val.quickfix'))
     copen
@@ -6,6 +7,7 @@ function! ToggleQuickFix()
   endif
 endfunction
 
+" DIRVISH {{{1
 function! PromptUserForFilename(requestToUser, ...)
   let title = input(a:requestToUser)
   let ComputeFinalPath = a:0 ? a:1 : { x -> x }

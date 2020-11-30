@@ -1,6 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGINS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGINS {{{1
 
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -29,15 +27,14 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 Plug 'wellle/targets.vim'
 
 Plug '~/projects/personal/vim-scranch'
 Plug '~/projects/personal/vim-macroscope'
 call plug#end()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VIM TEST
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM TEST {{{1
 let test#strategy = {
   \ 'nearest': 'neovim',
   \ 'file':    'dispatch',
@@ -48,9 +45,7 @@ nnoremap <silent> <leader>td :TestNearest -strategy=dispatch<cr>
 nnoremap <silent> <leader>tt :TestFile<cr>
 nnoremap <silent> <leader>ts :TestSuite<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VIM FUGITIVE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM FUGITIVE {{{1
 nnoremap <space>gs :belowright :20Gstatus<cr>
 nnoremap <space>gd :Gdiff<cr>
 nnoremap <space>ge :Gblame<cr>
@@ -65,16 +60,12 @@ nnoremap <space>gl :Git pull<cr>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MERGINAL
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MERGINAL {{{1
 " let g:merginal_splitType=''
 " let g:merginal_windowSize='15'
 " nnoremap <space>gb :Merginal<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TWIGGY
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TWIGGY {{{1
 let g:twiggy_group_locals_by_slash = 0
 let g:twiggy_local_branch_sort = 'mru'
 let g:twiggy_remote_branch_sort = 'date'
@@ -83,9 +74,7 @@ let g:twiggy_split_position = 'topleft'
 let g:twiggy_num_columns = 40
 nnoremap <space>gb :Twiggy<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ALE
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE {{{1
 " Only lint when saving or entering a file
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
@@ -105,24 +94,18 @@ function! LinterStatus() abort
     \)
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VIM COMMENTARY
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM COMMENTARY {{{1
 " Comment map
 nmap <leader>c gcc
 " Line comment command
 xmap <leader>c gc
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VIM ARG WRAP
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM ARG WRAP {{{1
 let g:argwrap_padded_braces = '[{'
 let g:argwrap_tail_comma = 1
 nnoremap <silent> <leader>aw :ArgWrap<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FZF
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FZF {{{1
 command! -bang -nargs=? -complete=dir Ag
     \ call fzf#vim#ag(<q-args>, 
     \ {'options': '--exact --delimiter : --nth 4..'}, 
@@ -131,10 +114,9 @@ command! -bang -nargs=? -complete=dir Ag
 :nnoremap \ :Ag<cr>
 :nnoremap <leader>f* :Ag <c-r><c-w><cr>
 :nnoremap <c-b> :Buffers<cr>
+let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.7, 'highlight': 'Operator', 'border': 'sharp' } }
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ULTI SNIPS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<c-b>'
@@ -142,28 +124,20 @@ let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 let g:UltiSnipsEditSplit='vertical'
 nnoremap <leader>os :UltiSnipsEdit<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AUTOPAIRS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AUTOPAIRS {{{1
 " Remove the <c-h> mapping due to conflict with my imode movement bindings
 let g:AutoPairsMapCh=0
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NORD
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NORD {{{1
 let g:nord_uniform_diff_background=1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SCRANCH
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SCRANCH {{{1
 let g:scranch_directory = '~/scranch'
 nnoremap gs :Scranch!<cr>
 nnoremap gS :Scranch<cr>
 nnoremap ga :ScranchPreview<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GUTENTAGS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" GUTENTAGS {{{1
 let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.json', '*.xml',
                             \ '*.phar', '*.ini', '*.rst', '*.md',
                             \ '*vendor/*/test*', '*vendor/*/Test*',
@@ -172,9 +146,7 @@ let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.json', '*.xml',
                             \ '*bundle*']
 let g:gutentags_cache_dir = '~/.tags'
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" DIRVISH
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" DIRVISH {{{1
 let g:dirvish_mode = ':sort | sort ,^.*[^/]$, r'
 noremap <silent> <c-e> :Dirvish %<cr>
 noremap <silent> <c-s> :Dirvish<cr>

@@ -8,3 +8,5 @@ export CC=gcc
 export CXX=clang
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+export NVIMCONFIG="$HOME/.config/nvim"

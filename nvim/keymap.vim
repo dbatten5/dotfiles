@@ -1,8 +1,6 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BASIC KEY MAPPINGS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BASIC KEY MAPPINGS {{{1
 " Quickly open and source my vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :vnew $NVIMCONFIG<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 " Center the screen on next match
 nnoremap n nzz
@@ -67,10 +65,15 @@ inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 " Open/close fold
 nnoremap <silent> <space><space> @=(foldlevel('.')?'za':"\<space>")<cr>
+" Output the current syntax group (shorturl.at/uwBHV)
+nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+" Paste last yanked item
+noremap <space>p "0p
+noremap <space>P "0P
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" QUICKFIX
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" QUICKFIX {{{1
 " Open the quickfix
 " nnoremap <leader>qf :copen<cr>
 nnoremap <leader>qf :call ToggleQuickFix()<cr>
@@ -79,26 +82,22 @@ nnoremap <leader>qo :colder<cr>
 " Go back through the quickfix window
 nnoremap <leader>qn :cnewer<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TERMINAL EMULATOR
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TERMINAL EMULATOR {{{1
 " Remap the escape from terminal mode
 tnoremap <esc> <c-\><c-n>
 " Open the terminal quickly
 nnoremap <space>t :call general#OpenTerminal()<cr>
 nnoremap <space>T :terminal<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FTPLUGIN
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FTPLUGIN {{{1
 nnoremap <leader>of :call general#OpenFTPlugin()<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COMMONS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COMMONS {{{1
 nnoremap <leader>lg :e logs/general.log<cr>Gzz
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NOTES
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NOTES {{{1
 nnoremap gn :call general#OpenNote()<cr>
+
+" SPELING {{{1
+iabbrev adn and
+iabbrev teh the
