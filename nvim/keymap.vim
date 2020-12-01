@@ -72,6 +72,8 @@ nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 " Paste last yanked item
 noremap <space>p "0p
 noremap <space>P "0P
+" I don't use ex mode (should I???)
+nnoremap Q <nop>
 
 " QUICKFIX {{{1
 " Open the quickfix

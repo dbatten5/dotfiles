@@ -20,6 +20,6 @@ augroup END
 augroup nord_theme_overrides
   autocmd!
   autocmd ColorScheme nord highlight jsxTagName ctermfg=14 guifg=#5E81AC
-  autocmd ColorScheme nord highlight ExtraWhitespace guifg=#88C0D0
-  autocmd ColorScheme nord match ExtraWhiteSpace /\S\(\s\+\)$/
+  " autocmd ColorScheme nord highlight ExtraWhitespace guifg=#88C0D0
+  " autocmd ColorScheme nord match ExtraWhiteSpace /\S\(\s\+\)$/
 augroup END

@@ -111,6 +111,7 @@ echo "Setting Dock to auto-hide and removing the auto-hiding delay..."
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.Dock autohide-delay -float 0
 defaults write com.apple.dock autohide-time-modifier -float 0
+defaults write com.apple.dock magnification -bool NO
 
 echo "Set fast key repeat rate"
 defaults write NSGlobalDomain KeyRepeat -int 0
