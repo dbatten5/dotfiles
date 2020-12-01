@@ -21,6 +21,7 @@ Plug 'justinmk/vim-dirvish'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
+Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'sodapopcan/vim-twiggy'
 Plug 'tpope/vim-commentary'
@@ -114,7 +115,7 @@ command! -bang -nargs=? -complete=dir Ag
 :nnoremap \ :Ag<cr>
 :nnoremap <leader>f* :Ag <c-r><c-w><cr>
 :nnoremap <c-b> :Buffers<cr>
-let g:fzf_layout = { 'window': { 'width': 0.7, 'height': 0.7, 'highlight': 'Operator', 'border': 'sharp' } }
+let g:fzf_layout = { 'window': { 'width': 0.85, 'height': 0.7, 'highlight': 'Operator', 'border': 'sharp' } }
 
 " ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']
@@ -150,3 +151,8 @@ let g:gutentags_cache_dir = '~/.tags'
 let g:dirvish_mode = ':sort | sort ,^.*[^/]$, r'
 noremap <silent> <c-e> :Dirvish %<cr>
 noremap <silent> <c-s> :Dirvish<cr>
+
+" TAGBAR {{{1
+nnoremap <F8> :TagbarToggle<CR>
+let g:tagbar_position = 'topleft vertical'
+let g:tagbar_compact = 1
