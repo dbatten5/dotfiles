@@ -39,7 +39,10 @@ bindkey -M viins '^f^a' _fuzzy-alias
 # GIT {{{2
 # fuzzy find a commit to fixup
 function fzgf() {
-  git log -n ${1:-20} --oneline | fzf | cut -d' ' -f 1 | xargs git commit --no-verify --fixup
+  local preview files
+  files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
+  preview="echo {} |grep -Eo '[a-f0-9]+' |head -1 |xargs -I% git show --color=always % -- $files"
+  git log -n ${1:-20} --oneline | fzf --preview="$preview" | cut -d' ' -f 1 | xargs git commit --no-verify --fixup
 }
 
 zle -N fzgf
