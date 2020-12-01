@@ -87,6 +87,7 @@ echo "Setting up remaining config files..."
 ln -sv $(pwd)/nvim $HOME/.config/nvim
 ln -sv $(pwd)/vim/vintrc.yml $HOME/.vintrc.yml
 ln -sv $(pwd)/git/gitconfig $HOME/.gitconfig
+ln -sv $(pwd)/git/gitignore_global $HOME/.gitignore_global
 
 # PYTHON PACKAGES
 echo "Installing Python packages..."

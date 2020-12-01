@@ -12,3 +12,6 @@
 	defaultBranch = main
 [merge]
 	conflictstyle = diff3
+[core]
+	editor = nvim
+	excludesfile = /Users/dominic.batten/.gitignore_global
