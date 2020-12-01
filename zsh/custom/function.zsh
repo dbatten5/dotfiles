@@ -9,10 +9,6 @@ function rhead() {
   git rebase -i HEAD~$1
 }
 
-function git_fix() {
-  git log -n 20 --oneline | fzf | cut -d' ' -f 1 | xargs git commit --no-verify --fixup
-}
-
 # DOCKER {{{1
 function dexec() {
   docker exec -it $1 /bin/bash
@@ -39,3 +35,12 @@ function _fuzzy-alias() {
 
 zle -N _fuzzy-alias
 bindkey -M viins '^f^a' _fuzzy-alias
+
+# GIT {{{2
+# fuzzy find a commit to fixup
+function fzgf() {
+  git log -n ${1:-20} --oneline | fzf | cut -d' ' -f 1 | xargs git commit --no-verify --fixup
+}
+
+zle -N fzgf
+bindkey -M viins '^g^f' fzgf
