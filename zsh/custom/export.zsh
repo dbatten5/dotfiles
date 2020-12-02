@@ -10,3 +10,5 @@ export CXX=clang
 export PATH="$HOME/.poetry/bin:$PATH"
 
 export NVIMCONFIG="$HOME/.config/nvim"
+
+export FZF_DEFAULT_OPTS='--height 40% --min-height 25 --border'

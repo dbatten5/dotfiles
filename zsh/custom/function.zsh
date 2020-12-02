@@ -10,7 +10,7 @@ function rhead() {
 }
 
 # FZF {{{1
-# ALIASES {{{2
+# GENERAL {{{2
 # fzf an alias and paste to command-line
 function fza() {
   local sel="$(alias | fzf | cut -d= -f1)"
@@ -30,6 +30,26 @@ function _fuzzy-alias() {
 
 zle -N _fuzzy-alias
 bindkey -M viins '^f^a' _fuzzy-alias
+
+# fzf in history and paste to command-line
+fzh() {
+  local selh="$(history -1 0 | fzf --query="$@" --ansi --no-sort -m -n 2.. | awk '{ sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print }')"
+  [ -n "$selh" ] && print -z -- ${selh}
+}
+
+# fzh but as a widget to be used with a key binding
+_fuzzy-history() {
+  local selh="$(history -1 0 | fzf --query="$BUFFER" --ansi --no-sort -m -n 2.. | awk '{ sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print }')"
+  if [ -n "$selh" ]; then
+    LBUFFER="$selh"
+    RBUFFER=''
+  fi
+  [ -n "$widgets[autosuggest-clear]" ] && zle autosuggest-clear
+  zle reset-prompt
+}
+
+zle -N _fuzzy-history
+bindkey -M viins '^r' _fuzzy-history
 
 # GIT {{{2
 # fzf a commit to fixup
