@@ -12,7 +12,7 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 " Quicker saves
-nnoremap s :w!<cr>
+nnoremap <silent> s :update<cr>
 " Remap the hash key as it's awkward on a mac
 nnoremap & #
 " Swap ' and ` for going to marks
@@ -59,10 +59,11 @@ nnoremap <leader>ws :call general#StripTrailingWhiteSpaces()<cr>
 " Insert filename
 inoremap <leader>fn <c-r>=expand("%:t:r")<cr>
 " Movement in insert mode
-inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
+inoremap <c-h> <c-o>h
+inoremap <c-l> <c-o>a
+inoremap <c-j> <c-o>j
+inoremap <c-k> <c-o>k
+inoremap <c-^> <c-o><c-^>
 " Open/close fold
 nnoremap <silent> <space><space> @=(foldlevel('.')?'za':"\<space>")<cr>
 " Output the current syntax group (shorturl.at/uwBHV)
@@ -73,11 +74,12 @@ nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 noremap <space>p "0p
 noremap <space>P "0P
 " I don't use ex mode (should I???)
-nnoremap Q <nop>
+nnoremap Q @q
+" Google the current word 
+nnoremap <leader>? :call general#Google(expand("<cword>"), 0)<cr>
 
 " QUICKFIX {{{1
-" Open the quickfix
-" nnoremap <leader>qf :copen<cr>
+" Toggle the quickfix
 nnoremap <leader>qf :call ToggleQuickFix()<cr>
 " Go back through the quickfix window
 nnoremap <leader>qo :colder<cr>

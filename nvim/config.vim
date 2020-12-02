@@ -88,6 +88,9 @@ set diffopt=vertical
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/opt/miniconda3/bin/python'
 
+" Keep the cursor on the same column
+set nostartofline
+
 " COMPLETION {{{1
 " Things to ignore when searching
 set wildmode=list:full
