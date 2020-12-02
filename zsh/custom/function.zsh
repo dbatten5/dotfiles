@@ -9,14 +9,9 @@ function rhead() {
   git rebase -i HEAD~$1
 }
 
-# DOCKER {{{1
-function dexec() {
-  docker exec -it $1 /bin/bash
-}
-
 # FZF {{{1
 # ALIASES {{{2
-# fuzzy find an alias and paste to command-line
+# fzf an alias and paste to command-line
 function fza() {
   local sel="$(alias | fzf | cut -d= -f1)"
   [ -n "$sel" ] && print -z -- ${sel}
@@ -37,7 +32,7 @@ zle -N _fuzzy-alias
 bindkey -M viins '^f^a' _fuzzy-alias
 
 # GIT {{{2
-# fuzzy find a commit to fixup
+# fzf a commit to fixup
 function fzgf() {
   local preview files
   files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
@@ -47,3 +42,14 @@ function fzgf() {
 
 zle -N fzgf
 bindkey -M viins '^g^f' fzgf
+
+# DOCKER {{{2
+# fzf a docker container to drop into
+function dexec() {
+  docker ps --format "{{.Names}}" | fzf | xargs -o -I% docker exec -it % /bin/bash
+}
+
+# fzf a docker container to retrieve logs
+function dlog() {
+  docker ps --format "{{.Names}}" | fzf | xargs docker logs
+}
