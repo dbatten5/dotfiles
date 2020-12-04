@@ -24,3 +24,9 @@ alias ap='ansible-playbook'
 alias c='conda'
 alias dj='python manage.py'
 
+# HELM {{{1
+alias h='helm'
+
+# KUBERNETES {{{1
+alias kdr='kubectl --dry-run=client -o yaml'
+alias kex='kubectl explain'

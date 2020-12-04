@@ -11,4 +11,6 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 export NVIMCONFIG="$HOME/.config/nvim"
 
-export FZF_DEFAULT_OPTS='--height 40% --min-height 25 --border'
+export KUBE_EDITOR="nvim"
+
+export FZF_DEFAULT_OPTS="--height 40% --min-height 25 --border --bind='ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept,ctrl-y:execute-silent(echo {+} | pbcopy)'"

@@ -9,6 +9,13 @@ function rhead() {
   git rebase -i HEAD~$1
 }
 
+# KUBERNETES {{{1
+# create a temporary busybox pod
+function ktmp() {
+  local cmd="${1:-sh}"
+  kubectl run tmp-`date +%s` --rm -it --image=busybox -- "$cmd"
+}
+
 # FZF {{{1
 # GENERAL {{{2
 # fzf an alias and paste to command-line
@@ -64,12 +71,42 @@ zle -N fzgf
 bindkey -M viins '^g^f' fzgf
 
 # DOCKER {{{2
-# fzf a docker container to drop into
-function dexec() {
-  docker ps --format "{{.Names}}" | fzf | xargs -o -I% docker exec -it % /bin/bash
+# fzf a docker container
+function _fuzzy-docker-container() {
+  docker ps --format "{{.Names}}" | fzf
 }
 
-# fzf a docker container to retrieve logs
+# drop into a container shell
+function dexec() {
+  docker exec -it $(_fuzzy-docker-container) /bin/bash
+}
+
+# retrieve logs
 function dlog() {
-  docker ps --format "{{.Names}}" | fzf | xargs docker logs
+  docker logs "$@" $(_fuzzy-docker-container)
+}
+
+# KUBERNETES {{{2
+# fzf a pod
+function _fuzzy-pod() {
+  kubectl get pods -o=custom-columns='NAME:metadata.name' | fzf
+}
+
+# fzf a container
+function _fuzzy-pod-container() {
+  kubectl get pods -o go-template-file="$HOME/projects/personal/dotfiles/zsh/custom/podlist.gotemplate" |
+    column -t |
+    fzf |
+    awk '{print $1,$2;}'
+}
+
+# retrieve logs for a pod
+function klogp() {
+  kubectl logs $(_fuzzy-pod) "$@"
+}
+
+# drop into a container shell
+function kexec() {
+  local pc=($(_fuzzy-pod-container))
+  kubectl exec -it $pc[1] -c $pc[2] -- /bin/bash
 }

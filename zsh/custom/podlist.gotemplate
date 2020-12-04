@@ -1,0 +1,7 @@
+{{- block "pods" . -}}
+  {{- range $item := .items -}}
+    {{- range $container := .spec.containers -}}
+      {{- println $item.metadata.name $container.name -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
