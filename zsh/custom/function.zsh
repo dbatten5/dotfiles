@@ -12,7 +12,7 @@ function rhead() {
 # KUBERNETES {{{1
 # create a temporary busybox pod
 function ktmp() {
-  local cmd="${1:-sh}"
+  local cmd="${*:-sh}"
   kubectl run tmp-`date +%s` --rm -it --image=busybox -- "$cmd"
 }
 
@@ -89,7 +89,10 @@ function dlog() {
 # KUBERNETES {{{2
 # fzf a pod
 function _fuzzy-pod() {
-  kubectl get pods -o=custom-columns='NAME:metadata.name' | fzf
+  kubectl get pods |
+    sed $'s/ /\u00a0\/' |
+    fzf --header-lines=1 -d $'\u00a0' --nth=1 |
+    awk $'{gsub("\u00a0", ""); print $1;}'
 }
 
 # fzf a container
@@ -100,13 +103,37 @@ function _fuzzy-pod-container() {
     awk '{print $1,$2;}'
 }
 
+# fzf a namespace
+function _fuzzy-namespace() {
+  kubectl get namespace |
+    sed $'s/ /\u00a0\/' |
+    fzf --header-lines=1 -d $'\u00a0' --nth=1 |
+    awk $'{gsub("\u00a0", ""); print $1;}'
+}
+
 # retrieve logs for a pod
 function klogp() {
-  kubectl logs $(_fuzzy-pod) "$@"
+  kubectl logs pod $(_fuzzy-pod) "$@"
+}
+
+# retrieve logs for a container
+function klogc() {
+  local pc=($(_fuzzy-pod-container))
+  kubectl logs pod $pc[1] -c $pc[2] "$@"
+}
+
+# describe a pod
+function kdescp() {
+  kubectl describe pod $(_fuzzy-pod) "$*"
 }
 
 # drop into a container shell
 function kexec() {
   local pc=($(_fuzzy-pod-container))
   kubectl exec -it $pc[1] -c $pc[2] -- /bin/bash
+}
+
+# switch namespaces
+function kns() {
+  kubectl config set-context --current --namespace=$(_fuzzy-namespace)
 }
