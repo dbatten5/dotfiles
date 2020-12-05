@@ -1,4 +1,5 @@
 {{- block "pods" . -}}
+  {{- println "POD" "CONTAINER" -}}
   {{- range $item := .items -}}
     {{- range $container := .spec.containers -}}
       {{- println $item.metadata.name $container.name -}}

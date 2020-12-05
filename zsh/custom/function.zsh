@@ -1,11 +1,11 @@
 # GIT {{{1
-function fixup() {
-  local current_sha="$(git rev-parse HEAD)"
-
-  git commit --fixup $current_sha
+# fixup latest commit
+function gfix1() {
+  git commit --fixup $(git rev-parse HEAD)
 }
 
-function rhead() {
+# rebase latest commit
+function grhead() {
   git rebase -i HEAD~$1
 }
 
@@ -39,7 +39,7 @@ zle -N _fuzzy-alias
 bindkey -M viins '^f^a' _fuzzy-alias
 
 # fzf in history and paste to command-line
-fzh() {
+function fzh() {
   local selh="$(history -1 0 | fzf --query="$@" --ansi --no-sort -m -n 2.. | awk '{ sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print }')"
   [ -n "$selh" ] && print -z -- ${selh}
 }
@@ -63,7 +63,7 @@ bindkey -M viins '^r' _fuzzy-history
 function fzgf() {
   local preview files
   files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
-  preview="echo {} |grep -Eo '[a-f0-9]+' |head -1 |xargs -I% git show --color=always % -- $files"
+  preview="echo {} | grep -Eo '[a-f0-9]+' | head -1 | xargs -I% git show --color=always % -- $files"
   git log -n ${1:-20} --oneline | fzf --preview="$preview" | cut -d' ' -f 1 | xargs git commit --no-verify --fixup
 }
 
@@ -73,7 +73,9 @@ bindkey -M viins '^g^f' fzgf
 # DOCKER {{{2
 # fzf a docker container
 function _fuzzy-docker-container() {
-  docker ps --format "{{.Names}}" | fzf
+  docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.CreatedAt}}" |
+    fzf --header-lines=1 --delimiter='\s+' --nth=1,2 |
+    awk '{print $1;}'
 }
 
 # drop into a container shell
@@ -88,52 +90,65 @@ function dlog() {
 
 # KUBERNETES {{{2
 # fzf a pod
-function _fuzzy-pod() {
+function _fuzzy-k8s-pod() {
   kubectl get pods |
-    sed $'s/ /\u00a0\/' |
-    fzf --header-lines=1 -d $'\u00a0' --nth=1 |
-    awk $'{gsub("\u00a0", ""); print $1;}'
+    fzf --header-lines=1 --delimiter='\s+' --nth=1 |
+    awk '{print $1;}'
 }
 
 # fzf a container
-function _fuzzy-pod-container() {
-  kubectl get pods -o go-template-file="$HOME/projects/personal/dotfiles/zsh/custom/podlist.gotemplate" |
+function _fuzzy-k8s-pod-container() {
+  kubectl get pods -o go-template-file="$HOME/.k8s/templates/podlist.gotemplate" |
     column -t |
-    fzf |
+    fzf --header-lines=1 |
     awk '{print $1,$2;}'
 }
 
-# fzf a namespace
-function _fuzzy-namespace() {
-  kubectl get namespace |
-    sed $'s/ /\u00a0\/' |
-    fzf --header-lines=1 -d $'\u00a0' --nth=1 |
-    awk $'{gsub("\u00a0", ""); print $1;}'
+# generate a pod + container string for use with kubectl
+function _fuzzy-k8s-kubectl-pc() {
+  echo $(_fuzzy-k8s-pod-container) | awk '{printf "%s -c %s", $1, $2;}'
 }
 
-# retrieve logs for a pod
-function klogp() {
-  kubectl logs pod $(_fuzzy-pod) "$@"
+# fzf a namespace
+function _fuzzy-k8s-namespace() {
+  kubectl get namespace |
+    fzf --header-lines=1 --delimiter='\s+' --nth=1 |
+    awk '{print $1;}'
+}
+
+# fzf all
+function _fuzzy-k8s-all() {
+  kubectl get all -o custom-columns=KIND:.kind,NAME:.metadata.name |
+    fzf --header-lines=1 |
+    awk '{print tolower($1),$2;}'
 }
 
 # retrieve logs for a container
-function klogc() {
-  local pc=($(_fuzzy-pod-container))
-  kubectl logs pod $pc[1] -c $pc[2] "$@"
+function klog() {
+  kubectl logs $(_fuzzy-k8s-kubectl-pc) "$@"
 }
 
 # describe a pod
 function kdescp() {
-  kubectl describe pod $(_fuzzy-pod) "$*"
+  kubectl describe pod $(_fuzzy-k8s-pod) "$*"
+}
+
+# describe a resource
+function kdesc() {
+  kubectl describe $(_fuzzy-k8s-all) "$*"
 }
 
 # drop into a container shell
 function kexec() {
-  local pc=($(_fuzzy-pod-container))
-  kubectl exec -it $pc[1] -c $pc[2] -- /bin/bash
+  kubectl exec -it $(_fuzzy-k8s-kubectl-pc) -- /bin/bash
 }
 
 # switch namespaces
 function kns() {
-  kubectl config set-context --current --namespace=$(_fuzzy-namespace)
+  kubectl config set-context --current --namespace=$(_fuzzy-k8s-namespace)
+}
+
+# get yaml for a resource
+function kyaml() {
+  kubectl get $(_fuzzy-k8s-all) -o yaml
 }

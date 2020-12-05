@@ -88,6 +88,8 @@ ln -sv $(pwd)/nvim $HOME/.config/nvim
 ln -sv $(pwd)/vim/vintrc.yml $HOME/.vintrc.yml
 ln -sv $(pwd)/git/gitconfig $HOME/.gitconfig
 ln -sv $(pwd)/git/gitignore_global $HOME/.gitignore_global
+[[ ! -d $HOME/.k8s ]] && mkdir -p $HOME/.k8s
+ln -sv $(pwd)/k8s/templates $HOME/.k8s
 
 # PYTHON PACKAGES
 echo "Installing Python packages..."
