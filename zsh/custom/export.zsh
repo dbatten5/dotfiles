@@ -13,4 +13,6 @@ export NVIMCONFIG="$HOME/.config/nvim"
 
 export KUBE_EDITOR="nvim"
 
-export FZF_DEFAULT_OPTS="--height 40% --min-height 25 --layout=reverse --border --bind='ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept,ctrl-y:execute-silent(echo {+} | pbcopy)'"
+export FZF_DEFAULT_OPTS="--height 40% --min-height 25 --layout=reverse --bind='ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept,ctrl-y:execute-silent(echo {+} | pbcopy)'"
+
+export BAT_THEME="base16"

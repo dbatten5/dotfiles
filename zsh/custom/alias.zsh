@@ -1,4 +1,5 @@
 # CONFIG FILES {{{1
+# quick editing and sourcing of config files
 alias ez='vim ~/.oh-my-zsh/custom'
 alias sz='source ~/.zshrc'
 alias eb='vim ~/.bash_profile'
@@ -6,7 +7,12 @@ alias sb='source ~/.bash_profile'
 alias config='nvim ~/.config'
 
 # GENERAL {{{1
-alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+# copy public key to clipboard
+alias pubkey='clipcopy "$(cat ~/.ssh/id_rsa.pub)" | echo "=> Public key copied to clipboard."'
+# copy last command to clipboard
+alias clc='clipcopy "$(fc -ln -1)" | echo "=> Last command copied to clipboard."'
+# sudo last command
+alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
 
 # VIM {{{1
 alias vim="nvim"

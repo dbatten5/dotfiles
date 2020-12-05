@@ -75,7 +75,6 @@ plugins=(
   django
   docker
   git
-  helm
   kubectl
   web-search
   z

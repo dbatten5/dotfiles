@@ -1,3 +1,9 @@
+# GENERAL {{{1
+# copy to clipboard
+function clipcopy() {
+  echo -n "$*" | pbcopy
+}
+
 # GIT {{{1
 # fixup latest commit
 function gfix1() {
@@ -5,7 +11,7 @@ function gfix1() {
 }
 
 # rebase latest commit
-function grhead() {
+function greb1() {
   git rebase -i HEAD~$1
 }
 
@@ -21,7 +27,7 @@ function ktmp() {
 # fzf an alias and paste to command-line
 function fza() {
   local sel="$(alias | fzf | cut -d= -f1)"
-  [ -n "$sel" ] && print -z -- ${sel}
+  [ -n "$sel" ] && print -z -- "$sel"
 }
 
 # fza but as a widget to be used with a key binding
@@ -41,7 +47,7 @@ bindkey -M viins '^f^a' _fuzzy-alias
 # fzf in history and paste to command-line
 function fzh() {
   local selh="$(history -1 0 | fzf --query="$@" --ansi --no-sort -m -n 2.. | awk '{ sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print }')"
-  [ -n "$selh" ] && print -z -- ${selh}
+  [ -n "$selh" ] && print -z -- "$selh"
 }
 
 # fzh but as a widget to be used with a key binding
@@ -80,7 +86,8 @@ function _fuzzy-docker-container() {
 
 # drop into a container shell
 function dexec() {
-  docker exec -it $(_fuzzy-docker-container) /bin/bash
+  local cmd="${*:-/bin/bash}"
+  docker exec -it $(_fuzzy-docker-container) "$cmd"
 }
 
 # retrieve logs
@@ -140,7 +147,8 @@ function kdesc() {
 
 # drop into a container shell
 function kexec() {
-  kubectl exec -it $(_fuzzy-k8s-kubectl-pc) -- /bin/bash
+  local cmd="${*:-/bin/bash}"
+  kubectl exec -it $(_fuzzy-k8s-kubectl-pc) -- "$cmd"
 }
 
 # switch namespaces
