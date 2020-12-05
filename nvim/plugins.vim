@@ -20,6 +20,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': 'yaml'}
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
 Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
@@ -111,11 +112,12 @@ command! -bang -nargs=? -complete=dir Ag
     \ call fzf#vim#ag(<q-args>, 
     \ {'options': '--exact --delimiter : --nth 4..'}, 
     \ <bang>0)
-:nnoremap <c-f> :GFiles<cr>
-:nnoremap \ :Ag<cr>
-:nnoremap <leader>f* :Ag <c-r><c-w><cr>
-:nnoremap <c-b> :Buffers<cr>
+nnoremap <c-f> :GFiles<cr>
+nnoremap \ :Ag<cr>
+nnoremap <leader>f* :Ag <c-r><c-w><cr>
+nnoremap <c-b> :Buffers<cr>
 let g:fzf_layout = { 'window': { 'width': 0.85, 'height': 0.7, 'highlight': 'Operator', 'border': 'sharp' } }
+let $FZF_DEFAULT_OPTS="--preview-window 'right:60%' --layout default --margin=1,4"
 
 " ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']
@@ -156,3 +158,6 @@ noremap <silent> <c-s> :Dirvish<cr>
 nnoremap <F8> :TagbarToggle<CR>
 let g:tagbar_position = 'topleft vertical'
 let g:tagbar_compact = 1
+
+" COC {{{1
+inoremap <silent><expr> <c-space> coc#refresh()

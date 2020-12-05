@@ -50,10 +50,8 @@ vnoremap v <c-v>
 vnoremap <c-v> v
 " Quickly set the local working directory
 nnoremap <leader>ld :lcd %:p:h<cr>
-" Set foldmethod indent
-nnoremap <leader>fm :set foldmethod=indent<cr>
-" Remove folds
-nnoremap <leader>fn :set nofoldenable<cr>
+" Toggle folds
+nnoremap <leader>fn :set foldenable!<cr>
 " Remove whitespace
 nnoremap <leader>ws :call general#StripTrailingWhiteSpaces()<cr>
 " Insert filename
@@ -105,3 +103,7 @@ nnoremap gn :call general#OpenNote()<cr>
 " SPELING {{{1
 iabbrev adn and
 iabbrev teh the
+
+" COMPLETION MENU {{{1
+" pressing enter selects the item rather than inserting a new line
+inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
