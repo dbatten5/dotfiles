@@ -7,19 +7,19 @@ function clipcopy() {
 # GIT {{{1
 # fixup latest commit
 function gfix1() {
-  git commit --fixup $(git rev-parse HEAD)
+  git commit --fixup "$(git rev-parse HEAD)"
 }
 
 # rebase latest commit
-function greb1() {
-  git rebase -i HEAD~$1
+function greb() {
+  git rebase -i HEAD~"${1:-1}"
 }
 
 # KUBERNETES {{{1
 # create a temporary busybox pod
 function ktmp() {
   local cmd="${*:-sh}"
-  kubectl run tmp-`date +%s` --rm -it --image=busybox -- "$cmd"
+  kubectl run tmp-"$(date +%s)" --rm -it --image=busybox -- "$cmd"
 }
 
 # FZF {{{1
@@ -42,17 +42,16 @@ function _fuzzy-alias() {
 }
 
 zle -N _fuzzy-alias
-bindkey -M viins '^f^a' _fuzzy-alias
 
 # fzf in history and paste to command-line
 function fzh() {
-  local selh="$(history -1 0 | fzf --query="$@" --ansi --no-sort -m -n 2.. | awk '{ sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print }')"
+  local selh="$(history -1 0 | fzf --query="$@" --ansi --no-sort -m -n 2.. | awk '{sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print;}')"
   [ -n "$selh" ] && print -z -- "$selh"
 }
 
 # fzh but as a widget to be used with a key binding
 _fuzzy-history() {
-  local selh="$(history -1 0 | fzf --query="$BUFFER" --ansi --no-sort -m -n 2.. | awk '{ sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print }')"
+  local selh="$(history -1 0 | fzf --query="$BUFFER" --ansi --no-sort -m -n 2.. | awk '{sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print;}')"
   if [ -n "$selh" ]; then
     LBUFFER="$selh"
     RBUFFER=''
@@ -62,7 +61,13 @@ _fuzzy-history() {
 }
 
 zle -N _fuzzy-history
-bindkey -M viins '^r' _fuzzy-history
+
+# like normal z when used with arguments but displays an fzf prompt when used without.
+unalias z 2> /dev/null
+z() {
+  [ $# -gt 0 ] && _z "$*" && return
+  cd "$(_z -l 2>&1 | fzf --nth 2.. +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
 
 # GIT {{{2
 # fzf a commit to fixup
@@ -74,7 +79,6 @@ function fzgf() {
 }
 
 zle -N fzgf
-bindkey -M viins '^g^f' fzgf
 
 # DOCKER {{{2
 # fzf a docker container
@@ -86,13 +90,14 @@ function _fuzzy-docker-container() {
 
 # drop into a container shell
 function dexec() {
-  local cmd="${*:-/bin/bash}"
-  docker exec -it $(_fuzzy-docker-container) "$cmd"
+  local cid=$(_fuzzy-docker-container)
+  [ -n "$cid" ] && docker exec -it "$cid" "${*:-/bin/bash}"
 }
 
 # retrieve logs
 function dlog() {
-  docker logs "$@" $(_fuzzy-docker-container)
+  local cid=$(_fuzzy-docker-container)
+  [ -n "$cid" ] && docker logs "$@" "$cid"
 }
 
 # KUBERNETES {{{2
@@ -113,7 +118,8 @@ function _fuzzy-k8s-pod-container() {
 
 # generate a pod + container string for use with kubectl
 function _fuzzy-k8s-kubectl-pc() {
-  echo $(_fuzzy-k8s-pod-container) | awk '{printf "%s -c %s", $1, $2;}'
+  local pc="$(_fuzzy-k8s-pod-container)"
+  [ -n "$pc" ] && echo "$pc" | awk '{print $1,"-c",$2;}'
 }
 
 # fzf a namespace
@@ -132,31 +138,38 @@ function _fuzzy-k8s-all() {
 
 # retrieve logs for a container
 function klog() {
-  kubectl logs $(_fuzzy-k8s-kubectl-pc) "$@"
+  local pc=$(_fuzzy-k8s-kubectl-pc)
+  [ -n "$pc" ] && kubectl logs $(echo $pc) "$@"
 }
 
 # describe a pod
 function kdescp() {
-  kubectl describe pod $(_fuzzy-k8s-pod) "$*"
+  local pod=$(_fuzzy-k8s-pod)
+  [ -n "$pod" ] && kubectl describe pod "$pod" "$@"
 }
 
 # describe a resource
 function kdesc() {
-  kubectl describe $(_fuzzy-k8s-all) "$*"
+  local res=$(_fuzzy-k8s-all)
+  [ -n "$res" ] && kubectl describe $(echo $res) "$@"
 }
 
 # drop into a container shell
 function kexec() {
-  local cmd="${*:-/bin/bash}"
-  kubectl exec -it $(_fuzzy-k8s-kubectl-pc) -- "$cmd"
+  local pc=$(_fuzzy-k8s-kubectl-pc)
+  [ -n "$pc" ] && kubectl exec -it $(echo $pc) -- "${*:-/bin/bash}"
 }
 
 # switch namespaces
 function kns() {
-  kubectl config set-context --current --namespace=$(_fuzzy-k8s-namespace)
+  local ns=$(_fuzzy-k8s-namespace)
+  [ -n "$ns" ] &&
+    kubectl config set-context --current --namespace="$ns" 1> /dev/null &&
+    echo "Default namespace set to $ns"
 }
 
 # get yaml for a resource
 function kyaml() {
-  kubectl get $(_fuzzy-k8s-all) -o yaml
+  local res=$(_fuzzy-k8s-all)
+  [ -n "$res" ] && kubectl get $(echo $res) -o yaml "$@"
 }

@@ -117,7 +117,7 @@ nnoremap \ :Ag<cr>
 nnoremap <leader>f* :Ag <c-r><c-w><cr>
 nnoremap <c-b> :Buffers<cr>
 let g:fzf_layout = { 'window': { 'width': 0.85, 'height': 0.7, 'highlight': 'Operator', 'border': 'sharp' } }
-let $FZF_DEFAULT_OPTS="--preview-window 'right:60%' --layout default --margin=1,4"
+let $FZF_DEFAULT_OPTS="--preview-window 'right:60%' --layout default --margin=1,4 --bind='ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
 
 " ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']
