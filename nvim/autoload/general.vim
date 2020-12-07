@@ -16,11 +16,6 @@ function! general#OpenFTPlugin()
   execute 'vsp ' . l:path
 endfunction
 
-function! general#OpenNote()
-  let path = '~/Documents/notes/' . &filetype . '.md'
-  execute 'vsp ' . path
-endfunction
-
 function! general#Google(pat, lucky)
   let q = '"'.substitute(a:pat, '["\n]', ' ', 'g').'"'
   let q = substitute(q, '[[:punct:] ]',

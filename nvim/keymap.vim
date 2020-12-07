@@ -97,9 +97,6 @@ nnoremap <leader>of :call general#OpenFTPlugin()<cr>
 " COMMONS {{{1
 nnoremap <leader>lg :e logs/general.log<cr>Gzz
 
-" NOTES {{{1
-nnoremap gn :call general#OpenNote()<cr>
-
 " SPELING {{{1
 iabbrev adn and
 iabbrev teh the
