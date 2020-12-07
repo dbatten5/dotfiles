@@ -25,6 +25,7 @@ Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
 Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'sodapopcan/vim-twiggy'
+Plug 'towolf/vim-helm'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
@@ -32,8 +33,9 @@ Plug 'tpope/vim-surround'
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 Plug 'wellle/targets.vim'
 
-Plug '~/projects/personal/vim-scranch'
+Plug '~/projects/personal/vim-ffs'
 Plug '~/projects/personal/vim-macroscope'
+Plug '~/projects/personal/vim-scranch'
 call plug#end()
 
 " VIM TEST {{{1
@@ -152,7 +154,6 @@ let g:gutentags_cache_dir = '~/.tags'
 " DIRVISH {{{1
 let g:dirvish_mode = ':sort | sort ,^.*[^/]$, r'
 noremap <silent> <c-e> :Dirvish %<cr>
-noremap <silent> <c-s> :Dirvish<cr>
 
 " TAGBAR {{{1
 nnoremap <F8> :TagbarToggle<CR>
@@ -161,3 +162,6 @@ let g:tagbar_compact = 1
 
 " COC {{{1
 inoremap <silent><expr> <c-space> coc#refresh()
+
+" FFS {{{1
+nnoremap <c-s> :FFS<space>

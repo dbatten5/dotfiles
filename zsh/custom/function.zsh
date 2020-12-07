@@ -50,7 +50,7 @@ function fzh() {
 }
 
 # fzh but as a widget to be used with a key binding
-_fuzzy-history() {
+function _fuzzy-history() {
   local selh="$(history -1 0 | fzf --query="$BUFFER" --ansi --no-sort -m -n 2.. | awk '{sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print;}')"
   if [ -n "$selh" ]; then
     LBUFFER="$selh"
@@ -139,7 +139,7 @@ function _fuzzy-k8s-all() {
 # retrieve logs for a container
 function klog() {
   local pc=$(_fuzzy-k8s-kubectl-pc)
-  [ -n "$pc" ] && kubectl logs $(echo $pc) "$@"
+  [ -n "$pc" ] && kubectl logs ${=pc} "$@"
 }
 
 # describe a pod
@@ -151,13 +151,13 @@ function kdescp() {
 # describe a resource
 function kdesc() {
   local res=$(_fuzzy-k8s-all)
-  [ -n "$res" ] && kubectl describe $(echo $res) "$@"
+  [ -n "$res" ] && kubectl describe ${=res} "$@"
 }
 
 # drop into a container shell
 function kexec() {
   local pc=$(_fuzzy-k8s-kubectl-pc)
-  [ -n "$pc" ] && kubectl exec -it $(echo $pc) -- "${*:-/bin/bash}"
+  [ -n "$pc" ] && kubectl exec -it ${=pc} -- "${*:-/bin/bash}"
 }
 
 # switch namespaces
@@ -165,11 +165,11 @@ function kns() {
   local ns=$(_fuzzy-k8s-namespace)
   [ -n "$ns" ] &&
     kubectl config set-context --current --namespace="$ns" 1> /dev/null &&
-    echo "Default namespace set to $ns"
+    echo "Default namespace set to ${ns}"
 }
 
 # get yaml for a resource
 function kyaml() {
   local res=$(_fuzzy-k8s-all)
-  [ -n "$res" ] && kubectl get $(echo $res) -o yaml "$@"
+  [ -n "$res" ] && kubectl get ${=res} -o yaml "$@"
 }
