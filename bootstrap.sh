@@ -19,9 +19,11 @@ brew install bash
 
 PACKAGES=(
   automake
+  fd
   fzf
   gettext
   git
+  jq
   markdown
   neovim
   npm
@@ -29,6 +31,7 @@ PACKAGES=(
   python
   python3
   pypy
+  ripgrep
   the_silver_searcher
   tree
   universal-ctags
