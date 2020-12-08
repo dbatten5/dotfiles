@@ -13,6 +13,9 @@ alias pubkey='clipcopy "$(cat ~/.ssh/id_rsa.pub)" | echo "=> Public key copied t
 alias clc='clipcopy "$(fc -ln -1)" | echo "=> Last command copied to clipboard."'
 # sudo last command
 alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
+# add fzf global alias
+# alias -g Z='[ $# -gt 0 ] && "| fzf" && return; "fzf"'
+alias -g Z='$(if [ $# -gt 0 ] ; then "| fzf"; else "fzf"; fi)'
 
 # VIM {{{1
 alias vim="nvim"
@@ -36,3 +39,4 @@ alias h='helm'
 # KUBERNETES {{{1
 alias kdr='kubectl --dry-run=client -o yaml'
 alias kex='kubectl explain'
+alias kcns='kubectl config view --minify --output "jsonpath={..namespace}"'

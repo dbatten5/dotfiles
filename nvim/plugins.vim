@@ -111,7 +111,7 @@ nnoremap <silent> <leader>aw :ArgWrap<CR>
 
 " FZF {{{1
 let g:fzf_layout = { 'window': { 'width': 0.85, 'height': 0.7, 'highlight': 'Operator', 'border': 'sharp' } }
-let $FZF_DEFAULT_OPTS="--preview-window 'right:60%' --layout default --margin=1,4 --bind='ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept'"
+let $FZF_DEFAULT_OPTS="--preview-window 'right:60%' --layout default --margin=1,4 --bind='ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept,ctrl-x:unix-line-discard'"
 command! -bang -nargs=? -complete=dir Ag
     \ call fzf#vim#ag(<q-args>, 
     \ {'options': '--exact --delimiter : --nth 4..'}, 
@@ -120,13 +120,19 @@ nnoremap <c-f> :GFiles<cr>
 nnoremap \ :Ag<cr>
 nnoremap <leader>f* :Ag <c-r><c-w><cr>
 nnoremap <c-b> :Buffers<cr>
+" fzf a note and open it 
 command! Notes call fzf#run(fzf#wrap({
       \ 'source': 'ls',
       \ 'dir': '~/Documents/notes',
       \ 'sink': 'e',
-      \ 'options': '--preview="cat {}"',
+      \ 'options': ['--preview', 'bat {}', '--prompt', 'Notes>', '-m'],
       \ }))
 nnoremap gn :Notes<cr>
+command! Projects call fzf#run(fzf#wrap({
+      \ 'source': 'ls',
+      \ 'dir': '~/projects',
+      \ 'sink': 'vsplit',
+      \ }))
 
 " ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']
@@ -171,4 +177,7 @@ let g:tagbar_compact = 1
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " FFS {{{1
+let g:ffs_schema = {
+      \ 'sh': 'bash',
+      \ }
 nnoremap <c-s> :FFS<space>

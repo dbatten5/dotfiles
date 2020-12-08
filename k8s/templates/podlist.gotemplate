@@ -1,8 +1,8 @@
 {{- block "pods" . -}}
-  {{- println "POD" "CONTAINER" -}}
-  {{- range $item := .items -}}
+  {{- println "POD" "CONTAINER" "STATUS" -}}
+  {{- range $pod := .items -}}
     {{- range $container := .spec.containers -}}
-      {{- println $item.metadata.name $container.name -}}
+      {{- println $pod.metadata.name $container.name $pod.status.phase -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
