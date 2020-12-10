@@ -16,3 +16,4 @@ bindkey '^o' history-beginning-search-backward
 bindkey -M viins '^f^a' _fuzzy-alias
 bindkey -M viins '^r' _fuzzy-history
 bindkey -M viins '^g^f' fzgf
+bindkey -M viins '^g^r' fzgr

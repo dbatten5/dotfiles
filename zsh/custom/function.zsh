@@ -37,7 +37,6 @@ function _fuzzy-alias() {
     LBUFFER="$sel"
     RBUFFER=''
   fi
-  [ -n "$widgets[autosuggest-clear]" ] && zle autosuggest-clear
   zle reset-prompt
 }
 
@@ -56,7 +55,6 @@ function _fuzzy-history() {
     LBUFFER="$selh"
     RBUFFER=''
   fi
-  [ -n "$widgets[autosuggest-clear]" ] && zle autosuggest-clear
   zle reset-prompt
 }
 
@@ -76,6 +74,16 @@ function fzgf() {
   files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
   preview="echo {} | grep -Eo '[a-f0-9]+' | head -1 | xargs -I% git show --color=always % -- $files"
   git log -n ${1:-20} --oneline | fzf --preview="$preview" | cut -d' ' -f 1 | xargs git commit --no-verify --fixup
+}
+
+zle -N fzgf
+
+# fzf a commit to rebase current branch
+function fzgr() {
+  local preview files
+  files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
+  preview="echo {} | grep -Eo '[a-f0-9]+' | head -1 | xargs -I% git show --color=always % -- $files"
+  git log -n ${1:-20} --oneline | fzf --preview="$preview" | cut -d' ' -f 1 | xargs git rebase -i
 }
 
 zle -N fzgf
