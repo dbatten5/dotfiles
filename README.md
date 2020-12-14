@@ -38,7 +38,7 @@ by `fzf` and are focused on the following topics:
 |name|description|keybinding|
 |---|---|---|
 |fza|find an alias and paste to command line|<kbd>Ctrl</kbd>+<kbd>a</kbd>|
-|fzh|find a command from history and paste to command line|<kbd>Ctrl</kbd>+<kbd>b</kbd>|
+|fzh|find a command from history and paste to command line|<kbd>Ctrl</kbd>+<kbd>r</kbd>|
 |z|called without arguments to find a directory from `z` plugin's list, <br/>with arguments acts like normal `z`|
 
 #### git
@@ -54,6 +54,8 @@ by `fzf` and are focused on the following topics:
 |---|---|
 |dexec|find a container to drop into|
 |dlog|find a container to retrieve logs|
+|dstart|find a stopped container to start|
+|dstop|find a started container to stop|
 
 #### kubernetes
 
@@ -65,5 +67,8 @@ by `fzf` and are focused on the following topics:
 |kexec|drop into a container shell|
 |kns|switch namespaces|
 |kyaml|get yaml for a resource|
+|kctx|switch context|
 
 ## nvim
+
+Coming soon...

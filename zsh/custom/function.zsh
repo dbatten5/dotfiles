@@ -120,7 +120,7 @@ function dlog() {
 function dstart() {
   local cid=$(_fuzzy-docker-container -f "status=exited")
   [ -n "$cid" ] \
-    && docker start "$@" 1> /dev/null \
+    && docker start "$@" "$cid" 1> /dev/null \
     && echo "Container $cid started"
 }
 
@@ -151,7 +151,7 @@ function _fuzzy-k8s-pod-container() {
 # generate a pod + container string for use with kubectl
 function _fuzzy-k8s-kubectl-pc() {
   local pc="$(_fuzzy-k8s-pod-container)"
-  [ -n "$pc" ] && echo "$pc" | awk '{print $1,"-c",$2;}'
+  [ -n "$pc" ] && awk '{print $1,"-c",$2;}' <<< "$pc"
 }
 
 # fzf a namespace
@@ -166,6 +166,14 @@ function _fuzzy-k8s-all() {
   kubectl get all -o custom-columns=KIND:.kind,NAME:.metadata.name \
     | fzf --header-lines=1 \
     | awk '{print tolower($1),$2;}'
+}
+
+# fzf a context
+function _fuzzy-k8s-context() {
+  kubectl config get-contexts \
+    | fzf --header-lines=1 --delimiter='\s+' --nth=2.. \
+    | sed 's/^[^[:alnum:]]*//' \
+    | awk '{print $1;}'
 }
 
 # retrieve logs for a container
@@ -204,4 +212,10 @@ function kns() {
 function kyaml() {
   local res=$(_fuzzy-k8s-all)
   [ -n "$res" ] && kubectl get ${=res} -o yaml "$@"
+}
+
+# switch context
+function kctx() {
+  local ctx=$(_fuzzy-k8s-context)
+  [ -n "$ctx" ] && kubectl config use-context "$ctx"
 }
