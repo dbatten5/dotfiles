@@ -37,33 +37,33 @@ by `fzf` and are focused on the following topics:
 
 |name|description|keybinding|
 |---|---|---|
-|fza|find an alias and paste to command line|<kbd>Ctrl</kbd>+<kbd>a</kbd>
-|fzh|find a command from history and paste to command line|<kbd>Ctrl</kbd>+<kbd>b</kbd>
-|z|called without arguments to find a directory from `z` plugin's list, <br/>with arguments acts like normal `z`
+|fza|find an alias and paste to command line|<kbd>Ctrl</kbd>+<kbd>a</kbd>|
+|fzh|find a command from history and paste to command line|<kbd>Ctrl</kbd>+<kbd>b</kbd>|
+|z|called without arguments to find a directory from `z` plugin's list, <br/>with arguments acts like normal `z`|
 
 #### git
 
 |name|description|keybinding|
 |---|---|---|
-|fzgf|find a commit to fixup|<kbd>Ctrl</kbd>+<kbd>g</kbd><kbd>Ctrl</kbd>+<kbd>f</kbd>
-|fzgr|find a commit to rebase|<kbd>Ctrl</kbd>+<kbd>g</kbd><kbd>Ctrl</kbd>+<kbd>r</kbd>
+|fzgf|find a commit to fixup|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>f</kbd>|
+|fzgr|find a commit to rebase onto|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>r</kbd>|
 
 #### docker
 
 |name|description|
 |---|---|
-|dexec|find a container to drop into
-|dlog|find a container to retrieve logs
+|dexec|find a container to drop into|
+|dlog|find a container to retrieve logs|
 
 #### kubernetes
 
 |name|description|
 |---|---|
-|klog|retrieve logs for a container
-kdescp|describe a pod
-kdesc|describe a resource
-kexec|drop into a container shell
-kns|switch namespaces
-kyaml|get yaml for a resource
+|klog|retrieve logs for a container|
+|kdescp|describe a pod|
+|kdesc|describe a resource|
+|kexec|drop into a container shell|
+|kns|switch namespaces|
+|kyaml|get yaml for a resource|
 
 ## nvim
