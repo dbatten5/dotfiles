@@ -2,3 +2,10 @@
 " BASIC EDITING CONFIGURATION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 setlocal foldmethod=marker
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ALE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Check Python files with flake8 and pylint.
+let b:ale_linters = {'zsh': ['shellcheck']}
+let b:is_bash = 1

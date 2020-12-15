@@ -1,20 +1,15 @@
-export PATH="/usr/local/opt/libxml2/bin:$PATH"
-
 export PATH=$PATH:/usr/local/sbin
-
 export PATH="$HOME/.local/bin:$PATH"
 
-export CC=gcc
-export CXX=clang
-
-export PATH="$HOME/.poetry/bin:$PATH"
-
+# set path to nvim config for various utilities
 export NVIMCONFIG="$HOME/.config/nvim"
 
+# edit k8s resources in nvim
 export KUBE_EDITOR="nvim"
 
 export BAT_THEME="base16"
 
+# set fzf defaults
 export FZF_DEFAULT_OPTS="
   --height=40%
   --min-height=25
@@ -31,3 +26,6 @@ export FZF_DEFAULT_OPTS="
   --bind='ctrl-x:unix-line-discard'
 "
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git' --exclude 'node_modules'"
+
+# use nvim for man pages
+export MANPAGER="col -b | nvim -MR - "
