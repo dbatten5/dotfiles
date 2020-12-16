@@ -9,3 +9,10 @@ setlocal foldmethod=marker
 " Check Python files with flake8 and pylint.
 let b:ale_linters = {'zsh': ['shellcheck']}
 let b:is_bash = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CONFIG
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set tabstop=4
+set shiftwidth=4
+set expandtab

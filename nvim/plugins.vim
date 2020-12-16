@@ -133,6 +133,7 @@ command! Projects call fzf#run(fzf#wrap({
       \ 'dir': '~/projects',
       \ 'sink': 'vsplit',
       \ }))
+nnoremap gp :Projects<cr>
 
 " ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']

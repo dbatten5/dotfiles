@@ -18,3 +18,7 @@ let b:ale_fixers = {'python': ['black', 'isort']}
 " VIM-TEST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let test#python#runner = 'pytest'
+
+augroup ffs_py | au!
+  autocmd BufEnter test_*.py let b:ffs_scope = 'pytest'
+augroup end
