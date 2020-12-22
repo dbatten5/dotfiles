@@ -40,6 +40,7 @@ by `fzf` and are focused on the following topics:
 |fza|find an alias and paste to command line|<kbd>Ctrl</kbd>+<kbd>a</kbd>|
 |fzh|find a command from history and paste to command line|<kbd>Ctrl</kbd>+<kbd>r</kbd>|
 |z|called without arguments to find a directory from `z` plugin's list, <br/>with arguments acts like normal `z`|
+|ssh|called without arguments to find a remote, <br/> with arguments to be regular ssh (requires `rg`)|
 
 #### git
 
@@ -47,6 +48,8 @@ by `fzf` and are focused on the following topics:
 |---|---|---|
 |fzgf|find a commit to fixup|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>f</kbd>|
 |fzgr|find a commit to rebase onto|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>r</kbd>|
+|gfix|fixup the latest commit|
+|greb `n`|rebase latest `n` commits (defaults to 1)|
 
 #### docker
 
@@ -68,6 +71,8 @@ by `fzf` and are focused on the following topics:
 |kns|switch namespaces|
 |kyaml|get yaml for a resource|
 |kctx|switch context|
+|ktmp|create a temporary busybox pod|
+|kcsec `a1` `a2` `a3`|copy secret `a1` from namespace `a2` to namespace `a3`. <br/>If arguments are left off then user is prompted|
 
 ## nvim
 

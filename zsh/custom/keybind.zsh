@@ -10,7 +10,7 @@ bindkey '^d' kill-word
 bindkey '^k' vi-kill-eol
 bindkey '^u' kill-whole-line
 bindkey '^p' history-beginning-search-backward
-bindkey '^o' history-beginning-search-backward
+bindkey '^o' history-beginning-search-forward
 
 # custom
 bindkey -M viins '^f^a' _fuzzy-alias

@@ -61,6 +61,12 @@ ZSH_THEME="theunraveler"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
+# don't save duplicate items in history
+setopt HIST_IGNORE_ALL_DUPS
+# trim whitespace when saving to history
+setopt HIST_REDUCE_BLANKS
+# don't store history or fc commands
+setopt HIST_NO_STORE
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -101,3 +107,9 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 source ~/.bash_profile
+
+# no beeps please
+setopt NO_BEEP
+
+# correct misspelt commands
+setopt CORRECT

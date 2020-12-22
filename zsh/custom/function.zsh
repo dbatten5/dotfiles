@@ -4,9 +4,24 @@ function clipcopy() {
     echo -n "$*" | pbcopy
 }
 
+# check if an option is set
+function is_set() {
+    [[ -o $1 ]] \
+        && echo "${fg[green]}$1 is set${reset_color%}" \
+        || echo "${fg[red]}$1 is not set${reset_color%}"
+}
+
+# ssh into a host
+function ssh() {
+    [[ $# -gt 0 ]] && command ssh "$@" && return
+    local host
+    host=$(rg "Host (\w+)" ~/.ssh/config -r '$1' | fzf --prompt="SSH Remote > ")
+    [[ -n "$host" ]] && command ssh "$host"
+}
+
 # GIT {{{1
 # fixup latest commit
-function gfix1() {
+function gfix() {
     git commit --fixup "$(git rev-parse HEAD)"
 }
 
@@ -24,7 +39,7 @@ function ktmp() {
 }
 
 # copy a secret from one namspace to another
-function k8s_copy_secret() {
+function kcsec() {
     local secret namespace_from namespace_to
 
     if [[ "$#" -lt 3 ]]; then
