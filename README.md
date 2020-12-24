@@ -39,8 +39,9 @@ by `fzf` and are focused on the following topics:
 |---|---|---|
 |fza|find an alias and paste to command line|<kbd>Ctrl</kbd>+<kbd>a</kbd>|
 |fzh|find a command from history and paste to command line|<kbd>Ctrl</kbd>+<kbd>r</kbd>|
-|z|called without arguments to find a directory from `z` plugin's list, <br/>with arguments acts like normal `z`|
-|ssh|called without arguments to find a remote, <br/> with arguments to be regular ssh (requires `rg`)|
+|z|called without arguments to find a directory from `z` plugin's list, with <br/> arguments acts like normal `z`|
+|ssh|called without arguments to find a remote, with arguments to be regular <br/> ssh (requires `rg`)|
+|vs|open a readonly `nvim` buffer reading from `stdout` from a given command. <br/> usage `vs ls -lA`|
 
 #### git
 
@@ -76,4 +77,13 @@ by `fzf` and are focused on the following topics:
 
 ## nvim
 
-Coming soon...
+To get up and running with a minimal vimrc:
+
+```
+vimrc="${HOME:-~}/.vimrc"
+[[ ! -f $vimrc ]] \
+  && curl https://raw.githubusercontent.com/dbatten5/dotfiles/main/vim/base_vimrc --output="$vimrc" \
+  || echo "vimrc already exists, not overwriting..."
+```
+
+More coming soon...

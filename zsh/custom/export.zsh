@@ -14,7 +14,6 @@ export FZF_DEFAULT_OPTS="
   --height=40%
   --min-height=25
   --info=inline
-  --preview-window=':hidden'
   --preview-window='right:60%'
   --layout=reverse
   --bind='ctrl-d:half-page-down'

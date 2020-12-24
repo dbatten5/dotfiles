@@ -11,12 +11,10 @@ function is_set() {
         || echo "${fg[red]}$1 is not set${reset_color%}"
 }
 
-# ssh into a host
-function ssh() {
-    [[ $# -gt 0 ]] && command ssh "$@" && return
-    local host
-    host=$(rg "Host (\w+)" ~/.ssh/config -r '$1' | fzf --prompt="SSH Remote > ")
-    [[ -n "$host" ]] && command ssh "$host"
+# redirect stdout from a command to a nvim read only buffer
+# mnemonic: vs = v[im]s[pect]
+function vs() {
+    nvim -MR <<< $("$@")
 }
 
 # GIT {{{1
@@ -104,11 +102,19 @@ function _fuzzy-history() {
 
 zle -N _fuzzy-history
 
-# like normal z when used with arguments but displays an fzf prompt when used without.
+# like normal z when used with arguments but displays an fzf prompt when used without
 unalias z 2> /dev/null
 z() {
     [[ $# -gt 0 ]] && _z "$*" && return
     cd "$(_z -l 2>&1 | fzf --nth 2.. +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
+
+# ssh into a host. like normal ssh with arguments, displays a fzf prompt without
+function ssh() {
+    [[ $# -gt 0 ]] && command ssh "$@" && return
+    local host
+    host=$(rg "Host (\w+)" ~/.ssh/config -r '$1' | fzf --prompt="SSH Remote > ")
+    [[ -n "$host" ]] && command ssh "$host" "$@"
 }
 
 # GIT {{{2

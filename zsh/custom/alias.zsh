@@ -8,14 +8,11 @@ alias config='nvim ~/.config'
 
 # GENERAL {{{1
 # copy public key to clipboard
-alias pubkey='clipcopy "$(cat ~/.ssh/id_rsa.pub)" | echo "=> Public key copied to clipboard."'
+alias pubkey='clipcopy "$(cat ~/.ssh/id_rsa.pub)" && echo "=> Public key copied to clipboard."'
 # copy last command to clipboard
-alias clc='clipcopy "$(fc -ln -1)" | echo "=> Last command copied to clipboard."'
+alias clc='clipcopy "$(fc -ln -1)" && echo "=> Last command copied to clipboard."'
 # sudo last command
 alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
-# add fzf global alias
-# alias -g Z='[ $# -gt 0 ] && "| fzf" && return; "fzf"'
-alias -g Z='$(if [ $# -gt 0 ] ; then "| fzf"; else "fzf"; fi)'
 
 # VIM {{{1
 alias vim="nvim"
@@ -37,7 +34,10 @@ alias dj='python manage.py'
 alias h='helm'
 
 # KUBERNETES {{{1
-alias kdr='kubectl --dry-run=client -o yaml'
 alias kex='kubectl explain'
 alias kcns='kubectl config view --minify --output "jsonpath={..namespace}"'
 alias -g KAN='--all-namespaces'
+alias -g KDR='--dry-run=client -o yaml'
+
+# DOCKER {{{1
+alias d='docker'
