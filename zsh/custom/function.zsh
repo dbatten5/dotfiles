@@ -114,8 +114,20 @@ function ssh() {
     [[ $# -gt 0 ]] && command ssh "$@" && return
     local host
     host=$(rg "Host (\w+)" ~/.ssh/config -r '$1' | fzf --prompt="SSH Remote > ")
-    [[ -n "$host" ]] && command ssh "$host" "$@"
+    [[ -n "$host" ]] && command ssh "$host"
 }
+
+# find a directory to cd into
+function .() {
+    cd "$(fd --type=directory --max-depth=${1:-1} | fzf)" || return
+}
+
+# copy the current line to the clipboard
+function _copy_line_to_clipboard() {
+    clipcopy "$BUFFER"
+}
+
+zle -N _copy_line_to_clipboard
 
 # GIT {{{2
 # fzf a commit to fixup

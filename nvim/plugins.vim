@@ -59,6 +59,7 @@ nnoremap <space>grm :Git rebase -i origin/master<cr>
 nnoremap <space>gb :Git branch<space>
 nnoremap <space>gc :Git checkout<space>
 nnoremap <space>gp :Gpush origin HEAD<cr>
+nnoremap <space>gP :Gpush origin HEAD --force-with-lease<cr>
 nnoremap <space>gl :Git pull<cr>
 " merge conflict resolution
 nnoremap gdh :diffget //2<CR>

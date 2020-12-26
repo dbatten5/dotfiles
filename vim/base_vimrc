@@ -107,3 +107,6 @@ vnoremap > >gv
 " Paste last yanked item
 noremap <space>p "0p
 noremap <space>P "0P
+
+" Quicker saves
+nnoremap <silent> s :update<cr>

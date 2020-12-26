@@ -15,5 +15,6 @@ bindkey '^o' history-beginning-search-forward
 # custom
 bindkey -M viins '^f^a' _fuzzy-alias
 bindkey -M viins '^r' _fuzzy-history
+bindkey -M viins '^y' _copy_line_to_clipboard
 bindkey -M viins '^g^f' fzgf
 bindkey -M viins '^g^r' fzgr
