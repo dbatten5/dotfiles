@@ -87,8 +87,21 @@ do regularly.
 
 ### jira (wip)
 
-This is a bash script to automate some repetitive local jira actions. Running
-the script will do the following:
+#### prerequisites
+
+* `bash` version 4.2+
+
+This is a bash script to automate some repetitive local jira actions. 
+
+Before running the script, ensure the following env variables have been set:
+
+```bash
+JIRA_EMAIL # the email linked to your jira account
+JIRA_API_TOKEN # created here https://id.atlassian.com/manage-profile/security/api-tokens
+JIRA_BASE_URL # the base url of your jira api eg. https://acme.atlassian.net/rest/api/2/issue
+```
+
+Running the script will do the following:
 
 1. Prompt the user for a jira issue url
 2. Ask for a branch name, giving the issue title as the default. **NB**, spaces

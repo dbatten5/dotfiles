@@ -1,12 +1,33 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-check_readiness() {
+function die() {
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+}
+
+function check_for_unstaged_changes() {
     if [[ -n $(git status -s) ]]; then
-        echo "You have unstaged changes! Aborting" && exit 1
+        read -p "You have unstaged changes! Do you want to proceed? " -n 1 -r
+        echo
+    fi
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Aborting"
+        die
     fi
 }
 
-main() {
+function check_for_env() {
+    local required_env_vars=("JIRA_EMAIL" "JIRA_API_TOKEN" "JIRA_BASE_URL")
+    for var_name in "${required_env_vars[@]}"; do
+        [[ -z "${!var_name}" ]] && echo "$var_name not set!" && die
+    done
+}
+
+function check_readiness() {
+    check_for_env
+    check_for_unstaged_changes
+}
+
+function main() {
     check_readiness
 
     read -p 'Please provide the Jira issue url: ' issue_url
