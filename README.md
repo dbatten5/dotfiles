@@ -87,7 +87,7 @@ do regularly.
 
 ### jira (wip)
 
-#### prerequisites
+#### requirements
 
 * `bash` version 4.2+
 
