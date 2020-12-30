@@ -1,4 +1,4 @@
-# Dotfiles
+# dotfiles
 
 Here are the configuration files for the various tools I use, with the majority
 for my `neovim` and `zsh` setup.
@@ -13,7 +13,7 @@ else's setup in its entirety.
 
 The script should do roughly the following:
 
-1. Install some useful packages & casks via brew (notably `zsh`).
+1. Install some useful packages & casks via brew.
 2. Install `oh-my-zsh`.
 3. Symlink a bunch of config files found in this repo to the relevant places.
 4. Install some useful python packages.
@@ -37,7 +37,7 @@ by `fzf` and are focused on the following topics:
 
 |name|description|keybinding|
 |---|---|---|
-|fza|find an alias and paste to command line|<kbd>Ctrl</kbd>+<kbd>a</kbd>|
+|fza|find an alias and paste to command line|<kbd>Ctrl</kbd>+<kbd>f</kbd> <kbd>Ctrl</kbd>+<kbd>a</kbd>|
 |fzh|find a command from history and paste to command line|<kbd>Ctrl</kbd>+<kbd>r</kbd>|
 |z|called without arguments to find a directory from `z` plugin's list, with <br/> arguments acts like normal `z`|
 |ssh|called without arguments to find a remote, with arguments to be regular <br/> ssh (requires `rg`)|
@@ -45,7 +45,7 @@ by `fzf` and are focused on the following topics:
 |. `n`|find a directory to cd into at `n` levels (defaults to 1)|
 ||copy the current line to the system clipboard|<kbd>Ctrl</kbd>+<kbd>y</kbd>|
 |clc|copy the previous command to the system clipboard|
-|pubkey|copy my public to the system clipboard|
+|pubkey|copy my public key to the system clipboard|
 |please|sudo the last command|
 
 #### git
@@ -78,7 +78,27 @@ by `fzf` and are focused on the following topics:
 |kyaml|get yaml for a resource|
 |kctx|switch context|
 |ktmp|create a temporary busybox pod|
-|kcsec `a1` `a2` `a3`|copy secret `a1` from namespace `a2` to namespace `a3`. <br/>If arguments are left off then user is prompted|
+|kcsec `a1` `a2` `a3`|copy secret `a1` from namespace `a2` to namespace `a3`. <br/>If arguments are omitted then user is prompted|
+
+## scripts
+
+These are located in `scripts` and provide some automation around tasks that I
+do regularly.
+
+### jira (wip)
+
+This is a bash script to automate some repetitive local jira actions. Running
+the script will do the following:
+
+1. Prompt the user for a jira issue url
+2. Ask for a branch name, giving the issue title as the default. **NB**, spaces
+   will be interpreted as dashes so you can save a keystroke here. **NNB**, the
+   branch name will be in the following format: `{issue_type}/{branch_name}/{issue_id}`
+3. On submit, it will branch off latest master to a new branch with the above
+   name
+
+Add it to your `usr/local/bin` directory with `ln -sv /absolute/path/to/jira.sh /usr/local/bin/jira`
+so you can call it from wherever, assuming `/usr/local/bin` is in your `$PATH`.
 
 ## nvim
 
