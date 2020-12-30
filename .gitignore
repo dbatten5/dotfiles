@@ -2,4 +2,5 @@
 nvim/backups
 nvim/plugged
 nvim/.netrwhist
+nvim/spell
 zsh/private

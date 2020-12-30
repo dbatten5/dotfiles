@@ -50,6 +50,8 @@ vnoremap v <c-v>
 vnoremap <c-v> v
 " Quickly set the local working directory
 nnoremap <leader>ld :lcd %:p:h<cr>
+" Turn on folds
+nnoremap <leader>fm :set foldmethod=indent<cr>
 " Toggle folds
 nnoremap <leader>fn :set foldenable!<cr>
 " Remove whitespace
