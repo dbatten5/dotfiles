@@ -129,6 +129,8 @@ function _copy_line_to_clipboard() {
 
 zle -N _copy_line_to_clipboard
 
+# find a project to cd into and activate the conda env
+
 # GIT {{{2
 # fzf a commit to fixup
 function fzgf() {
@@ -141,7 +143,8 @@ function fzgf() {
         | xargs git commit --no-verify --fixup
 }
 
-zle -N fzgf
+function _fzgf-widget() { fzgf && zle reset-prompt; }
+zle -N _fzgf-widget
 
 # fzf a commit to rebase current branch
 # note the use of ~1 in the rebase command as i prefer the flow of including the
@@ -156,7 +159,8 @@ function fzgr() {
         | xargs -I% git rebase -i %~1
 }
 
-zle -N fzgr
+function _fzgr-widget() { fzgr && zle reset-prompt; }
+zle -N _fzgr-widget
 
 # DOCKER {{{2
 # fzf a docker container

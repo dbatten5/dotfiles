@@ -1,8 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AUTO COMMANDS
+" CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable spellchecking for markdown files and git commit messages
-autocmd vimrc FileType markdown,gitcommit setlocal spell
+setlocal spell spelllang=en_gb
 setlocal nowrap
 setlocal nolinebreak
 setlocal formatoptions-=t

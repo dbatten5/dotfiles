@@ -130,7 +130,7 @@ command! Notes call fzf#run(fzf#wrap({
       \ }))
 nnoremap gn :Notes<cr>
 command! Projects call fzf#run(fzf#wrap({
-      \ 'source': 'ls',
+      \ 'source': 'fd --max-depth=2 .',
       \ 'dir': '~/projects',
       \ 'sink': 'vsplit',
       \ }))
@@ -159,11 +159,12 @@ nnoremap ga :ScranchPreview<cr>
 
 " GUTENTAGS {{{1
 let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.json', '*.xml',
-                            \ '*.phar', '*.ini', '*.rst', '*.md',
-                            \ '*vendor/*/test*', '*vendor/*/Test*',
-                            \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
-                            \ '*var/cache*', '*var/log*', '*node_modules*',
-                            \ '*bundle*']
+                               \ '*.phar', '*.ini', '*.rst', '*.md',
+                               \ '*vendor/*/test*', '*vendor/*/Test*',
+                               \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
+                               \ '*var/cache*', '*var/log*', '*node_modules*',
+                               \ '*bundle*']
+let g:gutentags_exclude_filetypes = ['gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git']
 let g:gutentags_cache_dir = '~/.tags'
 
 " DIRVISH {{{1

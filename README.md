@@ -1,7 +1,7 @@
 # dotfiles
 
-Here are the configuration files for the various tools I use, with the majority
-for my `neovim` and `zsh` setup.
+Here are the configuration files for the various tools I use along with a bunch 
+of custom scripts and shell helper functions to reduce repetitive tasks.
 
 ## bootstrap.sh
 
@@ -90,10 +90,13 @@ do regularly.
 #### requirements
 
 * `bash` version 4.2+
+* `jq`
+* `git`
+* `curl`
 
 This is a bash script to automate some repetitive local jira actions. 
 
-Before running the script, ensure the following env variables have been set:
+Before running the script, ensure the following `env` variables have been set:
 
 ```bash
 JIRA_EMAIL # the email linked to your jira account
@@ -105,19 +108,19 @@ Running the script will do the following:
 
 1. Prompt the user for a jira issue url
 2. Ask for a branch name, giving the issue title as the default. **NB**, spaces
-   will be interpreted as dashes so you can save a keystroke here. **NNB**, the
-   branch name will be in the following format: `{issue_type}/{branch_name}/{issue_id}`
+   will be interpreted as dashes so can type as if it's a sentence. **NNB**,
+   the branch name will be in the following format: `{issue_type}/{branch_name}/{issue_id}`
 3. On submit, it will branch off latest master to a new branch with the above
    name
 
 Add it to your `usr/local/bin` directory with `ln -sv /absolute/path/to/jira.sh /usr/local/bin/jira`
 so you can call it from wherever, assuming `/usr/local/bin` is in your `$PATH`.
 
-## nvim
+## vim
 
 To get up and running with a minimal vimrc:
 
-```
+```bash
 vimrc="${HOME:-~}/.vimrc"
 [[ ! -f $vimrc ]] \
   && curl https://raw.githubusercontent.com/dbatten5/dotfiles/main/vim/base_vimrc -o "$vimrc" \

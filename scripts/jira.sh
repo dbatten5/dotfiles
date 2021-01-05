@@ -13,7 +13,7 @@ function branchify_string() {
 
 function check_for_unstaged_changes() {
     if [[ -n $(git status -s) ]]; then
-        read -p "You have unstaged changes! Do you want to proceed? " -n 1 -r
+        read -p "You have unstaged changes! Do you want to proceed? (y/n) " -n 1 -r
         echo
 
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -42,15 +42,13 @@ function main() {
 
     [[ -z "$issue_url" ]] && echo "Please enter a url!" && die
 
-    local issue_id auth request_url body error 
+    local issue_id auth request_url body error
 
     issue_id="${issue_url##*/}"
     auth="${JIRA_EMAIL}:${JIRA_API_TOKEN}"
-    request_url="${JIRA_BASE_URL}/${issue_id}?fields=summary,description,issuetype" 
+    request_url="${JIRA_BASE_URL}/${issue_id}?fields=summary,description,issuetype"
 
-    body=$(
-        curl -s --user "$auth" "$request_url" -H "Accept: application/json"
-    )
+    body=$(curl -s --user "$auth" "$request_url" -H "Accept: application/json")
 
     error=$(jq -r '.errorMessages[0]' <<< "$body")
 
