@@ -70,7 +70,7 @@ function fza() {
 }
 
 # fza but as a widget to be used with a key binding
-function _fuzzy-alias() {
+function _fuzzy_alias() {
     local sel
     sel="$(alias | fzf | cut -d= -f1)"
     if [[ -n "$sel" ]]; then
@@ -80,7 +80,7 @@ function _fuzzy-alias() {
     zle reset-prompt
 }
 
-zle -N _fuzzy-alias
+zle -N _fuzzy_alias
 
 # fzf in history and paste to command-line
 function fzh() {
@@ -90,7 +90,7 @@ function fzh() {
 }
 
 # fzh but as a widget to be used with a key binding
-function _fuzzy-history() {
+function _fuzzy_history() {
     local selh
     selh="$(history -1 0 | fzf --query="$BUFFER" --ansi --no-sort -m -n 2..  | awk '{sub(/^[ ]*[^ ]*[ ]*/, ""); sub(/[ ]*$/, ""); print;}')"
     if [[ -n "$selh" ]]; then
@@ -100,7 +100,7 @@ function _fuzzy-history() {
     zle reset-prompt
 }
 
-zle -N _fuzzy-history
+zle -N _fuzzy_history
 
 # like normal z when used with arguments but displays an fzf prompt when used without
 unalias z 2> /dev/null
@@ -118,9 +118,9 @@ function ssh() {
 }
 
 # find a directory to cd into
-function .() {
-    cd "$(fd --type=directory --max-depth=${1:-1} | fzf)" || return
-}
+# function .() {
+#     cd "$(fd --type=directory --max-depth=${1:-1} | fzf)" || return
+# }
 
 # copy the current line to the clipboard
 function _copy_line_to_clipboard() {
@@ -143,8 +143,8 @@ function fzgf() {
         | xargs git commit --no-verify --fixup
 }
 
-function _fzgf-widget() { fzgf && zle reset-prompt; }
-zle -N _fzgf-widget
+function _fzgf_widget() { fzgf && zle reset-prompt; }
+zle -N _fzgf_widget
 
 # fzf a commit to rebase current branch
 # note the use of ~1 in the rebase command as i prefer the flow of including the
@@ -159,12 +159,12 @@ function fzgr() {
         | xargs -I% git rebase -i %~1
 }
 
-function _fzgr-widget() { fzgr && zle reset-prompt; }
-zle -N _fzgr-widget
+function _fzgr_widget() { fzgr && zle reset-prompt; }
+zle -N _fzgr_widget
 
 # DOCKER {{{2
 # fzf a docker container
-function _fuzzy-docker-container() {
+function _fuzzy_docker_container() {
     docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.CreatedAt}}" "$@" \
         | fzf --header-lines=1 --delimiter='\s+' --nth=1,2 \
         | awk '{print $1;}'
@@ -173,21 +173,21 @@ function _fuzzy-docker-container() {
 # drop into a container shell
 function dexec() {
     local cid
-    cid=$(_fuzzy-docker-container)
+    cid=$(_fuzzy_docker_container)
     [[ -n "$cid" ]] && docker exec -it "$cid" "${*:-/bin/bash}"
 }
 
 # retrieve logs
 function dlog() {
     local cid
-    cid=$(_fuzzy-docker-container)
+    cid=$(_fuzzy_docker_container)
     [[ -n "$cid" ]] && docker logs "$@" "$cid"
 }
 
 # start a stopped container
 function dstart() {
     local cid
-    cid=$(_fuzzy-docker-container -f "status=exited")
+    cid=$(_fuzzy_docker_container -f "status=exited")
     [[ -n "$cid" ]] \
         && docker start "$@" "$cid" 1> /dev/null \
         && echo "Container $cid started"
@@ -196,7 +196,7 @@ function dstart() {
 # stop a started container
 function dstop() {
     local cid
-    cid=$(_fuzzy-docker-container)
+    cid=$(_fuzzy_docker_container)
     [[ -n "$cid" ]] \
         && docker stop "$@" "$cid" 1> /dev/null \
         && echo "Container $cid stopped"
@@ -204,14 +204,14 @@ function dstop() {
 
 # KUBERNETES {{{2
 # fzf a pod
-function _fuzzy-k8s-pod() {
+function _fuzzy_k8s_pod() {
     kubectl get pods \
         | fzf --header-lines=1 --delimiter='\s+' --nth=1 \
         | awk '{print $1;}'
 }
 
 # fzf a container
-function _fuzzy-k8s-pod-container() {
+function _fuzzy_k8s_pod_container() {
     kubectl get pods -o go-template-file="$HOME/.k8s/templates/podlist.gotemplate" \
         | column -t \
         | fzf --header-lines=1 \
@@ -219,28 +219,28 @@ function _fuzzy-k8s-pod-container() {
 }
 
 # generate a pod + container string for use with kubectl
-function _fuzzy-k8s-kubectl-pc() {
+function _fuzzy_k8s_kubectl_pc() {
     local pc
     pc="$(_fuzzy-k8s-pod-container)"
     [[ -n "$pc" ]] && awk '{print $1,"-c",$2;}' <<< "$pc"
 }
 
 # fzf a namespace
-function _fuzzy-k8s-namespace() {
+function _fuzzy_k8s_namespace() {
     kubectl get namespace |
         fzf --header-lines=1 --delimiter='\s+' --nth=1 |
         awk '{print $1;}'
 }
 
 # fzf all
-function _fuzzy-k8s-all() {
+function _fuzzy_k8s_all() {
     kubectl get all -o custom-columns=KIND:.kind,NAME:.metadata.name \
         | fzf --header-lines=1 \
         | awk '{print tolower($1),$2;}'
 }
 
 # fzf a context
-function _fuzzy-k8s-context() {
+function _fuzzy_k8s_context() {
     kubectl config get-contexts \
         | fzf --header-lines=1 --delimiter='\s+' --nth=2.. \
         | sed 's/^[\*[:blank:]]*//' \
@@ -250,35 +250,35 @@ function _fuzzy-k8s-context() {
 # retrieve logs for a container
 function klog() {
     local pc
-    pc=$(_fuzzy-k8s-kubectl-pc)
+    pc=$(_fuzzy_k8s_kubectl_pc)
     [[ -n "$pc" ]] && kubectl logs ${=pc} "$@"
 }
 
 # describe a pod
 function kdescp() {
     local pod
-    pod=$(_fuzzy-k8s-pod)
+    pod=$(_fuzzy_k8s_pod)
     [[ -n "$pod" ]] && kubectl describe pod "$pod" "$@"
 }
 
 # describe a resource
 function kdesc() {
     local res
-    res=$(_fuzzy-k8s-all)
+    res=$(_fuzzy_k8s_all)
     [[ -n "$res" ]] && kubectl describe ${=res} "$@"
 }
 
 # drop into a container shell
 function kexec() {
     local pc
-    pc=$(_fuzzy-k8s-kubectl-pc)
+    pc=$(_fuzzy_k8s_kubectl_pc)
     [[ -n "$pc" ]] && kubectl exec -it ${=pc} -- "${*:-/bin/bash}"
 }
 
 # switch namespaces
 function kns() {
     local ns
-    ns=$(_fuzzy-k8s-namespace)
+    ns=$(_fuzzy_k8s_namespace)
     [[ -n "$ns" ]] \
         && kubectl config set-context --current --namespace="$ns" 1> /dev/null \
         && echo "Default namespace set to ${ns}"
@@ -287,13 +287,13 @@ function kns() {
 # get yaml for a resource
 function kyaml() {
     local res
-    res=$(_fuzzy-k8s-all)
+    res=$(_fuzzy_k8s_all)
     [[ -n "$res" ]] && kubectl get ${=res} -o yaml "$@"
 }
 
 # switch context
 function kctx() {
     local ctx
-    ctx=$(_fuzzy-k8s-context)
+    ctx=$(_fuzzy_k8s_context)
     [[ -n "$ctx" ]] && kubectl config use-context "$ctx"
 }
