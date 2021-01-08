@@ -7,9 +7,9 @@
 echo "Starting bootstrapping"
 
 # Check for Homebrew, install if we don't have it
-if test ! $(which brew); then
-  echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [[ ! $(which brew) ]]; then
+    echo "Installing homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 brew update
@@ -18,31 +18,32 @@ brew update
 brew install bash
 
 PACKAGES=(
-  automake
-  fd
-  fzf
-  gettext
-  git
-  jq
-  markdown
-  neovim
-  npm
-  pkg-config
-  python
-  python3
-  pypy
-  ripgrep
-  the_silver_searcher
-  tree
-  universal-ctags
-  vim
-  wget
-  zsh
-  zsh-syntax-higlighting
+    automake
+    fd
+    fzf
+    gettext
+    git
+    jq
+    markdown
+    neovim
+    npm
+    pkg-config
+    python
+    python3
+    pypy
+    ripgrep
+    the_silver_searcher
+    tree
+    universal-ctags
+    vim
+    watch
+    wget
+    zsh
+    zsh-syntax-higlighting
 )
 
 echo "Installing packages..."
-brew install ${PACKAGES[@]}
+brew install "${PACKAGES[@]}"
 
 echo "Cleaning up..."
 brew cleanup
@@ -51,57 +52,57 @@ echo "Installing cask..."
 brew install caskroom/cask/brew-cask
 
 CASKS=(
-  flux
-  google-chrome
-  google-drive
-  gpgtools
-  iterm2
-  slack
-  spectacle
+    flux
+    google-chrome
+    google-drive
+    gpgtools
+    iterm2
+    slack
+    rectangle
 )
 
 echo "Installing cask apps..."
-brew cask install ${CASKS[@]}
+brew cask install "${CASKS[@]}"
 
 OMZDIR="$HOME/.oh-my-zsh"
-if [ ! -d "$OMZDIR" ]; then
-  echo 'Installing oh-my-zsh...'
-  ruby -e "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+if [[ ! -d "$OMZDIR" ]]; then
+    echo 'Installing oh-my-zsh...'
+    ruby -e "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
 echo "Configuring ZSH"
 echo "================================"
-ZSH_CUSTOM=$OMZDIR/custom
-for config in $(pwd)/zsh/**/*.zsh; do
-  [ -e "$config" ] || continue
-  echo "Adding $(basename -- $config)"
-  ln -sv $config $ZSH_CUSTOM
+ZSH_CUSTOM="${OMZDIR}/custom"
+for config in "$(pwd)"/zsh/**/*.zsh; do
+    [[ -e "$config" ]] || continue
+    echo "Adding $(basename -- $config)"
+    ln -sv "$config" "$ZSH_CUSTOM"
 done
 
 echo "Setting up iTerm"
 echo "================================"
 echo "Creating zshrc symlink..."
-ln -sv $(pwd)/zsh/zshrc $HOME/.zshrc
+ln -sv "$(pwd)/zsh/zshrc" "${HOME}/.zshrc"
 echo "Adding profiles..."
-ln -sv $(pwd)/iterm/profiles.json $HOME/Library/Application\ Support/iTerm2/DynamicProfiles/
+ln -sv "$(pwd)/iterm/profiles.json" "${HOME}/Library/Application\ Support/iTerm2/DynamicProfiles/"
 
 echo "Setting up remaining config files..."
-[[ ! -d $HOME/.config/nvim ]] && mkdir -p $HOME/.config/nvim
-ln -sv $(pwd)/nvim $HOME/.config/nvim
-ln -sv $(pwd)/vim/vintrc.yml $HOME/.vintrc.yml
-ln -sv $(pwd)/git/gitconfig $HOME/.gitconfig
-ln -sv $(pwd)/git/gitignore_global $HOME/.gitignore_global
-[[ ! -d $HOME/.k8s ]] && mkdir -p $HOME/.k8s
-ln -sv $(pwd)/k8s/templates $HOME/.k8s
+[[ ! -d "${HOME}/.config/nvim" ]] && mkdir -p "${HOME}/.config/nvim"
+ln -sv "$(pwd)/nvim" "${HOME}/.config/nvim"
+ln -sv "$(pwd)/vim/vintrc.yml" "${HOME}/.vintrc.yml"
+ln -sv "$(pwd)/git/gitconfig" "${HOME}/.gitconfig"
+ln -sv "$(pwd)/git/gitignore_global" "${HOME}/.gitignore_global"
+[[ ! -d "${HOME}/.k8s" ]] && mkdir -p "${HOME}/.k8s"
+ln -sv "$(pwd)/k8s/templates" "${HOME}/.k8s"
 
 # PYTHON PACKAGES
 echo "Installing Python packages..."
 PYTHON_PACKAGES=(
-  neovim
-  pynvim
-  virtualenv
+    neovim
+    pynvim
+    virtualenv
 )
-sudo pip install ${PYTHON_PACKAGES[@]}
+sudo pip install "${PYTHON_PACKAGES[@]}"
 
 echo "Configuring OSX"
 echo "================================"
@@ -124,9 +125,9 @@ defaults write NSGlobalDomain KeyRepeat -int 0
 # map caps lock to control
 
 # Change default shell
-if [ "$0" != "-zsh" ]; then
-  echo 'Changing default shell to zsh...'
-  chsh -s /bin/zsh
+if [[ "$0" != "-zsh" ]]; then
+    echo 'Changing default shell to zsh...'
+    chsh -s /bin/zsh
 else
-  echo 'Already using zsh'
+    echo 'Already using zsh'
 fi
