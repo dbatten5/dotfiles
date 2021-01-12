@@ -278,7 +278,7 @@ function kexec() {
 # switch namespaces
 function kns() {
     local ns
-    ns=$(_fuzzy_k8s_namespace)
+    [[ "$#" -ge 1 ]] && ns="$1" || ns=$(_fuzzy_k8s_namespace)
     [[ -n "$ns" ]] \
         && kubectl config set-context --current --namespace="$ns" 1> /dev/null \
         && echo "Default namespace set to ${ns}"

@@ -74,7 +74,7 @@ by `fzf` and are focused on the following topics:
 |kdescp|describe a pod|
 |kdesc|describe a resource|
 |kexec|drop into a container shell|
-|kns|switch namespaces|
+|kns `ns`|switch namespaces to `ns`. if no argument given then choose from a list|
 |kyaml|get yaml for a resource|
 |kctx|switch context|
 |ktmp|create a temporary busybox pod|
