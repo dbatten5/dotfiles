@@ -74,11 +74,11 @@ by `fzf` and are focused on the following topics:
 |kdescp|describe a pod|
 |kdesc|describe a resource|
 |kexec|drop into a container shell|
-|kns `ns`|switch namespaces to `ns`. if no argument given then choose from a list|
+|kns `ns`|switch to namespace `ns` or choose from a list if omitted|
 |kyaml|get yaml for a resource|
 |kctx|switch context|
 |ktmp|create a temporary busybox pod|
-|kcsec `a1` `a2` `a3`|copy secret `a1` from namespace `a2` to namespace `a3`. <br/>If arguments are omitted then user is prompted|
+|kcsec `sec` `ns1` `ns2`|copy secret `sec` from namespace `ns1` to namespace `ns2`. <br/>If arguments are omitted then user is prompted|
 
 ## scripts
 

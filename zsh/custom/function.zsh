@@ -221,7 +221,7 @@ function _fuzzy_k8s_pod_container() {
 # generate a pod + container string for use with kubectl
 function _fuzzy_k8s_kubectl_pc() {
     local pc
-    pc="$(_fuzzy-k8s-pod-container)"
+    pc="$(_fuzzy_k8s_pod_container)"
     [[ -n "$pc" ]] && awk '{print $1,"-c",$2;}' <<< "$pc"
 }
 
@@ -276,6 +276,8 @@ function kexec() {
 }
 
 # switch namespaces
+# use with argument to switch to given ns
+# use without argument to pick from a menu
 function kns() {
     local ns
     [[ "$#" -ge 1 ]] && ns="$1" || ns=$(_fuzzy_k8s_namespace)

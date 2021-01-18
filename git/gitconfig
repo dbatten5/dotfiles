@@ -2,7 +2,7 @@
 	email = dominic.batten@googlemail.com
 	name = Dom Batten
 [includeIf "gitdir:~/projects/work/"]
-    path = .gitconfig-job
+  path = .gitconfig-job
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

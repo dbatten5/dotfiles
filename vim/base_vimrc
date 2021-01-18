@@ -53,7 +53,7 @@ set numberwidth=3
 " Turn off swap files
 set noswapfile
 set nobackup
-set nowb
+set nowritebackup
 
 " Indentation
 set shiftwidth=2
