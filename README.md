@@ -80,6 +80,11 @@ by `fzf` and are focused on the following topics:
 |ktmp|create a temporary busybox pod|
 |kcsec `sec` `ns1` `ns2`|copy secret `sec` from namespace `ns1` to namespace `ns2`. <br/>If arguments are omitted then user is prompted|
 
+#### helm
+|name|description|
+|---|---|
+|hun|uninstall a chart|
+
 ## scripts
 
 These are located in `scripts` and provide some automation around tasks that I

@@ -299,3 +299,18 @@ function kctx() {
     ctx=$(_fuzzy_k8s_context)
     [[ -n "$ctx" ]] && kubectl config use-context "$ctx"
 }
+
+# HELM {{{2
+# fzf a chart
+function _fuzzy_helm_chart() {
+    helm list "$@" \
+        | fzf --header-lines=1 --delimiter='\s+' --nth=1,2,6 \
+        | awk '{print $1;}'
+}
+
+# uninstall a chart
+function hun() {
+    local chart
+    chart=$(_fuzzy_helm_chart)
+    [[ -n "$chart" ]] && helm uninstall "$chart"
+}
