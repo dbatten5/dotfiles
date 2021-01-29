@@ -152,7 +152,7 @@ zle -N _copy_line_to_clipboard
 function cpf() {
     local file
     [[ "$#" -ge 1 ]] && file="$1" || file=$(fd . --max-depth=1 --type=f | fzf)
-    [[ -n "$file" ]] && pbcopy < "$file" && echo "=> $file copied to the clipboard"
+    [[ -n "$file" && -f $file ]] && pbcopy < "$file" && echo "=> $file copied to the clipboard"
 }
 
 # find a project to cd into and activate the conda env

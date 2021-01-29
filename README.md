@@ -47,7 +47,7 @@ by `fzf` and are focused on the following topics:
 |pubkey|copy my public key to the system clipboard|
 |please|sudo the last command|
 |v|open suspended nvim session if it exists or start afresh|
-|cpf|copy the contents of a file to the clipboard|
+|cpf `f`|copy the contents of file `f` to the clipboard, without arguments to fzf the file|
 
 #### git
 
