@@ -17,6 +17,11 @@ function vs() {
     nvim -MR <<< $("$@")
 }
 
+# open suspended vim if it exists or start afresh
+function v() {
+    fg 2> /dev/null || nvim .
+}
+
 # GIT {{{1
 # fixup latest commit
 function gfix() {
@@ -58,6 +63,20 @@ function kcsec() {
     kubectl get secret "$secret" -n "$namespace_from" -o yaml \
         | sed "s/namespace: $namespace_from/namespace: $namespace_to/" \
         | kubectl create -f -
+}
+
+# scale down all deployments and stateful sets in the current namespace
+function kscaledown()
+{
+    scaleables=$(kubectl get deploy -o name && kubectl get statefulset -o name)
+    kubectl scale --replicas 0 ${=scaleables}
+}
+
+# scale up all deployments and stateful sets in the current namespace
+function kscaleup()
+{
+    scaleables=$(kubectl get deploy -o name && kubectl get statefulset -o name)
+    kubectl scale --replicas 1 ${=scaleables}
 }
 
 # FZF {{{1
@@ -128,6 +147,13 @@ function _copy_line_to_clipboard() {
 }
 
 zle -N _copy_line_to_clipboard
+
+# copy the contents of a file to the clipboard
+function cpf() {
+    local file
+    [[ "$#" -ge 1 ]] && file="$1" || file=$(fd . --max-depth=1 --type=f | fzf)
+    [[ -n "$file" ]] && pbcopy < "$file" && echo "=> $file copied to the clipboard"
+}
 
 # find a project to cd into and activate the conda env
 

@@ -16,7 +16,6 @@ alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
 
 # VIM {{{1
 alias vim="nvim"
-alias v="nvim ."
 
 # GIT {{{1
 alias grbm='git pull --rebase=interactive origin master'

@@ -42,11 +42,12 @@ by `fzf` and are focused on the following topics:
 |z|called without arguments to find a directory from `z` plugin's list, with <br/> arguments acts like normal `z`|
 |ssh|called without arguments to find a remote, with arguments to be regular <br/> ssh (requires `rg`)|
 |vs|open a readonly `nvim` buffer reading from `stdout` from a given command. <br/> usage `vs ls -lA`|
-|. `n`|find a directory to cd into at `n` levels (defaults to 1)|
 ||copy the current line to the system clipboard|<kbd>Ctrl</kbd>+<kbd>y</kbd>|
 |clc|copy the previous command to the system clipboard|
 |pubkey|copy my public key to the system clipboard|
 |please|sudo the last command|
+|v|open suspended nvim session if it exists or start afresh|
+|cpf|copy the contents of a file to the clipboard|
 
 #### git
 
@@ -79,6 +80,8 @@ by `fzf` and are focused on the following topics:
 |kctx|switch context|
 |ktmp|create a temporary busybox pod|
 |kcsec `sec` `ns1` `ns2`|copy secret `sec` from namespace `ns1` to namespace `ns2`. <br/>If arguments are omitted then user is prompted|
+|kscaledown|scale down all deployments and stateful sets in the current namespace|
+|kscaleup|scale up all deployments and stateful sets in the current namespace|
 
 #### helm
 |name|description|
@@ -90,7 +93,7 @@ by `fzf` and are focused on the following topics:
 These are located in `scripts` and provide some automation around tasks that I
 do regularly.
 
-### jira (wip)
+### jira
 
 #### requirements
 
