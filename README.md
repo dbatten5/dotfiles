@@ -117,7 +117,9 @@ JIRA_URL # the base url of your jira application eg. https://acme.atlassian.net/
 Add it to your `usr/local/bin` directory with `ln -sv /absolute/path/to/jira.sh /usr/local/bin/jira`
 so you can call it from wherever, assuming `/usr/local/bin` is in your `$PATH`.
 
-#### jira new
+```bash
+$ jira new
+```
 
 Running this command will do the following:
 
@@ -128,7 +130,9 @@ Running this command will do the following:
 3. On submit, it will branch off latest master to a new branch with the above
    name
 
-#### jira ticket
+```bash
+$ jira ticket
+```
 
 Running this command will open the current ticket (based on the git branch) in your browser.
 
