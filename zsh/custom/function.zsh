@@ -188,6 +188,22 @@ function fzgr() {
 function _fzgr_widget() { fzgr && zle reset-prompt; }
 zle -N _fzgr_widget
 
+function _fuzzy_git_branch() {
+    git branch \
+        | grep -v "^*" \
+        | fzf \
+        | awk '{$1=$1;print}'
+}
+
+# fzf a branch
+unalias gb 2> /dev/null
+function gb() {
+    [[ "$#" -ge 1 ]] && git branch "$@" && return 0
+    local branch
+    branch=$(_fuzzy_git_branch)
+    [[ -n "$branch" ]] && git checkout "$branch"
+}
+
 # DOCKER {{{2
 # fzf a docker container
 function _fuzzy_docker_container() {

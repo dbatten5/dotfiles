@@ -57,6 +57,7 @@ by `fzf` and are focused on the following topics:
 |fzgr|find a commit to rebase onto|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>r</kbd>|
 |gfix|fixup the latest commit|
 |greb `n`|rebase latest `n` commits (defaults to 1)|
+|gb|without arguments to fzf a branch to checkout, with arguments acts as normal `git branch`|
 
 #### docker
 
