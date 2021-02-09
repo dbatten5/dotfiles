@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+script_name="$(basename -- "$0")"
+
+function help_text() {
+    echo ""
+    echo "Usage:        ./$script_name COMMAND"
+    echo ""
+    echo "Helper script to automate some jira actions"
+    echo ""
+    echo "Available Commands:"
+    echo "  new         Start a new ticket"
+    echo "  ticket      View the current ticket in jira"
+}
+
 function die() {
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
 }
@@ -24,7 +37,7 @@ function check_for_unstaged_changes() {
 }
 
 function check_for_env() {
-    local required_env_vars=("JIRA_EMAIL" "JIRA_API_TOKEN" "JIRA_BASE_URL")
+    local required_env_vars=("JIRA_EMAIL" "JIRA_API_TOKEN" "JIRA_BASE_API")
     for var_name in "${required_env_vars[@]}"; do
         [[ -z "${!var_name}" ]] && echo "$var_name not set!" && die
     done
@@ -35,7 +48,7 @@ function check_readiness() {
     check_for_unstaged_changes
 }
 
-function main() {
+function new_ticket() {
     check_readiness
 
     read -p 'Please provide the Jira issue url: ' -r issue_url
@@ -46,7 +59,7 @@ function main() {
 
     issue_id="${issue_url##*/}"
     auth="${JIRA_EMAIL}:${JIRA_API_TOKEN}"
-    request_url="${JIRA_BASE_URL}/${issue_id}?fields=summary,description,issuetype"
+    request_url="${JIRA_BASE_API}/${issue_id}?fields=summary,description,issuetype"
 
     body=$(curl -s --user "$auth" "$request_url" -H "Accept: application/json")
 
@@ -79,4 +92,31 @@ function main() {
     echo "All done!"
 }
 
-main "$@"
+function open_ticket() {
+    local branch ticket_id
+    branch=$(git branch --show-current)
+    [[ "$branch" != *"/"* ]] && echo "No ticket id found" && return 0
+    ticket_id="${branch##*/}"
+    open "${JIRA_URL}/${ticket_id}"
+}
+
+if [[ -n $1 ]]; then
+	case "$1" in
+		new)
+            new_ticket
+			exit 0
+			;;
+		ticket)
+            open_ticket
+			exit 0
+			;;
+		*)
+			echo "¯\\_(ツ)_/¯ What do you mean \"$1\"?"
+			help_text
+			exit 1
+			;;
+	esac
+else
+	help_text
+	exit 1
+fi

@@ -40,3 +40,6 @@ alias -g KDR='--dry-run=client -o yaml'
 
 # DOCKER {{{1
 alias d='docker'
+
+# JIRA {{{1
+alias j='jira'
