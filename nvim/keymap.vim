@@ -77,6 +77,10 @@ noremap <space>P "0P
 nnoremap Q @q
 " Google the current word 
 nnoremap <leader>? :call general#Google(expand("<cword>"), 0)<cr>
+" Copy the contents of the current file to the clipboard
+command! C :silent !pbcopy < %
+" Open the current jira ticket
+nnoremap <silent> ∆ :call OpenJiraTicket()<cr>
 
 " QUICKFIX {{{1
 " Toggle the quickfix

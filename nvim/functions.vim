@@ -7,6 +7,16 @@ function! ToggleQuickFix()
   endif
 endfunction
 
+function! OpenJiraTicket()
+  let branch = fugitive#head()
+  let ticket_id = matchstr(branch, 'ENG-\d*')
+  if ticket_id !=# ''
+    call system('open ' . $JIRA_URL . '/' . ticket_id)
+  else
+    echo 'ticket id not found!'
+  endif
+endfunction
+
 " DIRVISH {{{1
 function! PromptUserForFilename(requestToUser, ...)
   let title = input(a:requestToUser)
