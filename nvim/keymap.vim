@@ -79,7 +79,7 @@ nnoremap Q @q
 nnoremap <leader>? :call general#Google(expand("<cword>"), 0)<cr>
 " Copy the contents of the current file to the clipboard
 command! C :silent !pbcopy < %
-" Open the current jira ticket
+" Open the current jira ticket (mapped to option+j)
 nnoremap <silent> ∆ :call OpenJiraTicket()<cr>
 
 " QUICKFIX {{{1

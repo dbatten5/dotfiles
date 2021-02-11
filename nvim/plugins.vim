@@ -20,7 +20,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': 'yaml'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': 'yaml'}
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
 Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'

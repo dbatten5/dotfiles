@@ -101,22 +101,22 @@ function open_ticket() {
 }
 
 if [[ -n $1 ]]; then
-	case "$1" in
-		new)
+    case "$1" in
+        new)
             new_ticket
-			exit 0
-			;;
-		ticket)
+            exit 0
+            ;;
+        ticket)
             open_ticket
-			exit 0
-			;;
-		*)
-			echo "¯\\_(ツ)_/¯ What do you mean \"$1\"?"
-			help_text
-			exit 1
-			;;
-	esac
+            exit 0
+            ;;
+        *)
+            echo "¯\\_(ツ)_/¯ What do you mean \"$1\"?"
+            help_text
+            exit 1
+            ;;
+    esac
 else
-	help_text
-	exit 1
+    help_text
+    exit 1
 fi

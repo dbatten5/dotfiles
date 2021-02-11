@@ -49,7 +49,11 @@ Running this command will open the current ticket (based on the git branch) in y
 ## spotify
 
 This is an `applescript` to automate some spotify based actions. 
-Add it to your `usr/local/bin` directory with `ln -sv /absolute/path/to/spotify /usr/local/bin/spotify`.
+Add it to your `usr/local/bin` directory with  
+
+```bash
+ln -sv /absolute/path/to/spotify /usr/local/bin/spotify
+```
 
 ### commands
 
