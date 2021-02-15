@@ -41,7 +41,7 @@ Running this command will do the following:
    name
 
 ```bash
-$ jira ticket
+$ jira view
 ```
 
 Running this command will open the current ticket (based on the git branch) in your browser.
@@ -61,8 +61,9 @@ ln -sv /absolute/path/to/spotify /usr/local/bin/spotify
 $ spotify yt
 ```
 
-This opens the currently playing song as a youtube search. This also works
-quite well as a toolbar shortcut, which you can do by ripping out the body of
-the command from the script and adding it as a "Quick Action" in the Mac
-Automator app. From there it can be added to the toolbar, plenty of
-documentation online on how to do that.
+This opens the currently playing song as a youtube search, mostly so I can ~see
+how many plays it has~ read the comments. This also works quite well as a
+toolbar shortcut, which you can do by ripping out the body of the command from
+the script and adding it as a "Quick Action" in the Mac Automator app. From
+there it can be added to the toolbar, plenty of documentation online on how to
+do that.

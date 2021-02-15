@@ -92,7 +92,7 @@ function new_ticket() {
     echo "All done!"
 }
 
-function open_ticket() {
+function view_ticket() {
     local branch ticket_id
     branch=$(git branch --show-current)
     [[ "$branch" != *"/"* ]] && echo "No ticket id found" && return 0
@@ -106,8 +106,8 @@ if [[ -n $1 ]]; then
             new_ticket
             exit 0
             ;;
-        ticket)
-            open_ticket
+        view)
+            view_ticket
             exit 0
             ;;
         *)

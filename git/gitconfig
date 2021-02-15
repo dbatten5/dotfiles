@@ -9,7 +9,8 @@
 	process = git-lfs filter-process
 	required = true
 [rebase]
-	autosquash = true
+	autoSquash = true
+	autoStash = true
 [init]
 	defaultBranch = main
 [merge]
@@ -17,3 +18,5 @@
 [core]
 	editor = nvim
 	excludesfile = /Users/dominic.batten/.gitignore_global
+[pull]
+	rebase = true

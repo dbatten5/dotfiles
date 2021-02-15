@@ -18,6 +18,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
 " Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': 'yaml'}
@@ -184,3 +185,6 @@ let g:ffs_schema = {
       \ 'sh': 'bash',
       \ }
 nnoremap <c-s> :FFS<space>
+
+" MARKDOWN PREVIEW {{{1
+let g:mkdp_auto_close = 0
