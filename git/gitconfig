@@ -9,7 +9,7 @@
 	process = git-lfs filter-process
 	required = true
 [rebase]
-	autoSquash = true
+	autosquash = true
 	autoStash = true
 [init]
 	defaultBranch = main

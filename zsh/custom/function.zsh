@@ -158,15 +158,20 @@ function cpf() {
 # find a project to cd into and activate the conda env
 
 # GIT {{{2
-# fzf a commit to fixup
-function fzgf() {
-    local preview files
+# fzf a commit from git log
+function _fuzzy_git_commit() {
     files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
     preview="echo {} | grep -Eo '[a-f0-9]+' | head -1 | xargs -I% git show --color=always % -- $files"
     git log -n "${1:-20}" --oneline \
         | fzf --preview="$preview" \
-        | cut -d' ' -f 1 \
-        | xargs git commit --no-verify --fixup
+        | cut -d' ' -f 1
+}
+
+# fzf a commit to fixup
+function fzgf() {
+    local commit
+    commit=$(_fuzzy_git_commit)
+    [[ -n "$commit" ]] && git commit --no-verify --fixup "$commit"
 }
 
 function _fzgf_widget() { fzgf && zle reset-prompt; }
@@ -176,13 +181,9 @@ zle -N _fzgf_widget
 # note the use of ~1 in the rebase command as i prefer the flow of including the
 # selected commit in the rebase
 function fzgr() {
-    local preview files
-    files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
-    preview="echo {} | grep -Eo '[a-f0-9]+' | head -1 | xargs -I% git show --color=always % -- $files"
-    git log -n "${1:-20}" --oneline \
-        | fzf --preview="$preview" \
-        | cut -d' ' -f 1 \
-        | xargs -I% git rebase -i %~1
+    local commit
+    commit=$(_fuzzy_git_commit)
+    [[ -n "$commit" ]] && git rebase -i "$commit"~1
 }
 
 function _fzgr_widget() { fzgr && zle reset-prompt; }
@@ -203,6 +204,16 @@ function gb() {
     branch=$(_fuzzy_git_branch)
     [[ -n "$branch" ]] && git checkout "$branch"
 }
+
+# fzf a commit to show
+function fzgs() {
+    local commit
+    commit=$(_fuzzy_git_commit)
+    [[ -n "$commit" ]] && git show "$commit"
+}
+
+function _fzgs_widget() { fzgs && zle reset-prompt; }
+zle -N _fzgs_widget
 
 # DOCKER {{{2
 # fzf a docker container

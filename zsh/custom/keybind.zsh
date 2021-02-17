@@ -20,3 +20,4 @@ bindkey -M viins '^r' _fuzzy_history
 bindkey -M viins '^y' _copy_line_to_clipboard
 bindkey -M viins '^g^f' _fzgf_widget
 bindkey -M viins '^g^r' _fzgr_widget
+bindkey -M viins '^g^s' _fzgs_widget
