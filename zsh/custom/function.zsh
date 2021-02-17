@@ -52,8 +52,10 @@ function kcsec() {
         read -r "namespace_from?From which namespace [default]? "
         [[ -z "$namespace_from" ]] && namespace_from="default"
 
-        read -r "namespace_to?To which namespace? "
-        [[ -z "$namespace_to" ]] && echo "Can't be empty" && return 0
+        local current_ns
+        current_ns=$(kubectl config view --minify --output "jsonpath={..namespace}")
+        read -r "namespace_to?To which namespace [${current_ns}]?"
+        [[ -z "$namespace_to" ]] && namespace_to=$current_ns
     else
         secret=$1
         namespace_from=$2
