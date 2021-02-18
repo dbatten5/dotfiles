@@ -192,10 +192,9 @@ function _fzgr_widget() { fzgr && zle reset-prompt; }
 zle -N _fzgr_widget
 
 function _fuzzy_git_branch() {
-    git branch \
-        | grep -v "^*" \
-        | fzf \
-        | awk '{$1=$1;print}'
+    local get_branch_command="git branch | grep -v '^*' | awk '{\$1=\$1;print}'"
+    eval "${get_branch_command}" \
+        | fzf --bind="ctrl-d:execute-silent(git branch -d {})+reload(${get_branch_command})"
 }
 
 # fzf a branch

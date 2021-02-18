@@ -8,7 +8,7 @@ of custom scripts and shell helper functions to reduce repetitive tasks.
 This is intended to be a shell script to install everything I like on a fresh
 MacBook. I wouldn't recommend anyone run the script on their own machine,
 partly as the script in its current state is fairly experimental and hasn't
-been tested thoroughly, and partly as its rarely a good idea to install someone
+been tested thoroughly, and partly as it's rarely a good idea to install someone
 else's setup in its entirety.
 
 The script should do roughly the following:
@@ -58,7 +58,7 @@ by `fzf` and are focused on the following topics:
 |fzgs|find a commit to show|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>s</kbd>|
 |gfix|fixup the latest commit|
 |greb `n`|rebase latest `n` commits (defaults to 1)|
-|gb|without arguments to fzf a branch to checkout, with arguments acts as normal `git branch`|
+|gb|without arguments to fzf a branch to checkout, <br/>with arguments acts as normal `git branch`. Use <kbd>Ctrl</kbd>+<kbd>d</kbd> delete the branch under the cursor|
 
 #### docker
 
