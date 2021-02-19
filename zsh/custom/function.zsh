@@ -55,15 +55,15 @@ function kcsec() {
         local current_ns
         current_ns=$(kubectl config view --minify --output "jsonpath={..namespace}")
         read -r "namespace_to?To which namespace [${current_ns}]?"
-        [[ -z "$namespace_to" ]] && namespace_to=$current_ns
+        [[ -z "$namespace_to" ]] && namespace_to="$current_ns"
     else
-        secret=$1
-        namespace_from=$2
-        namespace_to=$3
+        secret="$1"
+        namespace_from="$2"
+        namespace_to="$3"
     fi
 
     kubectl get secret "$secret" -n "$namespace_from" -o yaml \
-        | sed "s/namespace: $namespace_from/namespace: $namespace_to/" \
+        | sed "s/namespace: ${namespace_from}/namespace: ${namespace_to}/" \
         | kubectl create -f -
 }
 
@@ -191,10 +191,22 @@ function fzgr() {
 function _fzgr_widget() { fzgr && zle reset-prompt; }
 zle -N _fzgr_widget
 
+# fzf a commit to show
+function fzgs() {
+    local commit
+    commit=$(_fuzzy_git_commit)
+    [[ -n "$commit" ]] && git show "$commit"
+}
+
+function _fzgs_widget() { fzgs && zle reset-prompt; }
+zle -N _fzgs_widget
+
 function _fuzzy_git_branch() {
     local get_branch_command="git branch | grep -v '^*' | awk '{\$1=\$1;print}'"
     eval "${get_branch_command}" \
-        | fzf --bind="ctrl-d:execute-silent(git branch -d {})+reload(${get_branch_command})"
+        | fzf \
+            --bind="ctrl-d:execute-silent(git branch -d {})+reload(${get_branch_command})" \
+            --header='CTRL-D to delete branch'
 }
 
 # fzf a branch
