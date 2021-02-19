@@ -56,9 +56,10 @@ by `fzf` and are focused on the following topics:
 |fzgf|find a commit to fixup|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>f</kbd>|
 |fzgr|find a commit to rebase onto|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>r</kbd>|
 |fzgs|find a commit to show|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>s</kbd>|
+|fzgsp|find a stash to pop|<kbd>Ctrl</kbd>+<kbd>g</kbd> <kbd>Ctrl</kbd>+<kbd>p</kbd>|
 |gfix|fixup the latest commit|
 |greb `n`|rebase latest `n` commits (defaults to 1)|
-|gb|without arguments to fzf a branch to checkout, <br/>with arguments acts as normal `git branch`. Use <kbd>Ctrl</kbd>+<kbd>d</kbd> delete the branch under the cursor|
+|gb|with arguments acts as normal `git branch`. <br/>without arguments it brings up a menu to fzf a branch to checkout. <br/>Use <kbd>Ctrl</kbd>+<kbd>d</kbd> to delete the branch under the cursor|
 
 #### docker
 

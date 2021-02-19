@@ -21,3 +21,4 @@ bindkey -M viins '^y' _copy_line_to_clipboard
 bindkey -M viins '^g^f' _fzgf_widget
 bindkey -M viins '^g^r' _fzgr_widget
 bindkey -M viins '^g^s' _fzgs_widget
+bindkey -M viins '^g^p' _fzgsp_widget

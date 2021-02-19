@@ -206,15 +206,22 @@ function gb() {
     [[ -n "$branch" ]] && git checkout "$branch"
 }
 
-# fzf a commit to show
-function fzgs() {
-    local commit
-    commit=$(_fuzzy_git_commit)
-    [[ -n "$commit" ]] && git show "$commit"
+# fzf a stash and show diff against head in preview
+function _fuzzy_git_stash() {
+    git stash list \
+        | fzf --preview="echo {} | cut -d: -f1 | xargs git show" \
+        | cut -d: -f1
 }
 
-function _fzgs_widget() { fzgs && zle reset-prompt; }
-zle -N _fzgs_widget
+# fzf a stash to pop
+function fzgsp() {
+    local stash
+    stash=$(_fuzzy_git_stash)
+    [[ -n "$stash" ]] && git stash pop "$stash"
+}
+
+function _fzgsp_widget() { fzgsp && zle reset-prompt; }
+zle -N _fzgsp_widget
 
 # DOCKER {{{2
 # fzf a docker container
