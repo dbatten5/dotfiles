@@ -138,11 +138,6 @@ function ssh() {
     [[ -n "$host" ]] && command ssh "$host"
 }
 
-# find a directory to cd into
-# function .() {
-#     cd "$(fd --type=directory --max-depth=${1:-1} | fzf)" || return
-# }
-
 # copy the current line to the clipboard
 function _copy_line_to_clipboard() {
     clipcopy "$BUFFER"

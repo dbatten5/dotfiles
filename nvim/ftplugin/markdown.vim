@@ -10,3 +10,8 @@ setlocal textwidth=0
 setlocal wrapmargin=0
 " Set indentation to 2 for .md files
 autocmd vimrc FileType markdown setlocal sw=2 sts=2 ts=2
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MARKDOWN PREVIEW
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <c-p> :MarkdownPreview<cr>

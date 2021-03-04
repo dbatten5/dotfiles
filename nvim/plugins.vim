@@ -9,6 +9,7 @@ endif
 call plug#begin()
 Plug 'FooSoft/vim-argwrap'
 Plug 'SirVer/ultisnips'
+Plug 'andrewradev/deleft.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'dbakker/vim-projectroot'
@@ -52,16 +53,14 @@ nnoremap <silent> <leader>ts :TestSuite<cr>
 
 " VIM FUGITIVE {{{1
 nnoremap <space>gs :belowright :20Gstatus<cr>
-nnoremap <space>gd :Gdiff<cr>
+nnoremap <space>gg :Git log<cr>
 nnoremap <space>ge :Gblame<cr>
-nnoremap <space>grb :Git rebase -i<space>
-nnoremap <space>grc :Git rebase --continue<cr>
-nnoremap <space>grm :Git rebase -i origin/master<cr>
 nnoremap <space>gb :Git branch<space>
 nnoremap <space>gc :Git checkout<space>
 nnoremap <space>gp :Gpush origin HEAD<cr>
 nnoremap <space>gP :Gpush origin HEAD --force-with-lease<cr>
 nnoremap <space>gl :Git pull<cr>
+nnoremap <space>gm :Git pull origin master<cr>
 " merge conflict resolution
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>

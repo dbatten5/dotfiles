@@ -44,7 +44,7 @@ set path+=**
 " Wrap text at 80 characters
 set textwidth=80
 " Turn off that bell noise
-set visualbell noerrorbells
+set noerrorbells
 " Incremental searching
 set incsearch
 set nohlsearch
