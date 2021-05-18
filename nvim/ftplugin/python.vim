@@ -7,10 +7,15 @@ set textwidth=88
 set colorcolumn=88
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" KEY MAPPINGS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <space>b :!black %<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Check Python files with flake8 and pylint.
-let b:ale_linters = {'python': ['pylint']}
+let b:ale_linters = {'python': ['pylint', 'flake8']}
 " Fix Python files with black and isort.
 let b:ale_fixers = {'python': ['black', 'isort']}
 

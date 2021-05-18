@@ -7,32 +7,33 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
+" Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': 'yaml'}
 Plug 'FooSoft/vim-argwrap'
 Plug 'SirVer/ultisnips'
+Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
 Plug 'andrewradev/deleft.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'dbakker/vim-projectroot'
 Plug 'dense-analysis/ale'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
-" Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': 'yaml'}
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
-Plug 'preservim/tagbar'
+" Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'sodapopcan/vim-twiggy'
+" Plug 'sodapopcan/vim-twiggy'
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
+Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'wellle/targets.vim'
 
 Plug '~/projects/personal/vim-ffs'
@@ -51,7 +52,7 @@ nnoremap <silent> <leader>td :TestNearest -strategy=dispatch<cr>
 nnoremap <silent> <leader>tt :TestFile<cr>
 nnoremap <silent> <leader>ts :TestSuite<cr>
 
-" VIM FUGITIVE {{{1
+" FUGITIVE {{{1
 nnoremap <space>gs :belowright :20Gstatus<cr>
 nnoremap <space>gg :Git log<cr>
 nnoremap <space>ge :Gblame<cr>
@@ -61,6 +62,7 @@ nnoremap <space>gp :Gpush origin HEAD<cr>
 nnoremap <space>gP :Gpush origin HEAD --force-with-lease<cr>
 nnoremap <space>gl :Git pull<cr>
 nnoremap <space>gm :Git pull origin master<cr>
+nnoremap <space>gw :Git show<cr>
 " merge conflict resolution
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
@@ -177,7 +179,7 @@ let g:tagbar_position = 'topleft vertical'
 let g:tagbar_compact = 1
 
 " COC {{{1
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 " FFS {{{1
 let g:ffs_schema = {
@@ -187,3 +189,6 @@ nnoremap <c-s> :FFS<space>
 
 " MARKDOWN PREVIEW {{{1
 let g:mkdp_auto_close = 0
+
+" PYTHON SYNTAX {{{1
+let g:python_highlight_all = 1

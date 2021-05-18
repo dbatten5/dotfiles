@@ -1,7 +1,7 @@
 " BASIC KEY MAPPINGS {{{1
 " Quickly open and source my vimrc
 nnoremap <leader>ev :vnew $NVIMCONFIG<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>sv :source $NVIMCONFIG/init.vim<cr>
 " Center the screen on next match
 nnoremap n nzz
 " Make <c-c> the same as esc in insert mode

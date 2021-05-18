@@ -9,6 +9,8 @@ export KUBE_EDITOR="nvim"
 
 export BAT_THEME="base16"
 
+export EDITOR=nvim
+
 # set fzf defaults
 export FZF_DEFAULT_OPTS="
   --height=40%
