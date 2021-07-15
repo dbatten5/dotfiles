@@ -1,22 +1,28 @@
 [user]
-	email = dominic.batten@googlemail.com
-	name = Dom Batten
+  email = dominic.batten@googlemail.com
+  name = Dom Batten
 [includeIf "gitdir:~/projects/work/"]
   path = .gitconfig-job
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [rebase]
-	autosquash = true
-	autoStash = true
+  autosquash = true
+  autoStash = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [merge]
-	conflictstyle = diff3
+  conflictstyle = diff3
 [core]
-	editor = nvim
-	excludesfile = /Users/dominic.batten/.gitignore_global
+  editor = nvim
+  excludesfile = /Users/dominic.batten/.gitignore_global
 [pull]
-	rebase = true
+  rebase = true
+[difftool]
+  prompt = true
+[diff]
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""

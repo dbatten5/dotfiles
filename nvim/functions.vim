@@ -75,8 +75,8 @@ function! RenameItemUnderCursor()
   silent execute 'Dirvish %'
 endfunction
 
-function! InsertInitPy()
-  let filepath = expand("%") . "__init__.py"
+function! CreateInitPy()
+  let filepath = expand('%') . '__init__.py'
   exec '!touch' filepath '&' | redraw!
   silent execute 'Dirvish %'
 endfunction
