@@ -29,7 +29,7 @@ function gfix() {
 }
 
 # rebase latest commit
-function greb() {
+function grbh() {
     git rebase -i HEAD~"${1:-1}"
 }
 

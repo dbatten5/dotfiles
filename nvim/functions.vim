@@ -9,12 +9,18 @@ endfunction
 
 function! OpenJiraTicket()
   let branch = fugitive#head()
-  let ticket_id = matchstr(branch, 'ENG-\d*')
+  let ticket_id = matchstr(branch, '[A-Z]\+-\d\+')
   if ticket_id !=# ''
     call system('open ' . $JIRA_URL . '/' . ticket_id)
   else
     echo 'ticket id not found!'
   endif
+endfunction
+
+function! CleanLogs()
+    call system('> logs/general.log')
+    call system('> logs/errors.log')
+    echo 'logs cleaned'
 endfunction
 
 " DIRVISH {{{1

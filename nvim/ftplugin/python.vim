@@ -25,6 +25,10 @@ let b:ale_fixers = {'python': ['black', 'isort']}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let test#python#runner = 'pytest'
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COMMANDS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup ffs_py | au!
+  " set FFS scope for pytest files
   autocmd BufEnter test_*.py let b:ffs_scope = 'pytest'
 augroup end

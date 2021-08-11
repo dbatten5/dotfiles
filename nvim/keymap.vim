@@ -81,6 +81,8 @@ nnoremap <leader>? :call general#Google(expand("<cword>"), 0)<cr>
 command! C :silent !pbcopy < %
 " Open the current jira ticket (mapped to option+j)
 nnoremap <silent> ∆ :call OpenJiraTicket()<cr>
+" Clean logs
+command! CleanLogs :call CleanLogs()
 
 " QUICKFIX {{{1
 " Toggle the quickfix

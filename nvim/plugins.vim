@@ -18,6 +18,7 @@ Plug 'dbakker/vim-projectroot'
 Plug 'dense-analysis/ale'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'janko-m/vim-test'
+Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -48,6 +49,7 @@ let test#strategy = {
   \ 'suite':   'dispatch',
 \}
 nnoremap <silent> <leader>tf :TestNearest<cr>
+nnoremap <silent> <leader>tl :TestLast<cr>
 nnoremap <silent> <leader>td :TestNearest -strategy=dispatch<cr>
 nnoremap <silent> <leader>tt :TestFile<cr>
 nnoremap <silent> <leader>ts :TestSuite<cr>
