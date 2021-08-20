@@ -69,6 +69,7 @@ by `fzf` and are focused on the following topics:
 |dlog|find a container to retrieve logs|
 |dstart|find a stopped container to start|
 |dstop|find a started container to stop|
+|dimagerm|find images to delete|
 
 #### kubernetes
 

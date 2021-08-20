@@ -238,6 +238,13 @@ function _fuzzy_docker_container() {
         | awk '{print $1;}'
 }
 
+# fzf docker images
+function _fuzzy_docker_images() {
+    docker image ls \
+        | fzf --header-lines=1 --delimiter='\s+' --nth=1,2 --multi \
+        | awk '{print $3;}'
+}
+
 # drop into a container shell
 function dexec() {
     local cid
@@ -268,6 +275,13 @@ function dstop() {
     [[ -n "$cid" ]] \
         && docker stop "$@" "$cid" 1> /dev/null \
         && echo "Container $cid stopped"
+}
+
+# delete images
+function dimagerm() {
+    local images
+    images=$(_fuzzy_docker_images)
+    [[ -n "$images" ]] && echo "${images}" | xargs -I % docker image rm %
 }
 
 # KUBERNETES {{{2
