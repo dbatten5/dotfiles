@@ -234,7 +234,7 @@ zle -N _fzgsp_widget
 # fzf a docker container
 function _fuzzy_docker_container() {
     docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.CreatedAt}}" "$@" \
-        | fzf --header-lines=1 --delimiter='\s+' --nth=1,2 \
+        | fzf --header-lines=1 --delimiter='\s+' --nth=1,2 --multi \
         | awk '{print $1;}'
 }
 
@@ -272,16 +272,14 @@ function dstart() {
 function dstop() {
     local cid
     cid=$(_fuzzy_docker_container)
-    [[ -n "$cid" ]] \
-        && docker stop "$@" "$cid" 1> /dev/null \
-        && echo "Container $cid stopped"
+    [[ -n "$cid" ]] && echo "${cid}" | xargs -I % docker stop "$@" %
 }
 
 # delete images
 function dimagerm() {
     local images
     images=$(_fuzzy_docker_images)
-    [[ -n "$images" ]] && echo "${images}" | xargs -I % docker image rm %
+    [[ -n "$images" ]] && echo "${images}" | xargs -I % docker image rm "$@" %
 }
 
 # KUBERNETES {{{2

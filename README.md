@@ -68,7 +68,7 @@ by `fzf` and are focused on the following topics:
 |dexec|find a container to drop into|
 |dlog|find a container to retrieve logs|
 |dstart|find a stopped container to start|
-|dstop|find a started container to stop|
+|dstop|find a started container(s) to stop|
 |dimagerm|find images to delete|
 
 #### kubernetes
