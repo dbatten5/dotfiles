@@ -67,3 +67,15 @@ toolbar shortcut, which you can do by ripping out the body of the command from
 the script and adding it as a "Quick Action" in the Mac Automator app. From
 there it can be added to the toolbar, plenty of documentation online on how to
 do that.
+
+## infilmation_db_backup
+
+This is a simple script to backup the infilmation database (running in a
+`postgres` container on a remote server) and copy the files across to the local
+machine.
+
+Tools used:
+
+- `ssh` to run commands on the remote server
+- `pg_dump` to dump the database
+- `scp` to copy the backup across the network to the local machine 
