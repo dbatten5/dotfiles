@@ -213,6 +213,12 @@ function gb() {
     [[ -n "$branch" ]] && git checkout "$branch"
 }
 
+function gbdf() {
+    local branches
+    branches=$(git branch | grep -v "^*" | awk '{$1=$1;print}' | fzf -m)
+    [[ -n "$branches" ]] && echo "$branches" | xargs -I % git branch -D %
+}
+
 # fzf a stash and show diff against head in preview
 function _fuzzy_git_stash() {
     git stash list \

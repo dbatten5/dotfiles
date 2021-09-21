@@ -60,6 +60,7 @@ by `fzf` and are focused on the following topics:
 |gfix|fixup the latest commit|
 |greb `n`|rebase latest `n` commits (defaults to 1)|
 |gb|with arguments acts as normal `git branch`. <br/>without arguments it brings up a menu to fzf a branch to checkout. <br/>Use <kbd>Ctrl</kbd>+<kbd>d</kbd> to delete the branch under the cursor|
+|gbdf|multiselect git branches to **force** delete|
 
 #### docker
 
