@@ -152,6 +152,18 @@ function cpf() {
     [[ -n "$file" && -f "$file" ]] && pbcopy < "$file" && echo "=> $file copied to the clipboard"
 }
 
+# fzf a make recipe
+function _fuzzy_make_recipe() {
+    rg '^([a-z]|-)*:' Makefile | cut -d ':' -f 1 | fzf
+}
+
+# find a make recipe and run it
+function fzm() {
+    local recipe
+    recipe=$(_fuzzy_make_recipe)
+    [[ -n "$recipe" ]] && make "${recipe}"
+}
+
 # find a project to cd into and activate the conda env
 
 # GIT {{{2
