@@ -18,9 +18,14 @@ function! OpenJiraTicket()
 endfunction
 
 function! CleanLogs()
-    call system('> logs/general.log')
-    call system('> logs/errors.log')
-    echo 'logs cleaned'
+  call system('> logs/general.log')
+  call system('> logs/errors.log')
+  echo 'logs cleaned'
+endfunction
+
+function! SetTab(spaces)
+  let &tabstop=a:spaces
+  let &shiftwidth=a:spaces
 endfunction
 
 " DIRVISH {{{1
