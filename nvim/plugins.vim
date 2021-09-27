@@ -23,6 +23,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
+Plug 'kamykn/spelunker.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
@@ -194,3 +195,6 @@ let g:mkdp_auto_close = 0
 
 " PYTHON SYNTAX {{{1
 let g:python_highlight_all = 1
+
+" SPELUNKER {{{1
+let g:spelunker_check_type = 1

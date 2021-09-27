@@ -24,3 +24,9 @@ augroup nord_theme_overrides
   autocmd ColorScheme nord highlight ExtraWhitespace guifg=#88C0D0
   autocmd ColorScheme nord match ExtraWhiteSpace /\s\+$/
 augroup END
+
+" SPELUNKER {{{1
+augroup spelunker_filetype_switch
+  autocmd!
+  autocmd BufNewFile,BufRead *.lock let b:enable_spelunker_vim = 0
+augroup END
