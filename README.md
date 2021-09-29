@@ -49,6 +49,7 @@ by `fzf` and are focused on the following topics:
 |v|open suspended nvim session if it exists or start afresh|
 |cpf `f`|copy the contents of file `f` to the clipboard, <br/>without arguments to fzf the file|
 |fzm|find a recipe from a `Makefile` in the cwd and run it|
+|venv|deactivate the current conda env and activate venv in current directory|
 
 #### git
 

@@ -22,6 +22,12 @@ function v() {
     fg 2> /dev/null || nvim .
 }
 
+# deactivate conda env and activate venv in current dir
+function venv() {
+    conda deactivate
+    [[ -d ".venv" ]] && source .venv/bin/activate || echo "no .venv folder found"
+}
+
 # GIT {{{1
 # fixup latest commit
 function gfix() {

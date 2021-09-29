@@ -10,7 +10,7 @@ set colorcolumn=88
 " KEY MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap <space>b :!black %<cr>
-noremap <space>i :!isort %<cr>
+noremap <space>i :!isort --profile black %<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
