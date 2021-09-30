@@ -23,7 +23,7 @@ function v() {
 }
 
 # deactivate conda env and activate venv in current dir
-function venv() {
+function vact() {
     conda deactivate
     [[ -d ".venv" ]] && source .venv/bin/activate || echo "no .venv folder found"
 }

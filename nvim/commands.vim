@@ -28,5 +28,6 @@ augroup END
 " SPELUNKER {{{1
 augroup spelunker_filetype_switch
   autocmd!
+  autocmd FileType git let b:enable_spelunker_vim = 0
   autocmd BufNewFile,BufRead *.lock let b:enable_spelunker_vim = 0
 augroup END
