@@ -10,15 +10,18 @@ set colorcolumn=88
 " KEY MAPPINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap <space>b :!black %<cr>
-noremap <space>i :!isort --profile black %<cr>
+noremap <space>i :!isort %<cr>
+noremap <space>u :!autoimport %<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Check Python files with flake8 and pylint.
-let b:ale_linters = {'python': ['pylint', 'flake8']}
-" Fix Python files with black and isort.
-let b:ale_fixers = {'python': ['black', 'isort']}
+let b:ale_linters = {'python': ['pylint', 'flake8', 'pyright']}
+let b:ale_fixers = {'python': ['autoimport', 'isort', 'black']}
+let b:ale_python_autoimport_executable = "/usr/local/bin/autoimport"
+let b:ale_python_black_executable = "/usr/local/bin/black"
+let b:ale_python_isort_executable = "/usr/local/bin/isort"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM-TEST

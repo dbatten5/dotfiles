@@ -29,6 +29,7 @@ Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
 " Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
+Plug 'reedes/vim-pencil'
 " Plug 'sodapopcan/vim-twiggy'
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-commentary'
@@ -45,7 +46,7 @@ call plug#end()
 
 " VIM TEST {{{1
 let test#strategy = {
-  \ 'nearest': 'neovim',
+  \ 'nearest': 'dispatch',
   \ 'file':    'dispatch',
   \ 'suite':   'dispatch',
 \}
@@ -56,7 +57,7 @@ nnoremap <silent> <leader>tt :TestFile<cr>
 nnoremap <silent> <leader>ts :TestSuite<cr>
 
 " FUGITIVE {{{1
-nnoremap <space>gs :belowright :20Gstatus<cr>
+nnoremap <space>gs :Gstatus<cr>
 nnoremap <space>gg :Git log<cr>
 nnoremap <space>ge :Gblame<cr>
 nnoremap <space>gb :Git branch<space>
@@ -86,10 +87,18 @@ nnoremap <space>gb :Twiggy<cr>
 
 " ALE {{{1
 " Only lint when saving or entering a file
+let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 1
-nnoremap <leader>af :ALEFix<cr>
+let g:ale_lint_on_save = 1
+nnoremap <space>af :ALEFix<cr>
+nnoremap <space>al :ALELint<cr>
+nnoremap <space>an :ALENextWrap<cr>
+nnoremap <space>ap :ALEPreviousWrap<cr>
+nnoremap <space>ar :ALERename<cr>
+nnoremap <space>ai :ALEInfo<cr>
+nnoremap <space>aa :ALE
+inoremap <c-a> <c-\><c-o>:ALEComplete<cr>
 
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -197,4 +206,4 @@ let g:mkdp_auto_close = 0
 let g:python_highlight_all = 1
 
 " SPELUNKER {{{1
-let g:spelunker_check_type = 1
+let g:spelunker_check_type = 2

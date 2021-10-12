@@ -69,7 +69,7 @@ t[1] = t[1].replace(' ', '_')
 	$0
 endsnippet
 
-snippet gh
+snippet gwt
 """
 Given $1,
 When $2,
@@ -102,3 +102,9 @@ snippet patch
 @mock.patch("$0", ${1:autospec=True})
 endsnippet
 
+snippet djq
+from django.db import connection
+from django.test.utils import CaptureQueriesContext
+with CaptureQueriesContext(connection) as context:
+	$0
+endsnippet

@@ -31,3 +31,9 @@ augroup spelunker_filetype_switch
   autocmd FileType git let b:enable_spelunker_vim = 0
   autocmd BufNewFile,BufRead *.lock let b:enable_spelunker_vim = 0
 augroup END
+
+" PENCIL {{{1
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd,text call pencil#init()
+augroup END
