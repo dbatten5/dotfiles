@@ -5,6 +5,7 @@ set nowrap
 " Wrap text at 88 characters
 set textwidth=88
 set colorcolumn=88
+set updatetime=2000
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " KEY MAPPINGS

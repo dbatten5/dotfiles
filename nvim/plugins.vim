@@ -7,7 +7,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin()
-" Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': 'yaml'}
 Plug 'FooSoft/vim-argwrap'
 Plug 'SirVer/ultisnips'
 Plug 'Vimjas/vim-python-pep8-indent', {'for': 'python'}
@@ -27,10 +26,9 @@ Plug 'kamykn/spelunker.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
-" Plug 'preservim/tagbar'
+Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'reedes/vim-pencil'
-" Plug 'sodapopcan/vim-twiggy'
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -57,13 +55,13 @@ nnoremap <silent> <leader>tt :TestFile<cr>
 nnoremap <silent> <leader>ts :TestSuite<cr>
 
 " FUGITIVE {{{1
-nnoremap <space>gs :Gstatus<cr>
+nnoremap <space>gs :Git<cr>
 nnoremap <space>gg :Git log<cr>
-nnoremap <space>ge :Gblame<cr>
+nnoremap <space>ge :Git blame<cr>
 nnoremap <space>gb :Git branch<space>
 nnoremap <space>gc :Git checkout<space>
-nnoremap <space>gp :Gpush origin HEAD<cr>
-nnoremap <space>gP :Gpush origin HEAD --force-with-lease<cr>
+nnoremap <space>gp :Git push origin HEAD<cr>
+nnoremap <space>gP :Git push origin HEAD --force-with-lease<cr>
 nnoremap <space>gl :Git pull<cr>
 nnoremap <space>gm :Git pull origin master<cr>
 nnoremap <space>gw :Git show<cr>
@@ -96,6 +94,7 @@ nnoremap <space>al :ALELint<cr>
 nnoremap <space>an :ALENextWrap<cr>
 nnoremap <space>ap :ALEPreviousWrap<cr>
 nnoremap <space>ar :ALERename<cr>
+nnoremap <space>ah :ALEHover<cr>
 nnoremap <space>ai :ALEInfo<cr>
 nnoremap <space>aa :ALE
 inoremap <c-a> <c-\><c-o>:ALEComplete<cr>
