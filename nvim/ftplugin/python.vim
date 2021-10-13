@@ -5,6 +5,8 @@ set nowrap
 " Wrap text at 88 characters
 set textwidth=88
 set colorcolumn=88
+" This is used for CursorHold event, used by ALE to display symbol information
+" in the message window. Default is 4000 which is a bit too long for me
 set updatetime=2000
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -19,9 +21,9 @@ noremap <space>u :!autoimport %<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let b:ale_linters = {'python': ['pylint', 'flake8', 'pyright']}
 let b:ale_fixers = {'python': ['autoimport', 'isort', 'black']}
-let b:ale_python_autoimport_executable = "/usr/local/bin/autoimport"
-let b:ale_python_black_executable = "/usr/local/bin/black"
-let b:ale_python_isort_executable = "/usr/local/bin/isort"
+let b:ale_python_autoimport_executable = '/usr/local/bin/autoimport'
+let b:ale_python_black_executable = '/usr/local/bin/black'
+let b:ale_python_isort_executable = '/usr/local/bin/isort'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

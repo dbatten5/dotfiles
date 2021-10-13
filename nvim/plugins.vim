@@ -25,6 +25,7 @@ Plug 'justinmk/vim-dirvish'
 Plug 'kamykn/spelunker.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
+Plug 'mbbill/undotree'
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
 Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
@@ -36,6 +37,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'wellle/targets.vim'
+Plug 'yegappan/mru'
 
 Plug '~/projects/personal/vim-ffs'
 Plug '~/projects/personal/vim-macroscope'
@@ -206,3 +208,13 @@ let g:python_highlight_all = 1
 
 " SPELUNKER {{{1
 let g:spelunker_check_type = 2
+
+" UNDOTREE {{{1
+nnoremap <F5> :UndotreeToggle<cr>
+
+" MRU {{{1
+nnoremap <space>m :MRU<cr>
+let MRU_Filename_Format = {
+\ 'formatter': "fnamemodify(v:val, ':p:t') .. ' (' .. fnamemodify(v:val, ':p:~') .. ')'",
+\ 'parser':'(\zs.*\ze)',
+\ 'syntax': '^.\{-}\ze('}
