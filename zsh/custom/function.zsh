@@ -326,10 +326,10 @@ function _fuzzy_k8s_context() {
         | awk '{print $1;}'
 }
 
-# fzf a secret name
-function _fuzzy_k8s_secret() {
+# fzf secrets
+function _fuzzy_k8s_secrets() {
     kubectl get secrets -n "$1" \
-        | fzf --header-lines=1 --delimiter='\s+' --nth=2.. --header='Select secret'\
+        | fzf -m --header-lines=1 --delimiter='\s+' --nth=2.. --header='Select secret'\
         | sed 's/^[\*[:blank:]]*//' \
         | awk '{print $1;}'
 }
@@ -387,16 +387,16 @@ function kctx() {
     [[ -n "$ctx" ]] && kubectl config use-context "$ctx"
 }
 
-# copy a secret from one namspace to another
+# copy secret(s) from one namspace to another
 function kcsec() {
-    local secret namespace_from namespace_to
+    local secrets namespace_from namespace_to
 
     if [[ "$#" -lt 3 ]]; then
         read -r "namespace_from?From which namespace [default]? "
         [[ -z "$namespace_from" ]] && namespace_from="default"
 
-        secret=$(_fuzzy_k8s_secret $namespace_from)
-        [[ -z "$secret" ]] && echo "Can't be empty" && return 0
+        secrets=$(_fuzzy_k8s_secrets $namespace_from)
+        [[ -z "$secrets" ]] && echo "Can't be empty" && return 0
 
         local current_ns
         current_ns=$(kubectl config view --minify --output "jsonpath={..namespace}")
@@ -408,9 +408,11 @@ function kcsec() {
         namespace_to="$3"
     fi
 
-    kubectl get secret "$secret" -n "$namespace_from" -o yaml \
-        | sed "s/namespace: ${namespace_from}/namespace: ${namespace_to}/" \
-        | kubectl create -f -
+    while IFS= read -r secret; do
+        kubectl get secret "$secret" -n "$namespace_from" -o yaml \
+            | sed "s/namespace: ${namespace_from}/namespace: ${namespace_to}/" \
+            | kubectl create -f -
+    done <<< "$secrets"
 }
 
 # HELM {{{2
