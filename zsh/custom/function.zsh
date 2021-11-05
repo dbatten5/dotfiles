@@ -24,7 +24,8 @@ function v() {
 
 # deactivate conda env and activate venv in current dir
 function vact() {
-    conda deactivate
+    conda deactivate 2> /dev/null
+    deactivate 2> /dev/null
     [[ -d ".venv" ]] && source .venv/bin/activate || echo "no .venv folder found"
 }
 
@@ -45,32 +46,6 @@ function ktmp() {
     local cmd
     cmd="${*:-sh}"
     kubectl run tmp-"$(date +%s)" --rm -it --image=busybox -- "$cmd"
-}
-
-# copy a secret from one namspace to another
-function kcsec() {
-    local secret namespace_from namespace_to
-
-    if [[ "$#" -lt 3 ]]; then
-        read -r "secret?What is the name of the secret? "
-        [[ -z "$secret" ]] && echo "Can't be empty" && return 0
-
-        read -r "namespace_from?From which namespace [default]? "
-        [[ -z "$namespace_from" ]] && namespace_from="default"
-
-        local current_ns
-        current_ns=$(kubectl config view --minify --output "jsonpath={..namespace}")
-        read -r "namespace_to?To which namespace [${current_ns}]?"
-        [[ -z "$namespace_to" ]] && namespace_to="$current_ns"
-    else
-        secret="$1"
-        namespace_from="$2"
-        namespace_to="$3"
-    fi
-
-    kubectl get secret "$secret" -n "$namespace_from" -o yaml \
-        | sed "s/namespace: ${namespace_from}/namespace: ${namespace_to}/" \
-        | kubectl create -f -
 }
 
 # scale down all deployments and stateful sets in the current namespace
@@ -351,6 +326,14 @@ function _fuzzy_k8s_context() {
         | awk '{print $1;}'
 }
 
+# fzf a secret name
+function _fuzzy_k8s_secret() {
+    kubectl get secrets -n "$1" \
+        | fzf --header-lines=1 --delimiter='\s+' --nth=2.. --header='Select secret'\
+        | sed 's/^[\*[:blank:]]*//' \
+        | awk '{print $1;}'
+}
+
 # retrieve logs for a container
 function klog() {
     local pc
@@ -404,10 +387,36 @@ function kctx() {
     [[ -n "$ctx" ]] && kubectl config use-context "$ctx"
 }
 
+# copy a secret from one namspace to another
+function kcsec() {
+    local secret namespace_from namespace_to
+
+    if [[ "$#" -lt 3 ]]; then
+        read -r "namespace_from?From which namespace [default]? "
+        [[ -z "$namespace_from" ]] && namespace_from="default"
+
+        secret=$(_fuzzy_k8s_secret $namespace_from)
+        [[ -z "$secret" ]] && echo "Can't be empty" && return 0
+
+        local current_ns
+        current_ns=$(kubectl config view --minify --output "jsonpath={..namespace}")
+        read -r "namespace_to?To which namespace [${current_ns}]?"
+        [[ -z "$namespace_to" ]] && namespace_to="$current_ns"
+    else
+        secret="$1"
+        namespace_from="$2"
+        namespace_to="$3"
+    fi
+
+    kubectl get secret "$secret" -n "$namespace_from" -o yaml \
+        | sed "s/namespace: ${namespace_from}/namespace: ${namespace_to}/" \
+        | kubectl create -f -
+}
+
 # HELM {{{2
 # fzf a chart
 function _fuzzy_helm_chart() {
-    helm list "$@" \
+    helm list "$@" -a \
         | fzf --header-lines=1 --delimiter='\s+' --nth=1,2,6 \
         | awk '{print $1;}'
 }
