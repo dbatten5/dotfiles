@@ -11,7 +11,7 @@ endsnippet
 snippet f
 def $1`!p
 t[1] = t[1].replace(' ', '_')
-`($2):
+`($2) -> $3:
 	$0
 endsnippet
 
@@ -60,11 +60,11 @@ endsnippet
 snippet test
 def test_$1`!p
 t[1] = t[1].replace(' ', '_')
-`():
+`(${2:self}) -> None:
 	"""
-	Given $2,
-	When $3,
-	Then $4
+	Given $3,
+	When $4,
+	Then $5
 	"""
 	$0
 endsnippet
@@ -102,9 +102,45 @@ snippet patch
 @mock.patch("$0", ${1:autospec=True})
 endsnippet
 
+snippet elog
+import logging
+logger = logging.getLogger("eigenapp.ejob")
+endsnippet
+
 snippet djq
 from django.db import connection
 from django.test.utils import CaptureQueriesContext
 with CaptureQueriesContext(connection) as context:
 	$0
+endsnippet
+
+snippet opn
+Optional[$0] = None
+endsnippet
+
+snippet op
+Optional[$0]
+endsnippet
+
+snippet rtn
+-> None
+endsnippet
+
+snippet tc
+class Test$1:
+	"""Tests for the `$0` method."""
+endsnippet
+
+snippet repr
+def __repr__(self) -> str:
+	"""Return the string representation.
+	
+	Returns:
+		the string representation
+	"""
+	return f"<class '{self.__class__.__name__}' $0>"
+
+def __str__(self) -> str:
+	"""Return the string representation."""
+	return self.__repr__()
 endsnippet

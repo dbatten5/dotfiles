@@ -14,6 +14,6 @@ cur_date="$(date +'%s')"
 scp -i "${infilmation_key_path}" "${infilmation_host}:~/infilmation_dump.sql" \
     "${HOME}/Desktop/infilmation_dumps/dump_${cur_date}.sql"
 
-# delte backup from server
+# delete backup from server
 ssh -i "${infilmation_key_path}" "${infilmation_host}" \
     'rm infilmation_dump.sql'

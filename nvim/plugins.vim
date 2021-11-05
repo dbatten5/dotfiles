@@ -29,7 +29,6 @@ Plug 'mbbill/undotree'
 Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
 Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'reedes/vim-pencil'
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -62,6 +61,7 @@ nnoremap <space>gg :Git log<cr>
 nnoremap <space>ge :Git blame<cr>
 nnoremap <space>gb :Git branch<space>
 nnoremap <space>gc :Git checkout<space>
+nnoremap <space>gC :Git commit --no-verify<cr>
 nnoremap <space>gp :Git push origin HEAD<cr>
 nnoremap <space>gP :Git push origin HEAD --force-with-lease<cr>
 nnoremap <space>gl :Git pull<cr>
@@ -95,6 +95,7 @@ nnoremap <space>af :ALEFix<cr>
 nnoremap <space>al :ALELint<cr>
 nnoremap <space>an :ALENextWrap<cr>
 nnoremap <space>ap :ALEPreviousWrap<cr>
+nnoremap <space>ad :ALEDetail<cr>
 nnoremap <space>ar :ALERename<cr>
 nnoremap <space>ah :ALEHover<cr>
 nnoremap <space>ai :ALEInfo<cr>

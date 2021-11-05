@@ -19,7 +19,7 @@ noremap <space>u :!autoimport %<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let b:ale_linters = {'python': ['pylint', 'flake8', 'pyright']}
+let b:ale_linters = {'python': ['pylint', 'flake8', 'mypy', 'pyright']}
 let b:ale_fixers = {'python': ['autoimport', 'isort', 'black']}
 let b:ale_python_autoimport_executable = '/usr/local/bin/autoimport'
 let b:ale_python_black_executable = '/usr/local/bin/black'

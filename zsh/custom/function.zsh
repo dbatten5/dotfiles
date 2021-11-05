@@ -329,7 +329,7 @@ function _fuzzy_k8s_context() {
 # fzf secrets
 function _fuzzy_k8s_secrets() {
     kubectl get secrets -n "$1" \
-        | fzf -m --header-lines=1 --delimiter='\s+' --nth=2.. --header='Select secret'\
+        | fzf -m --header-lines=1 --delimiter='\s+' --nth=2.. --header='Select secret(s)'\
         | sed 's/^[\*[:blank:]]*//' \
         | awk '{print $1;}'
 }
