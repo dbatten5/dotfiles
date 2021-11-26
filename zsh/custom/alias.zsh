@@ -15,6 +15,7 @@ alias clc='clipcopy "$(fc -ln -1)" && echo "=> Last command copied to clipboard.
 alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
 
 # VIM {{{1
+alias v="nvim ."
 alias vim="nvim"
 
 # GIT {{{1
@@ -28,6 +29,7 @@ alias ap='ansible-playbook'
 # PYTHON {{{1
 alias c='conda'
 alias dj='python manage.py'
+alias lpoetry="~/.local/bin/poetry"
 
 # HELM {{{1
 alias h='helm'
@@ -40,7 +42,7 @@ alias -g KDR='--dry-run=client -o yaml'
 
 # DOCKER {{{1
 alias d='docker'
-alias dc='docker-compose'
+alias dc='docker compose'
 
 # JIRA {{{1
 alias j='jira'

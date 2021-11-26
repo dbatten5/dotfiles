@@ -23,6 +23,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'kamykn/spelunker.vim'
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
 Plug 'mbbill/undotree'
@@ -219,3 +220,7 @@ let MRU_Filename_Format = {
 \ 'formatter': "fnamemodify(v:val, ':p:t') .. ' (' .. fnamemodify(v:val, ':p:~') .. ')'",
 \ 'parser':'(\zs.*\ze)',
 \ 'syntax': '^.\{-}\ze('}
+
+" DOGE {{{1
+let g:doge_mapping_comment_jump_forward = ']'
+let g:doge_mapping_comment_jump_backward = '['

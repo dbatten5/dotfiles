@@ -18,9 +18,9 @@ function vs() {
 }
 
 # open suspended vim if it exists or start afresh
-function v() {
-    fg 2> /dev/null || nvim .
-}
+# function v() {
+#     fg 2> /dev/null || nvim .
+# }
 
 # deactivate conda env and activate venv in current dir
 function vact() {
@@ -330,7 +330,6 @@ function _fuzzy_k8s_context() {
 function _fuzzy_k8s_secrets() {
     kubectl get secrets -n "$1" \
         | fzf -m --header-lines=1 --delimiter='\s+' --nth=2.. --header='Select secret(s)'\
-        | sed 's/^[\*[:blank:]]*//' \
         | awk '{print $1;}'
 }
 

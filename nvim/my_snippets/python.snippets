@@ -81,6 +81,10 @@ snippet pry
 breakpoint()
 endsnippet
 
+snippet ipry
+from IPython import embed; embed()
+endsnippet
+
 snippet param
 @pytest.mark.parametrize("test_input, expected", [("$1", $2), ("$3", $2)])
 endsnippet
@@ -128,7 +132,7 @@ endsnippet
 
 snippet tc
 class Test$1:
-	"""Tests for the `$0` method."""
+	"""Tests for the \`$0\` method."""
 endsnippet
 
 snippet repr
@@ -143,4 +147,19 @@ def __repr__(self) -> str:
 def __str__(self) -> str:
 	"""Return the string representation."""
 	return self.__repr__()
+endsnippet
+
+snippet ds
+"""$1.
+
+Args:
+	$2
+	
+Returns:
+	$3
+"""
+endsnippet
+
+snippet as
+assert $0
 endsnippet
