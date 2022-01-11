@@ -15,6 +15,7 @@ set updatetime=2000
 noremap <space>b :!black %<cr>
 noremap <space>i :!isort %<cr>
 noremap <space>u :!autoimport %<cr>
+noremap <space>x :Dispatch python %<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
