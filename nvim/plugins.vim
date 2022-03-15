@@ -25,9 +25,9 @@ Plug 'justinmk/vim-dirvish'
 Plug 'kamykn/spelunker.vim'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascipt'}
+Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 Plug 'mbbill/undotree'
-Plug 'pangloss/vim-javascript', {'for': 'javascipt'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'towolf/vim-helm'
@@ -38,6 +38,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-python/python-syntax', {'for': 'python'}
 Plug 'wellle/targets.vim'
 Plug 'yegappan/mru'
+Plug 'Yggdroot/indentLine'
 
 Plug '~/projects/personal/vim-ffs'
 Plug '~/projects/personal/vim-macroscope'
