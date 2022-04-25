@@ -43,6 +43,7 @@ alias -g KDR='--dry-run=client -o yaml'
 # DOCKER {{{1
 alias d='docker'
 alias dc='docker compose'
+alias drma='docker container rm $(docker ps -aq) -f'
 
 # JIRA {{{1
 alias j='jira'

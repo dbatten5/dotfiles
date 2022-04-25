@@ -86,6 +86,7 @@ command! CleanLogs :call CleanLogs()
 " Set tabstop
 command! -nargs=1 SetTab :call SetTab(<args>)
 nnoremap <space>X :!chmod +x %<cr>
+noremap <silent> <F4> :let @+=@%<CR>
 
 " QUICKFIX {{{1
 " Toggle the quickfix
