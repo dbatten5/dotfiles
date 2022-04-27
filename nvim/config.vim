@@ -86,7 +86,7 @@ set diffopt=vertical
 
 " Set python host to machine rather than any virtual envs
 let g:python_host_prog='/usr/bin/python'
-let g:python3_host_prog='/opt/miniconda3/bin/python'
+let g:python3_host_prog='/usr/bin/python3'
 
 " Keep the cursor on the same column
 set nostartofline
