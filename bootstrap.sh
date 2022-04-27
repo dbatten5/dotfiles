@@ -9,7 +9,7 @@ echo "Starting bootstrapping"
 # Check for Homebrew, install if we don't have it
 if [[ ! $(which brew) ]]; then
     echo "Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 brew update
@@ -39,7 +39,12 @@ PACKAGES=(
     watch
     wget
     zsh
-    zsh-syntax-higlighting
+    zsh-syntax-highlighting
+    flux
+    google-chrome
+    google-drive
+    gpgtools
+    rectangle
 )
 
 echo "Installing packages..."
@@ -48,26 +53,10 @@ brew install "${PACKAGES[@]}"
 echo "Cleaning up..."
 brew cleanup
 
-echo "Installing cask..."
-brew install caskroom/cask/brew-cask
-
-CASKS=(
-    flux
-    google-chrome
-    google-drive
-    gpgtools
-    iterm2
-    slack
-    rectangle
-)
-
-echo "Installing cask apps..."
-brew cask install "${CASKS[@]}"
-
 OMZDIR="$HOME/.oh-my-zsh"
 if [[ ! -d "$OMZDIR" ]]; then
     echo 'Installing oh-my-zsh...'
-    ruby -e "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 echo "Configuring ZSH"
@@ -88,7 +77,7 @@ ln -sv "$(pwd)/iterm/profiles.json" "${HOME}/Library/Application\ Support/iTerm2
 
 echo "Setting up remaining config files..."
 [[ ! -d "${HOME}/.config/nvim" ]] && mkdir -p "${HOME}/.config/nvim"
-ln -sv "$(pwd)/nvim" "${HOME}/.config/nvim"
+ln -sv "$(pwd)/nvim" "${HOME}/.config"
 ln -sv "$(pwd)/vim/vintrc.yml" "${HOME}/.vintrc.yml"
 ln -sv "$(pwd)/git/gitconfig" "${HOME}/.gitconfig"
 ln -sv "$(pwd)/git/gitignore_global" "${HOME}/.gitignore_global"
