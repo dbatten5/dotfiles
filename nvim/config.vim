@@ -105,7 +105,7 @@ hi User1 guifg=#FF0000 guibg=#2C323C
 " Mode
 set statusline=\ %{toupper(mode())}
 " Git branch
-set statusline+=\ %{fugitive#head()}
+set statusline+=\ %{FugitiveHead()}
 " File path
 set statusline+=\ %4F
 " Modified indicator
