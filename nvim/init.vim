@@ -1,6 +1,6 @@
 " Init
 
-" remove all exisiting autocmds
+" remove all existing autocmds
 autocmd!
 
 " Change leader to comma
@@ -11,3 +11,5 @@ source $HOME/.config/nvim/commands.vim
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/keymap.vim
 source $HOME/.config/nvim/config.vim
+
+lua require('config')

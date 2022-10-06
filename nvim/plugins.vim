@@ -15,6 +15,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'dbakker/vim-projectroot'
 Plug 'dense-analysis/ale'
+" Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'janko-m/vim-test'
 Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}
@@ -27,6 +28,8 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 Plug 'mbbill/undotree'
+" Plug 'metakirby5/codi.vim'
+Plug 'mickael-menu/zk-nvim'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'preservim/tagbar'
 Plug 'radenling/vim-dispatch-neovim'
@@ -36,6 +39,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-python/python-syntax', {'for': 'python'}
+" Plug 'vimwiki/vimwiki'
 Plug 'wellle/targets.vim'
 Plug 'yegappan/mru'
 Plug 'Yggdroot/indentLine'
@@ -225,3 +229,25 @@ let MRU_Filename_Format = {
 " DOGE {{{1
 let g:doge_mapping_comment_jump_forward = ']'
 let g:doge_mapping_comment_jump_backward = '['
+
+" CODI {{{1
+" nnoremap <space>ci :Codi<cr>
+" nnoremap <space>cc :Codi!<cr>
+" nnoremap <space>cn :CodiNew<cr>>
+" nnoremap <space>ce :CodiExpand<cr>
+
+" MAGMA {{{1
+nnoremap <silent><expr> <space>r  :MagmaEvaluateOperator<CR>
+nnoremap <silent>       <space>rr :MagmaEvaluateLine<CR>
+xnoremap <silent>       <space>r  :<C-u>MagmaEvaluateVisual<CR>
+nnoremap <silent>       <space>rc :MagmaReevaluateCell<CR>
+nnoremap <silent>       <space>rd :MagmaDelete<CR>
+nnoremap <silent>       <space>ro :MagmaShowOutput<CR>
+
+let g:magma_automatically_open_output = v:false
+let g:magma_image_provider = "ueberzug"
+
+" VIMWIKI {{{1
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_table_mappings = 0

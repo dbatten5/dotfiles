@@ -30,3 +30,5 @@ export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git' --exclude 'nod
 
 # use nvim for man pages
 export MANPAGER="col -b | nvim -MR - "
+
+export ZK_NOTEBOOK_DIR="/Users/dominicbatten/.notes/notes"
