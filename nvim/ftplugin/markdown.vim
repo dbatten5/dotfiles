@@ -11,6 +11,8 @@ setlocal spell spelllang=en_gb
 " Set indentation to 2 for .md files
 autocmd vimrc FileType markdown setlocal sw=2 sts=2 ts=2
 
+inoremap <c-d> \
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MARKDOWN PREVIEW
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

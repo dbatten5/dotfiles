@@ -1,9 +1,11 @@
+extends tex
+
 snippet x
 [ ] $1
 endsnippet
 
-snippet link
-[$1]($0)
+snippet link "link" i
+[${1:${VISUAL}}]($0)
 endsnippet
 
 snippet ctrl
@@ -47,17 +49,17 @@ snippet br
 endsnippet
 
 snippet i
-*$0*
+*$1*$0
 endsnippet
 
 snippet b
-**$0**
+**$1**$0
 endsnippet
 
 snippet c
-\`$0\`
+\`$1\`$0
 endsnippet
 
 snippet ib
-***$0***
+***$1***$0
 endsnippet

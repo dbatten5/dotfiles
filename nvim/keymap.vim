@@ -87,6 +87,8 @@ command! CleanLogs :call CleanLogs()
 command! -nargs=1 SetTab :call SetTab(<args>)
 nnoremap <space>X :!chmod +x %<cr>
 noremap <silent> <F4> :let @+=@%<CR>
+" Correct spelling
+inoremap <c-i> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " QUICKFIX {{{1
 " Toggle the quickfix

@@ -1,0 +1,200 @@
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
+endsnippet
+
+snippet dm "Math" wi
+
+$$
+$1
+$$
+$0
+endsnippet
+
+snippet '([A-Za-z])(\d)' "auto subscript" wr
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wr
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+snippet sr "^2" i
+^2
+endsnippet
+
+snippet cb "^3" i
+^3
+endsnippet
+
+snippet compl "complement" i
+^{c}
+endsnippet
+
+snippet td "superscript" i
+^{$1}$0
+endsnippet
+
+snippet // "Fraction" i
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wr
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+snippet / "Fraction" i
+\\frac{${VISUAL}}{$1}$0
+endsnippet
+
+priority 10
+snippet "bar" "bar" ri
+\overline{$1}$0
+endsnippet
+
+priority 100
+snippet "([a-zA-Z])bar" "bar" ri
+\overline{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 10
+snippet "hat" "hat" ri
+\hat{$1}$0
+endsnippet
+
+priority 100
+snippet "([a-zA-Z])hat" "hat" ri
+\hat{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" ri
+\vec{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet enum "Enumerate" b
+\begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+priority 100
+snippet ... "ldots" i
+\ldots
+endsnippet
+
+snippet bd "bold" i
+\bold{$1}$0
+endsnippet
+
+snippet case "cases" w
+\begin{cases}
+	$1
+\end{cases}
+endsnippet
+
+snippet uuu "bigcup" i
+\bigcup_{${1:i \in ${2: I}}} $0
+endsnippet
+
+snippet nnn "bigcap" i
+\bigcap_{${1:i \in ${2: I}}} $0
+endsnippet
+
+snippet sum "sum" i
+\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+endsnippet
+
+snippet sp "space"
+\enspace
+endsnippet
+
+snippet bigfun "Big function" i
+\begin{align*}
+	$1: $2 &\longrightarrow $3 \\\\
+	$4 &\longmapsto $1($4) = $0
+.\end{align*}
+endsnippet
+
+snippet lim "limit" i
+\lim\limits_{${1:n} \to ${2:\infty}}
+endsnippet
+
+snippet <= "leq" iA
+\le 
+endsnippet
+
+snippet >= "geq" iA
+\ge 
+endsnippet
+
+snippet binom "binomial" i
+\binom{${1:n}}{${2:k}}$0
+endsnippet
+
+snippet expec "expected value" i
+\mathbb{E}
+endsnippet
+
+snippet rv "random variable"
+random variable
+endsnippet
+
+snippet sq "\sqrt{}" i
+\sqrt{${1:${VISUAL}}} $0
+endsnippet
+
+snippet var "variance" i
+\text{var}(${1:X})$0
+endsnippet
+
+priority 300
+snippet dint "integral" w
+\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
+endsnippet
+
+snippet == "equals" iA
+&= $1 \\\\${2:[0.5em]}
+endsnippet
+
+snippet over "overbrace" i
+\overbrace{${1:${VISUAL}}}^{\text{${2:note}}}
+endsnippet
+
+snippet under "underbrace" i
+\underbrace{${1:${VISUAL}}}_{\text{${2:note}}}
+endsnippet
+
+snippet ali "Align" bA
+\begin{align*}
+	${1:${VISUAL}}
+\end{align*}
+endsnippet
+
+snippet bigfun "Big function" iA
+\begin{align*}
+	$1: $2 &\longrightarrow $3 \\\\
+	$4 &\longmapsto $1($4) = $0
+\end{align*}
+endsnippet
+
+snippet text "text" i
+\text{${1:${VISUAL}}}$0
+endsnippet
+
+snippet prod "product" w
+\prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
+endsnippet
+
+snippet matrix "matrix" bw
+\begin{$1matrix}
+$2
+\end{matrix}$0
+endsnippet
+
+snippet nl "new line" i
+\\\\${1:[0.5em]}
+endsnippet

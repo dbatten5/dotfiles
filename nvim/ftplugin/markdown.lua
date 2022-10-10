@@ -9,9 +9,9 @@ if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
   -- This overrides the global `<space>zn` mapping to create the note in the same directory as the current buffer.
   map("n", "<space>zn", "<Cmd>ZkNew { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>", opts)
   -- Create a new note in the same directory as the current buffer, using the current selection for title.
-  map("v", "<space>znt", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>", opts)
+  map("v", "<space>zn", ":'<,'>ZkNewFromTitleSelection { dir = vim.fn.expand('%:p:h') }<CR>", opts)
   -- Create a new note in the same directory as the current buffer, using the current selection for note content and asking for its title.
-  map("v", "<space>znc", ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>", opts)
+  -- map("v", "<space>znc", ":'<,'>ZkNewFromContentSelection { dir = vim.fn.expand('%:p:h'), title = vim.fn.input('Title: ') }<CR>", opts)
 
   -- Open notes linking to the current buffer.
   map("n", "<space>zb", "<Cmd>ZkBacklinks<CR>", opts)
@@ -24,5 +24,7 @@ if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
   map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
   -- Open the code actions for a visual selection.
   map("v", "<space>za", ":'<,'>lua vim.lsp.buf.code_action()<CR>", opts)
-end
 
+  -- Insert a link from the note picker
+  map("i", "[[", "<Cmd>ZkInsertLink<CR>", opts)
+end

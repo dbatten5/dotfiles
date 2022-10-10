@@ -51,3 +51,20 @@ vim.api.nvim_set_keymap("v", "<space>zf", ":'<,'>ZkMatch<CR>", opts)
 
 -- Run ZkRecents
 vim.api.nvim_set_keymap("n", "<space>zr", "<Cmd>ZkRecents<CR>", opts)
+
+local function yankName(options, picker_options)
+  zk.pick_notes(options, picker_options, function(notes)
+    local pos = vim.api.nvim_win_get_cursor(0)[2]
+    local line = vim.api.nvim_get_current_line()
+
+    if picker_options.multi_select == false then
+      notes = { notes }
+    end
+    for _, note in ipairs(notes) do
+      local nline = line:sub(0, pos) .. "[" .. note.title  .. "]" .. "(" .. note.path:sub(1,-6) .. ")" .. line:sub(pos + 1)
+      vim.api.nvim_set_current_line(nline)
+    end
+  end)
+end
+
+commands.add("ZkInsertLink", function(options) yankName(options, { title = "ZkInsertLink" }) end)

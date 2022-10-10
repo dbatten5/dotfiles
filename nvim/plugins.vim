@@ -161,8 +161,8 @@ nnoremap gp :Projects<cr>
 " ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']
 let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:UltiSnipsEditSplit='vertical'
 nnoremap <leader>os :UltiSnipsEdit<cr>
 
@@ -251,3 +251,12 @@ let g:magma_image_provider = "ueberzug"
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_table_mappings = 0
+
+" MARKDOWN {{{1
+" let g:vim_markdown_conceal = 0
+" let g:tex_conceal = ""
+" let g:vim_markdown_math = 1
+" let g:vim_markdown_conceal_code_blocks = 0
+
+" INDENTLINE {{{1
+let g:indentLine_fileTypeExclude = ['markdown']
