@@ -61,7 +61,7 @@ local function yankName(options, picker_options)
       notes = { notes }
     end
     for _, note in ipairs(notes) do
-      local nline = line:sub(0, pos) .. "[" .. note.title  .. "]" .. "(" .. note.path:sub(1,-6) .. ")" .. line:sub(pos + 1)
+      local nline = line:sub(0, pos) .. "[" .. note.title  .. "]" .. "(" .. note.path:sub(1,-4) .. ")" .. line:sub(pos + 1)
       vim.api.nvim_set_current_line(nline)
     end
   end)

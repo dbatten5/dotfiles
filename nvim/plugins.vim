@@ -209,9 +209,8 @@ nnoremap <c-s> :FFS<space>
 
 " MARKDOWN PREVIEW {{{1
 let g:mkdp_auto_close = 0
+let g:mkdp_auto_start = 0
 
-" PYTHON SYNTAX {{{1
-let g:python_highlight_all = 1
 
 " SPELUNKER {{{1
 let g:spelunker_check_type = 2

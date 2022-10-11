@@ -31,6 +31,10 @@ snippet cb "^3" i
 ^3
 endsnippet
 
+snippet in "in" i
+\in $0
+endsnippet
+
 snippet compl "complement" i
 ^{c}
 endsnippet
@@ -45,10 +49,6 @@ endsnippet
 
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wr
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
-endsnippet
-
-snippet / "Fraction" i
-\\frac{${VISUAL}}{$1}$0
 endsnippet
 
 priority 10
@@ -87,7 +87,11 @@ snippet ... "ldots" i
 endsnippet
 
 snippet bd "bold" i
-\bold{$1}$0
+\bold{${1:${VISUAL}}}$0
+endsnippet
+
+snippet bs "bold symbol" i
+\boldsymbol{${1:${VISUAL}}}$0
 endsnippet
 
 snippet case "cases" w
@@ -197,4 +201,52 @@ endsnippet
 
 snippet nl "new line" i
 \\\\${1:[0.5em]}
+endsnippet
+
+snippet () "left( right)" i
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+snippet lr "left( right)" i
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+snippet lr| "left| right|" i
+\left| ${1:${VISUAL}} \right| $0
+endsnippet
+
+snippet lr{ "left\{ right\}" i
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+snippet lrb "left\{ right\}" i
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+snippet lr[ "left[ right]" i
+\left[ ${1:${VISUAL}} \right] $0
+endsnippet
+
+snippet RR "real" iA
+\R
+endsnippet
+
+snippet bmat "bmat" iA
+\begin{bmatrix} $1 \end{bmatrix} $0
+endsnippet
+
+snippet a "&" i
+& $0
+endsnippet
+
+snippet part "d/dx" w
+\frac{\partial ${1:V}}{\partial ${2:x}} $0
+endsnippet
+
+snippet T "transpose" i
+^{\top}
+endsnippet
+
+snippet grad "gradient" i
+\nabla_{${1:\bold{w}}}${2:L}$0
 endsnippet
