@@ -114,6 +114,7 @@ nnoremap <leader>lg :e logs/general.log<cr>Gzz
 " SPELING {{{1
 iabbrev adn and
 iabbrev teh the
+iabbrev hte the
 
 " COMPLETION MENU {{{1
 " pressing enter selects the item rather than inserting a new line

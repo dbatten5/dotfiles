@@ -43,7 +43,7 @@ snippet td "superscript" i
 ^{$1}$0
 endsnippet
 
-snippet // "Fraction" i
+snippet // "Fraction" iA
 \\frac{$1}{$2}$0
 endsnippet
 
@@ -113,14 +113,7 @@ snippet sum "sum" i
 endsnippet
 
 snippet sp "space"
-\enspace
-endsnippet
-
-snippet bigfun "Big function" i
-\begin{align*}
-	$1: $2 &\longrightarrow $3 \\\\
-	$4 &\longmapsto $1($4) = $0
-.\end{align*}
+\hspace{${1:1em}} $0
 endsnippet
 
 snippet lim "limit" i
@@ -178,7 +171,7 @@ snippet ali "Align" bA
 \end{align*}
 endsnippet
 
-snippet bigfun "Big function" iA
+snippet bigfun "Big function" i
 \begin{align*}
 	$1: $2 &\longrightarrow $3 \\\\
 	$4 &\longmapsto $1($4) = $0
@@ -215,7 +208,7 @@ snippet lr| "left| right|" i
 \left| ${1:${VISUAL}} \right| $0
 endsnippet
 
-snippet lr{ "left\{ right\}" i
+snippet lr} "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
@@ -223,7 +216,7 @@ snippet lrb "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
-snippet lr[ "left[ right]" i
+snippet lr] "left[ right]" i
 \left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
@@ -235,7 +228,7 @@ snippet bmat "bmat" iA
 \begin{bmatrix} $1 \end{bmatrix} $0
 endsnippet
 
-snippet a "&" i
+snippet aa "&" i
 & $0
 endsnippet
 
@@ -249,4 +242,24 @@ endsnippet
 
 snippet grad "gradient" i
 \nabla_{${1:\bold{w}}}${2:L}$0
+endsnippet
+
+snippet mcal "mathcal" iA
+\mathcal{$1}$0
+endsnippet
+
+snippet s2 "sigma^2" iA
+\sigma^2
+endsnippet
+
+snippet X "X" w
+\times
+endsnippet
+
+snippet dint "integral" wA
+\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
+endsnippet
+
+snippet tt "theta" i
+\theta
 endsnippet

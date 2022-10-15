@@ -91,6 +91,8 @@ let g:python3_host_prog='/usr/bin/python3'
 " Keep the cursor on the same column
 set nostartofline
 
+" set conceallevel=2
+
 " COMPLETION {{{1
 " Things to ignore when searching
 set wildmode=list:full
