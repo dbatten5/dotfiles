@@ -16,6 +16,7 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'dbakker/vim-projectroot'
 Plug 'dense-analysis/ale'
 " Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'goerz/jupytext.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'janko-m/vim-test'
 Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}
@@ -29,14 +30,17 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 Plug 'mbbill/undotree'
 " Plug 'metakirby5/codi.vim'
+" Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 Plug 'mickael-menu/zk-nvim'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'preservim/tagbar'
+Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'towolf/vim-helm'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
+Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-surround'
 Plug 'vim-python/python-syntax', {'for': 'python'}
 " Plug 'vimwiki/vimwiki'
@@ -83,13 +87,13 @@ nnoremap gdl :diffget //3<CR>
 " nnoremap <space>gb :Merginal<cr>
 
 " TWIGGY {{{1
-let g:twiggy_group_locals_by_slash = 0
-let g:twiggy_local_branch_sort = 'mru'
-let g:twiggy_remote_branch_sort = 'date'
-let g:twiggy_close_on_fugitive_command = 1
-let g:twiggy_split_position = 'topleft'
-let g:twiggy_num_columns = 40
-nnoremap <space>gb :Twiggy<cr>
+" let g:twiggy_group_locals_by_slash = 0
+" let g:twiggy_local_branch_sort = 'mru'
+" let g:twiggy_remote_branch_sort = 'date'
+" let g:twiggy_close_on_fugitive_command = 1
+" let g:twiggy_split_position = 'topleft'
+" let g:twiggy_num_columns = 40
+" nnoremap <space>gb :Twiggy<cr>
 
 " ALE {{{1
 " Only lint when saving or entering a file
@@ -211,6 +215,13 @@ nnoremap <c-s> :FFS<space>
 let g:mkdp_auto_close = 0
 let g:mkdp_auto_start = 0
 
+" MARKDOWN {{{1
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_math = 1
+" let g:vim_markdown_math = 1
+" set conceallevel=2
+
 
 " SPELUNKER {{{1
 let g:spelunker_check_type = 2
@@ -236,12 +247,12 @@ let g:doge_mapping_comment_jump_backward = '['
 " nnoremap <space>ce :CodiExpand<cr>
 
 " MAGMA {{{1
-nnoremap <silent><expr> <space>r  :MagmaEvaluateOperator<CR>
-nnoremap <silent>       <space>rr :MagmaEvaluateLine<CR>
-xnoremap <silent>       <space>r  :<C-u>MagmaEvaluateVisual<CR>
-nnoremap <silent>       <space>rc :MagmaReevaluateCell<CR>
-nnoremap <silent>       <space>rd :MagmaDelete<CR>
-nnoremap <silent>       <space>ro :MagmaShowOutput<CR>
+" nnoremap <silent><expr> <space>r  :MagmaEvaluateOperator<CR>
+" nnoremap <silent>       <space>rr :MagmaEvaluateLine<CR>
+" xnoremap <silent>       <space>r  :<C-u>MagmaEvaluateVisual<CR>
+" nnoremap <silent>       <space>rc :MagmaReevaluateCell<CR>
+" nnoremap <silent>       <space>rd :MagmaDelete<CR>
+" nnoremap <silent>       <space>ro :MagmaShowOutput<CR>
 
 let g:magma_automatically_open_output = v:false
 let g:magma_image_provider = "ueberzug"
@@ -252,10 +263,27 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 let g:vimwiki_table_mappings = 0
 
 " MARKDOWN {{{1
-let g:vim_markdown_conceal = 0
+" let g:vim_markdown_conceal = 0
 " let g:tex_conceal = ""
 " let g:vim_markdown_math = 1
 " let g:vim_markdown_conceal_code_blocks = 0
+" let g:vim_markdown_conceal=1
+" set conceallevel=2
 
 " INDENTLINE {{{1
 let g:indentLine_fileTypeExclude = ['markdown']
+"
+" SLIME {{{1
+let g:slime_target = "neovim"
+let g:slime_bracketed_paste = 0
+let g:slime_python_ipython = 1
+let g:slime_paste_file = "$HOME/.slime_paste"
+
+" SNIPRUN {{{1
+" nmap <space>ff <Plug>SnipRun
+" nmap <space>f <Plug>SnipRunOperator
+" vmap f <Plug>SnipRun
+" nmap <space>fc <Plug>SnipClose
+
+" JUPYTEXT {{{1
+let g:jupytext_fmt = 'py'

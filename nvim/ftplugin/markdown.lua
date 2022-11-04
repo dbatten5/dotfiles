@@ -22,6 +22,7 @@ if require("zk.util").notebook_root(vim.fn.expand('%:p')) ~= nil then
   
   -- Preview a linked note.
   map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+
   -- Open the code actions for a visual selection.
   map("v", "<space>za", ":'<,'>lua vim.lsp.buf.code_action()<CR>", opts)
 

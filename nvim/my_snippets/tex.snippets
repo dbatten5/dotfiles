@@ -1,10 +1,14 @@
+# snippet mk "Math" wA
+# $${1}$`!p
+# if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+#     snip.rv = ' '
+# else:
+#     snip.rv = ''
+# `$2
+# endsnippet
+
 snippet mk "Math" wA
-$${1}$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-    snip.rv = ' '
-else:
-    snip.rv = ''
-`$2
+$$1$$0
 endsnippet
 
 snippet dm "Math" wi
@@ -23,12 +27,16 @@ snippet '([A-Za-z])_(\d\d)' "auto subscript2" wr
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
-snippet sr "^2" i
+snippet sq "^2" i
 ^2
 endsnippet
 
 snippet cb "^3" i
 ^3
+endsnippet
+
+snippet inv "inverse" i
+^{-1}
 endsnippet
 
 snippet in "in" i
@@ -51,26 +59,6 @@ snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wr
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
-priority 10
-snippet "bar" "bar" ri
-\overline{$1}$0
-endsnippet
-
-priority 100
-snippet "([a-zA-Z])bar" "bar" ri
-\overline{`!p snip.rv=match.group(1)`}
-endsnippet
-
-priority 10
-snippet "hat" "hat" ri
-\hat{$1}$0
-endsnippet
-
-priority 100
-snippet "([a-zA-Z])hat" "hat" ri
-\hat{`!p snip.rv=match.group(1)`}
-endsnippet
-
 snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" ri
 \vec{`!p snip.rv=match.group(1)`}
 endsnippet
@@ -81,9 +69,10 @@ snippet enum "Enumerate" b
 \end{enumerate}
 endsnippet
 
-priority 100
-snippet ... "ldots" i
-\ldots
+snippet equa "Equation" b
+\begin{equation}
+${1:${VISUAL}}$0
+\end{equation}
 endsnippet
 
 snippet bd "bold" i
@@ -109,7 +98,11 @@ snippet nnn "bigcap" i
 endsnippet
 
 snippet sum "sum" i
-\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+\sum_{i=${1:1}}^{${2:n}} ${3:a_i z^i}
+endsnippet
+
+snippet ooo "\infty" iA
+\infty
 endsnippet
 
 snippet sp "space"
@@ -121,11 +114,11 @@ snippet lim "limit" i
 endsnippet
 
 snippet <= "leq" iA
-\le 
+\le
 endsnippet
 
 snippet >= "geq" iA
-\ge 
+\ge
 endsnippet
 
 snippet binom "binomial" i
@@ -140,17 +133,16 @@ snippet rv "random variable"
 random variable
 endsnippet
 
-snippet sq "\sqrt{}" i
+snippet sr "\sqrt{}" i
 \sqrt{${1:${VISUAL}}} $0
 endsnippet
 
-snippet var "variance" i
-\text{var}(${1:X})$0
+snippet sig "sigmoid" i
+\text{sig}\left[ ${1:a} \right]$0
 endsnippet
 
-priority 300
-snippet dint "integral" w
-\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
+snippet var "variance" i
+\text{Var}(${1:X})$0
 endsnippet
 
 snippet == "equals" iA
@@ -161,13 +153,17 @@ snippet over "overbrace" i
 \overbrace{${1:${VISUAL}}}^{\text{${2:note}}}
 endsnippet
 
+snippet cancel "cancel" i
+\cancel{${1:${VISUAL}}}
+endsnippet
+
 snippet under "underbrace" i
 \underbrace{${1:${VISUAL}}}_{\text{${2:note}}}
 endsnippet
 
-snippet ali "Align" bA
+snippet ali "Align" b
 \begin{align*}
-	${1:${VISUAL}}
+${1:${VISUAL}}
 \end{align*}
 endsnippet
 
@@ -201,23 +197,27 @@ snippet () "left( right)" i
 endsnippet
 
 snippet lr "left( right)" i
-\left( ${1:${VISUAL}} \right) $0
+\left( ${1:${VISUAL}} \right)$0
 endsnippet
 
 snippet lr| "left| right|" i
-\left| ${1:${VISUAL}} \right| $0
+\left| ${1:${VISUAL}} \right|$0
 endsnippet
 
 snippet lr} "left\{ right\}" i
-\left\\{ ${1:${VISUAL}} \right\\} $0
+\left\\{ ${1:${VISUAL}} \right\\}$0
+endsnippet
+
+snippet {} "left\{ right\}" i
+\left\\{ ${1:${VISUAL}} \right\\}$0
 endsnippet
 
 snippet lrb "left\{ right\}" i
-\left\\{ ${1:${VISUAL}} \right\\} $0
+\left\\{ ${1:${VISUAL}} \right\\}$0
 endsnippet
 
 snippet lr] "left[ right]" i
-\left[ ${1:${VISUAL}} \right] $0
+\left[ ${1:${VISUAL}} \right]$0
 endsnippet
 
 snippet RR "real" iA
@@ -228,16 +228,36 @@ snippet bmat "bmat" iA
 \begin{bmatrix} $1 \end{bmatrix} $0
 endsnippet
 
-snippet aa "&" i
-& $0
+snippet pmat "pmat" iA
+\begin{pmatrix} $1 \end{pmatrix} $0
 endsnippet
 
 snippet part "d/dx" w
 \frac{\partial ${1:V}}{\partial ${2:x}} $0
 endsnippet
 
+snippet ii "^(i)" i
+^{(i)}
+endsnippet
+
+snippet forall "for all" i
+\hspace{0.5em}  \forall ${1:i}
+endsnippet
+
+snippet diff "d/dx" w
+\frac{d${1:y}}{d${2:x}} $0
+endsnippet
+
+snippet yi "y^(i)" i
+y^{(i)}
+endsnippet
+
 snippet T "transpose" i
 ^{\top}
+endsnippet
+
+snippet == "equiv" i
+\equiv
 endsnippet
 
 snippet grad "gradient" i
@@ -256,10 +276,184 @@ snippet X "X" w
 \times
 endsnippet
 
-snippet dint "integral" wA
-\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
-endsnippet
-
 snippet tt "theta" i
 \theta
+endsnippet
+
+snippet fi "phi" i
+\phi
+endsnippet
+
+snippet bsi "bold psi" i
+\boldsymbol{\psi}
+endsnippet
+
+snippet bn "binomial" i
+\binom{$1}{$2} $0
+endsnippet
+
+snippet bx "bold x" i
+\bold{x}$0
+endsnippet
+
+snippet bw "bold w" i
+\bold{w}$0
+endsnippet
+
+snippet bz "bold z" i
+\bold{z}$0
+endsnippet
+
+snippet bX "bold X" i
+\bold{X}$0
+endsnippet
+
+snippet bZ "bold Z" i
+\bold{Z}$0
+endsnippet
+
+snippet aa "alpha" i
+\alpha
+endsnippet
+
+snippet bb "bta" i
+\beta
+endsnippet
+
+snippet mbx "inline bold x" iA
+$\bold{x}$$0
+endsnippet
+
+snippet ** "cdot" iA
+\cdot
+endsnippet
+
+snippet msg "graphical model message"
+\mu_{${1:a}_{${2:1}} \rightarrow ${3:b}_{${4:1}}}(${5:$3}_{${6:$4}})
+endsnippet
+
+snippet norm "norm" i
+\|${1:\bold{x}}\|$0
+endsnippet
+
+snippet "([a-zA-Z])\.([a-zA-Z])" "dot product" ri
+\bold{`!p snip.rv=match.group(1)`} \cdot \bold{`!p snip.rv=match.group(2)`}
+endsnippet
+
+snippet cvec "column vector" iA
+\begin{pmatrix} ${1:x}_${2:1}\\\\ \vdots\\\\ $1_${2:n} \end{pmatrix}
+endsnippet
+
+snippet normal "Normal" w
+\text{Norm}_{${1:x}} \left[${2:\mu}, ${3:\sigma^2} \right]$0
+endsnippet
+
+snippet mnormal "Multivariate normal" w
+\text{Norm}_{${1:\bold{x}}}\left[
+${2:\boldsymbol{\mu}}, ${3:\boldsymbol{\Sigma}}
+\right]$0
+endsnippet
+
+snippet cat "Categorical" w
+\text{Cat}_{${1:\boldsymbol{\lambda}}}\left[ ${2:\boldsymbol{\lambda}} \right]$0
+endsnippet
+
+snippet stud "Student" w
+\text{Stud}_{${1:\bold{x}}}\left[
+${2:\mu}, ${3:\sigma^2}, ${4:\nu}
+\right]$0
+endsnippet
+
+snippet mstud "Multivariate Student" w
+\text{Stud}_{${1:\bold{x}}}\left[
+${2:\boldsymbol{\mu}}, ${3:\boldsymbol{\Sigma}}, ${4:\nu}
+\right]$0
+endsnippet
+
+snippet tag "\tag{}" i
+\tag{${1:1.0}}$0
+endsnippet
+
+snippet tsv "time series v" i
+v_{1:T}
+endsnippet
+
+snippet >> "right arrow" w
+\rightarrow
+endsnippet
+
+snippet << "left arrow" w
+\leftarrow
+endsnippet
+
+# ------------ HIGH PRIORITY ------------
+
+# prio 10
+priority 10
+snippet btt "bold theta" i
+\boldsymbol{\theta}$0
+endsnippet
+
+snippet bmu "bold mu" i
+\boldsymbol{\mu}$0
+endsnippet
+
+snippet "bar" "bar" ri
+\overline{1:${VISUAL}}$0
+endsnippet
+
+snippet "hat" "hat" ri
+\hat{${1:${VISUAL}}}$0
+endsnippet
+
+snippet r2 "R-squared" i
+R^2
+endsnippet
+
+snippet "tilde" "tilde" ri
+\tilde{${1:${VISUAL}}}$0
+endsnippet
+
+snippet bigsig "big bold sigma" i
+\boldsymbol{\Sigma}
+endsnippet
+
+snippet hifi "big bold phi" i
+\boldsymbol{\Phi}
+endsnippet
+
+snippet bfi "bold phi" i
+\boldsymbol{\phi}
+endsnippet
+
+# prio 100
+priority 100
+snippet "([a-zA-Z])hat" "hat" ri
+\hat{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet "([a-zA-Z])tilde" "tilde" ri
+\tilde{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet ... "ldots" i
+\ldots
+endsnippet
+
+snippet mr2 "R-squared" w
+$R^2$
+endsnippet
+
+snippet "([a-zA-Z])bar" "bar" ri
+\overline{`!p snip.rv=match.group(1)`}
+endsnippet
+
+snippet mbtt "inline bold theta" i
+$\boldsymbol{\theta}$$0
+endsnippet
+
+# prio 300
+priority 300
+snippet dint "integral" w
+\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
 endsnippet

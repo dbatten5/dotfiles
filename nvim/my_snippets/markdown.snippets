@@ -33,9 +33,9 @@ snippet h5
 endsnippet
 
 snippet code
-```$1
+\`\`\`$1
 $0
-```
+\`\`\`
 endsnippet
 
 snippet table
@@ -57,7 +57,7 @@ snippet b
 endsnippet
 
 snippet c
-\`$1\`$0
+\`$1\` $0
 endsnippet
 
 snippet ib
@@ -78,4 +78,31 @@ endsnippet
 
 snippet ie
 i.e. $0
+endsnippet
+
+snippet dgraph
+\`\`\`mermaid
+flowchart LR
+  a((A))-->b((B))
+  a-->c((C))$0
+\`\`\`
+endsnippet
+
+snippet graph
+\`\`\`mermaid
+flowchart LR
+  a((A))---b((B))
+  a---c((C))$0
+\`\`\`
+endsnippet
+
+snippet fgraph
+\`\`\`mermaid
+flowchart LR
+  classDef factor fill:#000,color:#fff,stroke:#000
+
+  f:::factor---v((v))
+  v---f1:::factor
+  v---f2:::factor
+\`\`\`
 endsnippet
