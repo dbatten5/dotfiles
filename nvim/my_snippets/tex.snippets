@@ -65,12 +65,6 @@ snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" ri
 \vec{`!p snip.rv=match.group(1)`}
 endsnippet
 
-snippet enum "Enumerate" b
-\begin{enumerate}
-	\item $0
-\end{enumerate}
-endsnippet
-
 snippet equa "Equation" b
 \begin{equation}
 ${1:${VISUAL}}$0
@@ -87,15 +81,15 @@ endsnippet
 
 snippet case "cases" w
 \begin{cases}
-	$1
+$1
 \end{cases}
 endsnippet
 
-snippet uuu "bigcup" i
+snippet uuu "bigcup" iA
 \bigcup_{${1:i \in ${2: I}}} $0
 endsnippet
 
-snippet nnn "bigcap" i
+snippet nnn "bigcap" iA
 \bigcap_{${1:i \in ${2: I}}} $0
 endsnippet
 
@@ -108,7 +102,7 @@ snippet ooo "\infty" iA
 endsnippet
 
 snippet sp "space"
-\hspace{${1:1em}} $0
+\hspace{${1:1em}}
 endsnippet
 
 snippet lim "limit" i
@@ -145,11 +139,7 @@ snippet binom "binomial" i
 endsnippet
 
 snippet expec "expected value" i
-\mathbb{E}
-endsnippet
-
-snippet rv "random variable"
-random variable
+\mathbb{E}[$1]$0
 endsnippet
 
 snippet sr "\sqrt{}" i
@@ -273,10 +263,6 @@ endsnippet
 
 snippet T "transpose" i
 ^{\top}
-endsnippet
-
-snippet == "equiv" i
-\equiv
 endsnippet
 
 snippet grad "gradient" i
