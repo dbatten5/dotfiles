@@ -1,3 +1,5 @@
+# inspired by https://castel.dev/post/lecture-notes-1/
+
 # snippet mk "Math" wA
 # $${1}$`!p
 # if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
@@ -119,6 +121,23 @@ endsnippet
 
 snippet >= "geq" iA
 \ge
+endsnippet
+
+snippet '([A-Za-z]|\\[a-zA-Z]*)(\d),(\d)' "a range of subscripts" ir
+`!p
+var = str(match.group(1))
+start = int(match.group(2))
+stop = int(match.group(3)) + 1
+snip.rv = ", ".join([ f"{var}_{i}" for i in range(start, stop)])
+`
+endsnippet
+
+snippet '([A-Za-z]|\\[a-zA-Z]*)(\d),n' "a range of subscripts to n" ir
+`!p
+var = str(match.group(1))
+start = int(match.group(2))
+snip.rv = f"{var}_{start}, {var}_{start + 1}, \ldots, {var}_n"
+`
 endsnippet
 
 snippet binom "binomial" i
@@ -282,6 +301,10 @@ endsnippet
 
 snippet fi "phi" i
 \phi
+endsnippet
+
+snippet si "psi" i
+\psi
 endsnippet
 
 snippet bsi "bold psi" i
