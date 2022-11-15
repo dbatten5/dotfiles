@@ -4,3 +4,4 @@ nvim/plugged
 nvim/.netrwhist
 nvim/spell
 zsh/private
+nvim/venv

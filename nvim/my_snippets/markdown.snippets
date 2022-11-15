@@ -117,3 +117,11 @@ flowchart LR
   ab([a,b]) --- b[b] --- bc([b,c])
 \`\`\`
 endsnippet
+
+# ------------ HIGH PRIORITY ------------
+
+# prio 10
+priority 10
+snippet 'cn([a-zA-Z0-9_]*)' "circular node" ir
+`!p snip.rv = match.group(1)`((`!p snip.rv = match.group(1).upper()`))
+endsnippet

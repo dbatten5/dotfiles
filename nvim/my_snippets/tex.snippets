@@ -79,6 +79,10 @@ snippet bs "bold symbol" i
 \boldsymbol{${1:${VISUAL}}}$0
 endsnippet
 
+snippet bsm "backsim" i
+\backsim
+endsnippet
+
 snippet case "cases" w
 \begin{cases}
 $1
@@ -119,18 +123,19 @@ endsnippet
 
 snippet '([A-Za-z]|\\[a-zA-Z]*)(\d),(\d)' "a range of subscripts" ir
 `!p
-var = str(match.group(1))
+var = match.group(1)
 start = int(match.group(2))
 stop = int(match.group(3)) + 1
 snip.rv = ", ".join([ f"{var}_{i}" for i in range(start, stop)])
 `
 endsnippet
 
-snippet '([A-Za-z]|\\[a-zA-Z]*)(\d),n' "a range of subscripts to n" ir
+snippet '([A-Za-z]|\\[a-zA-Z]*)(\d),,([A-Za-z]|\d*)' "a dotted range of subscripts" ir
 `!p
-var = str(match.group(1))
+var = match.group(1)
 start = int(match.group(2))
-snip.rv = f"{var}_{start}, {var}_{start + 1}, \ldots, {var}_n"
+end = match.group(3)
+snip.rv = f"{var}_{start}, {var}_{start + 1}, \ldots, {var}_{{{end}}}"
 `
 endsnippet
 
@@ -273,6 +278,10 @@ snippet mcal "mathcal" iA
 \mathcal{$1}$0
 endsnippet
 
+snippet 'mc([a-zA-Z])' "mathcal" ir
+\mathcal{`!p snip.rv = match.group(1).upper()`}$0
+endsnippet
+
 snippet s2 "sigma^2" iA
 \sigma^2
 endsnippet
@@ -408,7 +417,7 @@ snippet bmu "bold mu" i
 endsnippet
 
 snippet "bar" "bar" ri
-\overline{1:${VISUAL}}$0
+\overline{${1:${VISUAL}}}$0
 endsnippet
 
 snippet "hat" "hat" ri
@@ -459,6 +468,10 @@ endsnippet
 
 snippet mbtt "inline bold theta" i
 $\boldsymbol{\theta}$$0
+endsnippet
+
+snippet mtt "theta" i
+$\theta$
 endsnippet
 
 # prio 300
