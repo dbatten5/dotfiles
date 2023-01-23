@@ -21,17 +21,16 @@ noremap <space>X :Dispatch python %<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let b:ale_linters = {'python': ['pylint', 'flake8', 'mypy', 'pyright']}
-let b:ale_fixers = {'python': ['autoimport', 'isort', 'black']}
-let b:ale_python_autoimport_executable = '/usr/local/bin/autoimport'
-let b:ale_python_black_executable = '/usr/local/bin/black'
-let b:ale_python_isort_executable = '/usr/local/bin/isort'
+let b:ale_linters = {'python': ['ruff', 'mypy', 'pyright']}
+let b:ale_fixers = {'python': ['isort', 'black']}
+let g:ale_python_black_change_directory = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM-TEST
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let test#python#runner = 'pytest'
+let test#python#pytest#executable = "pytest"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " DOGE

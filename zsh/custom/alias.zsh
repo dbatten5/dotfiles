@@ -28,8 +28,8 @@ alias ap='ansible-playbook'
 
 # PYTHON {{{1
 alias c='conda'
+alias cml='conda activate ml'
 alias dj='python manage.py'
-alias lpoetry="~/.local/bin/poetry"
 
 # HELM {{{1
 alias h='helm'

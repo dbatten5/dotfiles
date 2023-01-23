@@ -30,6 +30,10 @@ snippet s.
 self.
 endsnippet
 
+snippet enum
+enumerate(${1:${VISUAL}})
+endsnippet
+
 snippet ds
 """
 $0
@@ -72,11 +76,7 @@ snippet test
 def test_$1`!p
 t[1] = t[1].replace(' ', '_')
 `(${2:self}) -> None:
-	"""
-	Given $3,
-	When $4,
-	Then $5
-	"""
+	"""$3."""
 	$0
 endsnippet
 
@@ -143,7 +143,7 @@ endsnippet
 
 snippet tc
 class Test$1:
-	"""Tests for the \`$0\` method."""
+	"""Tests for the \`$0\` ${2:method}."""
 endsnippet
 
 snippet repr
@@ -177,4 +177,16 @@ endsnippet
 
 snippet vcr
 @vcr.use_cassette("$0")
+endsnippet
+
+snippet '([1-9])dp' "decimal places" ir
+${VISUAL}:.`!p snip.rv = match.group(1)`f
+endsnippet
+
+snippet inp
+import numpy as np
+endsnippet
+
+snippet iplt
+import matplotlib.pyplot as plt
 endsnippet

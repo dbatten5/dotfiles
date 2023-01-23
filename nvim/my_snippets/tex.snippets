@@ -71,14 +71,6 @@ ${1:${VISUAL}}$0
 \end{equation}
 endsnippet
 
-snippet bd "bold" i
-\bold{${1:${VISUAL}}}$0
-endsnippet
-
-snippet bs "bold symbol" i
-\boldsymbol{${1:${VISUAL}}}$0
-endsnippet
-
 snippet bsm "backsim" i
 \backsim
 endsnippet
@@ -226,6 +218,10 @@ snippet {} "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\}$0
 endsnippet
 
+snippet <> "left< right>" i
+\left< ${1:${VISUAL}} \right>$0
+endsnippet
+
 snippet lrb "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\}$0
 endsnippet
@@ -252,10 +248,6 @@ endsnippet
 
 snippet ii "^(i)" i
 ^{(i)}
-endsnippet
-
-snippet forall "for all" i
-\hspace{0.5em}  \forall ${1:i}
 endsnippet
 
 snippet diff "d/dx" w
@@ -302,44 +294,48 @@ snippet si "psi" i
 \psi
 endsnippet
 
-snippet bsi "bold psi" i
-\boldsymbol{\psi}
-endsnippet
-
 snippet bn "binomial" i
 \binom{$1}{$2} $0
 endsnippet
 
-snippet bx "bold x" i
-\bold{x}$0
+snippet I "indicator function" i
+\mathbb{I}[$1]$0
 endsnippet
 
-snippet bw "bold w" i
-\bold{w}$0
-endsnippet
-
-snippet bz "bold z" i
-\bold{z}$0
-endsnippet
-
-snippet bX "bold X" i
-\bold{X}$0
-endsnippet
-
-snippet bZ "bold Z" i
-\bold{Z}$0
+snippet 'b([A-Za-z])' "bold something" ir
+\bold{`!p snip.rv = match.group(1)`}$0
 endsnippet
 
 snippet aa "alpha" i
 \alpha
 endsnippet
 
-snippet bb "bta" i
-\beta
+snippet dd "delta" i
+\delta
 endsnippet
 
-snippet mbx "inline bold x" iA
-$\bold{x}$$0
+snippet ll "lambda" i
+\lambda
+endsnippet
+
+snippet gg "gamma" i
+\gamma
+endsnippet
+
+snippet ee "epsilon" i
+\epsilon
+endsnippet
+
+snippet ss "sigma" i
+\sigma
+endsnippet
+
+snippet xx "xi" i
+\xi
+endsnippet
+
+snippet am "argmax" i
+\argmax_{$1} $0
 endsnippet
 
 snippet ** "cdot" iA
@@ -396,11 +392,15 @@ snippet tsv "time series v" i
 v_{1:T}
 endsnippet
 
-snippet >> "right arrow" w
+snippet rar "right arrow" i
 \rightarrow
 endsnippet
 
-snippet << "left arrow" w
+snippet Rar "double right arrow" i
+\Rarr
+endsnippet
+
+snippet lar "left arrow" i
 \leftarrow
 endsnippet
 
@@ -408,6 +408,37 @@ endsnippet
 
 # prio 10
 priority 10
+
+snippet bsi "bold psi" i
+\boldsymbol{\psi}
+endsnippet
+
+snippet bs "bold symbol" i
+\boldsymbol{${1:${VISUAL}}}$0
+endsnippet
+
+snippet forall "for all" i
+\hspace{0.5em}  \forall ${1:i}
+endsnippet
+
+snippet 'poly(\d)' "polynomial" ir
+`!p
+order = int(match.group(1))
+out = "\\beta_0 + \\beta_1x"
+out += " + ".join(["", *[f"\\beta_{i}x^{i}" for i in range(2, order+1)]])
+snip.rv = out
+`
+endsnippet
+
+snippet 'linmod(\d)' "linear model" ir
+`!p
+dim = int(match.group(1))
+out = "\\beta_0 + \\beta_1x_1"
+out += " + ".join(["", *[f"\\beta_{i}x_{i}" for i in range(2, dim+1)]])
+snip.rv = out + " + \\epsilon"
+`
+endsnippet
+
 snippet btt "bold theta" i
 \boldsymbol{\theta}$0
 endsnippet
@@ -416,11 +447,11 @@ snippet bmu "bold mu" i
 \boldsymbol{\mu}$0
 endsnippet
 
-snippet "bar" "bar" ri
+snippet ba" "bar" i
 \overline{${1:${VISUAL}}}$0
 endsnippet
 
-snippet "hat" "hat" ri
+snippet hat "hat" i
 \hat{${1:${VISUAL}}}$0
 endsnippet
 
@@ -428,7 +459,7 @@ snippet r2 "R-squared" i
 R^2
 endsnippet
 
-snippet "tilde" "tilde" ri
+snippet tilde "tilde" i
 \tilde{${1:${VISUAL}}}$0
 endsnippet
 
@@ -444,8 +475,17 @@ snippet bfi "bold phi" i
 \boldsymbol{\phi}
 endsnippet
 
+snippet 'mb([A-Za-z])' "inline bold something" ir
+$\bold{`!p snip.rv = match.group(1)`}$$0
+endsnippet
+
 # prio 100
 priority 100
+
+snippet bb "beta" i
+\beta
+endsnippet
+
 snippet "([a-zA-Z])hat" "hat" ri
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet

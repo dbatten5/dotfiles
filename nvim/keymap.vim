@@ -89,8 +89,11 @@ nnoremap <space>X :!chmod +x %<cr>
 noremap <silent> <F4> :let @+=@%<CR>
 " Correct spelling
 inoremap <c-i> <c-g>u<Esc>[s1z=`]a<c-g>u
+" Visual mode substitute
+vnoremap s :s/
+nnoremap <space>d :Dispatch 
 
-" QUICKFIX {{{1
+"" QUICKFIX {{{1
 " Toggle the quickfix
 nnoremap <leader>qf :call ToggleQuickFix()<cr>
 " Go back through the quickfix window

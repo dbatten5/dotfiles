@@ -42,6 +42,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-surround'
+" Plug 'untitled-ai/jupyter_ascending.vim'
 Plug 'vim-python/python-syntax', {'for': 'python'}
 " Plug 'vimwiki/vimwiki'
 Plug 'wellle/targets.vim'
@@ -101,7 +102,10 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
+" let g:ale_completion_enabled = 1
+" let g:ale_virtualenv_dir_names = ["/Users/dominicbatten/projects/personal/dotfiles/nvim/venv"]
 nnoremap <space>af :ALEFix<cr>
+nnoremap <space>aF :ALEFix
 nnoremap <space>al :ALELint<cr>
 nnoremap <space>an :ALENextWrap<cr>
 nnoremap <space>ap :ALEPreviousWrap<cr>
@@ -165,8 +169,8 @@ nnoremap gp :Projects<cr>
 " ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']
 let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 let g:UltiSnipsEditSplit='vertical'
 nnoremap <leader>os :UltiSnipsEdit<cr>
 
@@ -190,7 +194,15 @@ let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.json', '*.xml',
                                \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
                                \ '*var/cache*', '*var/log*', '*node_modules*',
                                \ '*bundle*']
-let g:gutentags_exclude_filetypes = ['gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git']
+let g:gutentags_exclude_filetypes = [
+  \ 'gitcommit',
+  \ 'gitconfig',
+  \ 'gitrebase',
+  \ 'gitsendemail',
+  \ 'git',
+  \ 'markdown',
+  \ 'text',
+\]
 let g:gutentags_cache_dir = '~/.tags'
 
 " DIRVISH {{{1
@@ -224,6 +236,7 @@ let g:vim_markdown_math = 1
 
 
 " SPELUNKER {{{1
+let g:enable_spelunker_vim = 0
 let g:spelunker_check_type = 2
 
 " UNDOTREE {{{1
@@ -287,3 +300,9 @@ let g:slime_paste_file = "$HOME/.slime_paste"
 
 " JUPYTEXT {{{1
 let g:jupytext_fmt = 'py'
+
+" PYTHON_SYNTAX {{{1
+let g:python_highlight_builtins = 1
+let g:python_highlight_builtins = 1
+let g:python_highlight_string_format = 1
+let g:python_highlight_func_calls = 1

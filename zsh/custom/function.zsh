@@ -43,6 +43,37 @@ codi() {
     Codi $syntax" "$@"
 }
 
+function _get_emanote_server() {
+    lsof -S \
+        | grep -e "emanote.*localhost.*LISTEN" \
+        | tr -s ' ' \
+        | cut -d' ' -f9
+}
+
+# start emanote server in the background
+notes() {
+    local test_server
+    test_server=$(_get_emanote_server)
+    if [[ -n "$test_server" ]]; then
+        echo "server already running at http://${test_server}"
+    else
+        cd "$HOME/.notes/notes"
+        emanote &>/dev/null &
+        echo "starting emanote..."
+        sleep 2
+        gnotes
+    fi
+}
+
+# get currently running notes server
+gnotes() {
+    local url
+    url=$(_get_emanote_server)
+    [[ -n "$url" ]] \
+        && echo "server running at http://${url}" \
+        || echo "no emanote server running"
+}
+
 # GIT {{{1
 # fixup latest commit
 function gfix() {
@@ -158,8 +189,6 @@ function fzm() {
     recipe=$(_fuzzy_make_recipe)
     [[ -n "$recipe" ]] && make "${recipe}"
 }
-
-# find a project to cd into and activate the conda env
 
 # GIT {{{2
 # fzf a commit from git log

@@ -61,7 +61,8 @@ local function yankName(options, picker_options)
       notes = { notes }
     end
     for _, note in ipairs(notes) do
-      local nline = line:sub(0, pos) .. "[" .. note.title  .. "]" .. "(" .. note.path .. ")" .. line:sub(pos + 1)
+      local trimmed_path = note.path:match("[0-9]*.md")
+      local nline = line:sub(0, pos) .. "[" .. note.title  .. "]" .. "(" .. trimmed_path .. ")" .. line:sub(pos + 1)
       vim.api.nvim_set_current_line(nline)
     end
   end)

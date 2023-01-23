@@ -118,6 +118,23 @@ flowchart LR
 \`\`\`
 endsnippet
 
+snippet hmm "hidden markov model graph"
+\`\`\`mermaid
+flowchart LR
+  h1((h1))-->h2((h2))
+  h1-->v1((v1))
+  h2-->h3((h3))
+  h2-->v2((v2))
+  h3-- ... -->ht((ht))
+  h3-->v3((v3))
+  ht-->vt((vt))
+\`\`\`
+endsnippet
+
+snippet vocab
+vocabulary
+endsnippet
+
 # ------------ HIGH PRIORITY ------------
 
 # prio 10
