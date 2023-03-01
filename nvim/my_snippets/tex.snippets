@@ -1,5 +1,13 @@
 # inspired by https://castel.dev/post/lecture-notes-1/
 
+global !p
+def math():
+	try:
+		return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+	except:
+		return 0
+endglobal
+
 # snippet mk "Math" wA
 # $${1}$`!p
 # if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
@@ -9,7 +17,7 @@
 # `$2
 # endsnippet
 
-snippet mk "Math" wA
+snippet mm "Math" wA
 $$1$$0
 endsnippet
 
@@ -69,6 +77,10 @@ snippet equa "Equation" b
 \begin{equation}
 ${1:${VISUAL}}$0
 \end{equation}
+endsnippet
+
+snippet rr "ref" i
+~\ref{$1}$0
 endsnippet
 
 snippet bsm "backsim" i
@@ -137,6 +149,38 @@ endsnippet
 
 snippet expec "expected value" i
 \mathbb{E}[$1]$0
+endsnippet
+
+context "math()"
+snippet e "scientific notation" i
+\mathrm{e}{$1}$0
+endsnippet
+
+snippet code "monospace code" i
+\texttt{$1}$0
+endsnippet
+
+snippet fig "figure"
+\begin{figure}[ht]
+	\centering
+	\includegraphics{$1}
+	\caption{$2}\label{fig:$3}
+\end{figure}
+endsnippet
+
+snippet table "table"
+\begin{table}[h!t]
+\begin{center}
+\begin{tabular}{c c c c}
+\toprule
+h1 & h2 & h3 & h4 \\\\ [0.5ex]
+\midrule
+1 & 2 & 3 & 4 \\\\
+\bottomrule
+\end{tabular}
+\caption{$1}\label{table:$2}
+\end{center}
+\end{table}
 endsnippet
 
 snippet sr "\sqrt{}" i
@@ -263,7 +307,7 @@ snippet T "transpose" i
 endsnippet
 
 snippet grad "gradient" i
-\nabla_{${1:\bold{w}}}${2:L}$0
+\nabla_{${1:\mathbf{w}}}${2:L}$0
 endsnippet
 
 snippet mcal "mathcal" iA
@@ -303,7 +347,7 @@ snippet I "indicator function" i
 endsnippet
 
 snippet 'b([A-Za-z])' "bold something" ir
-\bold{`!p snip.rv = match.group(1)`}$0
+\mathbf{`!p snip.rv = match.group(1)`}$0
 endsnippet
 
 snippet aa "alpha" i
@@ -320,10 +364,6 @@ endsnippet
 
 snippet gg "gamma" i
 \gamma
-endsnippet
-
-snippet ee "epsilon" i
-\epsilon
 endsnippet
 
 snippet ss "sigma" i
@@ -347,11 +387,11 @@ snippet msg "graphical model message"
 endsnippet
 
 snippet norm "norm" i
-\|${1:\bold{x}}\|$0
+\|${1:\mathbf{x}}\|$0
 endsnippet
 
 snippet "([a-zA-Z])\.([a-zA-Z])" "dot product" ri
-\bold{`!p snip.rv=match.group(1)`} \cdot \bold{`!p snip.rv=match.group(2)`}
+\mathbf{`!p snip.rv=match.group(1)`} \cdot \mathbf{`!p snip.rv=match.group(2)`}
 endsnippet
 
 snippet cvec "column vector" iA
@@ -363,7 +403,7 @@ snippet normal "Normal" w
 endsnippet
 
 snippet mnormal "Multivariate normal" w
-\text{Norm}_{${1:\bold{x}}}\left[
+\text{Norm}_{${1:\mathbf{x}}}\left[
 ${2:\boldsymbol{\mu}}, ${3:\boldsymbol{\Sigma}}
 \right]$0
 endsnippet
@@ -373,13 +413,13 @@ snippet cat "Categorical" w
 endsnippet
 
 snippet stud "Student" w
-\text{Stud}_{${1:\bold{x}}}\left[
+\text{Stud}_{${1:\mathbf{x}}}\left[
 ${2:\mu}, ${3:\sigma^2}, ${4:\nu}
 \right]$0
 endsnippet
 
 snippet mstud "Multivariate Student" w
-\text{Stud}_{${1:\bold{x}}}\left[
+\text{Stud}_{${1:\mathbf{x}}}\left[
 ${2:\boldsymbol{\mu}}, ${3:\boldsymbol{\Sigma}}, ${4:\nu}
 \right]$0
 endsnippet
@@ -408,6 +448,10 @@ endsnippet
 
 # prio 10
 priority 10
+
+snippet ee "epsilon" i
+\epsilon
+endsnippet
 
 snippet bsi "bold psi" i
 \boldsymbol{\psi}
@@ -476,7 +520,7 @@ snippet bfi "bold phi" i
 endsnippet
 
 snippet 'mb([A-Za-z])' "inline bold something" ir
-$\bold{`!p snip.rv = match.group(1)`}$$0
+$\mathbf{`!p snip.rv = match.group(1)`}$$0
 endsnippet
 
 # prio 100

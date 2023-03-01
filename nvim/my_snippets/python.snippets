@@ -15,6 +15,12 @@ t[1] = t[1].replace(' ', '_')
 	$0
 endsnippet
 
+snippet v
+$1`!p
+t[1] = t[1].replace(' ', '_')
+` = $0
+endsnippet
+
 snippet af
 async def $1`!p
 t[1] = t[1].replace(' ', '_')
@@ -61,7 +67,7 @@ try:
 	$1
 except Exception as error:
 	$2
-	continue
+	pass
 endsnippet
 
 snippet print
@@ -143,7 +149,7 @@ endsnippet
 
 snippet tc
 class Test$1:
-	"""Tests for the \`$0\` ${2:method}."""
+	"""Tests for the \`$2\` ${3:method}."""
 endsnippet
 
 snippet repr
@@ -187,6 +193,18 @@ snippet inp
 import numpy as np
 endsnippet
 
+snippet ind
+from numpy.typing import NDArray
+endsnippet
+
 snippet iplt
 import matplotlib.pyplot as plt
+endsnippet
+
+snippet rng
+rng = np.random.default_rng(${1:1234})
+endsnippet
+
+snippet pf
+print(f"$1")
 endsnippet

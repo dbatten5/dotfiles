@@ -18,6 +18,8 @@ noremap <space>u :!autoimport %<cr>
 noremap <space>x :Dispatch python %
 noremap <space>X :Dispatch python %<cr>
 
+nnoremap <c-c><c-x> V:SlimeSend<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -92,6 +92,7 @@ inoremap <c-i> <c-g>u<Esc>[s1z=`]a<c-g>u
 " Visual mode substitute
 vnoremap s :s/
 nnoremap <space>d :Dispatch 
+nnoremap <space>o :!open .<cr>
 
 "" QUICKFIX {{{1
 " Toggle the quickfix

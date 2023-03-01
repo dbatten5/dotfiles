@@ -13,6 +13,7 @@ alias pubkey='clipcopy "$(cat ~/.ssh/id_rsa.pub)" && echo "=> Public key copied 
 alias clc='clipcopy "$(fc -ln -1)" && echo "=> Last command copied to clipboard."'
 # sudo last command
 alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
+alias o='open'
 
 # VIM {{{1
 alias v="nvim ."
@@ -29,6 +30,7 @@ alias ap='ansible-playbook'
 # PYTHON {{{1
 alias c='conda'
 alias cml='conda activate ml'
+alias cip='conda activate ml && conda deactivate && conda activate ml && ipython'
 alias dj='python manage.py'
 
 # HELM {{{1

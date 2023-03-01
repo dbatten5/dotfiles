@@ -51,7 +51,7 @@ function _get_emanote_server() {
 }
 
 # start emanote server in the background
-notes() {
+snotes() {
     local test_server
     test_server=$(_get_emanote_server)
     if [[ -n "$test_server" ]]; then

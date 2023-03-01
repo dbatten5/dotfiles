@@ -101,6 +101,9 @@ set wildignore+=*/vendor/**
 set wildignore+=*/node_modules/**
 set wildignore+=*/public/**
 set wildignore+=*/venv/**
+set wildignore+=*.mat
+set wildignore+=*.csv
+set wildignore+=*.tsv
 
 " STATUSLINE {{{1
 hi User1 guifg=#FF0000 guibg=#2C323C

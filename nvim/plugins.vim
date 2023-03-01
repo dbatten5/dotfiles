@@ -16,7 +16,7 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'dbakker/vim-projectroot'
 Plug 'dense-analysis/ale'
 " Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'goerz/jupytext.vim'
+" Plug 'goerz/jupytext.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'janko-m/vim-test'
 Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}
@@ -26,6 +26,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'kamykn/spelunker.vim'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascript'}
 Plug 'mbbill/undotree'
@@ -36,7 +37,7 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'preservim/tagbar'
 Plug 'preservim/vim-markdown', {'for': 'markdown'}
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'towolf/vim-helm'
+Plug 'towolf/vim-helm', {'for': 'helm'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
@@ -169,8 +170,10 @@ nnoremap gp :Projects<cr>
 " ULTI SNIPS {{{1
 let g:UltiSnipsSnippetDirectories=['my_snippets']
 let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+" let g:UltiSnipsJumpForwardTrigger='<c-b>'
+" let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+let g:UltiSnipsJumpForwardTrigger='jk'
+let g:UltiSnipsJumpBackwardTrigger='kj'
 let g:UltiSnipsEditSplit='vertical'
 nnoremap <leader>os :UltiSnipsEdit<cr>
 
@@ -193,7 +196,7 @@ let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.json', '*.xml',
                                \ '*vendor/*/test*', '*vendor/*/Test*',
                                \ '*vendor/*/fixture*', '*vendor/*/Fixture*',
                                \ '*var/cache*', '*var/log*', '*node_modules*',
-                               \ '*bundle*']
+                               \ '*bundle*', '*.tex']
 let g:gutentags_exclude_filetypes = [
   \ 'gitcommit',
   \ 'gitconfig',
@@ -202,6 +205,7 @@ let g:gutentags_exclude_filetypes = [
   \ 'git',
   \ 'markdown',
   \ 'text',
+  \ 'tex',
 \]
 let g:gutentags_cache_dir = '~/.tags'
 
@@ -288,7 +292,7 @@ let g:indentLine_fileTypeExclude = ['markdown']
 "
 " SLIME {{{1
 let g:slime_target = "neovim"
-let g:slime_bracketed_paste = 0
+" let g:slime_bracketed_paste = 0
 let g:slime_python_ipython = 1
 let g:slime_paste_file = "$HOME/.slime_paste"
 
@@ -306,3 +310,21 @@ let g:python_highlight_builtins = 1
 let g:python_highlight_builtins = 1
 let g:python_highlight_string_format = 1
 let g:python_highlight_func_calls = 1
+
+" VIMTEX {{{1
+" let g:vimtex_syntax_conceal_disable = 1
+let g:vimtex_syntax_conceal = {
+      \ 'accents': 0,
+      \ 'ligatures': 0,
+      \ 'cites': 0,
+      \ 'fancy': 0,
+      \ 'spacing': 0,
+      \ 'greek': 0,
+      \ 'math_bounds': 0,
+      \ 'math_delimiters': 0,
+      \ 'math_fracs': 0,
+      \ 'math_super_sub': 0,
+      \ 'math_symbols': 0,
+      \ 'sections': 0,
+      \ 'styles': 0,
+      \}
