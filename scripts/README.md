@@ -79,3 +79,15 @@ Tools used:
 - `ssh` to run commands on the remote server
 - `pg_dump` to dump the database
 - `scp` to copy the backup across the network to the local machine 
+
+## f45
+
+Give me a random f45 video from my video collection so I don't have to decide.
+
+### usage
+
+```bash
+f45
+f45 cardio  # to return only cardio videos
+f45 strength  # to return only strength videos
+```
