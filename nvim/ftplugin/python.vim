@@ -24,7 +24,7 @@ nnoremap <c-c><c-x> V:SlimeSend<cr>
 " ALE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let b:ale_linters = {'python': ['ruff', 'mypy', 'pyright']}
-let b:ale_fixers = {'python': ['isort', 'black']}
+let b:ale_fixers = {'python': ['ruff', 'black']}
 let g:ale_python_black_change_directory = 0
 
 

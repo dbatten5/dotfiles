@@ -16,9 +16,7 @@ t[1] = t[1].replace(' ', '_')
 endsnippet
 
 snippet v
-$1`!p
-t[1] = t[1].replace(' ', '_')
-` = $0
+$1`!p t[1] = t[1].replace(' ', '_')` = $0
 endsnippet
 
 snippet af
@@ -33,7 +31,7 @@ await $0
 endsnippet
 
 snippet s.
-self.
+self.$0
 endsnippet
 
 snippet enum
@@ -74,24 +72,12 @@ snippet print
 print('$1')
 endsnippet
 
-snippet kwargs
-kwargs.get('$1'${2:, ''})
-endsnippet
-
 snippet test
 def test_$1`!p
 t[1] = t[1].replace(' ', '_')
 `(${2:self}) -> None:
 	"""$3."""
 	$0
-endsnippet
-
-snippet gwt
-"""
-Given $1,
-When $2,
-Then $3
-"""
 endsnippet
 
 snippet pry
@@ -123,11 +109,6 @@ snippet patch
 @mock.patch("$0", ${1:autospec=True})
 endsnippet
 
-snippet elog
-import logging
-logger = logging.getLogger("eigenapp.ejob")
-endsnippet
-
 snippet djq
 from django.db import connection
 from django.test.utils import CaptureQueriesContext
@@ -136,11 +117,11 @@ with CaptureQueriesContext(connection) as context:
 endsnippet
 
 snippet opn
-Optional[$0] = None
+Optional[${1:${VISUAL}}] = None
 endsnippet
 
 snippet op
-Optional[$0]
+Optional[${1:${VISUAL}}]
 endsnippet
 
 snippet rtn
@@ -193,6 +174,18 @@ snippet inp
 import numpy as np
 endsnippet
 
+snippet npz "np.zeros(())"
+np.zeros(($1))$0
+endsnippet
+
+snippet ipd
+import pandas as pd
+endsnippet
+
+snippet df
+pd.DataFrame
+endsnippet
+
 snippet ind
 from numpy.typing import NDArray
 endsnippet
@@ -207,4 +200,45 @@ endsnippet
 
 snippet pf
 print(f"$1")
+endsnippet
+
+snippet itqdm
+from tqdm import tqdm
+endsnippet
+
+snippet iatx
+import arraytex as atx
+endsnippet
+
+snippet atx
+atx.to_matrix(${1:A}, num_format="${2:.2f}", style="${3:b}")
+endsnippet
+
+snippet auto
+#  %load_ext autoreload
+#  %autoreload 2
+#  from `!p snip.rv = snip.basename` import *
+endsnippet
+
+snippet sub "subplot"
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 4))
+ax1.imshow($1)
+ax1.set_title("Plot 1")
+ax2.imshow($1)
+ax2.set_title("Plot 2")
+fig.show()
+endsnippet
+
+snippet 'npa([1-9]?)([1-9]?)' "numpy array" ir
+${1:X} = np.array([$2`!p
+if not match.group(1):
+	snip.rv = "])"
+else:
+	snip >> 1
+	r = "[" + ", ".join(["" for _ in range(int(match.group(2)))]) + "],"
+	for _ in range(int(match.group(1))):
+		snip += r
+	snip << 1
+	snip += "])"
+	`$0
 endsnippet

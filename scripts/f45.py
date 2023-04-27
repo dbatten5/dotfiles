@@ -43,4 +43,3 @@ if len(args) == 2:
 else:
     video, idx = pick_random_vid({**STRENGTH, **CARDIO})
     print(f"{video} video {idx + 1}")
-

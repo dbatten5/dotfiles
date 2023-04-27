@@ -230,6 +230,7 @@ nnoremap <c-s> :FFS<space>
 " MARKDOWN PREVIEW {{{1
 let g:mkdp_auto_close = 0
 let g:mkdp_auto_start = 0
+let g:mkdp_refresh_slow = 1
 
 " MARKDOWN {{{1
 let g:vim_markdown_folding_disabled = 1

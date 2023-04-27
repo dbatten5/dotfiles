@@ -6,3 +6,4 @@ let maplocalleader=","
 inoremap <c-a> <c-x><c-o>
 inoremap <c-d> \
 
+set textwidth=80
