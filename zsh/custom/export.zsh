@@ -2,7 +2,7 @@ export PATH=$PATH:/usr/local/sbin
 export PATH="$HOME/.local/bin:$PATH"
 
 # set path to nvim config for various utilities
-export NVIMCONFIG="$HOME/.config/nvim"
+export NVIMCONFIG="$HOME/.config/nvim/lua"
 
 # edit k8s resources in nvim
 export KUBE_EDITOR="nvim"

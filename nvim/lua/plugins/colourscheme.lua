@@ -5,6 +5,7 @@ return {
     priority = 1000,
     init = function()
       vim.g.nord_italic = false
+      vim.g.nord_borders = true
     end,
   },
 }
