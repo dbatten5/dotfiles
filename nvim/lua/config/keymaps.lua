@@ -11,7 +11,6 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map('n', '<leader>ev', '<cmd>vnew $NVIMCONFIG<cr>')
-map('n', '<c-e>', '<cmd>e .<cr>')
 map('n', 's', '<cmd>update<CR>') -- quick saves
 -- window movement
 map('n', '<c-j>', '<c-w>j')
@@ -53,5 +52,5 @@ map('n', '<space>p>', '"0p')
 map('n', '<space>P>', '"0P')
 map('n', 'Q', '@q') -- i don't use ex mode
 -- map('i', '<c-i>' '<c-g>u<Esc>[s1z=`]a<c-g>u') -- correct spelling
-map('v', 's', '<cmd>s/') -- visual mode substitute
+map('v', 's', ':s/') -- visual mode substitute
 map('n', '<space>o', '<cmd>!open .<cr>') -- open file in finder
