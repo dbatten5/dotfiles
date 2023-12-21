@@ -15,7 +15,14 @@ return {
         is_hidden_file = function(name, _)
           return (name == '.DS_Store')
         end,
-      }
+      },
+      keymaps = {
+        ['<C-r>'] = 'actions.refresh',
+        ['<C-x>'] = "actions.select_split",
+        ['<C-v>'] = 'actions.select_vsplit',
+        ['<C-h>'] = false,
+        ['<C-l>'] = false,
+      },
     },
     keys = {
       { '<c-e>', '<cmd>Oil<cr>', desc = 'Open Oil explorer' },
@@ -33,6 +40,7 @@ return {
     cmd = 'Telescope',
     keys = {
       { '<c-f>', '<cmd>Telescope find_files<cr>', desc = 'Find files' },
+      { '<c-b>', '<cmd>Telescope buffers<cr>', desc = 'Find buffers' },
       { '<leader>fp', '<cmd>Telescope projects<cr>', desc = 'Projects' },
       { '<leader>fw', '<cmd>Telescope grep_string<cr>', desc = 'Word under cursor' },
       {

@@ -48,11 +48,6 @@ map('v', '<c-v>', 'v')
 -- swap 0 and ^
 map('n', '0', '^')
 map('n', '^', '0')
--- movement in insert mode
-map('i', '<c->h', '<c-o>h')
-map('i', '<c->l', '<c-o>l')
-map('i', '<c->j', '<c-o>j')
-map('i', '<c->k', '<c-o>k')
 -- paste last yanked item
 map('n', '<space>p>', '"0p')
 map('n', '<space>P>', '"0P')

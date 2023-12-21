@@ -42,7 +42,18 @@ return {
         desc = 'Select snippet choice',
         mode = 'i',
       },
-      {'<leader><leader>s', '<cmd>source ~/.config/nvim/lua/plugins/luasnip.lua<cr>'}
+      {
+        '<leader><leader>s',
+        '<cmd>source ~/.config/nvim/lua/plugins/luasnip.lua<cr>',
+        desc = 'Source the snippets',
+      },
+      {
+        '<leader>os',
+        function()
+          require('luasnip.loaders').edit_snippet_files()
+        end,
+        desc = 'Open the snippets'
+      }
     },
     config = function(_, opts)
       require('luasnip').config.set_config(opts)
