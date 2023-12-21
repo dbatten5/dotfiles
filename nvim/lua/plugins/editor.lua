@@ -12,7 +12,7 @@ return {
       skip_confirm_for_simple_edits = true,
       view_options = {
         show_hidden = true,
-        is_hidden_file = function(name, bufnr)
+        is_hidden_file = function(name, _)
           return (name == '.DS_Store')
         end,
       }
@@ -60,7 +60,7 @@ return {
     end
   },
 
-  -- project management
+  -- project management,
   {
     'ahmedkhalf/project.nvim',
   },
@@ -99,4 +99,7 @@ return {
       { '<leader>td', function() require('neotest').run.run({strategy = 'dap'}) end, desc = 'Debug nearest' }
     },
   }
+
+  -- undo
+
 }

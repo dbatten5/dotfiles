@@ -28,8 +28,14 @@ map('n', '<leader>a', '<cmd>keepjumps normal! ggVG<cr>') -- highlight all text
 -- swap ' and `
 map('n', '\'', '`')
 map('n', '`', '\'')
-map('v', 'J', 'j') -- swap J and j in visual mode
-map('v', 'K', 'k') -- swap K and k in visual mode
+map('v', 'J', ":m '>+1<cr>gv=gv") -- move chunks of text up
+map('v', 'K', ":m '<-2<cr>gv=gv") -- move chunks of text down
+-- keeping the cursor in nice places
+map('n', 'J', 'mzJ`z')
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'Nzzzv')
+map('n', '<c-d>', '<c-d>zz')
+map('n', '<c-u>', '<c-u>zz')
 -- indent without killing selection
 map('v', '<', '<gv')
 map('v', '>', '>gv')
