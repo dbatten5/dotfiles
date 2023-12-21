@@ -58,5 +58,4 @@ map('n', '<space>p>', '"0p')
 map('n', '<space>P>', '"0P')
 map('n', 'Q', '@q') -- i don't use ex mode
 -- map('i', '<c-i>' '<c-g>u<Esc>[s1z=`]a<c-g>u') -- correct spelling
-map('v', 's', ':s/') -- visual mode substitute
 map('n', '<space>o', '<cmd>!open .<cr>') -- open file in finder
