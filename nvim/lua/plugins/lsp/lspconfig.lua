@@ -1,3 +1,4 @@
+---@diagnostic disable, 113: 113
 return {
   'neovim/nvim-lspconfig',
   event = { 'BufReadPre', 'BufNewFile' },
@@ -17,7 +18,7 @@ return {
 
       opts.desc = "Show LSP references"
       map.set("n", "gR", "<cmd>Telescope lsp_references<cr>", opts)
-      -- set keybinds
+
       opts.desc = "Show LSP references"
       map.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 

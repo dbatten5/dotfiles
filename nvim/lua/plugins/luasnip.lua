@@ -17,7 +17,7 @@ return {
         end,
         mode = { "i", "s" },
         desc = "Expand or jump snippet",
-        -- silent = true,
+        silent = true,
       },
       {
         "<c-j>",
@@ -29,7 +29,7 @@ return {
         end,
         mode = { "i", "s" },
         desc = "Jump back in snippet",
-        -- silent = true,
+        silent = true,
       },
       {
         "<c-l>",
