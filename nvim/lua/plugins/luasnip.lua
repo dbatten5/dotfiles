@@ -1,63 +1,63 @@
 return {
   {
-    'L3MON43/LuaSnip',
-    event = 'InsertEnter',
+    "L3MON43/LuaSnip",
+    event = "InsertEnter",
     opts = {
       history = true,
-      updateevents = 'TextChanged,TextChangedI',
+      updateevents = "TextChanged,TextChangedI",
     },
     keys = {
       {
-        '<c-k>',
+        "<c-k>",
         function()
-          ls = require('luasnip')
+          local ls = require("luasnip")
           if ls.expand_or_jumpable() then
             ls.expand_or_jump()
           end
         end,
-        mode = { 'i', 's' },
-        desc = 'Expand or jump snippet',
+        mode = { "i", "s" },
+        desc = "Expand or jump snippet",
         -- silent = true,
       },
       {
-        '<c-j>',
+        "<c-j>",
         function()
-          ls = require('luasnip')
+          local ls = require("luasnip")
           if ls.jumpable(-1) then
             ls.jump(-1)
           end
         end,
-        mode = { 'i', 's' },
-        desc = 'Jump back in snippet',
+        mode = { "i", "s" },
+        desc = "Jump back in snippet",
         -- silent = true,
       },
       {
-        '<c-l>',
+        "<c-l>",
         function()
-          ls = require('luasnip')
+          local ls = require("luasnip")
           if ls.choice_active() then
             ls.change_choice(1)
           end
         end,
-        desc = 'Select snippet choice',
-        mode = 'i',
+        desc = "Select snippet choice",
+        mode = "i",
       },
       {
-        '<leader><leader>s',
-        '<cmd>source ~/.config/nvim/lua/plugins/luasnip.lua<cr>',
-        desc = 'Source the snippets',
+        "<leader><leader>s",
+        "<cmd>source ~/.config/nvim/lua/plugins/luasnip.lua<cr>",
+        desc = "Source the snippets",
       },
       {
-        '<leader>os',
+        "<leader>os",
         function()
-          require('luasnip.loaders').edit_snippet_files()
+          require("luasnip.loaders").edit_snippet_files()
         end,
-        desc = 'Open the snippets'
-      }
+        desc = "Open the snippets",
+      },
     },
     config = function(_, opts)
-      require('luasnip').config.set_config(opts)
-      require('luasnip.loaders.from_lua').load({paths = '~/.config/nvim/snippets/'})
-    end
-  }
+      require("luasnip").config.set_config(opts)
+      require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+    end,
+  },
 }
