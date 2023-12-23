@@ -12,6 +12,7 @@ return {
     { "<c-b>", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
     { "<space>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
     { "<space>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
+    { "<space>fm", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
     { "<space>fw", "<cmd>Telescope grep_string<cr>", desc = "Word under cursor" },
     {
       "<space>fs",
