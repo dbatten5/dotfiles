@@ -8,7 +8,7 @@ local opt = vim.opt
 
 -- General
 opt.mouse = "a"
-opt.clipboard = "unnamedplus"
+-- opt.clipboard = "unnamedplus"
 opt.scrolloff = 4
 opt.sidescrolloff = 15
 opt.sidescroll = 5

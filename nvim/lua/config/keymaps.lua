@@ -17,13 +17,13 @@ map('n', '<c-j>', '<c-w>j')
 map('n', '<c-k>', '<c-w>k')
 map('n', '<c-h>', '<c-w>h')
 map('n', '<c-l>', '<c-w>l')
--- copy/paste from system clip
+-- copy/pate from system clip
 map({'n', 'x'}, 'gy', '"+y')
 map({'n', 'x'}, 'gp', '"+p')
 map('i', '<c-v>', '"+p')
--- delete without copying to register
-map({'n', 'x'}, 'x', '"_x')
-map({'n', 'x'}, 'X', '"_d')
+-- -- delete without copying to register
+-- map({'n', 'x'}, 'x', '"_x')
+-- map({'n', 'x'}, 'X', '"_d')
 map('n', '<leader>a', '<cmd>keepjumps normal! ggVG<cr>') -- highlight all text
 -- swap ' and `
 map('n', '\'', '`')
