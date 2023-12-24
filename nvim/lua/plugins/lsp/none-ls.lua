@@ -23,7 +23,11 @@ return {
       sources = {
         formatting.stylua,
         formatting.black,
+        formatting.ruff,
+        formatting.shfmt,
         diagnostics.ruff,
+        diagnostics.mypy,
+        diagnostics.shellcheck,
         -- diagnostics.misspell,
         completion.spell,
       },

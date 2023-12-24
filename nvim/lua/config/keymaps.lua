@@ -24,7 +24,7 @@ map("i", "<c-v>", '"+p')
 -- -- delete without copying to register
 -- map({'n', 'x'}, 'x', '"_x')
 -- map({'n', 'x'}, 'X', '"_d')
-map("n", "<leader>a", "<cmd>keepjumps normal! ggVG<cr>") -- highlight all text
+map("n", "<space>a", "<cmd>keepjumps normal! ggVG<cr>") -- highlight all text
 -- swap ' and `
 map("n", "'", "`")
 map("n", "`", "'")
@@ -51,6 +51,6 @@ map("n", "^", "0")
 -- paste last yanked item
 map("n", "<space>p>", '"0p')
 map("n", "<space>P>", '"0P')
-map("n", "Q", "@q")                      -- i don't use ex mode
+map("n", "Q", "@q") -- i don't use ex mode
 -- map('i', '<c-i>' '<c-g>u<Esc>[s1z=`]a<c-g>u') -- correct spelling
 map("n", "<space>o", "<cmd>!open .<cr>") -- open file in finder
