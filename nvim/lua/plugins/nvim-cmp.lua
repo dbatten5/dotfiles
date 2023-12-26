@@ -2,17 +2,31 @@ return {
   "hrsh7th/nvim-cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lua",
+    "onsails/lspkind.nvim",
+    "saadparwaiz1/cmp_luasnip",
   },
   config = function()
     local cmp = require("cmp")
+    local lspkind = require("lspkind")
 
     cmp.setup({
+      formatting = {
+        format = lspkind.cmp_format({
+          mode = "symbol_text",
+        }),
+      },
       completion = {
         completeopt = "menu,menuone,preview,noselect",
+      },
+      snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end,
       },
       window = {
         completion = cmp.config.window.bordered(),
@@ -27,8 +41,8 @@ return {
         ghost_text = true,
       },
       mapping = cmp.mapping.preset.insert({
-        ["<c-p>"] = cmp.mapping.select_next_item(),
-        ["<c-n>"] = cmp.mapping.select_prev_item(),
+        ["<c-p>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<c-n>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<c-b>"] = cmp.mapping.scroll_docs(-4),
         ["<c-f>"] = cmp.mapping.scroll_docs(4),
         ["<c-g>"] = function()
@@ -50,7 +64,7 @@ return {
           end,
         },
         { name = "nvim_lua" },
-        { name = "buffer" },
+        { name = "buffer", keyword_length = 5 },
         { name = "path" },
       }),
     })

@@ -16,7 +16,7 @@ vim.opt.runtimepath:prepend(lazypath)
 vim.g.mapleader = ","
 vim.keymap.set("n", "<leader>ml", "<cmd>Lazy<cr>")
 
-require("lazy").setup({{ import = 'plugins' }, { import = 'plugins.lsp' }}, {
+require("lazy").setup({ { import = "plugins" }, { import = "plugins.lsp" }, { import = "plugins.dap" } }, {
   -- defaults = { lazy = true },
   install = {
     -- install missing plugins on startup. This doesn't increase startup time.

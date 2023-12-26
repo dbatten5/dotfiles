@@ -73,8 +73,11 @@ return {
         python = {
           analysis = {
             stubPath = os.getenv("PYTHON_TYPE_STUBS") or "",
-            typeCheckingMode = "basic",
+            typeCheckingMode = "off",
             useLibraryCodeForTypes = true,
+            autoImportCompletions = true,
+            autoSearchPaths = true,
+            venvPath = ".",
           },
         },
       },

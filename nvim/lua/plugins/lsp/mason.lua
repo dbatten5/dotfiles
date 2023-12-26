@@ -7,7 +7,19 @@ return {
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
 
-    mason.setup()
+    mason.setup({
+      ensure_installed = {
+        "black",
+        "debugpy",
+        "black",
+        "luacheck",
+        "mypy",
+        "ruff",
+        "shellcheck",
+        "shfmt",
+        "stylua",
+      },
+    })
 
     mason_lspconfig.setup({
       ensure_installed = {

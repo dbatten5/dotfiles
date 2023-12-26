@@ -3,13 +3,13 @@ return {
   version = false,
   opts = {
     mappings = {
-      add = "<space>sa", -- Add surrounding in Normal and Visual modes
-      delete = "<space>sd", -- Delete surrounding
-      replace = "<space>sr", -- Replace surrounding
+      add = "gsa", -- Add surrounding in Normal and Visual modes
+      delete = "gsd", -- Delete surrounding
+      replace = "gsr", -- Replace surrounding
       update_n_lines = "", -- Update `n_lines`
       find = "", -- Find surrounding (to the right)
       find_left = "", -- Find surrounding (to the left)
-      highlight = "", -- Highlight surrounding
+      highlight = "gsh", -- Highlight surrounding
     },
   },
   config = function(_, opts)

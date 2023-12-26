@@ -11,9 +11,7 @@ return {
         {}
     ]],
       {
-        f(1, function(args)
-          return replace_whitespace(args[1].get_text())
-        end),
+        i(1),
         i(2),
         i(3),
       }
