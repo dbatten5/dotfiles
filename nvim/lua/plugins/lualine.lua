@@ -3,7 +3,10 @@ return {
   opts = {
     theme = "nord",
     sections = {
-      lualine_x = { "fileformat", "filetype" },
+      lualine_x = {
+        "fileformat",
+        "filetype",
+      },
     },
   },
 }

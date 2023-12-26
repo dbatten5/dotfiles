@@ -14,12 +14,24 @@ return {
       completion = {
         completeopt = "menu,menuone,preview,noselect",
       },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
+      view = {
+        docs = {
+          auto_open = false,
+        },
+      },
+      experimental = {
+        ghost_text = true,
+      },
       mapping = cmp.mapping.preset.insert({
         ["<c-p>"] = cmp.mapping.select_next_item(),
         ["<c-n>"] = cmp.mapping.select_prev_item(),
         ["<c-b>"] = cmp.mapping.scroll_docs(-4),
         ["<c-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-g>"] = function()
+        ["<c-g>"] = function()
           if cmp.visible_docs() then
             cmp.close_docs()
           else
@@ -58,5 +70,7 @@ return {
         { name = "cmdline" },
       }),
     })
+
+    vim.keymap.set("i", "<c-p>", "<cmd>lua require('cmp').complete()<cr>")
   end,
 }

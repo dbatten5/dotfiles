@@ -11,6 +11,11 @@ return {
     local map = vim.keymap
     local opts = { noremap = true, silent = true }
 
+    local handlers = {
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+    }
+
     local on_attach = function(client, bufnr)
       client.server_capabilities.semanticTokensProvider = nil
       opts.buffer = bufnr
@@ -63,12 +68,13 @@ return {
     lspconfig.pyright.setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
       settings = {
         python = {
           analysis = {
-            typeCheckingMode = "off",
-            autoImportCompletions = true,
-            autoSearchPaths = true,
+            stubPath = os.getenv("PYTHON_TYPE_STUBS") or "",
+            typeCheckingMode = "basic",
+            useLibraryCodeForTypes = true,
           },
         },
       },
@@ -77,6 +83,7 @@ return {
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      handlers = handlers,
       settings = {
         Lua = {
           diagnostics = {
@@ -85,6 +92,8 @@ return {
               "s",
               "fmt",
               "i",
+              "f",
+              "t",
             },
           },
         },
