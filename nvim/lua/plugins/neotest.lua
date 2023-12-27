@@ -39,7 +39,7 @@ return {
       function()
         require("neotest").output.open({ enter = true, auto_close = true })
       end,
-      desc = "Show output",
+      desc = "Show output window",
     },
     {
       "<leader>tO",
@@ -57,9 +57,24 @@ return {
     },
   },
   config = function()
-    require("neotest").setup({
+    local neotest = require("neotest")
+    local neotest_python = require("neotest-python")
+
+    neotest.setup({
       adapters = {
-        require("neotest-python"),
+        neotest_python,
+      },
+      output = { open_on_run = true },
+    })
+
+    neotest.setup_project("~/projects/work/kraken-core", {
+      adapters = {
+        neotest_python({
+          args = { "--dc", "PWLManagementCommand" },
+        }),
+      },
+      discovery = {
+        enabled = false,
       },
     })
   end,

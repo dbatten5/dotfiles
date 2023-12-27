@@ -16,6 +16,7 @@ return {
     local formatting = nls.builtins.formatting
     local diagnostics = nls.builtins.diagnostics
     local completion = nls.builtins.completion
+    local code_actions = nls.builtins.code_actions
 
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -30,6 +31,7 @@ return {
         diagnostics.shellcheck,
         -- diagnostics.misspell,
         completion.spell,
+        code_actions.refactoring,
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then

@@ -17,4 +17,8 @@ return {
       }
     )
   ),
+  s(
+    "pry",
+    t("breakpoint()")
+  ),
 }

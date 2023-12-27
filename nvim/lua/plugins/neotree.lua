@@ -7,15 +7,13 @@ return {
     "MunifTanjim/nui.nvim",
   },
   opts = {
-    default_component_configs = {
-      window = {
-        filesystem = {
-          filtered_items = {
-            hide_hidden = false,
-            never_show = {
-              ".DS_Store",
-            },
-          },
+    filesystem = {
+      filtered_items = {
+        hide_dotfiles = false,
+        hide_gitignored = true,
+        hide_hidden = false,
+        never_show = {
+          ".DS_Store",
         },
       },
     },
