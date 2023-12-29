@@ -25,10 +25,16 @@ return {
         formatting.stylua,
         formatting.black,
         formatting.ruff,
-        formatting.shfmt,
+        formatting.shfmt.with({
+          filetypes = { "zsh", "bash", "sh" },
+        }),
+        formatting.autoflake,
         diagnostics.ruff,
         diagnostics.mypy,
-        diagnostics.shellcheck,
+        diagnostics.shellcheck.with({
+          filetypes = { "zsh", "bash", "sh" },
+        }),
+        diagnostics.flake8,
         -- diagnostics.misspell,
         completion.spell,
         code_actions.refactoring,

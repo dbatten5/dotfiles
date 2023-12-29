@@ -4,6 +4,7 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "nvim-neotest/neotest-python",
+    "mfussenegger/nvim-dap",
   },
   keys = {
     {
@@ -12,6 +13,27 @@ return {
         require("neotest").run.run()
       end,
       desc = "Run nearest",
+    },
+    {
+      "<leader>tl",
+      function()
+        require("neotest").run.run_last()
+      end,
+      desc = "Run last",
+    },
+    {
+      "<leader>tL",
+      function()
+        require("neotest").run.run_last({ strategy = "dap" })
+      end,
+      desc = "Run last with dap",
+    },
+    {
+      "<leader>td",
+      function()
+        require("neotest").run.run({ strategy = "dap" })
+      end,
+      desc = "Debug nearest",
     },
     {
       "<leader>tt",
@@ -69,9 +91,10 @@ return {
 
     neotest.setup_project("~/projects/work/kraken-core", {
       adapters = {
-        neotest_python({
-          args = { "--dc", "PWLManagementCommand" },
-        }),
+        neotest_python,
+        -- neotest_python({
+        --   args = { "--dc", "PWLManagementCommand" },
+        -- }),
       },
       discovery = {
         enabled = false,
