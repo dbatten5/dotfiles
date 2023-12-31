@@ -1,4 +1,5 @@
 return {
-  "folke/neodev.nvim",
-  opts = {},
+  -- enabled = false,
+  -- "folke/neodev.nvim",
+  -- opts = {},
 }

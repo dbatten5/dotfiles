@@ -4,5 +4,5 @@ return {
   opts = {
     enable_check_bracket_line = false,
     check_ts = true,
-  }
+  },
 }

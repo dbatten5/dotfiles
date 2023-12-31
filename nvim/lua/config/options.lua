@@ -15,7 +15,6 @@ opt.sidescroll = 5
 opt.hidden = true
 opt.wrap = true
 opt.linebreak = true
-opt.exrc = true
 
 -- Indentation
 opt.shiftwidth = 2

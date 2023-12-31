@@ -16,6 +16,9 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       python = { "ruff", "black" },
+      zsh = { "shfmt" },
+      bash = { "shfmt" },
+      sh = { "shfmt" },
     },
     format_on_save = function(bufnr)
       -- Enable autoformat on certain filetypes
@@ -32,7 +35,6 @@ return {
       if bufname:match("/node_modules/") then
         return
       end
-      -- ...additional logic...
       return { timeout_ms = 500, lsp_fallback = true }
     end,
   },

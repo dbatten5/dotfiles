@@ -1,8 +1,10 @@
 return {
   "mfussenegger/nvim-lint",
+  enabled = true,
   opts = {
     linters_by_ft = {
-      python = { "ruff", "mypy", "flake8" },
+      python = { "ruff", "flake8" },
+      -- lua = { "luacheck"},
       zsh = { "shellcheck" },
       bash = { "shellcheck" },
       sh = { "shellcheck" },

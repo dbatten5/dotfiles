@@ -1,6 +1,6 @@
 return {
   "williamboman/mason.nvim",
-  enabled = false,
+  enabled = true,
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
   },
@@ -13,7 +13,7 @@ return {
         "black",
         "debugpy",
         "black",
-        "luacheck",
+        -- "luacheck",
         "mypy",
         "ruff",
         "shellcheck",
@@ -25,9 +25,35 @@ return {
     mason_lspconfig.setup({
       ensure_installed = {
         "lua_ls",
-        "pyright",
+        -- "pyright",
+        "pylsp",
       },
       automatic_installation = true,
     })
+
+    local pylsp = require("mason-registry").get_package("python-lsp-server")
+    pylsp:on("install:success", function()
+      local function mason_package_path(package)
+        local path = vim.fn.resolve(vim.fn.stdpath("data") .. "/mason/packages/" .. package)
+        return path
+      end
+
+      local path = mason_package_path("python-lsp-server")
+      local command = path .. "/venv/bin/pip"
+      local args = {
+        "install",
+        -- "python-lsp-black",
+        -- "python-lsp-ruff",
+        "pylsp-mypy",
+      }
+
+      require("plenary.job")
+        :new({
+          command = command,
+          args = args,
+          cwd = path,
+        })
+        :start()
+    end)
   end,
 }

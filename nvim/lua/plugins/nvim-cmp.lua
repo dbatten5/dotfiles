@@ -6,7 +6,7 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-nvim-lua",
+    -- "hrsh7th/cmp-nvim-lua",
     "onsails/lspkind.nvim",
     "saadparwaiz1/cmp_luasnip",
   },
@@ -63,7 +63,7 @@ return {
             return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
           end,
         },
-        { name = "nvim_lua" },
+        -- { name = "nvim_lua" },
         { name = "buffer", keyword_length = 5 },
         { name = "path" },
       }),
