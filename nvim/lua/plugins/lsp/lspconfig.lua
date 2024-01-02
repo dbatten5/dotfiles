@@ -7,13 +7,11 @@ return {
     "williamboman/mason-lspconfig.nvim",
     {
       "folke/neodev.nvim",
-      lazy = true,
-      ft = "lua",
       config = function()
         require("neodev").setup({
           library = {
-            runtime = false, -- runtime path
-            types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+            runtime = false,
+            types = true,
           },
         })
       end,
@@ -119,14 +117,14 @@ return {
             black = { enabled = false },
             ruff = { enabled = false },
             flake8 = { enabled = false },
-            mypy = {
+            pylsp_mypy = {
               enabled = true,
+              dmypy = true,
               live_mode = false,
               strict = false,
+              -- overrides = { "--cache-dir", "/dev/null", true }
             },
-            pycodestyle = {
-              false,
-            },
+            pycodestyle = { false },
           },
         },
       },
@@ -139,7 +137,6 @@ return {
       settings = {
         Lua = {
           -- runtime = {
-          --   -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           --   version = "LuaJIT",
           -- },
           diagnostics = {

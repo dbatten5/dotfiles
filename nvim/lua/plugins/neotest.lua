@@ -50,6 +50,13 @@ return {
       desc = "Run all",
     },
     {
+      "<leader>ta",
+      function()
+        require("neotest").run.attach()
+      end,
+      desc = "Attach to the nearest test",
+    },
+    {
       "<leader>ts",
       function()
         require("neotest").summary.toggle()

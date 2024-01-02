@@ -1,6 +1,5 @@
 return {
   "mfussenegger/nvim-lint",
-  enabled = true,
   opts = {
     linters_by_ft = {
       python = { "ruff", "flake8" },
@@ -11,7 +10,7 @@ return {
     },
   },
   init = function()
-    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
       callback = function()
         require("lint").try_lint(nil, { ignore_errors = true })
       end,

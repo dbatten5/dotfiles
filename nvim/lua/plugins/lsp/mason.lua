@@ -1,8 +1,9 @@
 return {
   "williamboman/mason.nvim",
-  enabled = true,
+  enabled = false,
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
+    "nvim-lua/plenary.nvim",
   },
   config = function()
     local mason = require("mason")
@@ -13,7 +14,6 @@ return {
         "black",
         "debugpy",
         "black",
-        -- "luacheck",
         "mypy",
         "ruff",
         "shellcheck",
