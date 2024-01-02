@@ -122,7 +122,7 @@ return {
               dmypy = true,
               live_mode = false,
               strict = false,
-              -- overrides = { "--cache-dir", "/dev/null", true }
+              -- overrides = { "--cache-dir", "/dev/null", true },
             },
             pycodestyle = { false },
           },
@@ -136,12 +136,10 @@ return {
       handlers = handlers,
       settings = {
         Lua = {
-          -- runtime = {
-          --   version = "LuaJIT",
-          -- },
           diagnostics = {
             globals = {
               "vim",
+              -- below for luasnip
               "s",
               "fmt",
               "i",
@@ -149,14 +147,6 @@ return {
               "t",
             },
           },
-          -- workspace = {
-          --   library = {
-          --     vim.fn.stdpath("data") .. "/lazy",
-          --     vim.fn.stdpath("config"),
-          --   },
-          --   maxPreload = 2000,
-          --   preloadFileSize = 50000,
-          -- },
         },
       },
     })

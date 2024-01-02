@@ -1,5 +1,5 @@
 return {
-  "L3MON43/LuaSnip",
+  "L3MON4D3/LuaSnip",
   event = "InsertEnter",
   opts = {
     history = true,

@@ -4,6 +4,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "ahmedkhalf/project.nvim",
+    "ThePrimeagen/harpoon",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   cmd = "Telescope",
@@ -53,5 +54,6 @@ return {
     })
     telescope.load_extension("fzf")
     telescope.load_extension("projects")
+    telescope.load_extension("harpoon")
   end,
 }

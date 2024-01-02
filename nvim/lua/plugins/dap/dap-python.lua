@@ -2,7 +2,7 @@ return {
   "mfussenegger/nvim-dap-python",
   ft = "python",
   dependencies = {
-    "fussenegger/nvim-dap",
+    "mfussenegger/nvim-dap",
   },
   config = function()
     local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
