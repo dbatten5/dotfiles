@@ -3,7 +3,6 @@ return {
   opts = {
     linters_by_ft = {
       python = { "ruff", "flake8" },
-      -- lua = { "luacheck"},
       zsh = { "shellcheck" },
       bash = { "shellcheck" },
       sh = { "shellcheck" },

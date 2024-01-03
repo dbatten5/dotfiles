@@ -1,6 +1,5 @@
 return {
   "williamboman/mason.nvim",
-  enabled = false,
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "nvim-lua/plenary.nvim",
@@ -20,6 +19,10 @@ return {
         "shfmt",
         "stylua",
       },
+      ui = {
+        border = "rounded",
+      },
+      PATH = "append",
     })
 
     mason_lspconfig.setup({

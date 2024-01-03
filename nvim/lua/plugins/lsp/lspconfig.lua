@@ -78,6 +78,8 @@ return {
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
+    require("lspconfig.ui.windows").default_options.border = "single"
+
     -- lspconfig.pyright.setup({
     --   capabilities = capabilities,
     --   on_attach = on_attach,
