@@ -16,6 +16,12 @@ return {
           ".DS_Store",
         },
       },
+      window = {
+        mappings = {
+          ["\\"] = "fuzzy_finder",
+          ["/"] = false,
+        },
+      },
     },
   },
   keys = {

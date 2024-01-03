@@ -5,5 +5,18 @@ return {
     vim.o.timeout = true
     vim.o.timeoutlen = 300
   end,
-  opts = {},
+  opts = {
+    triggers_nowait = {
+      -- marks
+      "`",
+      "'",
+      "g`",
+      "g'",
+      -- registers
+      -- '"',
+      "<c-r>",
+      -- spelling
+      "z=",
+    },
+  },
 }

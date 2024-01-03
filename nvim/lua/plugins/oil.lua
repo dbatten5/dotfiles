@@ -18,6 +18,7 @@ return {
       ["<C-r>"] = "actions.refresh",
       ["<C-x>"] = "actions.select_split",
       ["<C-v>"] = "actions.select_vsplit",
+      ["<C-y>"] = "actions.copy_entry_path",
       ["<C-h>"] = false,
       ["<C-l>"] = false,
       ["__"] = {
