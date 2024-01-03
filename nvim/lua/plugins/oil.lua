@@ -15,11 +15,29 @@ return {
       end,
     },
     keymaps = {
-      ["<c-r>"] = "actions.refresh",
-      ["<c-x>"] = "actions.select_split",
-      ["<c-v>"] = "actions.select_vsplit",
-      ["<c-h>"] = false,
-      ["<c-l>"] = false,
+      ["<C-r>"] = "actions.refresh",
+      ["<C-x>"] = "actions.select_split",
+      ["<C-v>"] = "actions.select_vsplit",
+      ["<C-h>"] = false,
+      ["<C-l>"] = false,
+      ["__"] = {
+        callback = function()
+          local path = require("oil").get_current_dir() .. "__init__.py"
+          local file = io.open(path, "r")
+          if file then
+            print("__init__.py already exists - not overwriting")
+            file:close()
+          else
+            local new_file = io.open(path, "w")
+            if new_file then
+              new_file:close()
+              require("oil.actions").refresh.callback()
+            end
+          end
+        end,
+        desc = "Insert an __init__.py",
+        mode = "n",
+      },
     },
   },
   keys = {

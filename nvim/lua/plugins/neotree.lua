@@ -20,7 +20,7 @@ return {
   },
   keys = {
     {
-      "<leader>E",
+      "<c-s-e>",
       "<cmd>Neotree<cr>",
       desc = "Open Neotree",
     },

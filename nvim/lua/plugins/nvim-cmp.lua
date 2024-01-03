@@ -64,7 +64,7 @@ return {
           end,
         },
         -- { name = "nvim_lua" },
-        { name = "buffer", keyword_length = 5 },
+        { name = "buffer" },
         { name = "path" },
       }),
     })

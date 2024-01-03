@@ -19,12 +19,7 @@ return {
       {
         "<space>fs",
         function()
-          require("telescope.builtin").grep_string({
-            shorten_path = true,
-            word_match = "-w",
-            only_sort_text = true,
-            search = "",
-          })
+          require("telescope.builtin").live_grep()
         end,
         desc = "Word search",
       },
@@ -40,6 +35,7 @@ return {
             i = {
               ["<c-j>"] = actions.move_selection_next,
               ["<c-k>"] = actions.move_selection_previous,
+              ["<c-z>"] = actions.delete_buffer,
             },
           },
         },
