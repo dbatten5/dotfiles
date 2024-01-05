@@ -2,10 +2,12 @@ return {
   "mfussenegger/nvim-dap-python",
   ft = "python",
   dependencies = {
-    "fussenegger/nvim-dap",
+    "mfussenegger/nvim-dap",
+    "williamboman/mason.nvim",
   },
   config = function()
-    local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+    local debugpy_package = require("mason-registry").get_package("debugpy")
+    local path = require("mason-core.package").get_install_path(debugpy_package) .. "/venv/bin/python"
     require("dap-python").setup(path)
   end,
 }

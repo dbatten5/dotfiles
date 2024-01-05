@@ -16,11 +16,17 @@ return {
           ".DS_Store",
         },
       },
+      window = {
+        mappings = {
+          ["\\"] = "fuzzy_finder",
+          ["/"] = false,
+        },
+      },
     },
   },
   keys = {
     {
-      "<leader>E",
+      "<c-s-e>",
       "<cmd>Neotree<cr>",
       desc = "Open Neotree",
     },

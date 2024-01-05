@@ -3,6 +3,19 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    {
+      "folke/neodev.nvim",
+      config = function()
+        require("neodev").setup({
+          library = {
+            runtime = false,
+            types = true,
+          },
+        })
+      end,
+    },
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -36,7 +49,7 @@ return {
       map.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
       opts.desc = "See available code actions"
-      map.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+      map.set({ "n", "x" }, "<space>ca", vim.lsp.buf.code_action, opts)
 
       opts.desc = "Smart rename"
       map.set("n", "<space>rn", vim.lsp.buf.rename, opts)
@@ -65,19 +78,57 @@ return {
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
-    lspconfig.pyright.setup({
+    require("lspconfig.ui.windows").default_options.border = "single"
+
+    -- lspconfig.pyright.setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   handlers = handlers,
+    --   settings = {
+    --     python = {
+    --       analysis = {
+    --         stubPath = os.getenv("PYTHON_TYPE_STUBS") or "",
+    --         typeCheckingMode = "off",
+    --         useLibraryCodeForTypes = true,
+    --         autoImportCompletions = true,
+    --         autoSearchPaths = true,
+    --         venvPath = ".",
+    --       },
+    --     },
+    --   },
+    -- })
+
+    lspconfig.pylsp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
       handlers = handlers,
+      root_dir = function(fname)
+        local util = require("lspconfig.util")
+        local root_files = {
+          "setup.cfg",
+          "pyproject.toml",
+          "setup.py",
+          "requirements.txt",
+          "Pipfile",
+        }
+        return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+      end,
       settings = {
-        python = {
-          analysis = {
-            stubPath = os.getenv("PYTHON_TYPE_STUBS") or "",
-            typeCheckingMode = "off",
-            useLibraryCodeForTypes = true,
-            autoImportCompletions = true,
-            autoSearchPaths = true,
-            venvPath = ".",
+        pylsp = {
+          plugins = {
+            black = { enabled = false },
+            ruff = { enabled = false },
+            flake8 = { enabled = false },
+            pylsp_mypy = {
+              enabled = true,
+              dmypy = true,
+              live_mode = false,
+              strict = false,
+              -- overrides = { "--cache-dir", "/dev/null", true },
+            },
+            pydocstype = { enabled = false },
+            pycodestyle = { enabled = false },
+            pyflakes = { enabled = false },
           },
         },
       },
@@ -92,6 +143,7 @@ return {
           diagnostics = {
             globals = {
               "vim",
+              -- below for luasnip
               "s",
               "fmt",
               "i",

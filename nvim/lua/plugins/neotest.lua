@@ -50,6 +50,13 @@ return {
       desc = "Run all",
     },
     {
+      "<leader>ta",
+      function()
+        require("neotest").run.attach()
+      end,
+      desc = "Attach to the nearest test",
+    },
+    {
       "<leader>ts",
       function()
         require("neotest").summary.toggle()
@@ -87,9 +94,12 @@ return {
         neotest_python,
       },
       output = { open_on_run = true },
+      discovery = {
+        enabled = false,
+      },
     })
 
-    neotest.setup_project("~/projects/work/kraken-core", {
+    neotest.setup_project("~/projects/work/kraken-core/src", {
       adapters = {
         neotest_python,
         -- neotest_python({

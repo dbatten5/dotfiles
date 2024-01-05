@@ -1,8 +1,9 @@
 return {
   "mfussenegger/nvim-dap",
   event = "VeryLazy",
+  enabled = true,
   dependencies = {
-    { "rcarriga/nvim-dap-ui" },
+    "rcarriga/nvim-dap-ui",
   },
   keys = {
     {
@@ -76,6 +77,13 @@ return {
         require("dap").terminate()
       end,
       desc = "Finish the debug session",
+    },
+    {
+      "<leader>dC",
+      function()
+        require("dap").clear_breakpoints()
+      end,
+      desc = "Clear all breakpoints",
     },
     {
       "<leader>du",

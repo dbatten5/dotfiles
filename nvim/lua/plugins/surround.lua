@@ -1,6 +1,13 @@
 return {
   "echasnovski/mini.surround",
+  lazy = true,
   version = false,
+  keys = {
+    "gsa",
+    "gsd",
+    "gsr",
+    "gsh",
+  },
   opts = {
     mappings = {
       add = "gsa", -- Add surrounding in Normal and Visual modes

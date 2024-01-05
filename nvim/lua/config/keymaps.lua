@@ -10,7 +10,6 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
-map("n", "<leader>ev", "<cmd>vnew $NVIMCONFIG<cr>")
 map("n", "s", "<cmd>update<CR>") -- quick saves
 -- window movement
 map("n", "<c-j>", "<c-w>j")
@@ -28,6 +27,7 @@ map("n", "<space>a", "<cmd>keepjumps normal! ggVG<cr>") -- highlight all text
 -- swap ' and `
 map("n", "'", "`")
 map("n", "`", "'")
+map("n", "&", "#") -- move # (oppsite of *), closer to *
 map("v", "J", ":m '>+1<cr>gv=gv") -- move chunks of text up
 map("v", "K", ":m '<-2<cr>gv=gv") -- move chunks of text down
 -- keeping the cursor in nice places
@@ -44,7 +44,6 @@ map("n", "v", "<c-v>")
 map("n", "<c-v>", "v")
 map("v", "v", "<c-v>")
 map("v", "<c-v>", "v")
--- map('n', '<leader>fc' "/\v^[<\|=>]{7}( .*\|$)<cr>") -- find merge conflicts
 -- swap 0 and ^
 map("n", "0", "^")
 map("n", "^", "0")
