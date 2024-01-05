@@ -27,6 +27,7 @@ map("n", "<space>a", "<cmd>keepjumps normal! ggVG<cr>") -- highlight all text
 -- swap ' and `
 map("n", "'", "`")
 map("n", "`", "'")
+map("n", "&", "#") -- move # (oppsite of *), closer to *
 map("v", "J", ":m '>+1<cr>gv=gv") -- move chunks of text up
 map("v", "K", ":m '<-2<cr>gv=gv") -- move chunks of text down
 -- keeping the cursor in nice places

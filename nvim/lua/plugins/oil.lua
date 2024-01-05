@@ -19,8 +19,22 @@ return {
       ["<C-x>"] = "actions.select_split",
       ["<C-v>"] = "actions.select_vsplit",
       ["<C-y>"] = "actions.copy_entry_path",
+      ["<C-s-y>"] = {
+        callback = function()
+          local oil = require("oil")
+          local entry = oil.get_cursor_entry()
+          local dir = oil.get_current_dir()
+          if not entry or not dir then
+            return
+          end
+          vim.fn.setreg("+", dir .. entry.name)
+        end,
+        desc = "Copy path under cursor to the system clipboard",
+        mode = "n",
+      },
       ["<C-h>"] = false,
       ["<C-l>"] = false,
+      ["~"] = "actions.open_cwd",
       ["__"] = {
         callback = function()
           local path = require("oil").get_current_dir() .. "__init__.py"

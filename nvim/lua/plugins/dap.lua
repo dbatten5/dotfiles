@@ -79,6 +79,13 @@ return {
       desc = "Finish the debug session",
     },
     {
+      "<leader>dC",
+      function()
+        require("dap").clear_breakpoints()
+      end,
+      desc = "Clear all breakpoints",
+    },
+    {
       "<leader>du",
       function()
         require("dapui").toggle()

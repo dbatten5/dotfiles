@@ -3,6 +3,7 @@ local function replace_whitespace(str)
 end
 
 return {
+  -- function
   s(
     "f",
     fmt(
@@ -17,8 +18,62 @@ return {
       }
     )
   ),
+
+  -- test  function
   s(
-    "pry",
-    t("breakpoint()")
+    "test",
+    fmt(
+      [[
+    def test_{}({}{}):
+        """{}"""
+        {}
+    ]],
+      {
+        i(1),
+        i(2, "self"),
+        i(3),
+        i(4),
+        i(5),
+      }
+    )
+  ),
+
+  s("pry", t("breakpoint()")),
+
+  s("s", t("self.")),
+
+  -- class
+  s(
+    "class",
+    fmt(
+      [[
+    class {}:
+        """{}"""
+        
+        def __init__(self, {}):
+            {}
+    ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(4),
+      }
+    )
+  ),
+
+  -- test class
+  s(
+    "tc",
+    fmt(
+      [[
+    class Test{}:
+        """{}"""
+    ]],
+      {
+        i(1),
+        i(2),
+      }
+    )
   ),
 }

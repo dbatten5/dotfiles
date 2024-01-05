@@ -5,7 +5,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "ahmedkhalf/project.nvim",
-      "ThePrimeagen/harpoon",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     cmd = "Telescope",
@@ -38,6 +37,9 @@ return {
               ["<c-z>"] = actions.delete_buffer,
             },
           },
+          path_display = {
+            truncate = 3,
+          },
         },
         pickers = {
           find_files = {
@@ -51,7 +53,6 @@ return {
       })
       telescope.load_extension("fzf")
       telescope.load_extension("projects")
-      telescope.load_extension("harpoon")
     end,
   },
 
