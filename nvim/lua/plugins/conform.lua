@@ -19,23 +19,33 @@ return {
       zsh = { "shfmt" },
       bash = { "shfmt" },
       sh = { "shfmt" },
+      ["*"] = { "trim_whitespace", "codespell" },
     },
     format_on_save = function(bufnr)
       -- Enable autoformat on certain filetypes
       local for_filetypes = { "lua" }
-      if not vim.tbl_contains(for_filetypes, vim.bo[bufnr].filetype) then
-        return
-      end
+
+      local always_format_on_save = { "trim_whitespace", "codespell" }
+      local out = { timeout_ms = 500, lsp_fallback = true, formatters = always_format_on_save }
+
       -- Disable with a global or buffer-local variable
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-        return
+        return -- none at all
       end
+
       -- Disable autoformat for files in a certain path
       local bufname = vim.api.nvim_buf_get_name(bufnr)
       if bufname:match("/node_modules/") then
-        return
+        return -- none at all
       end
-      return { timeout_ms = 500, lsp_fallback = true }
+
+      if not vim.tbl_contains(for_filetypes, vim.bo[bufnr].filetype) then
+        return out -- just the always_format
+      end
+
+      -- if we got here then we should enable auto_format for any enabled formatters
+      out["formatters"] = nil -- remove explicit list of formatters to enable all formatters
+      return out
     end,
   },
 }

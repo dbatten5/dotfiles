@@ -2,7 +2,6 @@
 -- General Neovim settings and configuration
 -----------------------------------------------------------
 
-local g = vim.g
 local fn = vim.fn
 local opt = vim.opt
 
@@ -16,6 +15,7 @@ opt.hidden = true
 opt.wrap = true
 opt.linebreak = true
 opt.exrc = true
+vim.opt.textwidth = 80
 
 -- Indentation
 opt.shiftwidth = 2
@@ -65,3 +65,8 @@ opt.wildignore = [[
 *.swp,.lock,.DS_Store,._*
 */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
 ]]
+
+-- Speling
+vim.cmd("iabbrev adn and")
+vim.cmd("iabbrev teh the")
+vim.cmd("iabbrev hte the")
