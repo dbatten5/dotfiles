@@ -22,12 +22,6 @@ return {
       ["*"] = { "trim_whitespace", "codespell" },
     },
     format_on_save = function(bufnr)
-      -- Enable autoformat on certain filetypes
-      local for_filetypes = { "lua" }
-
-      local always_format_on_save = { "trim_whitespace", "codespell" }
-      local out = { timeout_ms = 500, lsp_fallback = true, formatters = always_format_on_save }
-
       -- Disable with a global or buffer-local variable
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return -- none at all
@@ -39,8 +33,16 @@ return {
         return -- none at all
       end
 
+      -- always run the following formatters on save
+      local always_format_on_save = { "trim_whitespace", "codespell" }
+
+      local out = { timeout_ms = 500, lsp_fallback = true, formatters = always_format_on_save }
+
+      -- Enable autoformat on certain filetypes
+      local for_filetypes = { "lua" }
+
       if not vim.tbl_contains(for_filetypes, vim.bo[bufnr].filetype) then
-        return out -- just the always_format
+        return out -- just the always_format_on_save
       end
 
       -- if we got here then we should enable auto_format for any enabled formatters

@@ -29,6 +29,25 @@ return {
       ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
     }
 
+    vim.diagnostic.config({
+      signs = true,
+      float = {
+        border = "rounded",
+      },
+    })
+
+    opts.desc = "Show buffer diagnostics"
+    map.set("n", "<space>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+
+    opts.desc = "Show line diagnostics"
+    map.set("n", "<space>d", vim.diagnostic.open_float, opts)
+
+    opts.desc = "Go to previous diagnostic"
+    map.set("n", "[d", vim.diagnostic.goto_prev, opts)
+
+    opts.desc = "Go to next diagnostic"
+    map.set("n", "]d", vim.diagnostic.goto_next, opts)
+
     local on_attach = function(client, bufnr)
       client.server_capabilities.semanticTokensProvider = nil
       opts.buffer = bufnr
@@ -53,18 +72,6 @@ return {
 
       opts.desc = "Smart rename"
       map.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-
-      opts.desc = "Show buffer diagnostics"
-      map.set("n", "<space>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
-
-      opts.desc = "Show line diagnostics"
-      map.set("n", "<space>d", vim.diagnostic.open_float, opts)
-
-      opts.desc = "Go to previous diagnostic"
-      map.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-      opts.desc = "Go to next diagnostic"
-      map.set("n", "]d", vim.diagnostic.goto_next, opts)
 
       opts.desc = "Show documentation for what is under cursor"
       map.set("n", "K", vim.lsp.buf.hover, opts)
