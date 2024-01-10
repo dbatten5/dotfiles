@@ -1,0 +1,4 @@
+# vim: set filetype=zsh :
+
+# rebase latest commit
+git rebase -i HEAD~"${1:-1}"

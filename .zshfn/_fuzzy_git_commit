@@ -1,0 +1,8 @@
+# vim: set filetype=zsh :
+
+# fzf a commit from git log
+files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
+preview="echo {} | grep -Eo '[a-f0-9]+' | head -1 | xargs -I% git show --color=always % -- $files"
+git log -n "${1:-20}" --oneline \
+  | fzf --preview="$preview" \
+  | cut -d' ' -f 1

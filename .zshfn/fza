@@ -1,0 +1,6 @@
+# vim: set filetype=zsh :
+
+# fzf an alias and paste to command-line
+local sel
+sel="$(alias | fzf | cut -d= -f1)"
+[[ -n "$sel" ]] && print -z -- "$sel"

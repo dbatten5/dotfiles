@@ -1,0 +1,14 @@
+\.git
+\.gitignore
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+bootstrap\.sh
+\.config/nvim\.old
+
+scripts
+vim
+zsh
+\.DS_Store

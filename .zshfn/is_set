@@ -1,0 +1,6 @@
+# vim: set filetype=zsh :
+
+# check if option is set
+[[ -o $1 ]] \
+    && echo "${fg[green]}$1 is set${reset_color%}" \
+    || echo "${fg[red]}$1 is not set${reset_color%}"

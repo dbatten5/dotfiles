@@ -1,0 +1,6 @@
+# vim: set filetype=zsh :
+#
+# fzf a commit to show
+local commit
+commit=$(_fuzzy_git_commit)
+[[ -n "$commit" ]] && git show "$commit"
