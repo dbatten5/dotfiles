@@ -53,3 +53,7 @@ map("n", "<space>P>", '"0P')
 map("n", "Q", "@q") -- i don't use ex mode
 -- map('i', '<c-i>' '<c-g>u<Esc>[s1z=`]a<c-g>u') -- correct spelling
 map("n", "<space>o", "<cmd>!open .<cr>") -- open file in finder
+-- quickfix
+map("n", "<leader>qf", "<cmd>copen<cr>")
+map("n", "<leader>qo", "<cmd>colder<cr>")
+map("n", "<leader>qn", "<cmd>cnewer<cr>")

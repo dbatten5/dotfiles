@@ -15,10 +15,19 @@ return {
       end,
     },
     keymaps = {
+      -- disable some builtin maps
+      ["<C-h>"] = false,
+      ["<C-s>"] = false,
+      ["<C-l>"] = false,
+      ["<C-t>"] = false,
+      ["_"] = false,
+      -- set some new builtin maps
       ["<C-r>"] = "actions.refresh",
       ["<C-x>"] = "actions.select_split",
       ["<C-v>"] = "actions.select_vsplit",
       ["<C-y>"] = "actions.copy_entry_path",
+      ["~"] = "actions.open_cwd",
+      -- custom maps
       ["<C-s-y>"] = {
         callback = function()
           local oil = require("oil")
@@ -32,21 +41,33 @@ return {
         desc = "Copy path under cursor to the system clipboard",
         mode = "n",
       },
-      ["<C-h>"] = false,
-      ["<C-l>"] = false,
-      ["~"] = "actions.open_cwd",
-      ["<c-`>"] = {
+      ["gh"] = {
         callback = function()
           require("oil").open("~")
         end,
         desc = "Open home directory",
+        mode = "n",
+      },
+      ["gp"] = {
+        callback = function()
+          require("oil").open("~/projects")
+        end,
+        desc = "Open projects directory",
+        mode = "n",
+      },
+      ["gd"] = {
+        callback = function()
+          require("oil").open("~/Downloads")
+        end,
+        desc = "Open downloads directory",
+        mode = "n",
       },
       ["__"] = {
         callback = function()
           local path = require("oil").get_current_dir() .. "__init__.py"
           local file = io.open(path, "r")
           if file then
-            print("__init__.py already exists - not overwriting")
+            vim.notify("__init__.py already exists - not overwriting", vim.log.levels.WARN)
             file:close()
           else
             local new_file = io.open(path, "w")

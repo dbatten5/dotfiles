@@ -32,4 +32,7 @@ require("lazy").setup({
     notify = true, -- get a notification when changes are found
   },
   debug = false,
+  ui = {
+    border = "rounded",
+  },
 })
