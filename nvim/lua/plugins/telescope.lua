@@ -22,6 +22,24 @@ return {
         end,
         desc = "Word search",
       },
+      {
+        "<space>fd",
+        function()
+          local cwd = require("telescope.utils").buffer_dir()
+          if vim.bo.filetype == "oil" then
+            local oil_cwd = require("oil").get_current_dir()
+            if oil_cwd then
+              cwd = oil_cwd
+            end
+          end
+          local opts = {
+            cwd = cwd,
+            prompt_title = "Find string relative to " .. require("utils.functions").truncateFilepath(cwd),
+          }
+          require("telescope.builtin").live_grep(opts)
+        end,
+        desc = "Word search from current buffer (or Oil explorer)",
+      },
       { "<space>f;", "<cmd>Telescope command_history<cr>", desc = "Command history" },
       { "<space>fb", "<cmd>Telescope git_branches<cr>", desc = "Git branches" },
     },

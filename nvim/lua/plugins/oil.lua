@@ -35,6 +35,12 @@ return {
       ["<C-h>"] = false,
       ["<C-l>"] = false,
       ["~"] = "actions.open_cwd",
+      ["<c-`>"] = {
+        callback = function()
+          require("oil").open("~")
+        end,
+        desc = "Open home directory",
+      },
       ["__"] = {
         callback = function()
           local path = require("oil").get_current_dir() .. "__init__.py"
