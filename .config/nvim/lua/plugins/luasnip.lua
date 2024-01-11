@@ -30,17 +30,17 @@ return {
       desc = "Jump back in snippet",
       silent = true,
     },
-    {
-      "<c-l>",
-      function()
-        local ls = require("luasnip")
-        if ls.choice_active() then
-          ls.change_choice(1)
-        end
-      end,
-      desc = "Select snippet choice",
-      mode = "i",
-    },
+    -- {
+    --   "<c-l>",
+    --   function()
+    --     local ls = require("luasnip")
+    --     if ls.choice_active() then
+    --       ls.change_choice(1)
+    --     end
+    --   end,
+    --   desc = "Select snippet choice",
+    --   mode = "i",
+    -- },
     {
       "<leader><leader>s",
       "<cmd>source ~/.config/nvim/lua/plugins/luasnip.lua<cr>",

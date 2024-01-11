@@ -57,3 +57,6 @@ map("n", "<space>o", "<cmd>!open .<cr>") -- open file in finder
 map("n", "<leader>qf", "<cmd>copen<cr>")
 map("n", "<leader>qo", "<cmd>colder<cr>")
 map("n", "<leader>qn", "<cmd>cnewer<cr>")
+-- insert mode movement
+map("i", "<c-l>", "<right>")
+map("i", "<c-h>", "<left>")
