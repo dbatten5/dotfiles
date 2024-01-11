@@ -1,0 +1,7 @@
+# vim: set filetype=zsh :
+
+# ssh into a host. like normal ssh with arguments, displays a fzf prompt without
+[[ $# -gt 0 ]] && command ssh "$@" && return
+local host
+host=$(rg "Host (\w+)" ~/.ssh/config -r '$1' | fzf --prompt="SSH Remote > ")
+[[ -n "$host" ]] && command ssh "$host"

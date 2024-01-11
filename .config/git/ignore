@@ -1,0 +1,4 @@
+.DS_Store
+.nvim.lua
+.nvimrc
+.dmypy.json

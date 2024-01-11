@@ -1,0 +1,5 @@
+# vim: set filetype=zsh :
+
+local commit
+commit=$(_fuzzy_git_commit)
+[[ -n "$commit" ]] && git commit --no-verify --fixup "$commit"
