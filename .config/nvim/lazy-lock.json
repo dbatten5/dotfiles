@@ -22,6 +22,7 @@
   "mini.trailspace": { "branch": "main", "commit": "60d0eca6703b55285e33b0da00105cde50d188df" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "77d9f484b88fd380386b46ed9206e5374d69d9d8" },
   "neodev.nvim": { "branch": "main", "commit": "2a8630847dbb93455936156c0689678e4eaee319" },
+  "neogen": { "branch": "main", "commit": "70127baaff25611deaf1a29d801fc054ad9d2dc1" },
   "neogit": { "branch": "nightly", "commit": "6dc089dbf1b3c1cdeaa7c5b113f9733c4fe97c3f" },
   "neotest": { "branch": "master", "commit": "6aa6e4529a4a125b49c48541b97ba146ceee2441" },
   "neotest-python": { "branch": "master", "commit": "86ac2bbc8a4da3f203e56d9303d6ed1d7e50c1f6" },
