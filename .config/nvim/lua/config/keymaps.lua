@@ -2,12 +2,27 @@
 -- Define keymaps of Neovim and installed plugins.
 -----------------------------------------------------------
 
+-- Set a keymap
+--@param mode mode to set the keymaps
+--@param lhs trigger to expand
+--@param rhs mapped operation
+--@param opts optional options
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then
     options = vim.tbl_extend("force", options, opts)
   end
   vim.keymap.set(mode, lhs, rhs, options)
+end
+
+-- Swap a pair of builtin keymaps
+--@param a keymap to swap
+--@param b keymap to swap
+--@param mode mode to set the keymaps, default to normal mode
+local function swap(a, b, mode)
+  mode = mode or "n"
+  map(mode, a, b)
+  map(mode, b, a)
 end
 
 map("n", "s", "<cmd>update<CR>") -- quick saves
@@ -25,8 +40,7 @@ map("i", "<c-v>", '"+p')
 -- map({'n', 'x'}, 'X', '"_d')
 map("n", "<space>a", "<cmd>keepjumps normal! ggVG<cr>") -- highlight all text
 -- swap ' and `
-map("n", "'", "`")
-map("n", "`", "'")
+swap("'", "`")
 map("n", "&", "#") -- move # (oppsite of *), closer to *
 map("v", "J", ":m '>+1<cr>gv=gv") -- move chunks of text up
 map("v", "K", ":m '<-2<cr>gv=gv") -- move chunks of text down
@@ -40,19 +54,16 @@ map("n", "<c-u>", "<c-u>zz")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 -- swap v and ctrl-v as visual block mode is more useful
-map("n", "v", "<c-v>")
-map("n", "<c-v>", "v")
-map("v", "v", "<c-v>")
-map("v", "<c-v>", "v")
+swap("v", "<c-v>")
+swap("v", "<c-v>", "v")
 -- swap 0 and ^
-map("n", "0", "^")
-map("n", "^", "0")
+swap("0", "^")
 -- paste last yanked item
 map("n", "<space>p>", '"0p')
 map("n", "<space>P>", '"0P')
-map("n", "Q", "@q") -- i don't use ex mode
--- map('i', '<c-i>' '<c-g>u<Esc>[s1z=`]a<c-g>u') -- correct spelling
-map("n", "<space>o", "<cmd>!open .<cr>") -- open file in finder
+map("n", "Q", "@q") -- run macro for q register on big Q (I don't use ex mode)
+map("n", "<space>O", "<cmd>!open .<cr>") -- open cwd in finder
+map("n", "<space>o", "<cmd>!open %:h<cr>") -- open directory of current file in finder
 -- quickfix
 map("n", "<leader>qf", "<cmd>copen<cr>")
 map("n", "<leader>qo", "<cmd>colder<cr>")

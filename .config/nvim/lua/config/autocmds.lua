@@ -11,11 +11,12 @@ api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- Enable spell checking for certain file types
-api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.txt", "*.md", "*.tex", "*.typ" },
+-- set spelling utils for certain filetypes
+api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "markdown", "text", "latex", "NeogitCommitMessage" },
   callback = function()
     vim.opt.spell = true
-    vim.opt.spelllang = "en"
+    vim.opt.spelllang = "en_gb"
+    vim.keymap.set("i", "<c-i>", "<c-g>u<Esc>[s1z=`]a<c-g>u") -- correct spelling mistakes on the fly
   end,
 })

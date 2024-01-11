@@ -1,18 +1,19 @@
 local M = {}
 
--- trunacate a filepath to a specified number of parts
+-- Truncate a filepath to a specified number of parts
+--@param filepath the filepath to truncate
+--@param numParts the number of parts to keep from the end of the filepath
+--@return a joined string of the truncated filepath
 M.truncateFilepath = function(filepath, numParts)
   numParts = numParts or 3 -- Set default value to 3 if not provided
   local paths = {}
 
-  -- Split the filepath into individual paths
   for path in filepath:gmatch("[^/]+") do
     table.insert(paths, path)
   end
 
   local numPaths = #paths
 
-  -- Get the specified number of paths from the end
   local lastPaths = {}
   if numPaths >= numParts then
     for i = numPaths - numParts + 1, numPaths do
@@ -22,13 +23,12 @@ M.truncateFilepath = function(filepath, numParts)
     lastPaths = paths
   end
 
-  -- Join the last paths into a string using slashes
-  local truncatedFilepath = table.concat(lastPaths, "/")
-
-  return ".../" .. truncatedFilepath .. "/"
+  return ".../" .. table.concat(lastPaths, "/") .. "/"
 end
 
--- prompt for a yes or no answer and run the callback if yes
+-- Prompt for a yes or no answer and run the callback if yes
+--@param message the message to display in the prompt
+--@param callback the call to run if the user selects yes
 M.promptYesNo = function(message, callback)
   local choice = vim.fn.confirm(message, "&Yes\n&No", 2)
 
@@ -37,8 +37,9 @@ M.promptYesNo = function(message, callback)
   end
 end
 
--- create a new plugin config file from a github url
-M.newPlugin = function(pluginUrl)
+-- Create a a new lazy.nvim plugin config file from a github url
+--@param pluginUrl the github url of the plugin
+M.createNewPluginConfig = function(pluginUrl)
   local _, _, pluginAuthor, pluginName = pluginUrl:find("([^/]+)/([^/]+)$")
 
   local strippedPluginName = pluginName:match("^(.-)%.")
