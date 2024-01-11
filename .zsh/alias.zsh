@@ -3,7 +3,6 @@ alias ez='vim ~/.zshrc'
 alias sz='source ~/.zshrc'
 alias config='nvim ~/.config'
 
-# GENERAL {{{1
 # copy public key to clipboard
 alias pubkey='clipcopy "$(cat ~/.ssh/id_rsa.pub)" && echo "=> Public key copied to clipboard."'
 # copy last command to clipboard
@@ -12,14 +11,11 @@ alias clc='clipcopy "$(fc -ln -1)" && echo "=> Last command copied to clipboard.
 alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
 alias o='open'
 
-# VIM {{{1
 alias v="nvim ."
 alias vim="nvim"
 
-# GIT {{{1
+# git
 alias gbd='git branch --merged | egrep -v "(^\*|master|main|dev|staging|develop)" | xargs git branch -d'
-
-# Common commands
 alias gco='git checkout'
 alias gst='git status'
 alias blame='git blame'
@@ -45,17 +41,17 @@ alias grbas='git rebase --autosquash -i \`\$(git rev-list $(git_main_branch).. |
 # Remove branches that don't exist on remote, prune all unreachable objects
 alias gprune='git fetch --prune --prune-tags && git prune'
 
-# PYTHON {{{1
+# python
 alias c='conda'
 alias dj='python manage.py'
 
-# KUBERNETES {{{1
+# k8s
 alias kex='kubectl explain'
 alias kcns='kubectl config view --minify --output "jsonpath={..namespace}"'
 alias -g KAN='--all-namespaces'
 alias -g KDR='--dry-run=client -o yaml'
 
-# DOCKER {{{1
+# docker
 alias d='docker'
 alias dc='docker compose'
 alias drma='docker container rm $(docker ps -aq) -f'
@@ -68,6 +64,7 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 
+# display
 alias lsa='ls -lah'
 alias l='ls -lah'
 alias ll='ls -lh --color'
