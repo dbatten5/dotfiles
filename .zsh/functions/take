@@ -1,5 +1,3 @@
 # vim: set filetype=zsh :
 
-function take() {
-	mkdir -p $@ && cd ${@:$#}
-}
+mkdir -p $@ && cd ${@:$#}

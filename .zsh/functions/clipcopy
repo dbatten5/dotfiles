@@ -1,6 +1,4 @@
 # vim: set filetype=zsh :
 
 # copy to clipboard
-function clipcopy() {
-    echo -n "$*" | pbcopy
-}
+echo -n "$*" | pbcopy

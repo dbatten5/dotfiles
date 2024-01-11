@@ -31,23 +31,30 @@ end
 --@param callback the call to run if the user selects yes
 M.promptYesNo = function(message, callback)
   local choice = vim.fn.confirm(message, "&Yes\n&No", 2)
-
   if choice == 1 then
     callback()
   end
 end
 
--- Create a a new lazy.nvim plugin config file from a github url
---@param pluginUrl the github url of the plugin
-M.createNewPluginConfig = function(pluginUrl)
+-- Return the author and plugin name from a plugin github url
+--@param pluginUrl the full github url of the plugin
+--@return the author and plugin name
+M.parsePluginUrl = function(pluginUrl)
   local _, _, pluginAuthor, pluginName = pluginUrl:find("([^/]+)/([^/]+)$")
+  return pluginAuthor, pluginName
+end
 
+-- Create a new lazy.nvim plugin config file for a plugin
+--@param pluginAuthor the plugin author
+--@param pluginName the plugin name
+--@returns the path to the new plugin config file
+M.createNewPluginConfig = function(pluginAuthor, pluginName)
   local strippedPluginName = pluginName:match("^(.-)%.")
   local cleanedName = strippedPluginName or pluginName
 
-  local pluginPath = os.getenv("HOME") .. "/.config/nvim/lua/plugins/" .. cleanedName .. ".lua"
+  local configPath = os.getenv("HOME") .. "/.config/nvim/lua/plugins/" .. cleanedName .. ".lua"
 
-  local pluginConfigFile = io.open(pluginPath, "r")
+  local pluginConfigFile = io.open(configPath, "r")
   if pluginConfigFile then
     vim.notify("Config for " .. pluginName .. " already exists - not overwriting", vim.log.levels.WARN)
     pluginConfigFile:close()
@@ -59,7 +66,7 @@ return {
   "]] .. pluginAuthor .. "/" .. pluginName .. [[",
 }]]
 
-  local newPluginConfigFile, err = io.open(pluginPath, "w")
+  local newPluginConfigFile, err = io.open(configPath, "w")
 
   if not newPluginConfigFile then
     vim.notify("Error creating config file: " .. err, vim.log.levels.WARN)
@@ -69,11 +76,7 @@ return {
   newPluginConfigFile:write(template)
   newPluginConfigFile:close()
 
-  vim.notify("Successfully created config file for " .. pluginName, vim.log.levels.INFO)
-
-  M.promptYesNo("Do you want to open the config file?", function()
-    vim.cmd("edit " .. pluginPath)
-  end)
+  return configPath
 end
 
 return M
