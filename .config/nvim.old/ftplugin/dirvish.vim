@@ -1,9 +1,0 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BASIC KEY MAPPINGS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <buffer> I :call CreateDirectory()<CR>
-nnoremap <silent> <buffer> i :call CreateFile()<CR>
-nmap <silent> <buffer> cc :call RenameItemUnderCursor()<CR>
-nnoremap <silent> <buffer> dd :call DeleteItemUnderCursor()<CR>
-nnoremap <silent> <buffer> __ :call CreateInitPy()<CR>
-nnoremap <silent> <buffer> - <Plug>(dirvish_up)

@@ -12,3 +12,4 @@ scripts
 vim
 zsh
 \.DS_Store
+\.stowrc

@@ -109,3 +109,4 @@ noremap <space>P "0P
 
 " Quicker saves
 nnoremap <silent> s :update<cr>
+

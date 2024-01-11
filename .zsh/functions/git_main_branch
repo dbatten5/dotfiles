@@ -1,0 +1,8 @@
+# vim: set filetype=zsh :
+
+git branch 2> /dev/null \
+| grep -o -m 1 \
+  -e ' main$' \
+  -e ' master$' \
+| xargs \
+|| return

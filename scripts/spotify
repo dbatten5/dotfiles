@@ -1,28 +1,12 @@
 #!/usr/bin/env osascript
 
-on run argv
+on run
 
-  set msg to "Use the following commands:\n"
-  set msg to msg & "  yt                              - Open current track in youtube search\n"
-
-  if count of argv is equal to 0 then
-    return msg
-  end if
-
-  set command to item 1 of argv
-
-  -- Open in youtube
-  if command is equal to "yt" then
-    tell application "Spotify"
-      set currentTrack to name of current track
-      set currentArtist to artist of current track
-    end tell
-    set query to currentArtist & " " & currentTrack
-    do shell script "open 'https://www.youtube.com/results?search_query='" & quoted form of query
-
-  else
-    log "\nCommand not recognized!\n"
-    return msg
-  end if
+  tell application "Spotify"
+    set currentTrack to name of current track
+    set currentArtist to artist of current track
+  end tell
+  set query to currentArtist & " " & currentTrack
+  do shell script "open 'https://www.youtube.com/results?search_query='" & quoted form of query
 
 end run

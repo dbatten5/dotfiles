@@ -1,7 +1,1 @@
-.DS_Store
-nvim/backups
-nvim/plugged
-nvim/.netrwhist
-nvim/spell
-zsh/private
-nvim/venv
+.zsh/private.zsh
