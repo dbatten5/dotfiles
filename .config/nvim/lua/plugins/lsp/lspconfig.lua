@@ -127,7 +127,7 @@ return {
             ruff = { enabled = false },
             flake8 = { enabled = false },
             pylsp_mypy = {
-              enabled = true,
+              enabled = vim.g.pylsp_mypy_enabled or false,
               dmypy = true,
               live_mode = false,
               strict = false,

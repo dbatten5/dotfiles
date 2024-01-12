@@ -1,13 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
-  opts = {
-    linters_by_ft = {
-      python = { "ruff", "flake8" },
-      zsh = { "shellcheck" },
-      bash = { "shellcheck" },
-      sh = { "shellcheck" },
-    },
-  },
+  event = { "BufWritePost", "BufEnter" },
   init = function()
     vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
       callback = function()
@@ -15,7 +8,15 @@ return {
       end,
     })
   end,
-  config = function(_, opts)
-    require("lint").linters_by_ft = opts["linters_by_ft"]
+  config = function()
+    local default_linters = {
+      python = { "ruff", "mypy" },
+      zsh = { "shellcheck" },
+      bash = { "shellcheck" },
+      sh = { "shellcheck" },
+    }
+    local override_linters = vim.g.linters_by_ft or {}
+
+    require("lint").linters_by_ft = vim.tbl_extend("force", default_linters, override_linters)
   end,
 }

@@ -1,5 +1,6 @@
 return {
   "williamboman/mason.nvim",
+  event = { "BufWritePost", "BufEnter" },
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "nvim-lua/plenary.nvim",
@@ -9,16 +10,6 @@ return {
     local mason_lspconfig = require("mason-lspconfig")
 
     mason.setup({
-      ensure_installed = {
-        "black",
-        "debugpy",
-        "black",
-        "mypy",
-        "ruff",
-        "shellcheck",
-        "shfmt",
-        "stylua",
-      },
       ui = {
         border = "rounded",
       },

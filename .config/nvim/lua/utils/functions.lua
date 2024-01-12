@@ -52,9 +52,9 @@ M.createNewPluginConfig = function(pluginAuthor, pluginName)
   local strippedPluginName = pluginName:match("^(.-)%.")
   local cleanedName = strippedPluginName or pluginName
 
-  local configPath = os.getenv("HOME") .. "/.config/nvim/lua/plugins/" .. cleanedName .. ".lua"
+  local pluginConfigPath = os.getenv("HOME") .. "/.config/nvim/lua/plugins/" .. cleanedName .. ".lua"
 
-  local pluginConfigFile = io.open(configPath, "r")
+  local pluginConfigFile = io.open(pluginConfigPath, "r")
   if pluginConfigFile then
     vim.notify("Config for " .. pluginName .. " already exists - not overwriting", vim.log.levels.WARN)
     pluginConfigFile:close()
@@ -66,7 +66,7 @@ return {
   "]] .. pluginAuthor .. "/" .. pluginName .. [[",
 }]]
 
-  local newPluginConfigFile, err = io.open(configPath, "w")
+  local newPluginConfigFile, err = io.open(pluginConfigPath, "w")
 
   if not newPluginConfigFile then
     vim.notify("Error creating config file: " .. err, vim.log.levels.WARN)
@@ -76,7 +76,7 @@ return {
   newPluginConfigFile:write(template)
   newPluginConfigFile:close()
 
-  return configPath
+  return pluginConfigPath
 end
 
 return M

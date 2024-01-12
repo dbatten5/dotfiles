@@ -66,7 +66,7 @@ opt.wildignore = [[
 */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
 ]]
 
--- Speling
-vim.cmd("iabbrev adn and")
-vim.cmd("iabbrev teh the")
-vim.cmd("iabbrev hte the")
+-- Spelling
+vim.cmd("iabbrev and and")
+vim.cmd("iabbrev the the")
+vim.cmd("iabbrev the the")
