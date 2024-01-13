@@ -1,0 +1,71 @@
+{
+  "neodev": {
+    "library": {
+      "enabled": true,
+      "plugins": ["nvim-lspconfig", "lsp"]
+    }
+  },
+
+  "neoconf": {
+    "plugins": {
+      "lspconfig": {
+        "enabled": true
+      },
+      "lua_ls": {
+        "enabled": true
+      }
+    }
+  },
+
+  "lspconfig": {
+    "lua_ls": {
+      "Lua.diagnostics.globals": [
+        "vim",
+        // below for luasnip
+        "s",
+        "fmt",
+        "i",
+        "f",
+        "t"
+      ]
+    },
+
+    "pylsp": {
+      "pylsp": {
+        "plugins": {
+          "black": {
+            "enabled": false
+          },
+          "flake8": {
+            "enabled": false
+          },
+          "ruff": {
+            "enabled": false
+          },
+          "pylsp_mypy": {
+            "enabled": false
+          },
+          "pydocstyle": {
+            "enabled": false
+          },
+          "pycodestyle": {
+            "enabled": false
+          },
+          "pyflakes": {
+            "enabled": false
+          }
+        }
+      }
+    }
+
+    // "pyright": {
+    //   "python": {
+    //     "typeCheckingMode": "off",
+    //     "useLibraryCodeForTypes": false,
+    //     "venvPath": "",
+    //     "autoImportCompletions": true,
+    //     "autoSearchPaths": true
+    //   }
+    // }
+  }
+}

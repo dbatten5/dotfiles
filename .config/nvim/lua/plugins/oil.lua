@@ -62,6 +62,13 @@ return {
         desc = "Open downloads directory",
         mode = "n",
       },
+      ["gn"] = {
+        callback = function()
+          require("oil").open("~/.config/nvim")
+        end,
+        desc = "Open nvim config directory",
+        mode = "n",
+      },
       ["__"] = {
         callback = function()
           local path = require("oil").get_current_dir() .. "__init__.py"

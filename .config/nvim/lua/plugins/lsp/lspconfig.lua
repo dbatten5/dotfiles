@@ -16,6 +16,10 @@ return {
         })
       end,
     },
+    {
+      "folke/neoconf.nvim",
+      config = true,
+    },
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -120,46 +124,12 @@ return {
         }
         return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
       end,
-      settings = {
-        pylsp = {
-          plugins = {
-            black = { enabled = false },
-            ruff = { enabled = false },
-            flake8 = { enabled = false },
-            pylsp_mypy = {
-              enabled = vim.g.pylsp_mypy_enabled or false,
-              dmypy = true,
-              live_mode = false,
-              strict = false,
-              -- overrides = { "--cache-dir", "/dev/null", true },
-            },
-            pydocstype = { enabled = false },
-            pycodestyle = { enabled = false },
-            pyflakes = { enabled = false },
-          },
-        },
-      },
     })
 
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
       handlers = handlers,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = {
-              "vim",
-              -- below for luasnip
-              "s",
-              "fmt",
-              "i",
-              "f",
-              "t",
-            },
-          },
-        },
-      },
     })
   end,
 }

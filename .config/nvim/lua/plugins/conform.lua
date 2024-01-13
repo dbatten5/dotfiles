@@ -19,6 +19,8 @@ return {
       zsh = { "shfmt" },
       bash = { "shfmt" },
       sh = { "shfmt" },
+      json = { "prettier" },
+      jsonc = { "prettier" },
       ["*"] = { "trim_whitespace", "codespell" },
     },
     format_on_save = function(bufnr)
@@ -39,7 +41,7 @@ return {
       local out = { timeout_ms = 500, lsp_fallback = true, formatters = always_format_on_save }
 
       -- Enable autoformat on certain filetypes
-      local for_filetypes = { "lua" }
+      local for_filetypes = { "lua", "json", "jsonc" }
 
       if not vim.tbl_contains(for_filetypes, vim.bo[bufnr].filetype) then
         return out -- just the always_format_on_save

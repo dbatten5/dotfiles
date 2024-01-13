@@ -2,3 +2,4 @@
 .nvim.lua
 .nvimrc
 .dmypy.json
+.neoconf.json
