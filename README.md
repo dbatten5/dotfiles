@@ -1,6 +1,6 @@
 # dotfiles
 
-Here are the configuration files for the various tools I use along with a bunch 
+Here are the configuration files for the various tools I use along with a bunch
 of custom scripts and shell helper functions to reduce repetitive tasks.
 
 ## bootstrap.sh
@@ -14,24 +14,16 @@ else's setup in its entirety.
 The script should do roughly the following:
 
 1. Install some useful packages & casks via brew.
-2. Install `oh-my-zsh`.
-3. Symlink a bunch of config files found in this repo to the relevant places.
-4. Install some useful python packages.
-5. Configure some OSX settings.
+2. Symlink a bunch of config files found in this repo to the relevant places.
+3. Install some useful python packages.
+4. Configure some OSX settings.
 
 ## zsh
 
-I've leveraged the `oh-my-zsh` custom directory pattern and split out my
-`functions`, `aliases`, `exports` etc. into separate `.zsh` files in
-`zsh/custom`.
-
-The `alias.zsh`, `export.zsh` and `keybind.zsh` files are largely
-self-documenting.
+Functions in the `.zsh/functions` directory are autoloaded (lazy loaded) into
+the shell. Other `.zsh` files in the `.zsh` directory are directly sourced.
 
 ### functions
-
-The majority of the functions defined in `zsh/custom/function.zsh` are powered
-by `fzf` and are focused on the following topics:
 
 #### general
 
@@ -91,6 +83,7 @@ by `fzf` and are focused on the following topics:
 |kscaleup|scale up all deployments and stateful sets in the current namespace|
 
 #### helm
+
 |name|description|
 |---|---|
 |hun|uninstall a chart|
@@ -107,8 +100,6 @@ To get up and running with a minimal vimrc:
 ```bash
 vimrc="${HOME:-~}/.vimrc"
 [[ ! -f $vimrc ]] \
-  && curl https://raw.githubusercontent.com/dbatten5/dotfiles/main/vim/base_vimrc -o "$vimrc" \
+  && curl https://raw.githubusercontent.com/dbatten5/dotfiles/main/.vimrc -o "$vimrc" \
   || echo ".vimrc already exists, not overwriting..."
 ```
-
-More coming soon...

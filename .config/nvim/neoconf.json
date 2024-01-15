@@ -1,71 +1,36 @@
 {
   "neodev": {
     "library": {
-      "enabled": true,
-      "plugins": ["nvim-lspconfig", "lsp"]
-    }
-  },
-
-  "neoconf": {
-    "plugins": {
-      "lspconfig": {
-        "enabled": true
-      },
-      "lua_ls": {
-        "enabled": true
-      }
+      "enabled": true
     }
   },
 
   "lspconfig": {
     "lua_ls": {
-      "Lua.diagnostics.globals": [
-        "vim",
-        // below for luasnip
-        "s",
-        "fmt",
-        "i",
-        "f",
-        "t"
-      ]
+      "Lua": {
+        "diagnostics.globals": [
+          "vim",
+          // below for luasnip
+          "s",
+          "fmt",
+          "i",
+          "f",
+          "t"
+        ],
+        "runtime": {
+          "version": "LuaJIT"
+        }
+      }
     },
 
     "pylsp": {
-      "pylsp": {
-        "plugins": {
-          "black": {
-            "enabled": false
-          },
-          "flake8": {
-            "enabled": false
-          },
-          "ruff": {
-            "enabled": false
-          },
-          "pylsp_mypy": {
-            "enabled": false
-          },
-          "pydocstyle": {
-            "enabled": false
-          },
-          "pycodestyle": {
-            "enabled": false
-          },
-          "pyflakes": {
-            "enabled": false
-          }
-        }
-      }
+      "pylsp.plugins.pylsp_mypy.enabled": false,
+      "pylsp.plugins.black.enabled": false,
+      "pylsp.plugins.flake8.enabled": false,
+      "pylsp.plugins.ruff.enabled": false,
+      "pylsp.plugins.pydocstyle.enabled": false,
+      "pylsp.plugins.pycodestyle.enabled": false,
+      "pylsp.plugins.pyflakes.enabled": false
     }
-
-    // "pyright": {
-    //   "python": {
-    //     "typeCheckingMode": "off",
-    //     "useLibraryCodeForTypes": false,
-    //     "venvPath": "",
-    //     "autoImportCompletions": true,
-    //     "autoSearchPaths": true
-    //   }
-    // }
   }
 }

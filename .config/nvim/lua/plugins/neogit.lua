@@ -19,11 +19,9 @@ return {
     {
       "<space>g",
       function()
-        local opts = {}
-        local cwd = vim.g.neogit_root
-        if cwd then
-          opts.cwd = cwd
-        end
+        local opts = {
+          cwd = vim.g.neogit_root,
+        }
         require("neogit").open(opts)
       end,
       desc = "Open Neogit",

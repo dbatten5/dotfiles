@@ -15,7 +15,7 @@ opt.hidden = true
 opt.wrap = true
 opt.linebreak = true
 opt.exrc = true
-vim.opt.textwidth = 80
+opt.textwidth = 80
 
 -- Indentation
 opt.shiftwidth = 2
@@ -70,3 +70,11 @@ opt.wildignore = [[
 vim.cmd("iabbrev and and")
 vim.cmd("iabbrev the the")
 vim.cmd("iabbrev the the")
+
+-- Diagnostics
+vim.diagnostic.config({
+  signs = true,
+  float = {
+    border = "rounded",
+  },
+})

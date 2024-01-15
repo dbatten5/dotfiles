@@ -7,17 +7,11 @@ return {
     "williamboman/mason-lspconfig.nvim",
     {
       "folke/neodev.nvim",
-      config = function()
-        require("neodev").setup({
-          library = {
-            runtime = false,
-            types = true,
-          },
-        })
-      end,
+      config = true,
     },
     {
       "folke/neoconf.nvim",
+      enabled = true,
       config = true,
     },
   },
@@ -28,29 +22,12 @@ return {
     local map = vim.keymap
     local opts = { noremap = true, silent = true }
 
-    local handlers = {
-      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-    }
-
-    vim.diagnostic.config({
-      signs = true,
-      float = {
-        border = "rounded",
+    lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
+      handlers = {
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
       },
     })
-
-    opts.desc = "Show buffer diagnostics"
-    map.set("n", "<space>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
-
-    opts.desc = "Show line diagnostics"
-    map.set("n", "<space>d", vim.diagnostic.open_float, opts)
-
-    opts.desc = "Go to previous diagnostic"
-    map.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-    opts.desc = "Go to next diagnostic"
-    map.set("n", "]d", vim.diagnostic.goto_next, opts)
 
     local on_attach = function(client, bufnr)
       client.server_capabilities.semanticTokensProvider = nil
@@ -94,7 +71,6 @@ return {
     -- lspconfig.pyright.setup({
     --   capabilities = capabilities,
     --   on_attach = on_attach,
-    --   handlers = handlers,
     --   settings = {
     --     python = {
     --       analysis = {
@@ -112,7 +88,6 @@ return {
     lspconfig.pylsp.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      handlers = handlers,
       root_dir = function(fname)
         local util = require("lspconfig.util")
         local root_files = {
@@ -129,7 +104,6 @@ return {
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      handlers = handlers,
     })
   end,
 }

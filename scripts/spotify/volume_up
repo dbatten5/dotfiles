@@ -1,0 +1,10 @@
+#!/usr/bin/env osascript
+
+on run
+
+  tell application "Spotify"
+    set currentVolume to sound volume
+    set sound volume to currentVolume + 5
+  end tell
+
+end run

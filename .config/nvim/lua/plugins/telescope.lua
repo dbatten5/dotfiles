@@ -9,7 +9,15 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      { "<c-f>", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+      {
+        "<c-f>",
+        function()
+          require("telescope.builtin").find_files({
+            hidden = true,
+          })
+        end,
+        desc = "Find files",
+      },
       { "<c-b>", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
       { "<space>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
       { "<space>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
@@ -41,7 +49,20 @@ return {
         desc = "Word search from current buffer (or Oil explorer)",
       },
       { "<space>f;", "<cmd>Telescope command_history<cr>", desc = "Command history" },
-      { "<space>fb", "<cmd>Telescope git_branches<cr>", desc = "Git branches" },
+      {
+        "<space>fb",
+        function()
+          require("telescope.builtin").git_branches()
+        end,
+        desc = "Git branches",
+      },
+      {
+        "<space>D",
+        function()
+          require("telescope.builtin").diagnostics()
+        end,
+        desc = "Diagnostics",
+      },
     },
     config = function()
       local telescope = require("telescope")

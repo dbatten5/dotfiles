@@ -11,7 +11,7 @@ These scripts provide some automation around tasks that I do regularly.
 * `git`
 * `curl`
 
-This is a bash script to automate some repetitive local jira actions. 
+This is a bash script to automate some repetitive local jira actions.
 
 Before running the script, ensure the following `env` variables have been set:
 
@@ -48,37 +48,28 @@ Running this command will open the current ticket (based on the git branch) in y
 
 ## spotify
 
-This is an `applescript` to automate some spotify based actions. 
-Add it to your `usr/local/bin` directory with  
-
-```bash
-ln -sv /absolute/path/to/spotify /usr/local/bin/spotify
-```
+This is a set of `applescript` scripts to automate some spotify based actions.
 
 ### commands
 
 ```bash
-$ spotify yt
+$ open_youtube
 ```
 
-This opens the currently playing song as a youtube search, mostly so I can ~see
+This opens the currently playing song as a YouTube search, mostly so I can ~see
 how many plays it has~ read the comments. This also works quite well as a
 toolbar shortcut, which you can do by ripping out the body of the command from
 the script and adding it as a "Quick Action" in the Mac Automator app. From
 there it can be added to the toolbar, plenty of documentation online on how to
 do that.
 
-## infilmation_db_backup
+```bash
+$ volume_down
+$ volume_up
+```
 
-This is a simple script to backup the infilmation database (running in a
-`postgres` container on a remote server) and copy the files across to the local
-machine.
-
-Tools used:
-
-- `ssh` to run commands on the remote server
-- `pg_dump` to dump the database
-- `scp` to copy the backup across the network to the local machine 
+Adjusts the Spotify volume. Useful to assign it to the touchbar or to a function
+key so the volume can be controlled while on a different app.
 
 ## f45
 
@@ -87,7 +78,7 @@ Give me a random f45 video from my video collection so I don't have to decide.
 ### usage
 
 ```bash
-f45
-f45 cardio  # to return only cardio videos
-f45 strength  # to return only strength videos
+$ f45
+$ f45 cardio  # to return only cardio videos
+$ f45 strength  # to return only strength videos
 ```
