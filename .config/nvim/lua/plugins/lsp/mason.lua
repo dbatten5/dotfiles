@@ -36,8 +36,6 @@ return {
       local command = path .. "/venv/bin/pip"
       local args = {
         "install",
-        -- "python-lsp-black",
-        -- "python-lsp-ruff",
         "pylsp-mypy",
       }
 
