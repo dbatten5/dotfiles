@@ -8,15 +8,17 @@ return {
       end,
     })
   end,
-  config = function()
-    local default_linters = {
+  opts = {
+    linters_by_ft = {
       python = { "ruff", "mypy" },
       zsh = { "shellcheck" },
       bash = { "shellcheck" },
       sh = { "shellcheck" },
-    }
+      htmldjango = { "djlint" },
+    },
+  },
+  config = function(_, opts)
     local override_linters = vim.g.linters_by_ft or {}
-
-    require("lint").linters_by_ft = vim.tbl_extend("force", default_linters, override_linters)
+    require("lint").linters_by_ft = vim.tbl_extend("force", opts.linters_by_ft, override_linters)
   end,
 }

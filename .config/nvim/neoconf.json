@@ -24,11 +24,25 @@
     },
 
     "pylsp": {
-      "pylsp.plugins.black.enabled": false,
-      "pylsp.plugins.ruff.enabled": false,
-      "pylsp.plugins.pycodestyle.enabled": false,
-      "pylsp.plugins.pyflakes.enabled": false,
-      "pylsp.plugins.pylsp_mypy.enabled": false
+      "pylsp": {
+        "plugins": {
+          "pylsp_mypy": {
+            "enabled": false
+          },
+          "black": {
+            "enabled": false
+          },
+          "ruff": {
+            "enabled": false
+          },
+          "pycodestyle": {
+            "enabled": false
+          },
+          "pyflakes": {
+            "enabled": false
+          }
+        }
+      }
     }
   }
 }

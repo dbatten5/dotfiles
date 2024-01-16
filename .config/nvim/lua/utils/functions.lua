@@ -1,5 +1,28 @@
 local M = {}
 
+-- Set a keymap
+--@param mode mode to set the keymaps
+--@param lhs trigger to expand
+--@param rhs mapped operation
+--@param opts optional options
+M.setKeymap = function(mode, lhs, rhs, opts)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.keymap.set(mode, lhs, rhs, options)
+end
+
+-- Swap a pair of  keymaps
+--@param a keymap to swap with b
+--@param b keymap to swap with a
+--@param mode mode to set the keymaps, default to normal mode
+M.swapKeymaps = function(a, b, mode)
+  mode = mode or "n"
+  M.map(mode, a, b)
+  M.map(mode, b, a)
+end
+
 -- Truncate a filepath to a specified number of parts
 --@param filepath the filepath to truncate
 --@param numParts the number of parts to keep from the end of the filepath
@@ -77,6 +100,12 @@ return {
   newPluginConfigFile:close()
 
   return pluginConfigPath
+end
+
+-- Copy the current filename to the system clipboard
+M.copyCurrentFileToSystemClipboard = function()
+  vim.fn.setreg("+", vim.fn.expand("%"))
+  vim.notify("Current filename copied to system clipboard", vim.log.levels.INFO)
 end
 
 return M

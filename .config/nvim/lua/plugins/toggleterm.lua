@@ -16,5 +16,10 @@ return {
     require("toggleterm").setup(opts)
     local map = vim.keymap.set
     map("t", "<ESC>", "<c-\\><c-n>", { noremap = true })
+
+    local trim_spaces = true
+    vim.keymap.set("v", "<space>s", function()
+      require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+    end)
   end,
 }
