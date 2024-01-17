@@ -74,5 +74,6 @@ map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 
 map("n", "<leader>yf", function()
-  require("utils.functions").copyCurrentFileToSystemClipboard()
+  vim.fn.setreg("+", vim.fn.expand("%"))
+  vim.notify("Current filename copied to system clipboard", vim.log.levels.INFO)
 end) -- copy current file to system clipboard

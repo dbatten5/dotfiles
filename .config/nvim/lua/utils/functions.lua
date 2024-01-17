@@ -19,8 +19,8 @@ end
 --@param mode mode to set the keymaps, default to normal mode
 M.swapKeymaps = function(a, b, mode)
   mode = mode or "n"
-  M.map(mode, a, b)
-  M.map(mode, b, a)
+  M.setKeymap(mode, a, b)
+  M.setKeymap(mode, b, a)
 end
 
 -- Truncate a filepath to a specified number of parts
@@ -100,12 +100,6 @@ return {
   newPluginConfigFile:close()
 
   return pluginConfigPath
-end
-
--- Copy the current filename to the system clipboard
-M.copyCurrentFileToSystemClipboard = function()
-  vim.fn.setreg("+", vim.fn.expand("%"))
-  vim.notify("Current filename copied to system clipboard", vim.log.levels.INFO)
 end
 
 return M
