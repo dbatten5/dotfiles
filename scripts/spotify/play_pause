@@ -1,0 +1,7 @@
+#!/usr/bin/env osascript
+
+on run
+
+  tell application "Spotify" to playpause
+
+end run

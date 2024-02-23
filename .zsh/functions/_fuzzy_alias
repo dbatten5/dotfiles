@@ -1,0 +1,8 @@
+# vim: set filetype=zsh :
+
+sel="$(alias | fzf | cut -d= -f1)"
+if [[ -n "$sel" ]]; then
+    LBUFFER="$sel"
+    RBUFFER=''
+fi
+zle reset-prompt

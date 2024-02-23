@@ -1,0 +1,4 @@
+# vim: set filetype=zsh :
+
+# copy the current line to the clipboard
+clipcopy "$BUFFER"
