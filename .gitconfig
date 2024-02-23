@@ -21,3 +21,9 @@
   tool = nvimdiff
 [difftool "nvimdiff"]
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[url "ssh://git@github.com/"]
+	insteadof = https://github.com/
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto

@@ -12,10 +12,11 @@ opt.scrolloff = 4
 opt.sidescrolloff = 15
 opt.sidescroll = 5
 opt.hidden = true
-opt.wrap = true
-opt.linebreak = true
+opt.wrap = false
+opt.linebreak = false
 opt.exrc = true
-opt.textwidth = 80
+opt.textwidth = 0
+opt.wrapmargin = 0
 
 -- Indentation
 opt.shiftwidth = 2

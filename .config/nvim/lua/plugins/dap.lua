@@ -34,6 +34,13 @@ return {
       desc = "Step out",
     },
     {
+      "<leader>dr",
+      function()
+        require("dap").run_to_cursor()
+      end,
+      desc = "Run to the current cursor",
+    },
+    {
       "<leader>db",
       function()
         require("dap").toggle_breakpoint()

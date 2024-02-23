@@ -47,7 +47,7 @@ return {
       desc = "Source the snippets",
     },
     {
-      "<leader>os",
+      "<leader>so",
       function()
         require("luasnip.loaders").edit_snippet_files()
       end,

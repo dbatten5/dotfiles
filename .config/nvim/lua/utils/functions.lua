@@ -102,4 +102,10 @@ return {
   return pluginConfigPath
 end
 
+-- Copy some text to the system clipboard
+--@param text the text to copy
+M.copyToSystemClipboard = function(text)
+  vim.fn.setreg("+", text)
+end
+
 return M

@@ -14,9 +14,11 @@ bindkey '^u' kill-whole-line
 bindkey '^p' history-beginning-search-backward
 bindkey '^o' history-beginning-search-forward
 
+zle -N _copy_line_to_clipboard
+zle -N _fuzzy_alias
+
 # bindings with custom functions
 bindkey -M viins '^f^a' _fuzzy_alias
-bindkey -M viins '^r' _fuzzy_history
 bindkey -M viins '^y' _copy_line_to_clipboard
 bindkey -M viins '^g^f' _fzgf_widget
 bindkey -M viins '^g^r' _fzgr_widget

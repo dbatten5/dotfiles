@@ -14,7 +14,7 @@ vim.opt.runtimepath:prepend(lazypath)
 -- Remap comma as leader key
 -- Must be before lazy
 vim.g.mapleader = ","
-vim.keymap.set("n", "<leader>ml", "<cmd>Lazy<cr>")
+-- vim.keymap.set("n", "<leader>ml", "<cmd>Lazy<cr>")
 
 require("lazy").setup({
   { import = "plugins" },

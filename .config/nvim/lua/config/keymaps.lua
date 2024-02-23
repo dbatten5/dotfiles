@@ -1,11 +1,13 @@
-local map = require("utils.functions").setKeymap
-local swap = require("utils.functions").swapKeymaps
+local utils = require("utils.functions")
+local map = utils.setKeymap
+local swap = utils.swapKeymaps
 
 -----------------------------------------------------------
 -- Define keymaps of native Neovim
 -----------------------------------------------------------
 
-map("n", "s", "<cmd>update<CR>") -- quick saves
+-- quick saves
+map("n", "s", "<cmd>update<CR>")
 
 -- window movement
 map("n", "<c-j>", "<c-w>j")
@@ -17,20 +19,24 @@ map("n", "<c-l>", "<c-w>l")
 map({ "n", "x" }, "gy", '"+y')
 map({ "n", "x" }, "gp", '"+p')
 map("i", "<c-v>", '"+p')
+map("n", "<c-s-s>", function()
+  local fileContents = vim.fn.join(vim.fn.readfile(vim.fn.expand("%")), "\n")
+  utils.copyToSystemClipboard(fileContents)
+  vim.notify("Current file contents copied to system clipboard", vim.log.levels.INFO)
+end, { desc = "Copy file contents to system clipboard" })
 
--- -- delete without copying to register
--- map({'n', 'x'}, 'x', '"_x')
--- map({'n', 'x'}, 'X', '"_d')
---
-map("n", "<space>a", "<cmd>keepjumps normal! ggVG<cr>") -- highlight all text
+-- highlight all text
+map("n", "<space>a", "<cmd>keepjumps normal! ggVG<cr>", { desc = { "Highlight all text" } })
 
--- swap ' and `
+-- ` is more useful than ' for going to marks but it's more awkward to reach
 swap("'", "`")
 
-map("n", "&", "#") -- move # (oppsite of *), closer to *
+-- move # (oppsite of *), closer to *
+swap("&", "#")
 
-map("v", "J", ":m '>+1<cr>gv=gv") -- move chunks of text up
-map("v", "K", ":m '<-2<cr>gv=gv") -- move chunks of text down
+-- move chunks of text up or down
+map("v", "J", ":m '>+1<cr>gv=gv") -- up
+map("v", "K", ":m '<-2<cr>gv=gv") -- down
 
 -- keeping the cursor in nice places
 map("n", "J", "mzJ`z")
@@ -47,22 +53,24 @@ map("v", ">", ">gv")
 swap("v", "<c-v>")
 swap("v", "<c-v>", "v")
 
--- swap 0 and ^
+-- ^ is more useful than 0 but it's more keystrokes to get it
 swap("0", "^")
 
 -- paste last yanked item
 map("n", "<space>p>", '"0p')
 map("n", "<space>P>", '"0P')
 
-map("n", "Q", "@q") -- run macro for q register on big Q (I don't use ex mode)
+-- run macro for q register on big Q (I don't use ex mode)
+map("n", "Q", "@q")
 
-map("n", "<space>O", "<cmd>!open .<cr>") -- open cwd in finder
-map("n", "<space>o", "<cmd>!open %:h<cr>") -- open directory of current file in finder
+-- opening stuff in finder
+map("n", "<space>O", "<cmd>!open .<cr>", { desc = "Open cwd in finder" })
+map("n", "<space>o", "<cmd>!open %:h<cr>", { desc = "Open directory of current file in finder" })
 
 -- quickfix
-map("n", "<leader>qf", "<cmd>copen<cr>")
-map("n", "<leader>qo", "<cmd>colder<cr>")
-map("n", "<leader>qn", "<cmd>cnewer<cr>")
+map("n", "<leader>qf", "<cmd>copen<cr>", { desc = "Open quickfix" })
+map("n", "<leader>qo", "<cmd>colder<cr>", { desc = "Go to older quickfix" })
+map("n", "<leader>qn", "<cmd>cnewer<cr>", { desc = "Go to newer quickfix" })
 
 -- insert mode movement
 map("i", "<c-l>", "<right>")
@@ -73,7 +81,16 @@ map("n", "<space>d", vim.diagnostic.open_float)
 map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 
+-- copy current filepath to system clipboard
 map("n", "<leader>yf", function()
-  vim.fn.setreg("+", vim.fn.expand("%"))
-  vim.notify("Current filename copied to system clipboard", vim.log.levels.INFO)
-end) -- copy current file to system clipboard
+  local fp = vim.fn.expand("%")
+  utils.copyToSystemClipboard(fp)
+  vim.notify("Current filepath copied to system clipboard", vim.log.levels.INFO)
+end, { desc = "Copy current filepath to system clipboard" })
+
+-- copy word under the cursor to system clipboard
+map("n", "<leader>yw", function()
+  local word = vim.fn.expand("<cword>")
+  utils.copyToSystemClipboard(word)
+  vim.notify(word .. " copied to system clipboard", vim.log.levels.INFO)
+end, { desc = "Copy word under the cursor to system clipboard" })

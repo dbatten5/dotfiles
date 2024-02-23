@@ -1,6 +1,6 @@
 return {
   "NeogitOrg/neogit",
-  branch = "nightly",
+  -- branch = "nightly",
   cmd = "Neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -41,7 +41,7 @@ return {
       desc = "Open Neogit commit",
     },
     {
-      "<leader>gP",
+      "<leader>gu",
       function()
         require("neogit").open({ "push" })
       end,

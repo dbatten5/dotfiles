@@ -91,7 +91,9 @@ return {
 
     neotest.setup({
       adapters = {
-        neotest_python,
+        neotest_python({
+          args = { "-vv" },
+        }),
       },
       output = { open_on_run = true },
       discovery = {

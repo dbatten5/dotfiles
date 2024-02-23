@@ -26,7 +26,8 @@ return {
       {
         "<space>fs",
         function()
-          require("telescope.builtin").live_grep()
+          local glob_pattern = vim.g.telecope_glob_pattern or {}
+          require("telescope.builtin").live_grep({ glob_pattern = glob_pattern })
         end,
         desc = "Word search",
       },

@@ -20,7 +20,8 @@ return {
         }),
       },
       completion = {
-        completeopt = "menu,menuone,preview,noselect",
+        -- autocomplete = false,
+        completeopt = "menu,noselect",
       },
       snippet = {
         expand = function(args)
@@ -37,7 +38,7 @@ return {
         },
       },
       experimental = {
-        ghost_text = true,
+        ghost_text = false,
       },
       mapping = cmp.mapping.preset.insert({
         ["<c-p>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -69,15 +70,25 @@ return {
               return vim.api.nvim_list_bufs()
             end,
           },
+          -- keyword_length = 1,
+          max_item_count = 10,
         },
         { name = "path" },
+        {
+          name = "luasnip",
+          keyword_length = 1,
+        },
       }),
     })
 
     cmp.setup.cmdline("/", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        { name = "buffer" },
+        {
+          name = "buffer",
+          -- keyword_length = 1,
+          max_item_count = 10,
+        },
       },
     })
 

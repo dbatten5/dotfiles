@@ -10,11 +10,11 @@ return {
   end,
   opts = {
     linters_by_ft = {
-      python = { "ruff", "mypy" },
-      zsh = { "shellcheck" },
       bash = { "shellcheck" },
-      sh = { "shellcheck" },
       htmldjango = { "djlint" },
+      python = { "ruff", "mypy" },
+      sh = { "shellcheck" },
+      zsh = { "shellcheck" },
     },
   },
   config = function(_, opts)
