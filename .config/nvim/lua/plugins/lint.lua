@@ -11,7 +11,7 @@ return {
   opts = {
     linters_by_ft = {
       bash = { "shellcheck" },
-      htmldjango = { "djlint" },
+      htmldjango = { "djlint", "curlylint" },
       python = { "ruff", "mypy" },
       sh = { "shellcheck" },
       zsh = { "shellcheck" },

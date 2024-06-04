@@ -25,5 +25,3 @@
 	insteadof = https://github.com/
 [branch]
 	sort = -committerdate
-[column]
-	ui = auto

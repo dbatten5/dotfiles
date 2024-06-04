@@ -75,6 +75,8 @@ return {
               ["<c-j>"] = actions.move_selection_next,
               ["<c-k>"] = actions.move_selection_previous,
               ["<c-z>"] = actions.delete_buffer,
+              ["<c-h>"] = actions.cycle_history_prev,
+              ["<c-l>"] = actions.cycle_history_next,
             },
           },
           path_display = {

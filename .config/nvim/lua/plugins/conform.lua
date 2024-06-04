@@ -84,7 +84,7 @@ return {
       json = { "prettier" },
       jsonc = { "prettier" },
       lua = { "stylua" },
-      python = { "ruff", "black" },
+      python = { "ruff_format", "black" },
       sh = { "shfmt" },
       zsh = { "shfmt" },
       yaml = { "prettier" },

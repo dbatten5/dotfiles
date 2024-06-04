@@ -56,6 +56,10 @@ return {
 
   s("s", t("self.")),
 
+  s("gbrwf", t("from tests.factories.plugins.territories.gbr.markets import water as gbr_water_factories")),
+
+  s("fdt", t("from tests.factories import datetimes as factory_dt")),
+
   -- class
   s(
     "class",
@@ -83,6 +87,26 @@ return {
       [[
     class Test{}:
         """{}"""
+    ]],
+      {
+        i(1),
+        i(2),
+      }
+    )
+  ),
+
+  -- pytest parametrize
+  s(
+    "param",
+    fmt(
+      [[
+    @pytest.mark.parametrize(
+        "test_input,expected",
+        [
+            ({}, {}),
+        ]
+    )
+
     ]],
       {
         i(1),

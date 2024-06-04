@@ -26,7 +26,7 @@ map("n", "<c-s-s>", function()
 end, { desc = "Copy file contents to system clipboard" })
 
 -- highlight all text
-map("n", "<space>a", "<cmd>keepjumps normal! ggVG<cr>", { desc = { "Highlight all text" } })
+map("n", "<space>a", "<cmd>keepjumps normal! ggVG<cr>", { desc = "Highlight all text" })
 
 -- ` is more useful than ' for going to marks but it's more awkward to reach
 swap("'", "`")
@@ -81,16 +81,19 @@ map("n", "<space>d", vim.diagnostic.open_float)
 map("n", "[d", vim.diagnostic.goto_prev)
 map("n", "]d", vim.diagnostic.goto_next)
 
--- copy current filepath to system clipboard
 map("n", "<leader>yf", function()
-  local fp = vim.fn.expand("%")
+  local fp = vim.fn.expand("%:.:r")
   utils.copyToSystemClipboard(fp)
   vim.notify("Current filepath copied to system clipboard", vim.log.levels.INFO)
 end, { desc = "Copy current filepath to system clipboard" })
 
--- copy word under the cursor to system clipboard
 map("n", "<leader>yw", function()
   local word = vim.fn.expand("<cword>")
   utils.copyToSystemClipboard(word)
   vim.notify(word .. " copied to system clipboard", vim.log.levels.INFO)
 end, { desc = "Copy word under the cursor to system clipboard" })
+
+map("n", "<leader>of", function()
+  local fp = vim.fn.expand("%:.")
+  utils.openFileInGitHub(fp)
+end, { desc = "Open the current file in GitHub" })

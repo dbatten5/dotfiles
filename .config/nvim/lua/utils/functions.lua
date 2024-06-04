@@ -108,4 +108,10 @@ M.copyToSystemClipboard = function(text)
   vim.fn.setreg("+", text)
 end
 
+-- Open a file in GitHub
+--@param the file path to open in GitHub
+M.openFileInGitHub = function(fp)
+  vim.fn.system("gh browse " .. fp)
+end
+
 return M
