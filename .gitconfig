@@ -25,3 +25,5 @@
 	insteadof = https://github.com/
 [branch]
 	sort = -committerdate
+[alias]
+	wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify

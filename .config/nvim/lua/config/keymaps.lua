@@ -95,5 +95,7 @@ end, { desc = "Copy word under the cursor to system clipboard" })
 
 map("n", "<leader>of", function()
   local fp = vim.fn.expand("%:.")
-  utils.openFileInGitHub(fp)
+  local lineNumber = vim.api.nvim_win_get_cursor(0)[1]
+  local path = fp .. ":" .. lineNumber
+  vim.fn.system("gh browse " .. path)
 end, { desc = "Open the current file in GitHub" })

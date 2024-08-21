@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
+  lazy = true,
   event = { "BufWritePost", "BufEnter" },
   init = function()
     vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {

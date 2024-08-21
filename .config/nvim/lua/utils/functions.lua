@@ -110,8 +110,13 @@ end
 
 -- Open a file in GitHub
 --@param the file path to open in GitHub
-M.openFileInGitHub = function(fp)
-  vim.fn.system("gh browse " .. fp)
+--@param an optional line number
+M.openFileInGitHub = function(fp, lineNumber)
+  local path = fp
+  if lineNumber then
+    path = path .. ":" .. lineNumber
+  end
+  vim.fn.system("gh browse " .. path)
 end
 
 return M

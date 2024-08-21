@@ -6,6 +6,7 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
     "RRethy/nvim-treesitter-endwise",
+    "theHamsta/nvim-dap-virtual-text",
   },
   opts = {
     highlight = { enable = true },
@@ -109,5 +110,7 @@ return {
       end, opts.ensure_installed)
     end
     require("nvim-treesitter.configs").setup(opts)
+    require("nvim-ts-autotag").setup()
+    require("nvim-dap-virtual-text").setup()
   end,
 }

@@ -84,7 +84,7 @@ return {
       json = { "prettier" },
       jsonc = { "prettier" },
       lua = { "stylua" },
-      python = { "ruff_format", "black" },
+      python = { "ruff_fix", "ruff_format" },
       sh = { "shfmt" },
       zsh = { "shfmt" },
       yaml = { "prettier" },
@@ -106,7 +106,7 @@ return {
 
     require("conform").setup({
       formatters_by_ft = formatters_by_ft,
-      format_on_save = optimisticAutoFormat(opts.auto_format.optimistic.ignore_filetypes),
+      format_on_save = pessimisticAutoFormat(opts.auto_format.optimistic.ignore_filetypes),
     })
 
     vim.api.nvim_create_user_command("FormatDisable", function(args)

@@ -3,3 +3,4 @@
 .nvimrc
 .dmypy.json
 .neoconf.json
+mprocs.yaml

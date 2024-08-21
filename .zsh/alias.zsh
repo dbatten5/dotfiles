@@ -12,7 +12,11 @@ alias please='sudo "$SHELL" -c "$(fc -ln -1)"'
 alias o='open'
 
 alias v="nvim ."
+alias vv="nvim"
 alias vim="nvim"
+
+# tools
+alias mp="mprocs"
 
 # git
 alias gbd='git branch --merged | egrep -v "(^\*|master|main|dev|staging|develop)" | xargs git branch -d'
@@ -26,8 +30,10 @@ alias gs='git status'
 alias gc='git commit'
 alias ga='git add'
 alias gb='git branch'
+alias gcom='git checkout $(git_main_branch)'
+alias gar='git absorb -r'
 # Push to origin/current branch
-alias ggpush='git push origin \`git rev-parse --abbrev-ref HEAD\`'
+alias ggpush='git push origin HEAD'
 # Force push
 alias gpf='git push --force-with-lease origin'
 # Change the most recent commit message
@@ -40,8 +46,6 @@ alias grbi='git rebase -i \`git rev-list $(git_main_branch).. | tail -1\`^'
 alias grbas='git rebase --autosquash -i \`\$(git rev-list $(git_main_branch).. | tail -1)^\`'
 # Remove branches that don't exist on remote, prune all unreachable objects
 alias gprune='git fetch --prune --prune-tags && git prune'
-# Create a PR using gh
-alias pr='gh pr create'
 
 # python
 alias c='conda'

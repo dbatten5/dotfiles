@@ -5,6 +5,7 @@ local getImportPath = function()
 end
 
 vim.opt.colorcolumn = "88"
+vim.opt.textwidth = 0
 
 map("n", "<leader>pp", function()
   local import_path = getImportPath()
@@ -21,7 +22,7 @@ map("n", "<leader>Yp", function()
   vim.fn.setreg("+", import_path)
 end, { desc = "Copy the Python import path of the current file to the system clipboard" })
 
-vim.api.nvim_create_user_command("FormatAsPythonImport", function(_)
+vim.api.nvim_create_user_command("FormatLineAsImportStatement", function(_)
   -- Get the current line content
   local line = vim.api.nvim_get_current_line()
 
@@ -52,6 +53,6 @@ end, {})
 map(
   "n",
   "<leader>F",
-  ":FormatAsPythonImport<cr>",
-  { desc = "Copy the Python import path of the current file to the system clipboard" }
+  ":FormatLineAsImportStatement<cr>",
+  { desc = "Format the current line containing a Python module path as a module-level import statement" }
 )

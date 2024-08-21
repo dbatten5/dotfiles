@@ -37,6 +37,12 @@ opt.cursorline = true
 opt.colorcolumn = "80"
 opt.termguicolors = true
 vim.cmd.colorscheme("nord")
+vim.diagnostic.config({
+  signs = true,
+  float = {
+    border = "rounded",
+  },
+})
 
 -- Maintenance
 opt.swapfile = false
@@ -68,14 +74,6 @@ opt.wildignore = [[
 ]]
 
 -- Spelling
-vim.cmd("iabbrev and and")
-vim.cmd("iabbrev the the")
-vim.cmd("iabbrev the the")
-
--- Diagnostics
-vim.diagnostic.config({
-  signs = true,
-  float = {
-    border = "rounded",
-  },
-})
+vim.cmd("iabbrev adn and")
+vim.cmd("iabbrev teh the")
+vim.cmd("iabbrev hte the")

@@ -6,6 +6,10 @@ return {
       "nvim-lua/plenary.nvim",
       "ahmedkhalf/project.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        version = "^1.0.0",
+      },
     },
     cmd = "Telescope",
     keys = {
@@ -22,12 +26,17 @@ return {
       { "<space>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
       { "<space>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<space>fm", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
-      { "<space>fw", "<cmd>Telescope grep_string<cr>", desc = "Word under cursor" },
+      {
+        "<space>fw",
+        function()
+          require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()
+        end,
+        desc = "Word search",
+      },
       {
         "<space>fs",
         function()
-          local glob_pattern = vim.g.telecope_glob_pattern or {}
-          require("telescope.builtin").live_grep({ glob_pattern = glob_pattern })
+          require("telescope").extensions.live_grep_args.live_grep_args()
         end,
         desc = "Word search",
       },
@@ -68,6 +77,8 @@ return {
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
+      local lga_actions = require("telescope-live-grep-args.actions")
+
       telescope.setup({
         defaults = {
           mappings = {
@@ -92,9 +103,24 @@ return {
             sort_lastused = true,
           },
         },
+        extensions = {
+          live_grep_args = {
+            auto_quoting = true,
+            mappings = {
+              i = {
+                ["<tab>"] = nil,
+                ["<C-p>"] = lga_actions.quote_prompt(),
+                ["<C-i>"] = lga_actions.quote_prompt({ postfix = " -t" }),
+                ["<C-space>"] = lga_actions.to_fuzzy_refine,
+              },
+            },
+          },
+        },
       })
+
       telescope.load_extension("fzf")
       telescope.load_extension("projects")
+      telescope.load_extension("live_grep_args")
     end,
   },
 
