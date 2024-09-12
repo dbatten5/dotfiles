@@ -5,14 +5,12 @@ local function decodeUrlEncodedString(str)
 end
 
 local function urlEncodeStr(str)
-  local encoded = string.gsub(str, "([^%w])", function(match)
+  return str:gsub("([^%w])", function(match)
     return string.upper(string.format("%%%02x", string.byte(match)))
   end)
-
-  return encoded
 end
 
-local function selectGrappleTag(grappleDir, callback)
+local function selectGrappleTag(grappleDir, successCallback)
   local grappleTags = vim.fn.glob(grappleDir .. "/*3A*.json", false, true)
   vim.ui.select(grappleTags, {
     prompt = "Select a branch to copy tags from",
@@ -29,7 +27,7 @@ local function selectGrappleTag(grappleDir, callback)
       local newFilePath = choice:gsub("%%3A.-%.json", "%%3A" .. encodedGitBranch:gsub("%%", "%%%%")) .. ".json"
       local copyCommand = string.format("mv %s %s", vim.fn.shellescape(choice), vim.fn.shellescape(newFilePath))
       vim.fn.system(copyCommand)
-      callback()
+      successCallback()
     else
       print("No branch selected.")
     end
@@ -49,7 +47,7 @@ return {
     {
       "<leader>bG",
       ":Grapple tag scope=git name=",
-      desc = "Grapple tag a file with scope selection",
+      desc = "Grapple tag a file to git scope",
     },
     {
       "<leader>bb",
@@ -79,7 +77,7 @@ return {
   opts = {
     scope = "git_branch",
     name_pos = "start",
-    prune = "15d",
+    prune = "7d",
     win_opts = {
       width = 0.6,
       border = "rounded",

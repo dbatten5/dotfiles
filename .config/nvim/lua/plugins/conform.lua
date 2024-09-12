@@ -88,6 +88,8 @@ return {
       sh = { "shfmt" },
       zsh = { "shfmt" },
       yaml = { "prettier" },
+      typescript = { "prettier", "eslint_d" },
+      typescriptreact = { "prettier", "eslint_d" },
       ["*"] = { "trim_whitespace", "codespell" },
     },
     auto_format = {

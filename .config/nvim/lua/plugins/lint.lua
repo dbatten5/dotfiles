@@ -16,6 +16,7 @@ return {
       python = { "ruff", "mypy" },
       sh = { "shellcheck" },
       zsh = { "shellcheck" },
+      typescript = { "eslint_d" },
     },
   },
   config = function(_, opts)

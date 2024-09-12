@@ -15,6 +15,7 @@ return {
       "bash",
       "html",
       "javascript",
+      "typescript",
       "json",
       "jsonc",
       "lua",
@@ -110,7 +111,11 @@ return {
       end, opts.ensure_installed)
     end
     require("nvim-treesitter.configs").setup(opts)
-    require("nvim-ts-autotag").setup()
-    require("nvim-dap-virtual-text").setup()
+    require("nvim-ts-autotag").setup({
+      aliases = {
+        htmldjango = "html",
+      },
+    })
+    -- require("nvim-dap-virtual-text").setup()
   end,
 }

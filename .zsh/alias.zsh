@@ -21,6 +21,7 @@ alias mp="mprocs"
 # git
 alias gbd='git branch --merged | egrep -v "(^\*|master|main|dev|staging|develop)" | xargs git branch -d'
 alias gco='git checkout'
+alias gcob='git checkout -b '
 alias gst='git status'
 alias blame='git blame'
 alias ggpull='git pull origin $(git_main_branch)'

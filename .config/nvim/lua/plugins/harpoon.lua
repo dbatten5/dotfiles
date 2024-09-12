@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
   dependencies = {
