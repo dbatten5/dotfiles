@@ -1,5 +1,8 @@
 return {
   "nvim-lualine/lualine.nvim",
+  dependencies = {
+    "stevearc/overseer.nvim",
+  },
   opts = {
     theme = "nord",
     sections = {
@@ -12,6 +15,9 @@ return {
       lualine_x = {
         "fileformat",
         "filetype",
+      },
+      lualine_y = {
+        "overseer",
       },
     },
   },

@@ -1,0 +1,3 @@
+# vim: set filetype=zsh :
+
+git checkout "$(git_main_branch)" && git pull origin "$(git_main_branch)"

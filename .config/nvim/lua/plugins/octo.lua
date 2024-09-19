@@ -8,7 +8,7 @@ return {
   },
   keys = {
     {
-      "<leader>op",
+      "<leader>gp",
       "<cmd>Octo pr create<cr>",
       desc = "Create a new PR for the current branch",
     },
@@ -17,4 +17,3 @@ return {
     require("octo").setup()
   end,
 }
-

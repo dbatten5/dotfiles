@@ -93,7 +93,7 @@ map("n", "<leader>yw", function()
   vim.notify(word .. " copied to system clipboard", vim.log.levels.INFO)
 end, { desc = "Copy word under the cursor to system clipboard" })
 
-map("n", "<leader>of", function()
+map("n", "<leader>gf", function()
   local fp = vim.fn.expand("%:.")
   local lineNumber = vim.api.nvim_win_get_cursor(0)[1]
   local path = fp .. ":" .. lineNumber

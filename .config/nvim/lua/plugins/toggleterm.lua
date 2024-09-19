@@ -8,6 +8,12 @@ local set_opfunc = vim.fn[vim.api.nvim_exec(
   true
 )]
 
+local function withIPython(callback)
+  require("toggleterm").exec_command("cmd=%cpaste", vim.v.count)
+  callback()
+  require("toggleterm").exec_command("cmd=--", vim.v.count)
+end
+
 return {
   "akinsho/toggleterm.nvim",
   keys = { "<c-t>" },
@@ -31,9 +37,17 @@ return {
 
     -- Send a visual selection to the terminal
     vim.keymap.set("v", "<c-c>", function()
-      require("toggleterm").exec_command("cmd=%cpaste")
-      require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
-      require("toggleterm").exec_command("cmd=--")
+      local start_line = vim.fn.line("v")
+      local end_line = vim.fn.line(".")
+      local num_selected_lines = math.abs(end_line - start_line) + 1
+
+      if num_selected_lines > 1 then
+        withIPython(function()
+          require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+        end)
+      else
+        require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+      end
     end)
 
     -- Double the command to send current block to terminal
@@ -55,9 +69,9 @@ return {
     -- Send the whole file to the terminal
     vim.keymap.set("n", [[<leader><c-c>]], function()
       set_opfunc(function(motion_type)
-        require("toggleterm").exec_command("cmd=%cpaste")
-        require("toggleterm").send_lines_to_terminal(motion_type, trim_spaces, { args = vim.v.count })
-        require("toggleterm").exec_command("cmd=--")
+        withIPython(function()
+          require("toggleterm").send_lines_to_terminal(motion_type, trim_spaces, { args = vim.v.count })
+        end)
       end)
       vim.api.nvim_feedkeys("ggg@G''", "n", false)
     end)

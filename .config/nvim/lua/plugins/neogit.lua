@@ -17,7 +17,7 @@ return {
   },
   keys = {
     {
-      "<space>g",
+      "<space>gg",
       function()
         local opts = {
           cwd = vim.g.neogit_root,
@@ -27,35 +27,35 @@ return {
       desc = "Open Neogit",
     },
     {
-      "<leader>gb",
+      "<space>gb",
       function()
         require("neogit").open({ "branch" })
       end,
       desc = "Open Neogit branch",
     },
     {
-      "<leader>gc",
+      "<space>gc",
       function()
         require("neogit").open({ "commit" })
       end,
       desc = "Open Neogit commit",
     },
     {
-      "<leader>gu",
+      "<space>gu",
       function()
         require("neogit").open({ "push" })
       end,
       desc = "Open Neogit push",
     },
     {
-      "<leader>gp",
+      "<space>gp",
       function()
         require("neogit").open({ "pull" })
       end,
       desc = "Open Neogit pull",
     },
     {
-      "<leader>gl",
+      "<space>gl",
       function()
         require("neogit").open({ "log" })
       end,
