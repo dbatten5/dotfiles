@@ -6,7 +6,7 @@ return {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     {
-      "folke/neodev.nvim",
+      "folke/lazydev.nvim",
       config = true,
     },
     {
@@ -102,6 +102,11 @@ return {
     })
 
     lspconfig.lua_ls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    lspconfig.tsserver.setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })

@@ -56,6 +56,21 @@ return {
       },
     })
 
+    overseer.register_template({
+      name = "Pre-commit",
+      builder = function()
+        local cmd = { "pre-commit", "run" }
+        return {
+          cmd = cmd,
+          components = {
+            "open_output",
+            "base",
+          },
+        }
+      end,
+      priority = 9,
+    })
+
     overseer.setup({
       templates = {},
       task_list = {
@@ -74,6 +89,17 @@ return {
           },
           "on_result_diagnostics_trouble",
           "default",
+        },
+      },
+      log = {
+        {
+          type = "echo",
+          level = vim.log.levels.WARN,
+        },
+        {
+          type = "file",
+          filename = "overseer.log",
+          level = vim.log.levels.DEBUG,
         },
       },
     })
