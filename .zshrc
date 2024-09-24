@@ -74,3 +74,5 @@ _complete_invoke() {
 compctl -K _complete_invoke + -f invoke inv
 
 # vim: set ft=sh :
+
+. "$HOME/.cargo/env"

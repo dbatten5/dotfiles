@@ -93,22 +93,11 @@ return {
     neotest.setup({
       adapters = {
         neotest_python({
+          dap = { justMyCode = true, django = true },
           args = { "-vv" },
         }),
       },
       output = { open_on_run = true },
-      discovery = {
-        enabled = false,
-      },
-    })
-
-    neotest.setup_project("~/projects/work/kraken-core/src", {
-      adapters = {
-        neotest_python,
-        -- neotest_python({
-        --   args = { "--dc", "PWLManagementCommand" },
-        -- }),
-      },
       discovery = {
         enabled = false,
       },

@@ -2,7 +2,14 @@ return {
   "mfussenegger/nvim-dap",
   lazy = true,
   dependencies = {
-    "rcarriga/nvim-dap-ui",
+    "nvim-neotest/nvim-nio",
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    {
+      "rcarriga/nvim-dap-ui",
+      dependencies = { "nvim-neotest/nvim-nio" },
+    },
   },
   keys = {
     {

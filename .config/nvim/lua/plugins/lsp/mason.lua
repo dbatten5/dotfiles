@@ -21,6 +21,7 @@ return {
         "lua_ls",
         -- "pyright",
         "pylsp",
+        "tsserver",
       },
       automatic_installation = true,
     })
@@ -40,12 +41,12 @@ return {
       }
 
       require("plenary.job")
-        :new({
-          command = command,
-          args = args,
-          cwd = path,
-        })
-        :start()
+          :new({
+            command = command,
+            args = args,
+            cwd = path,
+          })
+          :start()
     end)
   end,
 }

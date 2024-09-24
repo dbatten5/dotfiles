@@ -47,6 +47,8 @@ alias grbi='git rebase -i \`git rev-list $(git_main_branch).. | tail -1\`^'
 alias grbas='git rebase --autosquash -i \`\$(git rev-list $(git_main_branch).. | tail -1)^\`'
 # Remove branches that don't exist on remote, prune all unreachable objects
 alias gprune='git fetch --prune --prune-tags && git prune'
+# Create a PR using gh
+alias pr='gh pr create'
 
 # python
 alias c='conda'

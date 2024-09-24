@@ -77,8 +77,8 @@ return {
         bindings = {
           ["<C-k>"] = false,
           ["<C-j>"] = false,
-          ["<C-w>k"] = "ScrollOutputUp",
-          ["<C-w>j"] = "ScrollOutputDown",
+          ["<up>"] = "ScrollOutputUp",
+          ["<down>"] = "ScrollOutputDown",
         },
       },
       component_aliases = {

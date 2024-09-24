@@ -41,6 +41,25 @@ return {
         desc = "Copy path under cursor to the system clipboard",
         mode = "n",
       },
+      ["<C-s-d>"] = {
+        callback = function()
+          local oil = require("oil")
+
+          local entry = oil.get_cursor_entry()
+          local dir = oil.get_current_dir()
+          if not entry or not dir then
+            return
+          end
+          local path = dir .. entry.name
+
+          vim.system({ "rm", "-r", path }):wait()
+
+          require("oil.actions").refresh.callback()
+          vim.notify("Deleted entry")
+        end,
+        desc = "Delete the entry under the cursor (no trash)",
+        mode = "n",
+      },
       ["gh"] = {
         callback = function()
           require("oil").open("~")
