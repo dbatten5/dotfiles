@@ -100,6 +100,10 @@ return {
       output = { open_on_run = true },
       discovery = {
         enabled = false,
+        concurrent = 1,
+      },
+      summary = {
+        animated = false,
       },
     })
   end,

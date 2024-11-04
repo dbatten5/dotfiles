@@ -22,10 +22,10 @@ return {
         end,
         desc = "Find files",
       },
-      { "<c-b>", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
+      { "<c-b>",     "<cmd>Telescope buffers<cr>",  desc = "Find buffers" },
       { "<space>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
       { "<space>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
-      { "<space>fm", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+      { "<space>fm", "<cmd>Telescope keymaps<cr>",  desc = "Keymaps" },
       {
         "<space>fw",
         function()
@@ -108,9 +108,8 @@ return {
             auto_quoting = true,
             mappings = {
               i = {
-                ["<tab>"] = nil,
                 ["<C-p>"] = lga_actions.quote_prompt(),
-                ["<C-i>"] = lga_actions.quote_prompt({ postfix = " -t" }),
+                -- ["<C-i>"] = lga_actions.quote_prompt({ postfix = " -t" }),
                 ["<C-space>"] = lga_actions.to_fuzzy_refine,
               },
             },

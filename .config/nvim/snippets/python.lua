@@ -60,6 +60,8 @@ return {
 
   s("fdt", t("from tests.factories import datetimes as factory_dt")),
 
+  s("lct", t("from xocto import localtime")),
+
   -- class
   s(
     "class",

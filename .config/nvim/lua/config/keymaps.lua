@@ -98,4 +98,17 @@ map("n", "<leader>gf", function()
   local lineNumber = vim.api.nvim_win_get_cursor(0)[1]
   local path = fp .. ":" .. lineNumber
   vim.fn.system("gh browse " .. path)
-end, { desc = "Open the current file in GitHub" })
+end, { desc = "Open the current file and current line in GitHub" })
+
+map("v", "<leader>gf", function()
+  local fp = vim.fn.expand("%:.")
+  local startLine = vim.fn.line("v")
+  local endLine = vim.fn.line(".")
+  local path = fp .. ":" .. startLine .. "-" .. endLine
+  vim.fn.system("gh browse " .. path)
+end, { desc = "Open the current file and current visual selection in GitHub" })
+
+map("n", "<leader>gF", function()
+  local fp = vim.fn.expand("%:.")
+  vim.fn.system("gh browse " .. fp)
+end, { desc = "Open the current file in GitHub without going to current line" })
