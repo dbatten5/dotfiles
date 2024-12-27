@@ -1,5 +1,6 @@
 return {
   "olimorris/persisted.nvim",
+  enabled = false,
   lazy = false,
   keys = {
     {

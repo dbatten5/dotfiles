@@ -42,7 +42,10 @@ return {
       map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview hunk" })
       map("n", "<leader>hb", function()
         gitsigns.blame_line({ full = true })
-      end, { desc = "Git blame" })
+      end, { desc = "Git blame line" })
+      map("n", "<leader>hB", function()
+        gitsigns.blame()
+      end, { desc = "Git blame file" })
       map("n", "<leader>hd", gitsigns.diffthis, { desc = "Diff this" })
       map("n", "<leader>hD", function()
         gitsigns.diffthis("~")
@@ -56,4 +59,3 @@ return {
     require("gitsigns").setup(opts)
   end,
 }
-

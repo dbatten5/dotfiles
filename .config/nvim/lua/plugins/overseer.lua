@@ -31,7 +31,7 @@ return {
           },
         }
       end,
-      priority = 10,
+      priority = 20,
       condition = {
         filetype = "python",
       },
@@ -50,7 +50,7 @@ return {
           },
         }
       end,
-      priority = 11,
+      priority = 30,
       condition = {
         filetype = "python",
       },
@@ -68,7 +68,7 @@ return {
           },
         }
       end,
-      priority = 9,
+      priority = 10,
     })
 
     overseer.setup({

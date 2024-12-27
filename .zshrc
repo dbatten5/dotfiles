@@ -25,6 +25,7 @@ eval "$(zoxide init zsh)"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -34,7 +35,8 @@ export PATH="$PATH:/Users/dom.batten/.local/bin"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 export WORKON_HOME=$HOME/.virtualenvs
-pyenv virtualenvwrapper
+pyenv global 3.12.7
+pyenv virtualenvwrapper_lazy
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

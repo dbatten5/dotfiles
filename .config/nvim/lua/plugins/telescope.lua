@@ -111,6 +111,8 @@ return {
                 ["<C-p>"] = lga_actions.quote_prompt(),
                 -- ["<C-i>"] = lga_actions.quote_prompt({ postfix = " -t" }),
                 ["<C-space>"] = lga_actions.to_fuzzy_refine,
+                ["<C-s-t>"] = lga_actions.quote_prompt({ postfix = " --iglob='!tests'" }),
+                ["<C-s-w>"] = lga_actions.quote_prompt({ postfix = " --iglob='**/*water*/**'" }),
               },
             },
           },

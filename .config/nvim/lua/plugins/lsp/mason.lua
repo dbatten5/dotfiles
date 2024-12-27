@@ -21,7 +21,7 @@ return {
         "lua_ls",
         -- "pyright",
         "pylsp",
-        "tsserver",
+        "ts_ls",
       },
       automatic_installation = true,
     })
