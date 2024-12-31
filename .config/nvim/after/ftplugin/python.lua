@@ -60,10 +60,13 @@ end
 vim.opt.colorcolumn = "88"
 vim.opt.textwidth = 0
 
-map("n", "<leader>pp", function()
-  local import_path = get_current_file_dotted_path()
-  vim.api.nvim_put({ import_path }, "c", true, true)
-end, { desc = "Paste the Python import path of the current file" })
+-- override the python module import so that it shows up as a variable hl group
+vim.api.nvim_set_hl(0, "@module.python", { link = "@variable" })
+
+-- map("n", "<leader>pp", function()
+--   local import_path = get_current_file_dotted_path()
+-- vim.api.nvim_put({ import_path }, "c", true, true)
+-- end, { desc = "Paste the Python import path of the current file" })
 
 map("n", "<leader>yp", function()
   local import_path = get_current_file_dotted_path()
@@ -92,7 +95,11 @@ map(
   { desc = "Format the current line containing a Python module path as a module-level import statement" }
 )
 
-vim.api.nvim_create_user_command("PasteImportPath", function(_)
+vim.api.nvim_create_user_command("PasteImportStatement", function(_)
+  -- This command finds all open python buffers that aren't the current buffer and then, if there is only one other open
+  -- non-current buffer, inserts an import statement in the active buffer. If there are multiple open non-current
+  -- buffers it'll bring up a select menu so you can choose which one to import from. It relies on treesitter to find
+  -- where to insert the statement in the current buffer.
   local current_buf = vim.api.nvim_get_current_buf()
   local buffers = vim.api.nvim_list_bufs()
 
@@ -151,5 +158,9 @@ vim.api.nvim_create_user_command("PasteImportPath", function(_)
   end
 end, {})
 
--- override the python module import so that it shows up as a variable hl group
-vim.api.nvim_set_hl(0, "@module.python", { link = "@variable" })
+map(
+  "n",
+  "<leader>pp",
+  ":PasteImportStatement<cr>",
+  { desc = "Paste the import path of the other active buffer into the current buffer" }
+)
