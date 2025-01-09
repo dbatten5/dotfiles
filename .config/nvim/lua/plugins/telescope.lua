@@ -22,16 +22,25 @@ return {
         end,
         desc = "Find files",
       },
-      { "<c-b>",     "<cmd>Telescope buffers<cr>",  desc = "Find buffers" },
+      { "<c-b>", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
       { "<space>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
       { "<space>fc", "<cmd>Telescope commands<cr>", desc = "Commands" },
-      { "<space>fm", "<cmd>Telescope keymaps<cr>",  desc = "Keymaps" },
+      { "<space>fm", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
       {
         "<space>fw",
         function()
           require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()
         end,
         desc = "Word search",
+        mode = "n",
+      },
+      {
+        "<space>fw",
+        function()
+          require("telescope-live-grep-args.shortcuts").grep_visual_selection()
+        end,
+        desc = "Word search for visual selection",
+        mode = "v",
       },
       {
         "<space>fs",

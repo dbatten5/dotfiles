@@ -34,4 +34,7 @@ require("lazy").setup({
   ui = {
     border = "rounded",
   },
+  dev = {
+    path = "~/projects/work",
+  },
 })

@@ -88,6 +88,7 @@ return {
       sh = { "shfmt" },
       zsh = { "shfmt" },
       yaml = { "prettier" },
+      terraform = { "terraform_fmt" },
       typescript = { "prettier", "eslint_d" },
       typescriptreact = { "prettier", "eslint_d" },
       ["*"] = { "trim_whitespace", "codespell" },
@@ -98,7 +99,7 @@ return {
       },
       pessmistic = {
         always_format_on_save = { "trim_whitespace", "codespell" },
-        for_filetypes = { "lua", "json", "jsonc" },
+        for_filetypes = { "json", "jsonc" },
       },
     },
   },

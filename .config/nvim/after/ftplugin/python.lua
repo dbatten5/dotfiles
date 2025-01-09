@@ -48,8 +48,8 @@ local get_import_lines = function(buf_nr)
   for _, captures, metadata in query:iter_matches(root, buf_nr, 0, -1) do
     for id, node in pairs(captures) do
       if query.captures[id] == "import" then
-        local start_row = node:start()            -- Get the starting line of the node (0-based)
-        table.insert(import_lines, start_row + 1) -- Convert to 1-based indexing
+        local end_row = node:end_()             -- Get the end line of the node (0-based)
+        table.insert(import_lines, end_row + 1) -- Convert to 1-based indexing
       end
     end
   end

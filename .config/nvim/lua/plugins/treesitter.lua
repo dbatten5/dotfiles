@@ -23,6 +23,7 @@ return {
       "markdown_inline",
       "python",
       "regex",
+      "terraform",
       "toml",
       "tsx",
       "typescript",

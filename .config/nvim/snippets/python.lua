@@ -2,6 +2,10 @@ local function replace_whitespace(str)
   return string.gsub(str, "%s", "_")
 end
 
+local function todays_date()
+  return os.date("%Y-%m-%d")
+end
+
 return {
   -- function
   s(
@@ -56,12 +60,6 @@ return {
 
   s("s", t("self.")),
 
-  s("gbrwf", t("from tests.factories.plugins.territories.gbr.markets import water as gbr_water_factories")),
-
-  s("fdt", t("from tests.factories import datetimes as factory_dt")),
-
-  s("lct", t("from xocto import localtime")),
-
   -- class
   s(
     "class",
@@ -108,11 +106,23 @@ return {
             ({}, {}),
         ]
     )
-
     ]],
       {
         i(1),
         i(2),
+      }
+    )
+  ),
+
+  -- @time_machine travel to now
+  s(
+    "tm",
+    fmt(
+      [[
+    @time_machine.travel("{}")
+    ]],
+      {
+        f(todays_date),
       }
     )
   ),
