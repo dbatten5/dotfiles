@@ -53,6 +53,17 @@ return {
       end,
       desc = "Open the snippets",
     },
+    {
+      "<c-n>",
+      function()
+        local ls = require("luasnip")
+        if ls.choice_active() then
+          ls.change_choice(1)
+        end
+      end,
+      desc = "Jump through choices",
+      mode = { "i", "s" },
+    },
   },
   config = function(_, opts)
     require("luasnip").config.set_config(opts)

@@ -9,7 +9,11 @@
           "fmt",
           "i",
           "f",
-          "t"
+          "t",
+          "c",
+          "sn",
+          "r",
+          "d",
         ],
         "runtime": {
           "version": "LuaJIT"
