@@ -39,10 +39,10 @@ alias ggpush='git push origin HEAD'
 alias gpf='git push --force-with-lease origin'
 # Change the most recent commit message
 alias gca='git commit --amend'
-# Rebase all commits in current branch
-alias grb='git rebase \`git rev-list $(git_main_branch).. | tail -n 1\`^'
-# Interactive rebase all commits in current branch
-alias grbi='git rebase -i \`git rev-list $(git_main_branch).. | tail -n 1\`^'
+alias grb='git rebase'
+alias grbi='git rebase -i'
+# Rebase the alternate branch
+alias grba='git rebase -i -'
 # Autosquash all commits in current branch
 alias grbas='git rebase --autosquash -i \`\$(git rev-list $(git_main_branch).. | tail -n 1)^\`'
 # Remove branches that don't exist on remote, prune all unreachable objects

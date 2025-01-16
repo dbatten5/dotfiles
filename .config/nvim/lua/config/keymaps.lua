@@ -112,3 +112,8 @@ map("n", "<leader>gF", function()
   local fp = vim.fn.expand("%:.")
   vim.fn.system("gh browse " .. fp)
 end, { desc = "Open the current file in GitHub without going to current line" })
+
+map("n", "<leader>rw", function()
+  local cur_word = vim.fn.escape(vim.fn.expand('<cword>'), [[\/]])
+  vim.api.nvim_feedkeys(":%s/" .. cur_word .. "/", "n", false)
+end, { desc = "Replace word under the cursor in the current window" })

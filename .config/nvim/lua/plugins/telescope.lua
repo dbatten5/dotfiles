@@ -76,6 +76,13 @@ return {
         desc = "Git branches",
       },
       {
+        "<space>fh",
+        function()
+          require("telescope.builtin").help_tags()
+        end,
+        desc = "Help tags",
+      },
+      {
         "<space>D",
         function()
           require("telescope.builtin").diagnostics()

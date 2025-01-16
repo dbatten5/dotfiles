@@ -21,7 +21,7 @@ local optimisticAutoFormat = function(ignore_filetypes)
       return
     end
 
-    return { timeout_ms = 500, lsp_fallback = true }
+    return { timeout_ms = 500, lsp_fallback = false }
   end
 
   return _optimisticAutoFormat
@@ -48,7 +48,7 @@ local pessimisticAutoFormat = function(always_format_on_save, for_filetypes)
     end
 
     -- always run the following formatters on save
-    local out = { timeout_ms = 500, lsp_fallback = true, formatters = always_format_on_save }
+    local out = { timeout_ms = 500, lsp_fallback = false, formatters = always_format_on_save }
 
     -- Enable autoformat on certain filetypes
     if not vim.tbl_contains(for_filetypes, vim.bo[bufnr].filetype) then
@@ -71,7 +71,7 @@ return {
     {
       "<leader>f",
       function()
-        require("conform").format({ async = true, lsp_fallback = true })
+        require("conform").format({ async = true, lsp_fallback = false })
       end,
       mode = "n",
       desc = "Format buffer",
