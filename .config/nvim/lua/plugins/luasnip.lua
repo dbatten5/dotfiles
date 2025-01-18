@@ -54,7 +54,7 @@ return {
       desc = "Open the snippets",
     },
     {
-      "<c-n>",
+      "<c-o>",
       function()
         local ls = require("luasnip")
         if ls.choice_active() then
