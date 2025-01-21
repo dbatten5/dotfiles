@@ -10,7 +10,7 @@ end
 ---@return string|osdate
 local function todays_date(_, _, fmt)
   fmt = fmt or "%Y-%m-%d"
-  return os.date("%Y-%m-%d")
+  return os.date(fmt)
 end
 
 --- Check whether the node under the cursor is within a class definition
@@ -90,7 +90,34 @@ local function singular(input)
     singular_word = string.match(last_word, "^_?.")
   end
 
-  return s("{}", i(1, singular_word))
+  return sn("{}", i(1, singular_word))
+end
+
+--- Input a choice node that cycles between doc styles (or no docs)
+---@param index integer the jump index
+---@return any a choice node for the docs snippet
+local function collapsible_docs(index)
+  return isn(index, {
+    c(1, {
+      t(""),
+      sn(
+        nil,
+        fmt(
+          [[
+      """
+      {}
+      """
+      ]],
+          { r(1, "doc_body", i(1)) }
+        )
+      ),
+      sn(nil, {
+        t('"""'),
+        r(1, "doc_body", i(1)),
+        t('"""'),
+      }),
+    }),
+  }, "$PARENT_INDENT\t")
 end
 
 return {
@@ -128,21 +155,7 @@ return {
       {
         i(1),
         class_aware_fn_args(2, true),
-        c(3, {
-          r(1, "test_body", i(1)),
-          fmt(
-            [[
-          """
-            {}
-            """
-            {}
-          ]],
-            {
-              r(1, "test_docs", i(1)),
-              r(2, "test_body", i(2)),
-            }
-          ),
-        }),
+        collapsible_docs(3),
       }
     )
   ),
@@ -173,29 +186,25 @@ return {
       [[
     class {}:
         {}
-        def __init__(self, {}):
+        def __init__(self, {}) -> None:
             {}
     ]],
       {
         i(1),
-        c(2, {
-          i(1),
-          fmt(
-            [[
-            """
-            \t{}
-            \t"""
-            ]],
-            {
-              i(1),
-            },
-            {
-              indent_string = [[\t]],
-            }
-          ),
-        }),
+        collapsible_docs(2),
         i(3),
-        i(4),
+        d(4, function(args)
+          local nodes = {}
+          if args[1][1] then
+            for arg in args[1][1]:gmatch("([^,]+)") do
+              local var_name = arg:match("[%a_][%w_]*")
+              if var_name then
+                table.insert(nodes, t({ "self." .. var_name .. " = " .. var_name, "" }))
+              end
+            end
+          end
+          return isn(nil, nodes, "$PARENT_INDENT\t\t")
+        end, { 3 }),
       }
     )
   ),
@@ -210,24 +219,7 @@ return {
     ]],
       {
         i(1),
-        c(2, {
-          i(1),
-          fmt(
-            [[
-            """
-            \t{}
-            \t"""
-            \t{}
-            ]],
-            {
-              i(1),
-              i(2),
-            },
-            {
-              indent_string = [[\t]],
-            }
-          ),
-        }),
+        collapsible_docs(2),
       }
     )
   ),
@@ -256,10 +248,14 @@ return {
     "tm",
     fmt(
       [[
-    @time_machine.travel("{}")
+    @time_machine.travel("{}"){}
     ]],
       {
-        f(todays_date),
+        c(1, {
+          f(todays_date, {}, { user_args = { "%Y-%m-%d %H:%M:%S" } }),
+          f(todays_date),
+        }),
+        i(2),
       }
     )
   ),
@@ -328,4 +324,48 @@ return {
       }),
     })
   ),
+
+  -- attrs
+  s(
+    "atr",
+    fmt(
+      [[
+    @attrs.{}
+    class {}:
+        {}
+        {}
+    ]],
+      {
+        c(1, { t("frozen"), t("define") }),
+        i(2),
+        collapsible_docs(3),
+        i(4),
+      }
+    )
+  ),
+
+  -- enum
+  s(
+    "enum",
+    fmt(
+      [[
+      class {}(enum.{}):
+          {}
+          {} = "{}"
+      ]],
+      {
+        i(1),
+        c(2, {
+          t("Enum"),
+          t("StrEnum"),
+        }),
+        collapsible_docs(3),
+        i(4, "FOO"),
+        rep(4),
+      }
+    )
+  ),
+
+  -- enum element
+  s("ene", fmt([[{} = "{}"]], { i(1), rep(1) })),
 }

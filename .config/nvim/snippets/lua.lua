@@ -39,25 +39,31 @@ return {
       fmt(
         [[
         function M.{}({})
-          {}
+        \t{}
         end
         ]],
         {
           r(1, "fn_name", i(1)),
           r(2, "fn_args", i(2)),
           r(3, "fn_body", i(3)),
+        },
+        {
+          indent_string = [[\t]],
         }
       ),
       fmt(
         [[
         local function {}({})
-          {}
+        \t{}
         end
         ]],
         {
           r(1, "fn_name", i(1)),
           r(2, "fn_args", i(2)),
           r(3, "fn_body", i(3)),
+        },
+        {
+          indent_string = [[\t]],
         }
       ),
     })
@@ -69,13 +75,16 @@ return {
     fmt(
       [[
       for _, {} in ipairs({}) do
-        {}
+      \t{}
       end
       ]],
       {
         i(1, "line"),
         i(2),
         i(3),
+      },
+      {
+        indent_string = [[\t]],
       }
     )
   ),
@@ -86,7 +95,7 @@ return {
     fmt(
       [[
       if {} then
-        {}
+      \t{}
       end
       ]],
       {
@@ -98,6 +107,9 @@ return {
           }),
         }),
         i(2),
+      },
+      {
+        indent_string = [[\t]],
       }
     )
   ),
@@ -115,9 +127,35 @@ return {
     })
   ),
 
-  -- for
-  sn(
-    "for",
-    fmt("", {})
-  )
+  -- snippet
+  s(
+    "snip",
+    fmt(
+      [=[
+    s(
+      "{}",
+        fmt(
+        [[
+        {}
+      ]],
+      {{
+        {}
+      }}{}
+      )
+    ),
+    ]=],
+      {
+        i(1),
+        i(2),
+        i(3),
+        c(4, {
+          t(""),
+          t({",", "\t{{", "\t\tindent_string = [[\\t]],", "\t}}"})
+        })
+      },
+      {
+        indent_string = [[\t]],
+      }
+    )
+  ),
 }

@@ -92,9 +92,11 @@ return {
         },
         goto_next = {
           -- ["]c"] = "@conditional.outer",
+          ["]r"] = "@function.return_type",
         },
         goto_previous = {
           -- ["[c"] = "@conditional.outer",
+          ["[r"] = "@function.return_type",
         },
       },
     },

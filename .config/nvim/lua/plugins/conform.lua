@@ -91,14 +91,14 @@ return {
       terraform = { "terraform_fmt" },
       typescript = { "prettier", "eslint_d" },
       typescriptreact = { "prettier", "eslint_d" },
-      ["*"] = { "trim_whitespace", "codespell" },
+      ["*"] = { "trim_whitespace" },
     },
     auto_format = {
       optimistic = {
         ignore_filetypes = {},
       },
       pessmistic = {
-        always_format_on_save = { "trim_whitespace", "codespell" },
+        always_format_on_save = { "trim_whitespace" },
         for_filetypes = { "json", "jsonc" },
       },
     },
