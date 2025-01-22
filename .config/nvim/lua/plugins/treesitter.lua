@@ -81,6 +81,7 @@ return {
         goto_next_end = {
           ["]M"] = "@function.outer",
           ["]["] = "@class.outer",
+          -- ["]r"] = "@function.return_type",
         },
         goto_previous_start = {
           ["[m"] = "@function.outer",
@@ -89,14 +90,15 @@ return {
         goto_previous_end = {
           ["[M"] = "@function.outer",
           ["[]"] = "@class.outer",
+          -- ["[r"] = "@function.return_type",
         },
         goto_next = {
           -- ["]c"] = "@conditional.outer",
-          ["]r"] = "@function.return_type",
+          -- ["]r"] = "@function.return_type",
         },
         goto_previous = {
           -- ["[c"] = "@conditional.outer",
-          ["[r"] = "@function.return_type",
+          -- ["[r"] = "@function.return_type",
         },
       },
     },

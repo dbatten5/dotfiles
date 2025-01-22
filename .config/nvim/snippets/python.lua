@@ -120,6 +120,16 @@ local function collapsible_docs(index)
   }, "$PARENT_INDENT\t")
 end
 
+--- Return an insert node that has its default value as the same as another node
+---@param index integer the jump index
+---@param as integer the node from which to insert the output as the default value
+---@return any a dynamic node
+local function same(index, as)
+  return d(index, function(args)
+    return sn("{}", i(1, args[1][1]))
+  end, { as })
+end
+
 return {
   -- function
   s(
@@ -361,11 +371,29 @@ return {
         }),
         collapsible_docs(3),
         i(4, "FOO"),
-        rep(4),
+        same(5, 4),
       }
     )
   ),
 
   -- enum element
-  s("ene", fmt([[{} = "{}"]], { i(1), rep(1) })),
+  s(
+    "ene",
+    fmt([[{} = "{}"]], {
+      i(1, "FOO"),
+      same(2, 1),
+    })
+  ),
+
+  -- dict element
+  s(
+    "de",
+    fmt([["{}": {},]], {
+      i(1),
+      c(2, {
+        i(1),
+        sn(nil, fmt([["{}"]], { i(1) })),
+      }),
+    })
+  ),
 }

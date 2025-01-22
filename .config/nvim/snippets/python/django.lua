@@ -15,4 +15,10 @@ return {
       }
     )
   ),
+
+  -- `select_related("")`
+  s("sr", fmt([[ .select_related("{}"){} ]], { i(1), i(2) })),
+
+  -- `prefetch_related("")`
+  s("pr", fmt([[ .prefetch_related("{}"){} ]], { i(1), i(2) })),
 }

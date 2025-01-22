@@ -18,6 +18,7 @@ return {
       zsh = { "shellcheck" },
       typescript = { "eslint_d" },
       terraform = { "tflint" },
+      lua = { "luacheck" },
     },
   },
   config = function(_, opts)

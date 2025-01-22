@@ -1,4 +1,7 @@
-local map = require("utils.functions").setKeymap
+local treesitter = require("utils.treesitter")
+local utils = require("utils.functions")
+local buf_utils = require("utils.buffers")
+local map = utils.setKeymap
 
 local convert_file_path_to_dotted_path = function(file_path)
   return string.gsub(file_path, "/", ".")
@@ -29,32 +32,6 @@ local convert_dotted_path_to_import_statement = function(path)
   local new_line = string.format("from %s import %s", module_path, item)
 
   return new_line
-end
-
-local get_import_lines = function(buf_nr)
-  local parser = vim.treesitter.get_parser(buf_nr, "python")
-  local tree = parser:parse()[1]
-  local root = tree:root()
-  local query = vim.treesitter.query.parse(
-    "python",
-    [[
-    (import_statement) @import
-    (import_from_statement) @import
-    ]]
-  )
-
-  -- Find and print the lines with import statements
-  local import_lines = {}
-  for _, captures, metadata in query:iter_matches(root, buf_nr, 0, -1) do
-    for id, node in pairs(captures) do
-      if query.captures[id] == "import" then
-        local end_row = node:end_()             -- Get the end line of the node (0-based)
-        table.insert(import_lines, end_row + 1) -- Convert to 1-based indexing
-      end
-    end
-  end
-
-  return import_lines
 end
 
 vim.opt.colorcolumn = "88"
@@ -101,52 +78,36 @@ vim.api.nvim_create_user_command("PasteImportStatement", function(_)
   -- buffers it'll bring up a select menu so you can choose which one to import from. It relies on treesitter to find
   -- where to insert the statement in the current buffer.
   local current_buf = vim.api.nvim_get_current_buf()
-  local buffers = vim.api.nvim_list_bufs()
+  local active_other_buffers = buf_utils.get_other_active_buffers("python")
 
-  local active_other_buffer_file_paths = {}
-
-  for _, buf in ipairs(buffers) do
-    if buf ~= current_buf then
-      local is_listed = vim.api.nvim_get_option_value("buflisted", { buf = buf })
-      local is_displayed = vim.fn.bufwinnr(buf) ~= -1
-      local file_path = vim.api.nvim_buf_get_name(buf)
-      local is_python = file_path:sub(-3) == ".py"
-      if file_path and is_python and is_listed and is_displayed then
-        table.insert(active_other_buffer_file_paths, file_path)
-      end
-    end
-  end
-
-  local selected_filepath = nil
-
-  if #active_other_buffer_file_paths == 0 then
+  if #active_other_buffers == 0 then
     vim.notify("No active other buffer", vim.log.levels.INFO)
     return
   end
 
-  if #active_other_buffer_file_paths == 1 then
-    selected_filepath = active_other_buffer_file_paths[1]
+  if #active_other_buffers == 1 then
+    local selected_filepath = active_other_buffers[1].file_path
     local trimmed_file_path = vim.fn.fnamemodify(selected_filepath, ":.:r")
     local dotted_path = convert_file_path_to_dotted_path(trimmed_file_path)
     local import_statement = convert_dotted_path_to_import_statement(dotted_path)
 
-    local import_lines = get_import_lines(current_buf)
+    local import_lines = treesitter.get_import_lines(current_buf)
     local last_import_line = import_lines[#import_lines]
 
     vim.api.nvim_buf_set_lines(current_buf, last_import_line, last_import_line, false, { import_statement })
   else
-    vim.ui.select(active_other_buffer_file_paths, {
+    vim.ui.select(active_other_buffers, {
       prompt = "Pick a module...",
       format_item = function(item)
-        return vim.fn.fnamemodify(item, ":t")
+        return vim.fn.fnamemodify(item.file_path, ":t")
       end,
     }, function(choice)
       if choice then
-        local trimmed_file_path = vim.fn.fnamemodify(choice, ":.:r")
+        local trimmed_file_path = vim.fn.fnamemodify(choice.file_path, ":.:r")
         local dotted_path = convert_file_path_to_dotted_path(trimmed_file_path)
         local import_statement = convert_dotted_path_to_import_statement(dotted_path)
 
-        local import_lines = get_import_lines(current_buf)
+        local import_lines = treesitter.get_import_lines(current_buf)
         local last_import_line = import_lines[#import_lines]
 
         vim.api.nvim_buf_set_lines(current_buf, last_import_line, last_import_line, false, { import_statement })

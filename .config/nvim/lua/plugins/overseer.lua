@@ -18,44 +18,46 @@ return {
   config = function()
     local overseer = require("overseer")
 
-    overseer.register_template({
-      name = "Mypy",
-      builder = function()
-        local file = vim.fn.expand("%")
-        local cmd = { "mypy", file }
-        return {
-          cmd = cmd,
-          components = {
-            "open_output",
-            "base",
-          },
-        }
-      end,
-      priority = 20,
-      condition = {
-        filetype = "python",
-      },
-    })
-
-    overseer.register_template({
-      name = "Dmypy",
-      builder = function()
-        local file = vim.fn.expand("%")
-        local cmd = { "dmypy", "check", file }
-        return {
-          cmd = cmd,
-          components = {
-            "open_output",
-            "base",
-          },
-        }
-      end,
-      priority = 30,
-      condition = {
-        filetype = "python",
-      },
-    })
-
+    -- overseer.register_template({
+    --   name = "Mypy",
+    --   enabled = false,
+    --   builder = function()
+    --     local file = vim.fn.expand("%")
+    --     local cmd = { "mypy", file }
+    --     return {
+    --       cmd = cmd,
+    --       components = {
+    --         "open_output",
+    --         "base",
+    --       },
+    --     }
+    --   end,
+    --   priority = 20,
+    --   condition = {
+    --     filetype = "python",
+    --   },
+    -- })
+    --
+    -- overseer.register_template({
+    --   name = "Dmypy",
+    --   enabled = false,
+    --   builder = function()
+    --     local file = vim.fn.expand("%")
+    --     local cmd = { "dmypy", "check", file }
+    --     return {
+    --       cmd = cmd,
+    --       components = {
+    --         "open_output",
+    --         "base",
+    --       },
+    --     }
+    --   end,
+    --   priority = 30,
+    --   condition = {
+    --     filetype = "python",
+    --   },
+    -- })
+    --
     overseer.register_template({
       name = "Pre-commit",
       builder = function()
