@@ -1,5 +1,3 @@
-local l = require("luasnip.extras").lambda
-
 return {
   -- require statement
   s(
@@ -9,7 +7,13 @@ return {
         r(1, "req_path", i(1)),
       }),
       fmt('local {} = require("{}")', {
-        l(l._1:match("([^%.]+)$"), { 1 }),
+        d(2, function(args)
+          local var_name = ""
+          if args[1][1] then
+            var_name = args[1][1]:match("([^%.]+)$")
+          end
+          return sn(nil, i(1, var_name))
+        end, { 1 }),
         r(1, "req_path", i(1)),
       }),
     })
@@ -22,13 +26,16 @@ return {
       [[
     local M = {{}}
 
-    function M.{}()
-
+    function M.{}({})
+    \t{}
     end
 
     return M
     ]],
-      { i(1) }
+      { i(1), i(2), i(3) },
+      {
+        indent_string = [[\t]],
+      }
     )
   ),
 
@@ -150,8 +157,8 @@ return {
         i(3),
         c(4, {
           t(""),
-          t({",", "\t{{", "\t\tindent_string = [[\\t]],", "\t}}"})
-        })
+          t({ ",", "\t{{", "\t\tindent_string = [[\\t]],", "\t}}" }),
+        }),
       },
       {
         indent_string = [[\t]],

@@ -1,3 +1,5 @@
+local ts_utils = require("nvim-treesitter.ts_utils")
+
 local M = {}
 
 --- Return a list of function names defined in a given buffer
@@ -54,6 +56,24 @@ function M.get_import_lines(bufnr)
   end
 
   return import_lines
+end
+
+--- Check whether the node under the cursor is within a class definition
+---@return boolean
+function M.node_under_cursor_is_in_class()
+  local cursor_node = ts_utils.get_node_at_cursor()
+  if not cursor_node then
+    return false
+  end
+
+  while cursor_node do
+    if cursor_node:type() == "class_definition" then
+      return true
+    end
+    cursor_node = cursor_node:parent()
+  end
+
+  return false
 end
 
 return M

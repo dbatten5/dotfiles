@@ -64,9 +64,21 @@ return {
       desc = "Jump through choices",
       mode = { "i", "s" },
     },
+    {
+      "<c-u>",
+      function()
+        require("luasnip.extras.select_choice")()
+      end,
+      desc = "Select choice",
+      mode = { "i", "s" },
+    },
   },
   config = function(_, opts)
     require("luasnip").config.set_config(opts)
-    require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets/" })
+    require("luasnip.loaders.from_lua").load({
+      paths = {
+        "~/.config/nvim/snippets/",
+      },
+    })
   end,
 }

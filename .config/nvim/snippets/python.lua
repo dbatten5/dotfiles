@@ -1,37 +1,8 @@
---- Replace the whitespace in a string with underscores
----@param str string the string to replace
----@return string the replaced string
-local function replace_whitespace(str)
-  return string.gsub(str, "%s", "_")
-end
-
---- Return today's date
----@param fmt string?
----@return string|osdate
-local function todays_date(_, _, fmt)
-  fmt = fmt or "%Y-%m-%d"
-  return os.date(fmt)
-end
-
---- Check whether the node under the cursor is within a class definition
----@return boolean
-local function node_under_cursor_is_in_class()
-  local ts_utils = require("nvim-treesitter.ts_utils")
-
-  local cursor_node = ts_utils.get_node_at_cursor()
-  if not cursor_node then
-    return false
-  end
-
-  while cursor_node do
-    if cursor_node:type() == "class_definition" then
-      return true
-    end
-    cursor_node = cursor_node:parent()
-  end
-
-  return false
-end
+local ls_utils = require("utils.luasnip")
+local ts_utils = require("utils.treesitter")
+local buf_utils = require("utils.buffers")
+local text_utils = require("utils.text")
+local utils = require("utils.functions")
 
 --- Insert class aware function arguments, i.e. start with a `self` if we're inside a class
 ---@param index integer the node index
@@ -39,8 +10,8 @@ end
 ---@return any a dynamic node
 local function class_aware_fn_args(index, args_unlikely)
   return d(index, function()
-    local nodes = {}
-    if node_under_cursor_is_in_class() then
+    local nodes
+    if ts_utils.node_under_cursor_is_in_class() then
       local choice_nodes = {
         sn(nil, {
           t(", "),
@@ -70,29 +41,6 @@ local function class_aware_fn_args(index, args_unlikely)
   end)
 end
 
---- Convert a plural word to singular, for use in for loops
----@param input string the input to convert to singular
----@return string the singular form of the input
-local function singular(input)
-  local plural_word = input[1][1]
-  local last_word = string.match(plural_word, "[_%w]*$")
-
-  -- initialize with fallback
-  local singular_word = "item"
-
-  if string.match(last_word, ".s$") then
-    -- assume the given input is plural if it ends in s. This isn't always
-    -- perfect, but it's pretty good
-    singular_word = string.gsub(last_word, "s$", "", 1)
-  elseif string.match(last_word, "^_?%w.+") then
-    -- include an underscore in the match so that inputs like '_name' will
-    -- become '_n' and not just '_'
-    singular_word = string.match(last_word, "^_?.")
-  end
-
-  return sn("{}", i(1, singular_word))
-end
-
 --- Input a choice node that cycles between doc styles (or no docs)
 ---@param index integer the jump index
 ---@return any a choice node for the docs snippet
@@ -118,16 +66,6 @@ local function collapsible_docs(index)
       }),
     }),
   }, "$PARENT_INDENT\t")
-end
-
---- Return an insert node that has its default value as the same as another node
----@param index integer the jump index
----@param as integer the node from which to insert the output as the default value
----@return any a dynamic node
-local function same(index, as)
-  return d(index, function(args)
-    return sn("{}", i(1, args[1][1]))
-  end, { as })
 end
 
 return {
@@ -228,7 +166,17 @@ return {
         {}
     ]],
       {
-        i(1),
+        d(1, function()
+          local nodes = {}
+          local other_bufs = buf_utils.get_other_active_buffers("python")
+          for _, buf in ipairs(other_bufs) do
+            local func_defs = ts_utils.get_function_definitions(buf.bufnr)
+            for _, fname in ipairs(utils.reverse_table(func_defs)) do
+              table.insert(nodes, t(text_utils.convert_to_pascal(fname)))
+            end
+          end
+          return sn(nil, c(1, nodes))
+        end),
         collapsible_docs(2),
       }
     )
@@ -262,8 +210,8 @@ return {
     ]],
       {
         c(1, {
-          f(todays_date, {}, { user_args = { "%Y-%m-%d %H:%M:%S" } }),
-          f(todays_date),
+          f(ls_utils.todays_date, {}, { user_args = { "%Y-%m-%d %H:%M:%S" } }),
+          f(ls_utils.todays_date),
         }),
         i(2),
       }
@@ -305,7 +253,7 @@ return {
           {}
       ]],
       {
-        d(2, singular, { 1 }),
+        d(2, ls_utils.singular, { 1 }),
         i(1),
         i(3),
       }
@@ -371,7 +319,7 @@ return {
         }),
         collapsible_docs(3),
         i(4, "FOO"),
-        same(5, 4),
+        ls_utils.same(5, 4),
       }
     )
   ),
@@ -381,7 +329,7 @@ return {
     "ene",
     fmt([[{} = "{}"]], {
       i(1, "FOO"),
-      same(2, 1),
+      ls_utils.same(2, 1),
     })
   ),
 

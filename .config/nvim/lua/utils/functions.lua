@@ -119,4 +119,11 @@ M.openFileInGitHub = function(fp, lineNumber)
   vim.fn.system("gh browse " .. path)
 end
 
+function M.reverse_table(tab)
+  for i = 1, math.floor(#tab / 2), 1 do
+    tab[i], tab[#tab - i + 1] = tab[#tab - i + 1], tab[i]
+  end
+  return tab
+end
+
 return M
