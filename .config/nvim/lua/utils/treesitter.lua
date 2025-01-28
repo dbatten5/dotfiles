@@ -2,10 +2,16 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 
 local M = {}
 
---- Return a list of function names defined in a given buffer
+---@enum definition_types
+M.DEFINITION_TYPES = {
+  functions = "functions",
+  classes = "classes",
+}
+
+--- Return a list of definitions defined in a given buffer
 ---@param bufnr integer the buffer number
----@return table<string> a list of the names of the functions defined in the buffer
-function M.get_function_definitions(bufnr)
+---@return table<string, table<string>> a list of the names of the definitions in the buffer
+function M.get_definitions(bufnr)
   local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
   local language_tree = vim.treesitter.get_parser(bufnr, filetype)
   local tree = language_tree:parse()[1]
@@ -13,14 +19,17 @@ function M.get_function_definitions(bufnr)
   local query = vim.treesitter.query.parse(
     filetype,
     [[
-      (function_definition name: (identifier) @function_name)
+      (function_definition name: (identifier) @functions)
+      (class_definition name: (identifier) @classes)
     ]]
   )
 
-  local results = {}
-  for _, node, _ in query:iter_captures(tree:root(), bufnr, 0, -1) do
-    local name = vim.treesitter.get_node_text(node, bufnr)
-    table.insert(results, name)
+  local results = { functions = {}, classes = {} }
+
+  for id, node, _ in query:iter_captures(tree:root(), bufnr, 0, -1) do
+    local capture_name = query.captures[id]
+    local definition_name = vim.treesitter.get_node_text(node, bufnr)
+    table.insert(results[capture_name], definition_name)
   end
 
   return results

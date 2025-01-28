@@ -48,8 +48,8 @@ return {
         enable = true,
         lookahead = true,
         keymaps = {
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
+          ["am"] = "@function.outer",
+          ["im"] = "@function.inner",
           ["a["] = "@class.outer",
           ["i["] = "@class.inner",
           ["ac"] = "@conditional.outer",
@@ -60,15 +60,25 @@ return {
           ["ab"] = "@block.outer",
           ["ir"] = "@parameter.inner",
           ["ar"] = "@parameter.outer",
+          ["it"] = "@return_type",
+          ["at"] = "@return_type.outer",
+          ["a="] = "@assignment.outer",
+          ["i="] = "@assignment.inner",
+          ["l="] = "@assignment.lhs",
+          ["r="] = "@assignment.rhs",
+          ["af"] = "@call.outer",
+          ["if"] = "@call.inner",
         },
       },
       swap = {
         enable = true,
         swap_next = {
-          ["<leader>a"] = "@parameter.inner",
+          ["<leader>na"] = "@parameter.inner",
+          ["<leader>nm"] = "@function.outer",
         },
         swap_previous = {
-          ["<leader>A"] = "@parameter.inner",
+          ["<leader>pa"] = "@parameter.inner",
+          ["<leader>pm"] = "@function.outer",
         },
       },
       move = {
@@ -81,7 +91,7 @@ return {
         goto_next_end = {
           ["]M"] = "@function.outer",
           ["]["] = "@class.outer",
-          -- ["]r"] = "@function.return_type",
+          ["]t"] = "@return_type",
         },
         goto_previous_start = {
           ["[m"] = "@function.outer",
@@ -90,7 +100,7 @@ return {
         goto_previous_end = {
           ["[M"] = "@function.outer",
           ["[]"] = "@class.outer",
-          -- ["[r"] = "@function.return_type",
+          ["[t"] = "@return_type",
         },
         goto_next = {
           -- ["]c"] = "@conditional.outer",

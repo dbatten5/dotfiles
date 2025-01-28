@@ -1,8 +1,5 @@
 local ls_utils = require("utils.luasnip")
 local ts_utils = require("utils.treesitter")
-local buf_utils = require("utils.buffers")
-local text_utils = require("utils.text")
-local utils = require("utils.functions")
 
 --- Insert class aware function arguments, i.e. start with a `self` if we're inside a class
 ---@param index integer the node index
@@ -157,26 +154,31 @@ return {
     )
   ),
 
-  -- test class
+  -- test class for a function
   s(
-    "tc",
+    "tcf",
     fmt(
       [[
     class Test{}:
         {}
     ]],
       {
-        d(1, function()
-          local nodes = {}
-          local other_bufs = buf_utils.get_other_active_buffers("python")
-          for _, buf in ipairs(other_bufs) do
-            local func_defs = ts_utils.get_function_definitions(buf.bufnr)
-            for _, fname in ipairs(utils.reverse_table(func_defs)) do
-              table.insert(nodes, t(text_utils.convert_to_pascal(fname)))
-            end
-          end
-          return sn(nil, c(1, nodes))
-        end),
+        ls_utils.definitions_choice_node(1, "python", ts_utils.DEFINITION_TYPES.functions),
+        collapsible_docs(2),
+      }
+    )
+  ),
+
+  -- test class for a class
+  s(
+    "tcc",
+    fmt(
+      [[
+    class Test{}:
+        {}
+    ]],
+      {
+        ls_utils.definitions_choice_node(1, "python", ts_utils.DEFINITION_TYPES.classes),
         collapsible_docs(2),
       }
     )
