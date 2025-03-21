@@ -4,8 +4,9 @@ local M = {}
 
 ---@enum definition_types
 M.DEFINITION_TYPES = {
-  functions = "functions",
-  classes = "classes",
+  FUNCTIONS = "functions",
+  CLASSES = "classes",
+  ALL = "all",
 }
 
 --- Return a list of definitions defined in a given buffer
@@ -24,12 +25,13 @@ function M.get_definitions(bufnr)
     ]]
   )
 
-  local results = { functions = {}, classes = {} }
+  local results = { functions = {}, classes = {}, all = {} }
 
   for id, node, _ in query:iter_captures(tree:root(), bufnr, 0, -1) do
     local capture_name = query.captures[id]
     local definition_name = vim.treesitter.get_node_text(node, bufnr)
     table.insert(results[capture_name], definition_name)
+    table.insert(results[M.DEFINITION_TYPES.ALL], definition_name)
   end
 
   return results

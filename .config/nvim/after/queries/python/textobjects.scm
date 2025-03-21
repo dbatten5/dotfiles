@@ -9,3 +9,5 @@
    .
    return_type: (type) @return_type)
    (#make-range! "return_type.outer" @_start @return_type))
+
+[(import_statement) (import_from_statement)] @import_statement

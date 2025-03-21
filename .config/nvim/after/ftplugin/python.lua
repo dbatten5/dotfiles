@@ -92,7 +92,7 @@ vim.api.nvim_create_user_command("PasteImportStatement", function(_)
     local import_statement = convert_dotted_path_to_import_statement(dotted_path)
 
     local import_lines = treesitter.get_import_lines(current_buf)
-    local last_import_line = import_lines[#import_lines]
+    local last_import_line = import_lines[#import_lines] or 0
 
     vim.api.nvim_buf_set_lines(current_buf, last_import_line, last_import_line, false, { import_statement })
   else
@@ -108,7 +108,7 @@ vim.api.nvim_create_user_command("PasteImportStatement", function(_)
         local import_statement = convert_dotted_path_to_import_statement(dotted_path)
 
         local import_lines = treesitter.get_import_lines(current_buf)
-        local last_import_line = import_lines[#import_lines]
+        local last_import_line = import_lines[#import_lines] or 0
 
         vim.api.nvim_buf_set_lines(current_buf, last_import_line, last_import_line, false, { import_statement })
       else
@@ -125,3 +125,44 @@ map(
   ":PasteImportStatement<cr>",
   { desc = "Paste the import path of the other active buffer into the current buffer" }
 )
+
+local import_patterns = {
+  { pattern = "import datetime", priority = 60 },
+  { pattern = "import enum", priority = 40 },
+  { pattern = "import pytest", priority = 50 },
+  { pattern = "import time_machine", priority = 20 },
+  { pattern = "from decimal import Decimal", priority = 10 },
+  { pattern = "from django.db.models import Q", priority = 5 },
+  { pattern = "import attrs", priority = 41 },
+  { pattern = "import typing", priority = 52 },
+  { pattern = "from collections.abc import Iterable", priority = 23 },
+}
+
+--- Bring up a select menu with common import statements and insert the choice
+local function paste_common_import()
+  local function sort_by_priority(pattern1, pattern2)
+    return pattern1.priority > pattern2.priority
+  end
+  local patterns = vim.fn.extend(vim.g.import_patterns or {}, import_patterns)
+  table.sort(patterns, sort_by_priority)
+  vim.ui.select(patterns, {
+    prompt = "Pick a common import...",
+    format_item = function(item)
+      return item.pattern
+    end,
+  }, function(choice)
+    if choice then
+      local current_buf = vim.api.nvim_get_current_buf()
+      local import_lines = treesitter.get_import_lines(current_buf)
+      local last_import_line = import_lines[#import_lines] or 0
+      vim.api.nvim_buf_set_lines(current_buf, last_import_line, last_import_line, false, { choice.pattern })
+    else
+      vim.notify("No import selected", vim.log.levels.INFO)
+      return
+    end
+  end)
+end
+
+map({ "n", "i" }, "<c-m>", function()
+  paste_common_import()
+end, { desc = "Paste a common import statement" })

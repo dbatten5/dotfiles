@@ -1,10 +1,9 @@
 local ls = require("luasnip")
-local ts_utils = require("nvim-treesitter.ts_utils")
 
 local buf_utils = require("utils.buffers")
 local text_utils = require("utils.text")
 local utils = require("utils.functions")
-local treesitter_utils = require("utils.treesitter")
+local ts_utils = require("utils.treesitter")
 
 local sn = ls.snippet_node
 local i = ls.insert_node
@@ -55,19 +54,21 @@ function M.same(index, as)
   end, { as })
 end
 
---- Return a noice node filled with defintions from other open buffers
+--- Return a choice node filled with defintions from other open buffers
 ---@param index integer the jump index
 ---@param filetype string the filetype to filter other active buffers by
 ---@param definition_type definition_types the type of definitions to look for
+---@param format_definition? function an optional function used to format the defintions
 ---@return any a choice node
-function M.definitions_choice_node(index, filetype, definition_type)
+function M.definitions_choice_node(index, filetype, definition_type, format_definition)
+  format_definition = format_definition or text_utils.convert_to_pascal
   return d(index, function()
     local nodes = {}
     local other_bufs = buf_utils.get_other_active_buffers(filetype)
     for _, buf in ipairs(other_bufs) do
-      local func_defs = treesitter_utils.get_definitions(buf.bufnr)[definition_type]
-      for _, fname in ipairs(utils.reverse_table(func_defs)) do
-        table.insert(nodes, t(text_utils.convert_to_pascal(fname)))
+      local defs = ts_utils.get_definitions(buf.bufnr)[definition_type]
+      for _, def in ipairs(utils.reverse_table(defs)) do
+        table.insert(nodes, t(format_definition(def)))
       end
     end
     if #nodes == 0 then

@@ -94,7 +94,7 @@ return {
       adapters = {
         neotest_python({
           dap = { justMyCode = true, django = true },
-          args = { "-vv" },
+          args = { "-vv", "-p", "tools.pytest.django_config_auto_selection.plugin" },
         }),
       },
       output = { open_on_run = true },

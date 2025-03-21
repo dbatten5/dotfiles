@@ -154,6 +154,21 @@ return {
     )
   ),
 
+  -- test class
+  s(
+    "tc",
+    fmt(
+      [[
+    class Test{}:
+        {}
+    ]],
+      {
+        ls_utils.definitions_choice_node(1, "python", ts_utils.DEFINITION_TYPES.ALL),
+        collapsible_docs(2),
+      }
+    )
+  ),
+
   -- test class for a function
   s(
     "tcf",
@@ -163,7 +178,7 @@ return {
         {}
     ]],
       {
-        ls_utils.definitions_choice_node(1, "python", ts_utils.DEFINITION_TYPES.functions),
+        ls_utils.definitions_choice_node(1, "python", ts_utils.DEFINITION_TYPES.FUNCTIONS),
         collapsible_docs(2),
       }
     )
@@ -178,7 +193,7 @@ return {
         {}
     ]],
       {
-        ls_utils.definitions_choice_node(1, "python", ts_utils.DEFINITION_TYPES.classes),
+        ls_utils.definitions_choice_node(1, "python", ts_utils.DEFINITION_TYPES.CLASSES),
         collapsible_docs(2),
       }
     )
@@ -208,7 +223,7 @@ return {
     "tm",
     fmt(
       [[
-    @time_machine.travel("{}"){}
+    @time_machine.travel("{}", tick=False){}
     ]],
       {
         c(1, {
@@ -316,8 +331,8 @@ return {
       {
         i(1),
         c(2, {
-          t("Enum"),
           t("StrEnum"),
+          t("Enum"),
         }),
         collapsible_docs(3),
         i(4, "FOO"),
@@ -345,5 +360,80 @@ return {
         sn(nil, fmt([["{}"]], { i(1) })),
       }),
     })
+  ),
+
+  -- property
+  s(
+    "prop",
+    fmt(
+      [[
+      @property
+      def {}(self) -> {}:
+          {}
+    ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+      }
+    )
+  ),
+
+  -- class method
+  s(
+    "clsm",
+    fmt(
+      [[
+      @classmethod
+      def {}(cls) -> {}:
+          {}
+    ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+      }
+    )
+  ),
+
+  -- static method
+  s(
+    "statm",
+    fmt(
+      [[
+      @staticmethod
+      def {}({}) -> {}:
+          {}
+    ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(4),
+      }
+    )
+  ),
+
+  -- localtime
+  s(
+    "lct",
+    fmt(
+      [[
+      localtime.{}
+    ]],
+      {
+        c(1, {
+          t("now()"),
+          t("today()"),
+          t("midnight()"),
+          t("yesterday()"),
+          t("tomorrow()"),
+          sn(nil, fmt([[days_in_the_future({})]], { i(1) })),
+          sn(nil, fmt([[days_in_the_past({})]], { i(1) })),
+          sn(nil, fmt([[months_in_the_future({})]], { i(1) })),
+          sn(nil, fmt([[months_in_the_past({})]], { i(1) })),
+        }),
+      }
+    )
   ),
 }

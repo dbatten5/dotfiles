@@ -128,7 +128,7 @@ return {
   s(
     "tbe",
     fmt("vim.tbl_extend({}, {}, {})", {
-      i(1, "force"),
+      i(1, '"force"'),
       i(2),
       i(3),
     })
@@ -162,6 +162,23 @@ return {
       },
       {
         indent_string = [[\t]],
+      }
+    )
+  ),
+
+  -- local
+  s(
+    "l",
+    fmt(
+      [[
+      local {} = {}
+    ]],
+      {
+        i(1),
+        c(2, {
+          sn(nil, fmt("{{{}}}", { i(1) })),
+          i(1),
+        }),
       }
     )
   ),
