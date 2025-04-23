@@ -1,0 +1,4 @@
+- clean: ["~"]
+
+- shell:
+    - [brew bundle --file=./Brewfile]
