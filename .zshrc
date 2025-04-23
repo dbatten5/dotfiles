@@ -43,6 +43,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
 
+export PATH="$PATH:$HOME/kafka/kafka_2.13-3.9.0/bin"
+
 # Invoke tab-completion script to be sourced with the Z shell.
 # Known to work on zsh 5.0.x, probably works on later 4.x releases as well (as
 # it uses the older compctl completion system).
@@ -78,3 +80,7 @@ compctl -K _complete_invoke + -f invoke inv
 # vim: set ft=sh :
 
 . "$HOME/.cargo/env"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
