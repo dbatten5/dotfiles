@@ -2,3 +2,6 @@
 
 - shell:
     - [brew bundle --file=./Brewfile]
+
+- link:
+  ~/.config: .config
