@@ -1,8 +1,6 @@
 tap "1password/tap"
 tap "coursier/formulas"
 tap "hashicorp/tap"
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "homeport/tap"
 tap "kraken/temp"
 tap "norwoodj/tap"
