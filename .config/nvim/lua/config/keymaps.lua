@@ -71,6 +71,8 @@ map("n", "<space>o", "<cmd>!open %:h<cr>", { desc = "Open directory of current f
 map("n", "<leader>qf", "<cmd>copen<cr>", { desc = "Open quickfix" })
 map("n", "<leader>qo", "<cmd>colder<cr>", { desc = "Go to older quickfix" })
 map("n", "<leader>qn", "<cmd>cnewer<cr>", { desc = "Go to newer quickfix" })
+map("n", "]q", "<cmd>cnext<cr>zz", { desc = "Jump to next quickfix entry" })
+map("n", "[q", "<cmd>cprev<cr>zz", { desc = "Jump to previous quickfix entry" })
 
 -- insert mode movement
 map("i", "<c-l>", "<right>")
