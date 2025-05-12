@@ -1,7 +1,19 @@
 - clean: ["~"]
 
-- shell:
-    - [brew bundle --file=./Brewfile]
+- create:
+    - ~/projects/work
+    - ~/projects/personal
 
 - link:
-  ~/.config: .config
+    ~/.config: .config
+    ~/.zsh: .zsh
+    ~/.gitconfig: .gitconfig
+    ~/.luacheckrc: .luacheckrc
+    ~/.vimrc: .vimrc
+    ~/.zshrc: .zshrc
+    ~/Library/Application\ Support/iTerm2/DynamicProfiles/Profiles.json: iterm2/Profiles.json
+
+- shell:
+    -
+      command: chmod +x bootstrap/osx.sh && bootstrap/osx.sh
+      description: Bootstrap OSX

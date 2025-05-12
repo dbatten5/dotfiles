@@ -18,6 +18,7 @@ return {
       },
       lualine_y = {
         "overseer",
+        "lsp_status",
       },
     },
   },

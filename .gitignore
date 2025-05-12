@@ -1,1 +1,9 @@
 .zsh/private.zsh
+
+.config/iterm2
+.config/op
+.config/karabiner/automatic_backups/
+.config/raycast
+
+mprocs.log
+

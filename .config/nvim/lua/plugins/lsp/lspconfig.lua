@@ -5,6 +5,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "folke/snacks.nvim",
     {
       "folke/lazydev.nvim",
       config = true,
@@ -34,25 +35,29 @@ return {
       opts.buffer = bufnr
 
       opts.desc = "Show LSP references"
-      map.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+      opts.nowait = true
+      map.set("n", "gR", function()
+        require("snacks").picker.lsp_references()
+      end, opts)
+      opts.nowait = nil
 
       opts.desc = "Go to declaration"
       map.set("n", "gD", vim.lsp.buf.declaration, opts)
 
       opts.desc = "Show LSP definitions"
-      map.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+      map.set("n", "gd", function()
+        require("snacks").picker.lsp_definitions()
+      end, opts)
 
       opts.desc = "Show LSP implementations"
-      map.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+      map.set("n", "gi", function()
+        require("snacks").picker.lsp_implementations()
+      end, opts)
 
       opts.desc = "Show LSP type definitions"
-      map.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-
-      opts.desc = "See available code actions"
-      map.set({ "n", "x" }, "<space>ca", vim.lsp.buf.code_action, opts)
-
-      opts.desc = "Smart rename"
-      map.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+      map.set("n", "gt", function()
+        require("snacks").picker.lsp_type_definitions()
+      end, opts)
 
       opts.desc = "Show documentation for what is under cursor"
       map.set("n", "K", vim.lsp.buf.hover, opts)
@@ -85,20 +90,36 @@ return {
     --   },
     -- })
 
-    lspconfig.pylsp.setup({
+    -- lspconfig.pylsp.setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   -- root_dir = function(fname)
+    --   --   local util = require("lspconfig.util")
+    --   --   local root_files = {
+    --   --     "setup.cfg",
+    --   --     "pyproject.toml",
+    --   --     "setup.py",
+    --   --     "requirements.txt",
+    --   --     "Pipfile"pylsp
+    --   --   }
+    --   --   return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+    --   -- end,
+    -- })
+
+    lspconfig.basedpyright.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      root_dir = function(fname)
-        local util = require("lspconfig.util")
-        local root_files = {
-          "setup.cfg",
-          "pyproject.toml",
-          "setup.py",
-          "requirements.txt",
-          "Pipfile",
-        }
-        return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
-      end,
+      -- root_dir = function(fname)
+      --   local util = require("lspconfig.util")
+      --   local root_files = {
+      --     "setup.cfg",
+      --     "pyproject.toml",
+      --     "setup.py",
+      --     "requirements.txt",
+      --     "Pipfile",
+      --   }
+      --   return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+      -- end,
     })
 
     lspconfig.lua_ls.setup({

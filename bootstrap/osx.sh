@@ -13,4 +13,5 @@ defaults write com.apple.Dock autohide-delay -float 0
 defaults write com.apple.dock magnification -bool NO
 
 # Set fast key repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 15

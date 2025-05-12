@@ -29,3 +29,5 @@
 	wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
 [push]
 	autoSetupRemote = true
+[url "ssh://git@github.com/octoenergy/"]
+	insteadof = https://github.com/octoenergy/
