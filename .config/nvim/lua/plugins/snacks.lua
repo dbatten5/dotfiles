@@ -5,14 +5,24 @@ return {
   opts = {
     bigfile = { enabled = true },
     input = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      picker = {
+        ui_select = true,
+        previewers = {
+          git = {
+            args = { "--max-count 20" },
+          },
+        },
+      },
+    },
     quickfile = { enabled = true },
   },
   keys = {
     {
       "<space>ff",
       function()
-        require("snacks").picker.files()
+        require("snacks").picker.files({ hidden = true })
       end,
       desc = "Find files",
     },

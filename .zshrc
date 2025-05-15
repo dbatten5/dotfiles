@@ -30,7 +30,7 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source <(fzf --zsh)
-export FZF_COMPLETION_TRIGGER='..'
+export FZF_COMPLETION_TRIGGER=',,'
 
 # Created by `pipx` on 2023-12-24 10:00:49
 export PATH="$PATH:/Users/dom.batten/.local/bin"

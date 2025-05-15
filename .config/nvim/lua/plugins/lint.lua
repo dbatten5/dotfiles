@@ -19,6 +19,7 @@ return {
       typescript = { "eslint_d" },
       terraform = { "tflint" },
       lua = { "luacheck" },
+      json = { "jsonlint" },
     },
   },
   config = function(_, opts)

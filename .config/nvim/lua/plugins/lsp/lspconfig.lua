@@ -23,20 +23,13 @@ return {
     local map = vim.keymap
     local opts = { noremap = true, silent = true }
 
-    lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-      handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-      },
-    })
-
     local on_attach = function(client, bufnr)
       client.server_capabilities.semanticTokensProvider = nil
       opts.buffer = bufnr
 
       opts.desc = "Show LSP references"
       opts.nowait = true
-      map.set("n", "gR", function()
+      map.set("n", "grr", function()
         require("snacks").picker.lsp_references()
       end, opts)
       opts.nowait = nil
@@ -50,7 +43,7 @@ return {
       end, opts)
 
       opts.desc = "Show LSP implementations"
-      map.set("n", "gi", function()
+      map.set("n", "gri", function()
         require("snacks").picker.lsp_implementations()
       end, opts)
 
@@ -60,18 +53,20 @@ return {
       end, opts)
 
       opts.desc = "Show documentation for what is under cursor"
-      map.set("n", "K", vim.lsp.buf.hover, opts)
+      map.set("n", "K", function()
+        vim.lsp.buf.hover({ border = "rounded" })
+      end, opts)
 
       opts.desc = "Signature help"
-      map.set("i", "<c-s>", vim.lsp.buf.signature_help, opts)
+      map.set("i", "<c-s>", function()
+        vim.lsp.buf.signature_help({ border = "rounded" })
+      end, opts)
 
       opts.desc = "Restart LSP"
       map.set("n", "<space>rs", ":LspRestart<CR>", opts)
     end
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    require("lspconfig.ui.windows").default_options.border = "single"
 
     -- lspconfig.pyright.setup({
     --   capabilities = capabilities,
@@ -109,17 +104,6 @@ return {
     lspconfig.basedpyright.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      -- root_dir = function(fname)
-      --   local util = require("lspconfig.util")
-      --   local root_files = {
-      --     "setup.cfg",
-      --     "pyproject.toml",
-      --     "setup.py",
-      --     "requirements.txt",
-      --     "Pipfile",
-      --   }
-      --   return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
-      -- end,
     })
 
     lspconfig.lua_ls.setup({

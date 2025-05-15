@@ -57,12 +57,10 @@ function M.get_import_lines(bufnr)
 
   -- Find and print the lines with import statements
   local import_lines = {}
-  for _, captures, _ in query:iter_matches(root, bufnr, 0, -1) do
-    for id, node in pairs(captures) do
-      if query.captures[id] == "import" then
-        local end_row = node:end_() -- Get the end line of the node (0-based)
-        table.insert(import_lines, end_row + 1) -- Convert to 1-based indexing
-      end
+  for id, node in query:iter_captures(root, bufnr, 0, -1) do
+    if node and query.captures[id] == "import" then
+      local end_row, _, _ = node:end_() -- Get the end line of the node (0-based)
+      table.insert(import_lines, end_row + 1) -- Convert to 1-based indexing
     end
   end
 

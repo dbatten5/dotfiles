@@ -1,0 +1,4 @@
+# vim: set filetype=zsh :
+
+# fzf an invoke command and print to the command line
+print -z $(echo -n "inv " && inv --list -F json | jq -r '(.collections[] | (.name) +"."+ .tasks[].name), .tasks[].name' | fzf)
