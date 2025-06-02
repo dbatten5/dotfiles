@@ -85,16 +85,29 @@ return {
       end,
       desc = "Stop",
     },
+    {
+      "]n",
+      function()
+        require("neotest").jump.next({ status = "failed" })
+      end,
+    },
+    {
+      "[n",
+      function()
+        require("neotest").jump.prev({ status = "failed" })
+      end,
+    },
   },
   config = function()
     local neotest = require("neotest")
     local neotest_python = require("neotest-python")
+    local pytest_args = vim.g.pytest_args or { "-vv" }
 
     neotest.setup({
       adapters = {
         neotest_python({
           dap = { justMyCode = true, django = true },
-          args = { "-vv", "-p", "tools.pytest.django_config_auto_selection.plugin" },
+          args = pytest_args,
         }),
       },
       output = { open_on_run = true },

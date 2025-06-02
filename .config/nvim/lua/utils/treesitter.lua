@@ -67,16 +67,23 @@ function M.get_import_lines(bufnr)
   return import_lines
 end
 
---- Check whether the node under the cursor is within a class definition
+---@enum node_types
+M.NODE_TYPES = {
+  CLASS = "class_definition",
+  FUNCTION = "function_definition",
+}
+
+--- Check whether the node under the cursor is descendent of a certain type of node
+---@param node_type node_types the type of node to check against
 ---@return boolean
-function M.node_under_cursor_is_in_class()
+function M.node_under_cursor_has_parent(node_type)
   local cursor_node = ts_utils.get_node_at_cursor()
   if not cursor_node then
     return false
   end
 
   while cursor_node do
-    if cursor_node:type() == "class_definition" then
+    if cursor_node:type() == node_type then
       return true
     end
     cursor_node = cursor_node:parent()

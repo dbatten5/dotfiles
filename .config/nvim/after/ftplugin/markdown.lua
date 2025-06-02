@@ -1,2 +1,2 @@
-vim.opt.textwidth = 80
-vim.opt.wrapmargin = 80
+vim.opt_local.textwidth = 80
+vim.opt_local.wrapmargin = 80

@@ -18,7 +18,6 @@ map("n", "<c-l>", "<c-w>l")
 -- copy/pate from system clip
 map({ "n", "x" }, "gy", '"+y')
 map({ "n", "x" }, "gp", '"+p')
-map("i", "<c-v>", '"+p')
 map("n", "<c-s-s>", function()
   local fileContents = vim.fn.join(vim.fn.readfile(vim.fn.expand("%")), "\n")
   utils.copyToSystemClipboard(fileContents)
@@ -57,8 +56,8 @@ swap("v", "<c-v>", "v")
 swap("0", "^")
 
 -- paste last yanked item
-map("n", "<space>p>", '"0p')
-map("n", "<space>P>", '"0P')
+map("n", "<space>p", '"0p')
+map("n", "<space>P", '"0P')
 
 -- run macro for q register on big Q (I don't use ex mode)
 map("n", "Q", "@q")
@@ -80,8 +79,12 @@ map("i", "<c-h>", "<left>")
 
 -- diagnostics
 map("n", "<space>d", vim.diagnostic.open_float)
-map("n", "[d", vim.diagnostic.goto_prev)
-map("n", "]d", vim.diagnostic.goto_next)
+map("n", "[d", function()
+  vim.diagnostic.jump({ count = 1 })
+end, { desc = "Go to next diagnostic" })
+map("n", "[d", function()
+  vim.diagnostic.jump({ count = -1 })
+end, { desc = "Go to previous diagnostic" })
 
 map("n", "<leader>yf", function()
   local fp = vim.fn.expand("%:.")
@@ -94,26 +97,6 @@ map("n", "<leader>yw", function()
   utils.copyToSystemClipboard(word)
   vim.notify(word .. " copied to system clipboard", vim.log.levels.INFO)
 end, { desc = "Copy word under the cursor to system clipboard" })
-
-map("n", "<leader>gf", function()
-  local fp = vim.fn.expand("%:.")
-  local lineNumber = vim.api.nvim_win_get_cursor(0)[1]
-  local path = fp .. ":" .. lineNumber
-  vim.fn.system("gh browse " .. path)
-end, { desc = "Open the current file and current line in GitHub" })
-
-map("v", "<leader>gf", function()
-  local fp = vim.fn.expand("%:.")
-  local startLine = vim.fn.line("v")
-  local endLine = vim.fn.line(".")
-  local path = fp .. ":" .. startLine .. "-" .. endLine
-  vim.fn.system("gh browse " .. path)
-end, { desc = "Open the current file and current visual selection in GitHub" })
-
-map("n", "<leader>gF", function()
-  local fp = vim.fn.expand("%:.")
-  vim.fn.system("gh browse " .. fp)
-end, { desc = "Open the current file in GitHub without going to current line" })
 
 map("n", "<leader>rw", function()
   local cur_word = vim.fn.escape(vim.fn.expand("<cword>"), [[\/]])

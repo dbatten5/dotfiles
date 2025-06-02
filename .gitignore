@@ -5,5 +5,8 @@
 .config/karabiner/automatic_backups/
 .config/raycast
 
+.config/kraken-cli
+.config/ktdb
+
 mprocs.log
 

@@ -15,6 +15,6 @@ return {
         open_command = "lefta vsp",
       },
     },
-    picker = "telescope",
+    picker = "picker",
   },
 }

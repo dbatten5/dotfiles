@@ -8,7 +8,7 @@ local ts_utils = require("utils.treesitter")
 local function class_aware_fn_args(index, args_unlikely)
   return d(index, function()
     local nodes
-    if ts_utils.node_under_cursor_is_in_class() then
+    if ts_utils.node_under_cursor_has_parent(ts_utils.NODE_TYPES.CLASS) then
       local choice_nodes = {
         sn(nil, {
           t(", "),
@@ -218,19 +218,32 @@ return {
     )
   ),
 
-  -- @time_machine travel to now
+  -- context aware time_machine travel to now
   s(
     "tm",
     fmt(
       [[
-    @time_machine.travel("{}", tick=False){}
+    {}time_machine.travel("{}", tick=False){}
     ]],
       {
-        c(1, {
+        d(1, function()
+          if ts_utils.node_under_cursor_has_parent(ts_utils.NODE_TYPES.FUNCTION) then
+            return sn(nil, t("with "))
+          else
+            return sn(nil, t("@"))
+          end
+        end),
+        c(2, {
           f(ls_utils.todays_date, {}, { user_args = { "%Y-%m-%d %H:%M:%S" } }),
           f(ls_utils.todays_date),
         }),
-        i(2),
+        d(3, function()
+          if ts_utils.node_under_cursor_has_parent(ts_utils.NODE_TYPES.FUNCTION) then
+            return sn(nil, t(":"))
+          else
+            return sn(nil, t(""))
+          end
+        end),
       }
     )
   ),
@@ -435,5 +448,16 @@ return {
         }),
       }
     )
+  ),
+
+  -- current date(time)
+  s(
+    "cdt",
+    fmt("{}", {
+      c(1, {
+        f(ls_utils.todays_date),
+        f(ls_utils.todays_date, {}, { user_args = { "%Y-%m-%d %H:%M:%S" } }),
+      }),
+    })
   ),
 }
