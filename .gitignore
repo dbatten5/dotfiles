@@ -1,3 +1,6 @@
+.venv
+
+
 .zsh/private.zsh
 
 .config/iterm2

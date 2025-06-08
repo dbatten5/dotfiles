@@ -18,7 +18,6 @@ import attrs
 import rich
 import typer
 
-
 WORKOUTS_DIR = pathlib.Path.home() / "Documents/Workouts"
 
 
@@ -109,10 +108,10 @@ def choose_workout(type: Annotated[WorkoutType | None, typer.Argument()] = None)
     workouts = list(collect_videos(by_type=type))
     random_video = random.choice(workouts)
     rich.print(
-        f"[bold green]{random_video.name}[/bold green] video {random_video.ordinal}"
+        f"[bold green]{random_video.name}[/bold green] video {random_video.ordinal}",
     )
     if typer.confirm("Let's go?", abort=True):
-        _ = subprocess.run(["open", random_video.path])
+        _ = subprocess.run(["open", random_video.path], check=False)
 
 
 if __name__ == "__main__":
