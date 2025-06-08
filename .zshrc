@@ -18,7 +18,10 @@ source ~/.zsh/private.zsh
 
 eval $(/opt/homebrew/bin/brew shellenv)
 
-eval "$(starship init zsh)"
+type starship_zle-keymap-select >/dev/null || \
+  {
+    eval "$(/opt/homebrew/bin/starship init zsh)"
+  }
 
 eval "$(zoxide init zsh)"
 
@@ -84,3 +87,7 @@ compctl -K _complete_invoke + -f invoke inv
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+zstyle ':completion:*' menu select

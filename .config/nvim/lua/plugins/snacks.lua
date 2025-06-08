@@ -140,7 +140,7 @@ return {
         end
         local opts = {
           cwd = cwd,
-          prompt = "Find string relative to " .. require("utils.functions").truncateFilepath(cwd),
+          prompt = "Find string relative to " .. require("utils.functions").truncateFilepath(cwd) .. " > ",
         }
         require("snacks").picker.grep(opts)
       end,
