@@ -29,6 +29,7 @@ class WorkoutName(enum.StrEnum):
     DOCKLANDS = "Docklands"
     EMPIRE = "Empire"
     GOAT = "Goat"
+    HOLLYWOOD = "Hollywood"
     MKATZ = "Mkatz"
     MONT_BLANC = "Mont Blanc"
     MVP = "MVP"
@@ -43,7 +44,7 @@ class WorkoutName(enum.StrEnum):
 class WorkoutType(enum.StrEnum):
     CARDIO = "cardio"
     STRENGTH = "strength"
-    ALL = "all"
+    LONG = "long"
 
 
 VIDEO_MAPPING: dict[WorkoutName, WorkoutType] = {
@@ -62,6 +63,7 @@ VIDEO_MAPPING: dict[WorkoutName, WorkoutType] = {
     WorkoutName.QUARTERBACKS: WorkoutType.CARDIO,
     WorkoutName.VARSITY: WorkoutType.CARDIO,
     WorkoutName.DOCKLANDS: WorkoutType.CARDIO,
+    WorkoutName.HOLLYWOOD: WorkoutType.LONG,
 }
 
 
@@ -76,12 +78,12 @@ class Video:
 app = typer.Typer()
 
 
-def collect_videos(by_type: WorkoutType) -> Iterable[Video]:
+def collect_videos(by_type: WorkoutType | None = None) -> Iterable[Video]:
     workouts: dict[WorkoutName, list[Video]] = {}
     workout_names = [w for w in WorkoutName]
     for path in WORKOUTS_DIR.rglob("*"):
         for workout_name in workout_names:
-            if workout_name in str(path):
+            if path.is_file() and workout_name in str(path):
                 video_type = VIDEO_MAPPING[workout_name]
                 video = Video(
                     name=workout_name,
@@ -96,14 +98,14 @@ def collect_videos(by_type: WorkoutType) -> Iterable[Video]:
         key=lambda v: (v.name, v.ordinal),
     )
 
-    if by_type == WorkoutType.ALL:
-        yield from all_videos
-    else:
+    if by_type:
         yield from (video for video in all_videos if video.type == by_type)
+    else:
+        yield from all_videos
 
 
 @app.command()
-def choose_workout(type: Annotated[WorkoutType, typer.Argument()] = WorkoutType.ALL):
+def choose_workout(type: Annotated[WorkoutType | None, typer.Argument()] = None):
     workouts = list(collect_videos(by_type=type))
     random_video = random.choice(workouts)
     rich.print(
