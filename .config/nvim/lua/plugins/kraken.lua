@@ -7,6 +7,9 @@ return {
       desc = "Locate test file(s)",
     },
   },
+  cmd = {
+    "KAddTestFile",
+  },
   lazy = true,
   dev = true,
   opts = {

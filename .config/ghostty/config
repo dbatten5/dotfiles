@@ -33,7 +33,7 @@ keybind = cmd+shift+right=move_tab:+1
 keybind = cmd+shift+left=move_tab:-1
 
 # copy current line to clipboard
-keybind = ctrl+y=copy_to_clipboard
+# keybind = ctrl+y=copy_to_clipboard
 
 # open history in text editor
 keybind = cmd+f=write_screen_file:open

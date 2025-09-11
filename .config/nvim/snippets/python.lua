@@ -460,4 +460,20 @@ return {
       }),
     })
   ),
+
+  s(
+    "exc",
+    fmt(
+      [[
+      class {}(Exception):
+          """
+          Raised when {}
+          """
+    ]],
+      {
+        i(1),
+        i(2),
+      }
+    )
+  ),
 }

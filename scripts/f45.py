@@ -80,9 +80,9 @@ app = typer.Typer()
 def collect_videos(by_type: WorkoutType | None = None) -> Iterable[Video]:
     workouts: dict[WorkoutName, list[Video]] = {}
     workout_names = [w for w in WorkoutName]
-    for path in WORKOUTS_DIR.rglob("*"):
+    for path in WORKOUTS_DIR.rglob("*.mp4"):
         for workout_name in workout_names:
-            if path.is_file() and workout_name in str(path):
+            if workout_name in str(path):
                 video_type = VIDEO_MAPPING[workout_name]
                 video = Video(
                     name=workout_name,

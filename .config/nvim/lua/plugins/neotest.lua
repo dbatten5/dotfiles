@@ -101,7 +101,7 @@ return {
   config = function()
     local neotest = require("neotest")
     local neotest_python = require("neotest-python")
-    local pytest_args = vim.g.pytest_args or { "-vv" }
+    local pytest_args = vim.g.pytest_args or { "-vvv" }
 
     neotest.setup({
       adapters = {

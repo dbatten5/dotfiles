@@ -15,6 +15,14 @@ return {
             args = { "--max-count 20" },
           },
         },
+        win = {
+          input = {
+            keys = {
+              ["<c-h>"] = { "history_back", mode = { "i", "n" } },
+              ["<c-l>"] = { "history_forward", mode = { "i", "n" } },
+            },
+          },
+        },
       },
     },
     quickfile = { enabled = true },
