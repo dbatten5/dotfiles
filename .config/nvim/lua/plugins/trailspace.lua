@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.trailspace",
+  "nvim-mini/mini.trailspace",
   version = false,
   keys = {
     {
