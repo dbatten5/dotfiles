@@ -38,7 +38,6 @@ return {
         gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
       end, { desc = "Reset hunk" })
       map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Stage buffer" })
-      map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Undo stage hunk" })
       map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Reset buffer" })
       map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "Preview hunk" })
       map("n", "<leader>hb", function()
@@ -55,6 +54,14 @@ return {
       -- Text object
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
     end,
+    preview_config = {
+      -- Options passed to nvim_open_win
+      style = "minimal",
+      border = "rounded",
+      relative = "cursor",
+      row = 0,
+      col = 1,
+    },
   },
   config = function(_, opts)
     require("gitsigns").setup(opts)
