@@ -1,6 +1,11 @@
 [tools]
-python = "3.11"
+python = "3.13"
 usage = "latest"
+uv = "latest"
+
+[env]
+# PROJECT_NAME = "{{ config_root | basename }}"
+# _.python.venv = { path = ".venv", create = true }
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]

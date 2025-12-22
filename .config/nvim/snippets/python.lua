@@ -476,4 +476,7 @@ return {
       }
     )
   ),
+
+  -- assert
+  s("as", t("assert "))
 }

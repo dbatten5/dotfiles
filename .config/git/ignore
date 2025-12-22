@@ -5,4 +5,4 @@
 .neoconf.json
 mprocs.yaml
 mprocs.log
-mise.toml
+mise.local.toml

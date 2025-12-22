@@ -1,6 +1,10 @@
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt HIST_NO_STORE
+setopt SHARE_HISTORY
+
+HISTSIZE=256000
+SAVEHIST=256000
 
 setopt NO_BEEP
 setopt CORRECT
@@ -25,9 +29,9 @@ type starship_zle-keymap-select >/dev/null || \
 
 eval "$(zoxide init zsh)"
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -35,18 +39,18 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(fzf --zsh)
 export FZF_COMPLETION_TRIGGER=',,'
 
-# Created by `pipx` on 2023-12-24 10:00:49
-export PATH="$PATH:/Users/dom.batten/.local/bin"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-export WORKON_HOME=$HOME/.virtualenvs
-pyenv global 3.12.7
-pyenv virtualenvwrapper_lazy
+# # Created by `pipx` on 2023-12-24 10:00:49
+# export PATH="$PATH:/Users/dom.batten/.local/bin"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# export WORKON_HOME=$HOME/.virtualenvs
+# pyenv global 3.12.7
+# pyenv virtualenvwrapper_lazy
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export PATH="/Applications/Postgres.app/Contents/Versions/15/bin:$PATH"
 
 export PATH="$PATH:$HOME/kafka/kafka_2.13-3.9.0/bin"
 
@@ -91,3 +95,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
 zstyle ':completion:*' menu select
+eval "$(mise activate zsh)"

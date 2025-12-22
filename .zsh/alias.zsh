@@ -49,6 +49,7 @@ alias grbas='git rebase --autosquash -i \`\$(git rev-list $(git_main_branch).. |
 alias gprune='git fetch --prune --prune-tags && git prune'
 # Create a PR using gh
 alias pr='gh pr create'
+alias gunwip='git rev-list --max-count=1 --format="%s" HEAD | grep -q "--wip--" && git reset HEAD~'
 
 # python
 alias c='conda'

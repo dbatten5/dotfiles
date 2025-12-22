@@ -8,6 +8,7 @@ return {
     input = { enabled = true },
     picker = {
       enabled = true,
+      layout = "ivy",
       picker = {
         ui_select = true,
         previewers = {
