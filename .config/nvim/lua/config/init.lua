@@ -4,6 +4,7 @@ local function init()
   require("config.options")
   require("config.keymaps")
   require("config.commands")
+  require("config.lsp")
 end
 
 init()
