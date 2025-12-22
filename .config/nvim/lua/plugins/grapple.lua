@@ -36,7 +36,9 @@ end
 
 return {
   "cbochs/grapple.nvim",
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = {
+    { "nvim-tree/nvim-web-devicons", lazy = true },
+  },
   cmd = "Grapple",
   keys = {
     {
