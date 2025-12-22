@@ -150,6 +150,7 @@ return {
   -- telescope imports
   {
     "piersolenski/telescope-import.nvim",
+    enabled = false,
     dependencies = "nvim-telescope/telescope.nvim",
     keys = {
       { "<space>fi", "<cmd>Telescope import<cr>", desc = "Imports" },
