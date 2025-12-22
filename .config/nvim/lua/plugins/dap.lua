@@ -1,16 +1,6 @@
 return {
   "mfussenegger/nvim-dap",
   lazy = true,
-  dependencies = {
-    "nvim-neotest/nvim-nio",
-    "nvim-lua/plenary.nvim",
-    "antoinemadec/FixCursorHold.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    {
-      "rcarriga/nvim-dap-ui",
-      dependencies = { "nvim-neotest/nvim-nio" },
-    },
-  },
   keys = {
     {
       "<leader>dc",
@@ -20,23 +10,30 @@ return {
       desc = "Start debug",
     },
     {
-      "<leader>do",
+      "<down>",
       function()
         require("dap").step_over()
       end,
       desc = "Step over",
     },
     {
-      "<leader>di",
+      "<right>",
       function()
         require("dap").step_into()
       end,
       desc = "Step into",
     },
     {
-      "<leader>dx",
+      "<left>",
       function()
         require("dap").step_out()
+      end,
+      desc = "Step out",
+    },
+    {
+      "<up>",
+      function()
+        require("dap").restart_frame()
       end,
       desc = "Step out",
     },
@@ -70,14 +67,6 @@ return {
       desc = "Hover selection",
     },
     {
-      "<leader>de",
-      function()
-        require("dapui").eval(nil, "repl")
-      end,
-      mode = { "n", "v" },
-      desc = "Eval selection",
-    },
-    {
       "<leader>dR",
       function()
         require("dap").restart()
@@ -98,25 +87,5 @@ return {
       end,
       desc = "Clear all breakpoints",
     },
-    {
-      "<leader>du",
-      function()
-        require("dapui").toggle()
-      end,
-      desc = "Toggle UI",
-    },
   },
-  config = function()
-    local dap, dapui = require("dap"), require("dapui")
-    dapui.setup()
-    dap.listeners.after.event_initialized["dapui_config"] = function()
-      dapui.open()
-    end
-    dap.listeners.before.event_terminated["dapui_config"] = function()
-      dapui.close()
-    end
-    dap.listeners.before.event_exited["dapui_config"] = function()
-      dapui.close()
-    end
-  end,
 }
