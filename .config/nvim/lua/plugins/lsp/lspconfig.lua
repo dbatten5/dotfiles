@@ -3,8 +3,6 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     "folke/snacks.nvim",
     {
       "folke/lazydev.nvim",
@@ -17,7 +15,7 @@ return {
     },
   },
   config = function()
-    local lspconfig = require("lspconfig")
+    local lspconfig = vim.lsp.config
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
     local map = vim.keymap
@@ -68,52 +66,19 @@ return {
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
-    -- lspconfig.pyright.setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    --   settings = {
-    --     python = {
-    --       analysis = {
-    --         stubPath = os.getenv("PYTHON_TYPE_STUBS") or "",
-    --         typeCheckingMode = "off",
-    --         useLibraryCodeForTypes = true,
-    --         autoImportCompletions = true,
-    --         autoSearchPaths = true,
-    --         venvPath = ".",
-    --       },
-    --     },
-    --   },
-    -- })
-
-    -- lspconfig.pylsp.setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    --   -- root_dir = function(fname)
-    --   --   local util = require("lspconfig.util")
-    --   --   local root_files = {
-    --   --     "setup.cfg",
-    --   --     "pyproject.toml",
-    --   --     "setup.py",
-    --   --     "requirements.txt",
-    --   --     "Pipfile"pylsp
-    --   --   }
-    --   --   return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
-    --   -- end,
-    -- })
-
-    lspconfig.basedpyright.setup({
+    lspconfig.basedpyright = {
       capabilities = capabilities,
       on_attach = on_attach,
-    })
+    }
 
-    lspconfig.lua_ls.setup({
+    lspconfig.lua_ls = {
       capabilities = capabilities,
       on_attach = on_attach,
-    })
+    }
 
-    lspconfig.ts_ls.setup({
+    lspconfig.ts_ls = {
       capabilities = capabilities,
       on_attach = on_attach,
-    })
+    }
   end,
 }
