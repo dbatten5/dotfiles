@@ -3,8 +3,10 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    debug = { enabled = true },
     bigfile = { enabled = true },
     gitbrowse = { enabled = true },
+    gh = { enabled = true },
     input = { enabled = true },
     picker = {
       enabled = true,
