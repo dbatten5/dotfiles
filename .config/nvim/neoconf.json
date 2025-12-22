@@ -22,27 +22,5 @@
         }
       }
     },
-
-    "pylsp": {
-      "pylsp": {
-        "plugins": {
-          "pylsp_mypy": {
-            "enabled": false
-          },
-          "black": {
-            "enabled": false
-          },
-          "ruff": {
-            "enabled": false
-          },
-          "pycodestyle": {
-            "enabled": false
-          },
-          "pyflakes": {
-            "enabled": false
-          }
-        }
-      }
-    }
   }
 }
