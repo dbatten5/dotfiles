@@ -59,9 +59,6 @@ return {
       map.set("i", "<c-s>", function()
         vim.lsp.buf.signature_help({ border = "rounded" })
       end, opts)
-
-      opts.desc = "Restart LSP"
-      map.set("n", "<space>rs", ":LspRestart<CR>", opts)
     end
 
     local capabilities = cmp_nvim_lsp.default_capabilities()
