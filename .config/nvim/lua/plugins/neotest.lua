@@ -3,6 +3,7 @@ return {
   lazy = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "nvim-neotest/nvim-nio",
     "nvim-treesitter/nvim-treesitter",
     "nvim-neotest/neotest-python",
     "mfussenegger/nvim-dap",
@@ -110,13 +111,19 @@ return {
           args = pytest_args,
         }),
       },
-      output = { open_on_run = true },
       discovery = {
         enabled = false,
         concurrent = 1,
       },
+      output = {
+        enabled = true,
+        open_on_run = "short",
+      },
       summary = {
         animated = false,
+      },
+      floating = {
+        border = "rounded",
       },
     })
   end,
