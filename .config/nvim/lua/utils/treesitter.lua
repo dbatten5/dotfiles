@@ -1,5 +1,3 @@
-local ts_utils = require("nvim-treesitter.ts_utils")
-
 local M = {}
 
 ---@enum definition_types
@@ -77,7 +75,7 @@ M.NODE_TYPES = {
 ---@param node_type node_types the type of node to check against
 ---@return boolean
 function M.node_under_cursor_has_parent(node_type)
-  local cursor_node = ts_utils.get_node_at_cursor()
+  local cursor_node = vim.treesitter.get_node()
   if not cursor_node then
     return false
   end

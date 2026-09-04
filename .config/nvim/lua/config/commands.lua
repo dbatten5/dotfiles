@@ -23,3 +23,36 @@ vim.api.nvim_create_user_command("NewPlugin", function(opts)
 end, {
   nargs = 1,
 })
+
+vim.api.nvim_create_user_command("GitBranchFilesToQF", function()
+  -- Get repo root
+  local repo_root = require("utils.git").get_repo_root()
+  if not repo_root or repo_root == "" then
+    vim.notify("Not in a git repository", vim.log.levels.ERROR)
+    return
+  end
+
+  -- Get changed files (relative to repo root)
+  local files = require("utils.git").get_changed_files_of_current_branch()
+  if #files == 0 then
+    vim.notify("No changed files in current branch", vim.log.levels.INFO)
+    return
+  end
+
+  local qf_items = {}
+  for _, file in ipairs(files) do
+    table.insert(qf_items, {
+      filename = file, -- absolute path
+      lnum = 1,
+      col = 1,
+      text = "Changed in branch",
+    })
+  end
+
+  vim.fn.setqflist({}, "r", {
+    title = "Files changed in current git branch",
+    items = qf_items,
+  })
+
+  vim.cmd("copen")
+end, {})

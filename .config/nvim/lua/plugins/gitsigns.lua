@@ -1,3 +1,5 @@
+local utils = require("utils.functions")
+
 return {
   "lewis6991/gitsigns.nvim",
   lazy = false,
@@ -65,5 +67,22 @@ return {
   },
   config = function(_, opts)
     require("gitsigns").setup(opts)
+
+    utils.setKeymap("n", "<leader>hP", function()
+      local file = vim.fn.expand("%")
+      local line = vim.fn.line(".")
+      local blame = vim.fn.system(string.format("git blame -L %d,%d --porcelain %s", line, line, file))
+      local commit = blame:match("^(%x+)")
+      if commit and commit ~= "0000000000000000000000000000000000000000" then
+        vim.fn.system(
+          string.format(
+            'gh pr view --web $(gh pr list --search "%s" --state merged --json number --jq ".[0].number")',
+            commit
+          )
+        )
+      else
+        print("No commit found for this line")
+      end
+    end, { desc = "Open PR introducing current line" })
   end,
 }

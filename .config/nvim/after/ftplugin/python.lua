@@ -36,6 +36,7 @@ end
 
 vim.opt.colorcolumn = "88"
 vim.opt.textwidth = 0
+vim.opt.formatoptions:remove("t")
 
 -- override the python module import so that it shows up as a variable hl group
 vim.api.nvim_set_hl(0, "@module.python", { link = "@variable" })
@@ -71,6 +72,32 @@ map(
   ":FormatLineAsImportStatement<cr>",
   { desc = "Format the current line containing a Python module path as a module-level import statement" }
 )
+
+vim.api.nvim_create_user_command("AliasImport", function(_)
+  local line = vim.api.nvim_get_current_line()
+  local module_path, name = line:match("^from (%S+) import (%S+)%s*$")
+  if not module_path or not name then
+    vim.notify("Not a simple 'from X import Y' line", vim.log.levels.WARN)
+    return
+  end
+  if name:find(" as ") then
+    vim.notify("Import already has alias", vim.log.levels.WARN)
+    return
+  end
+  local last_segment = module_path:match("[^.]+$")
+  local alias = last_segment .. "_" .. name
+  local lnum = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_set_current_line(string.format("from %s import %s as %s", module_path, name, alias))
+  local line_count = vim.api.nvim_buf_line_count(0)
+  if lnum > 1 then
+    vim.cmd(string.format("1,%ds/\\<%s\\>/%s/ge", lnum - 1, name, alias))
+  end
+  if lnum < line_count then
+    vim.cmd(string.format("%d,$s/\\<%s\\>/%s/ge", lnum + 1, name, alias))
+  end
+end, {})
+
+map("n", "<leader>pi", ":AliasImport<cr>", { desc = "Add alias to Python import line (from X.Y.Z import name → as Z_name)" })
 
 vim.api.nvim_create_user_command("PasteImportStatement", function(_)
   -- This command finds all open python buffers that aren't the current buffer and then, if there is only one other open

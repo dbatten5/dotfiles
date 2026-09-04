@@ -13,7 +13,7 @@ api.nvim_create_autocmd("BufReadPost", {
 
 -- set spelling utils for certain filetypes
 api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "markdown", "text", "latex", "NeogitCommitMessage" },
+  pattern = { "markdown", "text", "latex", "NeogitCommitMessage", "gitcommit" },
   callback = function()
     vim.opt.spell = true
     vim.opt.spelllang = "en_gb"

@@ -20,6 +20,7 @@ return {
       terraform = { "tflint" },
       lua = { "luacheck" },
       json = { "jsonlint" },
+      jsonc = { "jsonlint" },
     },
   },
   config = function(_, opts)

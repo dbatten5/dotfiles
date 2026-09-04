@@ -93,6 +93,7 @@ return {
 
   {
     "rcarriga/nvim-dap-ui",
+    enabled = false,
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
@@ -113,6 +114,37 @@ return {
       end
       dapui.setup()
     end,
+  },
+
+  {
+    "igorlfs/nvim-dap-view",
+    lazy = false,
+    version = "1.*",
+    keys = {
+      {
+        "<leader>dw",
+        "<cmd>DapViewWatch<cr>",
+        desc = "Adds the expression under the cursor to the watch list",
+      },
+      {
+        "<leader>dW",
+        ":DapViewWatch ",
+        desc = "Adds the expression under the cursor to the watch list",
+      },
+    },
+    ---@module 'dap-view'
+    ---@type dapview.Config
+    opts = {
+      auto_toggle = true,
+      winbar = {
+        controls = {
+          enabled = false,
+        },
+      },
+      help = {
+        border = "rounded",
+      },
+    },
   },
 
   {

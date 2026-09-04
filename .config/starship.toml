@@ -17,7 +17,7 @@ $python\
 [directory]
 style = "bg:#BF616A"
 format = "[ $path ]($style)"
-truncation_length = 1
+truncation_length = 2
 truncation_symbol = "…/"
 
 # Here is how you can shorten some long paths by text replacement

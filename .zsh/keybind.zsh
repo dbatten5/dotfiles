@@ -24,3 +24,7 @@ bindkey -M viins '^g^f' _fzgf_widget
 bindkey -M viins '^g^r' _fzgr_widget
 bindkey -M viins '^g^s' _fzgs_widget
 bindkey -M viins '^g^p' _fzgsp_widget
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line

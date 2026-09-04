@@ -11,19 +11,17 @@ return {
     picker = {
       enabled = true,
       layout = "ivy",
-      picker = {
-        ui_select = true,
-        previewers = {
-          git = {
-            args = { "--max-count 20" },
-          },
+      ui_select = true,
+      previewers = {
+        git = {
+          args = { "--max-count 20" },
         },
-        win = {
-          input = {
-            keys = {
-              ["<c-h>"] = { "history_back", mode = { "i", "n" } },
-              ["<c-l>"] = { "history_forward", mode = { "i", "n" } },
-            },
+      },
+      win = {
+        input = {
+          keys = {
+            ["<c-h>"] = { "history_back", mode = { "i", "n" } },
+            ["<c-l>"] = { "history_forward", mode = { "i", "n" } },
           },
         },
       },

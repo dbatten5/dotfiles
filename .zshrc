@@ -18,6 +18,8 @@ source ~/.zsh/alias.zsh
 source ~/.zsh/export.zsh
 source ~/.zsh/private.zsh
 
+eval "$(navi widget zsh)"
+
 # INITIALISING PACKAGES
 
 eval $(/opt/homebrew/bin/brew shellenv)
@@ -96,3 +98,15 @@ fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
 zstyle ':completion:*' menu select
 eval "$(mise activate zsh)"
+
+# opencode
+export PATH=/Users/dom.batten/.opencode/bin:$PATH
+
+with1pass() {
+  local cmd="$1"
+  shift
+  local key
+  key=$(op read "op://Employee/LiteLLM API Key/credential") || { echo "Failed to fetch API key from 1Password" >&2; return 1; }
+  ANTHROPIC_AUTH_TOKEN="$key" LITELLM_API_KEY="$key" "$cmd" "$@"
+}
+export PATH="$HOME/.cargo/bin:$PATH"

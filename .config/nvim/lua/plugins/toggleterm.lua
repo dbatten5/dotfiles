@@ -17,7 +17,7 @@ end
 
 return {
   "akinsho/toggleterm.nvim",
-  keys = { "<c-t>" },
+  keys = { "<c-t>", "<c-c>" },
   opts = {
     size = function(term)
       if term.direction == "horizontal" then

@@ -9,12 +9,13 @@
 [rebase]
   autosquash = true
   autoStash = true
+	updateRefs = true
 [init]
   defaultBranch = main
 [core]
   editor = nvim
 [pull]
-  rebase = true
+	rebase = true
 [difftool]
   prompt = true
 [diff]
@@ -26,7 +27,23 @@
 [branch]
 	sort = -committerdate
 [alias]
-	wip = commit --message='TMP: [skip ci]' --allow-empty --no-verify
+    # Get default branch name
+  defaultbranch = "!f() { git symbolic-ref refs/remotes/origin/HEAD | cut -d/ -f4; }; f"
+
+  # Delete merged branches
+  cleanup = "!git branch --merged | grep -Ev '^\\*|^\\+' | sed 's/^[* +]*//' | xargs -r -n 1 git branch -d"
+
+  # Start afresh on default branch (after doing some cleanup)
+  zero = "!git checkout $(git defaultbranch) && git pull --ff-only --prune -q && git cleanup;"
+
+  # Reset last commit (often used after `git wip`)
+  pop = reset head^
+
+  # Show files changed on PR branch
+  prfiles = "!f() { cd ${GIT_PREFIX:-./}; git diff --relative --name-only origin/$(git defaultbranch)...HEAD; }; f"
+
+  # Show diff of PR (same as what GitHub will show)
+  prdiff = "!f() { cd ${GIT_PREFIX:-./}; git diff --relative origin/$(git defaultbranch)...HEAD; }; f"
 [push]
 	autoSetupRemote = true
 [url "ssh://git@github.com/octoenergy/"]

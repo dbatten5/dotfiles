@@ -15,21 +15,13 @@ alias v="nvim ."
 alias vv="nvim"
 alias vim="nvim"
 
-# tools
-alias mp="mprocs"
-
 # git
-alias gbd='git branch --merged | egrep -v "(^\*|master|main|dev|staging|develop)" | xargs git branch -d'
+alias gbd='git branch --merged | grep -Ev "(^\*|^\+|master|main|dev|staging|develop)" | xargs git branch -d'
 alias gco='git checkout'
 alias gcob='git checkout -b '
-alias gst='git status'
-alias blame='git blame'
-alias ggpull='git pull origin $(git_main_branch) -q'
-alias gcp='git cherry-pick'
+alias ggpull='git pull origin $(git_main_branch)'
 alias gl='git log'
 alias gs='git status'
-alias gc='git commit'
-alias ga='git add'
 alias gb='git branch'
 alias gcom='git checkout $(git_main_branch)'
 alias gar='git absorb -r'
@@ -47,9 +39,15 @@ alias grba='git rebase -i -'
 alias grbas='git rebase --autosquash -i \`\$(git rev-list $(git_main_branch).. | tail -n 1)^\`'
 # Remove branches that don't exist on remote, prune all unreachable objects
 alias gprune='git fetch --prune --prune-tags && git prune'
-# Create a PR using gh
-alias pr='gh pr create'
 alias gunwip='git rev-list --max-count=1 --format="%s" HEAD | grep -q "--wip--" && git reset HEAD~'
+alias g='git status -sb'
+alias gz='git zero'
+alias glm='git log --oneline origin/$(git defaultbranch)..'
+alias gro='git pull --rebase=i origin/$(git defaultbranch)'
+alias gw='git worktree'
+
+# github
+alias pr='gh pr create'
 
 # python
 alias c='conda'
@@ -75,7 +73,10 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 
 # display
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh --color'
-alias la='ls -lAh --color'
+alias ls='lsd'
+alias l='lsd -la'
+alias la='lsd -a'
+alias ll='lsd -l'
+alias lt='lsd --tree --depth 10'
+
+alias claude='with1pass claude'

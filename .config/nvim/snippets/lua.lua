@@ -182,4 +182,10 @@ return {
       }
     )
   ),
+
+  -- debug
+  s("debug", fmt("vim.notify(vim.inspect({}), vim.log.levels.INFO)", { i(1) })),
+
+  -- clear cached dependencies
+  s("pln", fmt('package.loaded["{}"] = nil', { i(1) })),
 }

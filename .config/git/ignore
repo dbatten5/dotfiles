@@ -6,3 +6,5 @@
 mprocs.yaml
 mprocs.log
 mise.local.toml
+
+**/.claude/settings.local.json

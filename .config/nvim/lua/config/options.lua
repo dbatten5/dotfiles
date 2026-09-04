@@ -36,6 +36,7 @@ opt.relativenumber = true
 opt.cursorline = true
 opt.colorcolumn = "80"
 opt.termguicolors = true
+opt.winborder = "rounded"
 vim.cmd.colorscheme("nord")
 vim.diagnostic.config({
   signs = true,

@@ -13,3 +13,5 @@ export FZF_DEFAULT_OPTS="
   --bind='ctrl-x:unix-line-discard'
 "
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git' --exclude 'node_modules'"
+
+export EDITOR="nvim"

@@ -9,6 +9,8 @@ return {
   },
   cmd = {
     "KAddTestFile",
+    "KRunTestFile",
+    "KCreateSlackPrLink",
   },
   lazy = true,
   dev = true,

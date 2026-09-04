@@ -11,7 +11,8 @@ return {
     view_options = {
       show_hidden = true,
       is_always_hidden = function(name, _)
-        return (name == ".DS_Store")
+        local hidden = { ".DS_Store", "__pycache__", ".mypy_cache", ".pytest_cache" }
+        return vim.tbl_contains(hidden, name)
       end,
     },
     keymaps = {
@@ -86,6 +87,20 @@ return {
           require("oil").open("~/.config/nvim")
         end,
         desc = "Open nvim config directory",
+        mode = "n",
+      },
+      ["gt"] = {
+        callback = function()
+          local oil = require("oil")
+          local entry = oil.get_cursor_entry()
+          local dir = oil.get_current_dir()
+          if not entry or not dir then
+            return
+          end
+          local path = (entry.type == "directory") and (dir .. entry.name) or dir
+          require("toggleterm.terminal").Terminal:new({ dir = path, close_on_exit = false }):toggle()
+        end,
+        desc = "Open terminal at cursor path",
         mode = "n",
       },
       ["__"] = {
